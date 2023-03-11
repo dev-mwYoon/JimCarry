@@ -1,0 +1,258 @@
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:300;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format("0woff"),url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:500;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:700;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format("truetype")}html{line-height:1.15; line-height:1.15;-webkit-tap-highlight-color:transparent}
+
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+button, input, optgroup, select, textarea, a {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body, button, input, select, textarea {
+  font-size: 14px;
+  color: #333;
+}
+
+html, button, input, select, textarea {
+  font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+*, ::after, :before, legend, td, th {
+  padding: 0;
+}
+
+/* 헤더 */
+.header-layout {
+    position: relative;
+    width: 1050px;
+    height: 60px;
+    margin: 0px auto;
+    letter-spacing: -0.3px;
+}
+
+.login-all-menu {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    z-index: 20;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+.sign-up-menu {
+    display: block;
+    color: rgb(95, 0, 128);
+    cursor: pointer;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.slash {
+  width: 1px;
+  height: 13px;
+  margin: 0px 12px;
+  background-color: rgb(217, 217, 217);
+}
+
+/* 기록 */
+.slash2 {
+  margin: 1px 2px 0px 3px;
+  width: 1px;
+  height: 10px;
+  background-color: rgb(217, 217, 217);
+  display: inline-block;
+}
+
+.login-menu {
+  display: block;
+  cursor: pointer;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.customer-center-layout {
+    line-height: 35px;
+    position: relative;
+}
+
+.customer-centertext {
+  display: block;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.down-arrow {
+  width: 8px;
+  height: 5px;
+  background-image: url(https://res.kurly.com/pc/ico/1908/ico_down_16x10.png);
+  background-size: cover;
+  background-position: center center;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 1px;
+}
+
+.second-header-layout {
+    height: 100px;
+}
+
+.second-header-layout1 {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 80px;
+}
+
+.menu {
+  position: relative;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  width: 1050px;
+  height: 56px;
+  margin: 0px auto;
+}
+
+.menu-fix {
+  min-width: 1050px;
+  letter-spacing: -0.3px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
+  width: 100%;
+  z-index: 10;
+}
+
+.menu-fix-change {
+  min-width: 1050px;
+  letter-spacing: -0.3px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
+  width: 100%;
+  position: fixed;
+  z-index: 101;
+  top: 0px;
+  left: 0px;
+  height: 55px;
+}
+
+.category-layout {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+  width: 125px;
+}
+
+.category-img {
+  width: 16px;
+  height: 14px;
+  margin-right: 14px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNiAxNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMTZ2MS43SDBWMHptMCA2LjE1aDE2djEuN0gwdi0xLjd6bTAgNi4xNWgxNlYxNEgwdi0xLjd6IiBmaWxsPSIjMzMzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==) 0px 0px / 16px 14px no-repeat;
+}
+
+.category-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.3px;
+  color: rgb(51, 51, 51);
+}
+
+.menus-layout {
+  display: flex;
+  margin-left: 30px;
+}
+
+.menu-layout {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 150px;
+  height: 55px;
+  padding-top: 18px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.menu-text {
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(51, 51, 51);
+  cursor: pointer;
+}
+
+.saetbyeol-notice-layout {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.user-guide {
+    text-decoration: none;
+}
+
+.saetbyeol-notice-box {
+  height: 32px;
+  padding: 6px 16px;
+  border-radius: 18px;
+  border: 1px solid rgb(238, 238, 238);
+  color: rgb(102, 102, 102);
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.32px;
+}
+
+.saetbyeol-notice-text {
+  font-weight: 500;
+  color: rgb(95, 0, 128);
+}
+
+.logo {
+  flex: 0 0 82px;
+}
+
+.header-dropbox-ul {
+  list-style: none;
+  width: 125px;
+  cursor: pointer;
+  display: none;
+}
+
+.header-dropbox-li {
+  padding: 7px 0px 9px 14px;
+  background-color: rgb(247, 247, 247);
+}
+
+.welcome-box {
+  display: inline-block;
+  min-width: 38px;
+  height: 16px;
+  margin-right: 4px;
+  padding: 0px 4px;
+  border-radius: 30px;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  letter-spacing: -0.3px;
+  vertical-align: 0px;
+  border: 1px solid rgb(148, 146, 150);
+  background-color: rgb(255, 255, 255);
+  color: rgb(148, 146, 150);
+}
