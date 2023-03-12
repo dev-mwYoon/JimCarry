@@ -1,0 +1,265 @@
+*, :after, :before, legend, td, th {
+    padding: 0;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body, html {
+    height: 100%;
+}
+
+html, button, input, select, textarea {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+button {
+    overflow: visible;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+ol, ul {
+    list-style-type: none;
+}
+
+.container {
+    width: 1050px;
+    margin: 0 auto;
+}
+
+.banner-div {
+    text-align: center;
+}
+
+.search-title {
+    margin-top: 50px;
+    font-weight: 500;
+    font-size: 28px;
+    color: rgb(51, 51, 51);
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.place-ul {
+    display: grid;
+    grid-template-columns: repeat(4, 180px);
+    gap: 16px 83px;
+    margin-top: 28px;
+    padding: 30px 40px;
+    border: 1px solid rgb(226, 226, 226);
+    line-height: 20px;
+}
+
+.place-select {
+    letter-spacing: -1px;
+    cursor: pointer;
+    font-weight: 700;
+    color: rgb(95, 0, 128);
+}
+
+.place {
+    letter-spacing: -1px;
+    cursor: pointer;
+}
+
+.result {
+    position: relative;
+    display: flex;
+    width: 1050px;
+    margin-top: 50px;
+    margin-bottom: 75px;
+}
+
+.filter-container {
+    width: 220px;
+    margin-right: 47px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.filter-title {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.filter-text {
+    font-weight: 500;
+    font-size: 15px;
+    color: rgb(51, 51, 51);
+}
+
+.filter-select-li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.filter-select-text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 52px;
+}
+
+.filter-select-button {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.select-text {
+    margin-right: 4px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgb(51, 51, 51);
+}
+
+.result-content {
+    width: 100%;
+}
+
+.result-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    line-height: 20px;
+}
+
+.total-number {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+}
+
+.array-ul {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.array-li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 8px;
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+}
+
+.array-li::before {
+    content: "";
+    display: flex;
+    width: 1px;
+    height: 10px;
+    margin-right: 8px;
+    background-color: rgb(226, 226, 226);
+}
+
+.array-li:first-child::before {
+    content: none
+}
+
+.array-a {
+    letter-spacing: -0.3px;
+    cursor: pointer;
+}
+
+.array-a-select {
+    letter-spacing: -0.3px;
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    cursor: default;
+}
+
+.result-real-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 249px);
+    gap: 31px 18px;
+    width: 100%;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    height: 538px;
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+}
+
+.product-img-div {
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(245, 245, 245);
+    width: 249px;
+    height: 320px;
+}
+
+.product-explain {
+    padding: 14px 10px 0px 0px;
+}
+
+.product-title {
+    max-height: 58px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: normal;
+    display: -webkit-box;
+}
+
+.product-short-explain {
+    padding-top: 4px;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    line-height: 18px;
+    letter-spacing: normal;
+    display: -webkit-box;
+}
+
+.product-price-div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+}
+
+.product-price {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.5px;
+}
+
+.review-count-div {
+    display: flex;
+    padding-top: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    line-height: 17px;
+}
+
+.review-img {
+    width: 15px;
+    height: 15px;
+    margin: 1px 2px 0px 0px;
+}
