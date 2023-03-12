@@ -1,0 +1,88 @@
+/** @format */
+
+section.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* 헤더 ======================================================= */
+div.content__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #24232F;
+  color: white;
+}
+
+div.content__header h2,
+div.content__header a {
+  padding: 21px 32px;
+}
+
+/* 헤더 끝 ==================================================== */
+
+/* 테이블 ===================================================== */
+
+div.table__container {
+  margin: 24px 0;
+  font-family: "NanumBareunGothicLight";
+  text-align: center;
+}
+
+div.table__box {
+  margin: 0 auto;
+  padding: 24px 24px;
+  width: 60vw;
+  min-width: 900px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 3px 6px 3px rgba(53, 53, 53, 0.2);
+}
+
+div.table__box .table__search__form{
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-box {
+  display: flex;
+  border-bottom: 2px solid gray;
+  align-items: center;
+}
+.search-box svg {
+  width: 21px;
+  display: flex;
+  justify-content: center;
+}
+
+table.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table tr:not(:first-child) {
+  font-size: 14px;
+}
+.table tr:not(:first-child):hover {
+  background-color: rgba(108, 105, 139, 0.3);
+}
+
+.table th,
+.table td {
+  padding: 8px 0;
+}
+
+.table__header .content_check {
+  width: 5%;
+}
+
+.table__header .content__id {
+  width: 10%;
+}
+
+.table__header .content_detail {
+  width: 10%;
+}

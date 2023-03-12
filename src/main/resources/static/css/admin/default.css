@@ -1,7 +1,9 @@
+/** @format */
+
 body {
   margin: 0;
-  font-family: 'NanumBarunGothic';
-  background-color: #F7F8FA;
+  font-family: "NanumBarunGothic";
+  background-color: #e5e5e5;
 }
 
 div,
@@ -11,6 +13,7 @@ h3,
 h4,
 a,
 p,
+input,
 button,
 svg {
   margin: 0;
@@ -25,4 +28,124 @@ a {
 
 section.main {
   display: flex;
+}
+
+.displayNone{
+  display: none;
+}
+
+/* 검색바 스타일 ========================== */
+.input__type_1 {
+  border: 0;
+  outline: 0;
+  padding: 3px 3px;
+  font-size: 15px;
+}
+
+.input__type_1::placeholder{
+  color: #2e2e2e;
+}
+
+.select-box {
+  position: relative;
+}
+
+.listbox-selecter {
+  width: 130px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  padding: 12px 13px;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.listbox {
+  position: absolute;
+  z-index: 1;
+  width: 130px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-top: 9px;
+  padding: 0;
+}
+
+.listbox li {
+  cursor: pointer;
+}
+
+.list {
+  border: none;
+  background-color: #ffffff;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 7px 10px;
+  margin: 5px 7px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* ============================ */
+
+/* 버튼 스타일 ============================ */
+
+.button__type_2 {
+  width: 95px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.button__color__green {
+  background: #00ae68;
+}
+
+.button__color__green:hover {
+  background: #21825b;
+}
+
+.pagenation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.pagenation a {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+}
+
+.select-box__btn {
+  border: none;
+  background-color: #ffffff;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 7px 10px;
+  margin: 5px 7px;
+  box-sizing: border-box;
+}
+
+/* 모달창  ============================ */
+
+section.modal-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,0 +1,257 @@
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:300;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format("0woff"),url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:500;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:700;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format("truetype")}html{line-height:1.15; line-height:1.15;-webkit-tap-highlight-color:transparent}
+
+html {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Noto Sans KR", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+  
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body, button, input, select, textarea {
+    font-size: 14px;
+    color: #333;
+}
+
+html, button, input, select, textarea {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+*, ::after, :before, legend, td, th {
+    padding: 0;
+}
+
+/* disabled 모든 요소 비활성  */
+button[disabled], input[disabled] {
+    cursor: default;
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+}
+
+label {
+    cursor: default;
+}
+
+button {
+    overflow: visible;
+    background-color: transparent;
+    border: none;
+}
+
+button, select {
+    text-transform: none;
+}
+
+ol, ul {
+    list-style-type: none;
+}
+
+img, legend {
+    border: 0;
+    vertical-align: top;
+}
+
+canvas, img, video {
+    max-width: 100%;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 푸터 */
+
+.footer {
+    padding-top: 30px;
+    border-top: 1px solid rgb(247, 247, 247);
+}
+
+#footer {
+    width: 1050px;
+    margin: 0px auto;
+}
+
+.footer-layout {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-bottom: 30px;
+}
+
+.footer-right-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-title {
+    padding-bottom: 17px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+}
+
+.footer-phonenum-text {
+    display: block;
+    padding-bottom: 20px;
+    font-size: 28px;
+    line-height: 40px;
+}
+
+.footer-phonenum-explain {
+    margin-left: 8px;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.inquiries-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.inquiry-layout {
+    display: flex;
+    flex-direction: row;
+}
+
+.inquiry-text {
+    margin-top: 2px;
+    color: rgb(153, 153, 153);
+    letter-spacing: -0.5px;
+    line-height: 16.8px;
+}
+
+.inquiry-button {
+    display: block;
+    width: 140px;
+    height: 40px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 3px;
+    line-height: 39px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.inquiry-email {
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(153, 153, 153);
+}
+
+.kurly-info {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(153, 153, 153);
+    margin-bottom: 40px;
+}
+
+.footer-slash-layout {
+    padding-left: 4px;
+}
+
+.footer-slash-layout::after {
+    content: "|";
+    padding-right: 4px;
+    font-size: 10px;
+    vertical-align: top;
+}
+
+.important-text {
+    margin-left: 3px;
+    color: rgb(95, 0, 128);
+}
+
+.icon-layout {
+    display: flex;
+}
+
+.sns-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.certification-mark-layout {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 26px 0px 33px;
+    border-top: 1px solid rgb(238, 238, 238);
+}
+
+.certification-mark-button {
+    display: flex;
+    text-align: left;
+}
+
+.mark-img {
+    width: 34px;
+    margin-right: 10px;
+}
+
+.payments-mark-img {
+    width: 102px;
+    margin-right: 10px;
+}
+
+.wooriBank-mark-img {
+    width: 34px;
+    margin-right: 10px;
+}
+
+.mark-text {
+    font-size: 10px;
+    line-height: 14.5px;
+    color: rgb(153, 153, 153);
+    word-break: break-word;
+}
+
+.all-right-reserved {
+    padding: 20px 0px 30px;
+    font-size: 10px;
+    line-height: 15px;
+    text-align: center;
+    background-color: rgb(247, 247, 247);
+    color: rgb(153, 153, 153);
+}
+
+.all-right-reserved-text {
+    display: block;
+    padding-top: 7px;
+    font-style: normal;
+}
+
+.slash2 {
+    margin: 1px 2px 0px 3px;
+    width: 1px;
+    height: 10px;
+    background-color: rgb(217, 217, 217);
+    display: inline-block;
+}
