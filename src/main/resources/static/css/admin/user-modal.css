@@ -4,7 +4,7 @@
   width: 600px;
   margin: 0 auto;
   padding: 12px;
-  background-color: #e4e4e4;
+  background-color: #fcfcfc;
   border: 1px solid #3b4e7d;
   border-radius: 12px;
 }
@@ -32,10 +32,10 @@
 }
 
 .modal__profile__top {
-  padding: 14px 30px;
+  padding: 30px 20px;
   background-color: white;
   border-radius: 12px;
-  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 14px rgb(48 52 65 / 8%);
   margin-bottom: 21px;
 }
 .modal__profile__top h4 {
@@ -43,11 +43,11 @@
 }
 
 .modal__profile__bottom {
+  padding: 30px 20px;
   margin-bottom: 21px;
-  padding: 14px 30px 0;
   background-color: white;
   border-radius: 12px;
-  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 14px rgb(48 52 65 / 8%);
 }
 .modal__profile__bottom h4 {
   color: #363636;

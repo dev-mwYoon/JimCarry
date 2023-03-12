@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: "NanumBarunGothic";
-  background-color: #e5e5e5;
+  background-color: #fcfcfc;
 }
 
 div,
@@ -53,6 +53,7 @@ section.main {
 .listbox-selecter {
   width: 130px;
   border: 1px solid #c4c4c4;
+  background-color: #fcfcfc;
   border-radius: 5px;
   padding: 12px 13px;
   font-size: 14px;
@@ -75,6 +76,7 @@ section.main {
 
 .listbox li {
   cursor: pointer;
+  background-color: #fcfcfc;
 }
 
 .list {
@@ -113,6 +115,14 @@ section.main {
 
 .button__color__green:hover {
   background: #21825b;
+}
+
+.button__color__red{
+  background: #ec3d1e;
+}
+
+.button__color__red:hover{
+  background: #c0331a;
 }
 
 .pagenation {

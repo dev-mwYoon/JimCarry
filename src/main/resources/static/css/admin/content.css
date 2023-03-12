@@ -11,7 +11,7 @@ div.content__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #24232F;
+  background-color: #24232f;
   color: white;
 }
 
@@ -24,27 +24,36 @@ div.content__header a {
 
 /* 테이블 ===================================================== */
 
+main.content__main{
+  margin: 0 24px;
+}
+
 div.table__container {
   margin: 24px 0;
-  font-family: "NanumBareunGothicLight";
+  font-family: 'NanumBareunGothicLight';
   text-align: center;
+  display: flex;
 }
 
 div.table__box {
-  margin: 0 auto;
   padding: 24px 24px;
   width: 60vw;
   min-width: 900px;
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
-  box-shadow: 3px 6px 3px rgba(53, 53, 53, 0.2);
+  box-shadow: 0 4px 14px rgb(48 52 65 / 17%);
 }
 
-div.table__box .table__search__form{
+div.table__box .table__search__form {
   margin-bottom: 50px;
   display: flex;
   justify-content: space-between;
+}
+
+.search-box-wrap {
+  display: flex;
+  gap: 30px;
 }
 
 .search-box {
@@ -72,7 +81,7 @@ table.table {
 
 .table th,
 .table td {
-  padding: 8px 0;
+  height: 60px;
 }
 
 .table__header .content_check {
@@ -85,4 +94,17 @@ table.table {
 
 .table__header .content_detail {
   width: 10%;
+}
+
+label.check-label {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
 }

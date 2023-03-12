@@ -1,0 +1,208 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>창고 관리</title>
+    <link
+      href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/admin/default.css" />
+    <link rel="stylesheet" href="/static/css/admin/sidebar.css" />
+    <link rel="stylesheet" href="/static/css/admin/content.css" />
+    <link rel="stylesheet" href="/static/css/admin/status.css" />
+  </head>
+  <body>
+    <section class="main">
+      <section class="sidebar">
+        <div class="sidebar__wrapper">
+          <a class="sidebar__wrapper__slider">
+            <svg xmlns="http://www.w3.org/2000/svg" id="Icons" viewBox="0 0 24 24">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: #ffffff;
+                  }
+                </style>
+              </defs>
+              <rect class="cls-1" height="4" rx="2" width="22" x="1" y="2" />
+              <rect class="cls-1" height="4" rx="2" width="22" x="1" y="18" />
+              <rect class="cls-1" height="4" rx="2" width="22" x="1" y="10" />
+            </svg>
+          </a>
+        </div>
+      </section>
+      <!-- content.css -->
+      <section class="content">
+        <div class="content__header">
+          <h2>창고 관리</h2>
+          <a href="javascript:void(0)"> 로그아웃 </a>
+        </div>
+        <main class="content__main">
+          <div class="table__container">
+            <div class="table__box">
+              <div class="table__search__form">
+                <button class="button__type_2 button__color__red">창고 삭제</button>
+                <!-- default.css -->
+                <div class="search-box-wrap">
+                  <div class="select-box">
+                    <button class="listbox-selecter">검색조건 선택</button>
+                    <ul class="listbox displayNone" id="listbox">
+                      <li><button class="list">전체</button></li>
+                      <li><button class="list">검색조건1</button></li>
+                      <li><button class="list">검색조건2</button></li>
+                    </ul>
+                    <input type="text" name="searchType" style="display: none" value="all" />
+                  </div>
+                  <div class="search-box">
+                    <input
+                      type="text"
+                      name="userId"
+                      class="input__type_1 search-input"
+                      placeholder="검색" />
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        enable-background="new 0 0 32 32"
+                        id="Glyph"
+                        version="1.1"
+                        viewBox="0 0 32 32"
+                        xml:space="preserve">
+                        <path
+                          d="M27.414,24.586l-5.077-5.077C23.386,17.928,24,16.035,24,14c0-5.514-4.486-10-10-10S4,8.486,4,14  s4.486,10,10,10c2.035,0,3.928-0.614,5.509-1.663l5.077,5.077c0.78,0.781,2.048,0.781,2.828,0  C28.195,26.633,28.195,25.367,27.414,24.586z M7,14c0-3.86,3.14-7,7-7s7,3.14,7,7s-3.14,7-7,7S7,17.86,7,14z"
+                          id="XMLID_223_" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <table class="table">
+                <tr class="table__header">
+                  <th class="content_check">
+                    <label class="check-label">
+                      <input type="checkbox" id="checkAll" />
+                    </label>
+                  </th>
+                  <th class="content__id">창고번호</th>
+                  <th>아이디</th>
+                  <th>이메일</th>
+                  <th>등록일</th>
+                  <th>창고 크기</th>
+                  <th></th>
+                </tr>
+                <tr class="table__content">
+                  <td>
+                    <label class="check-label">
+                      <input type="checkbox" name="check" />
+                    </label>
+                  </td>
+                  <td class="content__id">1</td>
+                  <td>kmg2331</td>
+                  <td>kmg2331@gmail.com</td>
+                  <td>2023-01-01</td>
+                  <td>중</td>
+                  <td>
+                    <button class="content__detail__btn button__type_2 button__color__green">
+                      상세보기
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table__content">
+                  <td>
+                    <label class="check-label">
+                      <input type="checkbox" name="check" />
+                    </label>
+                  </td>
+                  <td class="content__id">1</td>
+                  <td>kmg2331</td>
+                  <td>kmg2331@gmail.com</td>
+                  <td>2023-01-01</td>
+                  <td>특대</td>
+                  <td>
+                    <button class="content__detail__btn button__type_2 button__color__green">
+                      상세보기
+                    </button>
+                  </td>
+                </tr>
+              </table>
+              <!-- default.css > pagenation -->
+              <div class="pagenation">
+                <a href="javascript:void(0)">1</a>
+                <a href="javascript:void(0)">2</a>
+                <a href="javascript:void(0)">3</a>
+              </div>
+            </div>
+            <section class="trip-status">
+              <ul class="status-list">
+                <li class="status-list-item">
+                  <div class="status-item-wrapper">
+                    <svg
+                      width="36"
+                      height="36"
+                      viewBox="0 0 36 36"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <rect width="36" height="36" rx="12" fill="#EDFEE0"></rect>
+                      <path
+                        d="M9.75 12.75H24.25C25.3546 12.75 26.25 13.6454 26.25 14.75V24.25C26.25 25.3546 25.3546 26.25 24.25 26.25H11.75C10.6454 26.25 9.75 25.3546 9.75 24.25V12.75Z"
+                        fill="#11CA2D"></path>
+                      <path
+                        d="M9.75 12.5C9.75 11.3954 10.6454 10.5 11.75 10.5H16.125L18 12.75H9.75V12.5Z"
+                        fill="#11CA2D"></path>
+                    </svg>
+                    <div class="status-item-name">금일 신규등록</div>
+                  </div>
+                  <div class="status-item-count">
+                    <a href="">0</a>
+                  </div>
+                </li>
+                <li class="status-list-item">
+                  <div class="status-item-wrapper">
+                    <div class="problem-icon-wrapper">
+                      <div class="problem-icon">
+                        <div>
+                          <div>
+                            <span>
+                              <svg
+                                width="36"
+                                height="36"
+                                viewBox="0 0 36 36"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect width="36" height="36" rx="12" fill="#EDFEE0"></rect>
+                                <path
+                                  d="M9.75 12.75H24.25C25.3546 12.75 26.25 13.6454 26.25 14.75V24.25C26.25 25.3546 25.3546 26.25 24.25 26.25H11.75C10.6454 26.25 9.75 25.3546 9.75 24.25V12.75Z"
+                                  fill="#11CA2D"></path>
+                                <path
+                                  d="M9.75 12.5C9.75 11.3954 10.6454 10.5 11.75 10.5H16.125L18 12.75H9.75V12.5Z"
+                                  fill="#11CA2D"></path>
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="status-item-name">총 창고수</div>
+                  </div>
+                  <div class="status-item-count">
+                    <a href="">0</a>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </div>
+        </main>
+      </section>
+      <!-- 모달창 들어가야할 곳 -->
+      <!-- 추후 타임리프로 불러와야 함 -->
+      <section class="modal-stage" style="display: none"></section>
+    </section>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="/static/js/admin/app.js"></script>
+  <script src="/static/js/admin/events.js"></script>
+</html>

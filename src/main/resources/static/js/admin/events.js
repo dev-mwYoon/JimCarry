@@ -65,7 +65,7 @@ $detailButton.on("click", function () {
 
   /* 추후 타임리프로 대체할 예정 */
   $modalStage.css("display", "block");
-  $modalStage.load("/templates/admin/user-modal.html");
+  $modalStage.load("/templates/admin/modals/user-modal.html");
 
   /* ajax 코드 작성해야 함 */
 });
