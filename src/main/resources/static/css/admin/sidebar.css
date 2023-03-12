@@ -1,0 +1,70 @@
+.sidebar {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar__main {
+  background-color: #24232F;
+  color: #ffffff;
+  padding: 0 8px;
+  width: 230px;
+}
+
+.sidebar__wrapper {
+  width: 45px;
+  height: 100vh;
+  background-color: #6C698B;
+}
+
+.sidebar__wrapper__slider{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 21px;
+}
+
+.sidebar__wrapper__slider svg {
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar__title {
+  padding: 21px 32px;
+}
+
+.sidebar__menu-nav {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  gap: 8px;
+}
+
+.sidebar__menu {
+  display: flex;
+  margin: 18px 14px;
+  font-weight: 300;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar__menu span {
+  margin-left: 8px;
+}
+.sidebar__menu svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.sidebar__menu svg polygon {
+  fill: white;
+}
+
+.sidebar__menu__name{
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__menu__name div svg path {
+  fill: white;
+}
