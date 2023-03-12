@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 컬리</title>
+    <!-- 로고 -->
+    <link rel="shortcut icon" href="/market-kurly/faviconn.ico">
+    <link rel="icon" href="/market-kurly/faviconn.ico">
+
+    <link rel="stylesheet" href="../../static/css/joinLogin/joinModal.css">
+    <link rel="stylesheet" href="../../static/css/joinLogin/joinForm.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <!-- 영역 잡기  -->
+    <div id="fullscreen">
+        <!-- 헤더 -->
+        <div id="headers"></div>
+
+        <div class="joinLayout">
+            <div class="join">회원가입</div>
+            <div class="layout1">
+                <div class="layout2">
+                    <span class="RequiredInput">*</span>
+                    필수입력사항
+                </div>
+                <div class="formstart">
+                    <!-- ----------------아이디------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">아이디<span class="RequiredInput">*</span></label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input" type="text" placeholder="아이디를 입력해주세요" name="userId" required
+                                        autocomplete="none">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" type="button"><span class="buttonBox">중복확인</span></button>
+                        </div>
+                    </div>
+                    <!-- ----------------비밀번호------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">비밀번호<span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input" type="text" placeholder="비밀번호를 입력해주세요" name="userPassword"
+                                        required autocomplete="none">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------비번확인------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">비밀번호확인<span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input" type="text" placeholder="비밀번호를 한번 더 입력해주세요"
+                                        name="checkPassword" required autocomplete="none">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------이름------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">
+                                이름
+                                <span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input" type="text" placeholder="이름을 입력해 주세요" name="userName" required
+                                        autocomplete="none" value>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------이메일------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">이메일<span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="inputBox">
+                                <input class="input" type="text" placeholder="예: marketkurly@kurly.com" name="userEmail"
+                                    required autocomplete="none">
+                            </div>
+                        </div>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" type="button">
+                                <span class="buttonBox">중복확인</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- ----------------휴대폰------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">휴대폰<span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="inputBox">
+                                <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone" required
+                                    autocomplete="none">
+                            </div>
+                        </div>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" type="button" disabled>
+                                <span class="buttonBox">인증번호 받기</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- ----------------주소------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">
+                                주소<span class="RequiredInput">*</span>
+                            </label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <button class="searchAddressBt" type="button" height="44" radius="4">
+                                <span class="addressImgClass">
+                                    <img class="addressImg"
+                                        src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg">주소 검색
+                                </span>
+                            </button>
+                            <span class="explainText"> 배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------성별------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">성별</label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="radioLayout">
+                                <label class="genderSelect" for="gender-man">
+                                    <input class="genderRadio" data-testid="radio-Male" id="gender-man" name="gender"
+                                        type="radio" value="MALE">
+                                    <span class="checkBox">
+                                        <div class="checkBox2"></div>
+                                    </span>
+                                    <span class="radioText">남자</span>
+                                </label>
+                                <label class="genderSelect" for="gender-woman">
+                                    <input class="genderRadio" data-testid="radio-FEMALE" id="gender-woman"
+                                        name="gender" type="radio" value="FEMALE">
+                                    <span class="checkBox">
+                                        <div class="checkBox2"></div>
+                                    </span>
+                                    <span class="radioText">여자</span>
+                                </label>
+                                <label class="genderSelect" for="gender-none">
+                                    <input class="genderRadio" data-testid="radio-NONE" id="gender-none" name="gender"
+                                        type="radio" value="NONE">
+                                    <span class="checkBox">
+                                        <div class="checkBox2"></div>
+                                    </span>
+                                    <span class="radioText">선택안함</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------생년월일------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">생년월일</label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="layout3">
+                                <div class="paddingBottom2">
+                                    <div class="yearBox" height="40">
+                                        <input class="birthInput" type="text" data-testid="input-box" name="birthYear"
+                                            placeholder="YYYY" height="40" value>
+                                    </div>
+                                </div>
+                                <span class="birth-span"></span>
+                                <div class="paddingBottom2">
+                                    <div class="yearBox" height="40">
+                                        <input class="birthInput" type="text" data-testid="input-box" name="birthMonth"
+                                            placeholder="MM" height="40" value>
+                                    </div>
+                                </div>
+                                <span class="birth-span"></span>
+                                <div class="paddingBottom2">
+                                    <div class="yearBox" height="40">
+                                        <input class="birthInput" type="text" data-testid="input-box" name="birthDay"
+                                            placeholder="DD" height="40" value>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------추가입력사항------------------ -->
+                </div>
+                <!-- 이용약관 -->
+                <div class="layout4"></div>
+                <div class="termStart">
+                    <div class="termsLayout">
+                        <div class="termsTitle">
+                            <label class="termsLabel">
+                                이용약관동의<span class="RequiredInput">*</span>
+                            </label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="termText">
+                                <label class="firstTerm" for="TermsAgreeAll">
+                                    <input class="termCheckBox" type="checkbox" id="TermsAgreeAll">
+                                    <div class="svg-1">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                stroke="#ddd" fill="#fff"></path>
+                                            <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="termTextArticle"> 전체 동의합니다.</span>
+                                </label>
+                                <p class="explainText">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
+                            </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm" for="RequiredTermsCondition">
+                                        <input class="termCheckBox" id="RequiredTermCondition" type="checkbox">
+                                        <img class="termCheckImg"
+                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+                                            alt>
+                                        <span class="termTextArticle">이용약관동의</span>
+                                    </label>
+                                    <span class="greyText">(필수)</span>
+                                </div>
+                                <a class="viewTerm">약관보기</a>
+                            </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm" for="RequiredTermOfPrivacy">
+                                        <input class="termCheckBox" id="RequiredTermOfPrivacy" type="checkbox">
+                                        <img class="termCheckImg"
+                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+                                            alt>
+                                        <span class="termTextArticle">개인정보 수집·이용 동의</span>
+                                    </label>
+                                    <span class="greyText">(필수)</span>
+                                </div>
+                                <a class="viewTerm">약관보기</a>
+                            </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm" for="OptionalTermOfPrivacy">
+                                        <input class="termCheckBox" id="OptionalTermOfPrivacy" type="checkbox">
+                                        <img class="termCheckImg"
+                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+                                            alt>
+                                        <span class="termTextArticle">개인정보 수집·이용 동의</span>
+                                    </label>
+                                    <span class="greyText">(선택)</span>
+                                </div>
+                                <a class="viewTerm">약관보기</a>
+                            </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm" for="OptionalTermOfPrivacy">
+                                        <input class="termCheckBox" id="RequiredSignupAge" type="checkbox">
+                                        <img class="termCheckImg"
+                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+                                            alt>
+                                        <span class="termTextArticle">본인은 만 14세 이상입니다.</span>
+                                    </label>
+                                    <span class="greyText">(필수)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submitLayout">
+                    <button class="submitButton" type="submit" width="240" height="56" radius="3">
+                        <span class="buttonBox">가입하기</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 푸터 -->
+
+        <!-- 모달 -->
+        <div class="modal-container modal-center" style="overflow-y: auto; display: none;">
+            <div class="modal-popup modal-show" role="dialog" style="display: flex;">
+                <div class="modal-content">
+                    <div id="modal-content" class="modal-html-container" style="display: block;">
+                        <div class="popup-content">6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합</div>
+                        <div class="popup-footer">
+                            <button class="popup-check">확인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--footer-->
+        <div id="footers"></div>
+
+    </div>
+</body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#headers").load("../main/header.html");
+        $("#footers").load("../main/footer.html");
+    });
+</script>
+<script src="/js/joinFrom.js"></script>
+
+</html>

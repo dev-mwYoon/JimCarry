@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - 컬리</title>
+    <!-- 로고 -->
+    <link rel="shortcut icon" href="/market-kurly/faviconn.ico">
+    <link rel="icon" href="/market-kurly/faviconn.ico">
+    <link rel="stylesheet" href="../../static/css/joinLogin/login.css">
+    <link rel="stylesheet" href="../../static/css/joinLogin/font.css">
+    <style>
+    </style>
+</head>
+
+<body>
+<!-- 영역 잡기  -->
+<div id="fullscreen">
+    <!--헤더 -->
+    <div id="headers"></div>
+    <!-- main -->
+    <div class="loginLayout">
+        <div class="loginTitleLayout">로그인</div>
+        <div class="formLayout">
+            <form>
+                <div class="inputLayout">
+                    <div class="inputLayout2">
+                        <div class="idInputLayout">
+                            <input class="idPwInput" data-testid="input-box" name="id" placeholder="아이디를 입력해주세요"
+                                   type="text" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="inputLayout2">
+                        <div class="pWInputLayout">
+                            <input class="idPwInput" data-testid="input-box" name="password"
+                                   placeholder="비밀번호를 입력해주세요" type="password" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="idPwFindLayout">
+                    <a href="/market-kurly/find-id.html" class="idPwFindText">아이디 찾기</a>
+                    <span class="slash3"></span>
+                    <a href="/market-kurly/find-password.html" class="idPwFindText">비밀번호 찾기</a>
+                </div>
+                <div class="loginButtonLayout">
+                    <!-- 원래 loginButton, joinButton 둘다 type submit인데 연습도중에 console.log하면 자꾸 출력되고 바로 사라져서 연습을 위해 type button으로 바꿈 -->
+                    <button class="loginButton" type="button" height="54" radius="3">
+                        <span class="buttonBox">로그인</span>
+                    </button>
+                    <button class="joinButton" type="button" height="54" radius="3">
+                        <span class="buttonBox">회원가입</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--footer-->
+    <div id="footers"></div>
+
+</div>
+</body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#headers").load("../main/header.html");
+        $("#footers").load("../main/footer.html");
+    });
+</script>
+<script src="/js/login.js"></script>
+
+</html>
