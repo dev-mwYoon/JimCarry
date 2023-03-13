@@ -42,6 +42,9 @@
                                         autocomplete="none">
                                 </div>
                             </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
                         </div>
                         <div class="dCheckBox">
                             <button class="duplicateBox" type="button"><span class="buttonBox">중복확인</span></button>
@@ -56,9 +59,12 @@
                         <div class="flexLayout">
                             <div class="paddingBottom">
                                 <div class="inputBox">
-                                    <input class="input" type="text" placeholder="비밀번호를 입력해주세요" name="userPassword"
+                                    <input class="input" type="password" placeholder="비밀번호를 입력해주세요" name="userPassword"
                                         required autocomplete="none">
                                 </div>
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
                         <div class="dCheckBox"></div>
@@ -72,9 +78,12 @@
                         <div class="flexLayout">
                             <div class="paddingBottom">
                                 <div class="inputBox">
-                                    <input class="input" type="text" placeholder="비밀번호를 한번 더 입력해주세요"
+                                    <input class="input" type="password" placeholder="비밀번호를 한번 더 입력해주세요"
                                         name="checkPassword" required autocomplete="none">
                                 </div>
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
                         <div class="dCheckBox"></div>
@@ -94,6 +103,9 @@
                                         autocomplete="none" value>
                                 </div>
                             </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
                         </div>
                         <div class="dCheckBox"></div>
                     </div>
@@ -107,6 +119,9 @@
                             <div class="inputBox">
                                 <input class="input" type="text" placeholder="예: marketkurly@kurly.com" name="userEmail"
                                     required autocomplete="none">
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
                         <div class="dCheckBox">
@@ -125,6 +140,9 @@
                             <div class="inputBox">
                                 <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone" required
                                     autocomplete="none">
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
                         <div class="dCheckBox">
@@ -148,7 +166,7 @@
                                         src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg">주소 검색
                                 </span>
                             </button>
-                            <span class="explainText"> 배송지에 따라 상품 정보가 달라질 수 있습니다.</span>
+                            <span class="explainText"></span>
                         </div>
                         <div class="dCheckBox"></div>
                     </div>
@@ -161,25 +179,25 @@
                             <div class="radioLayout">
                                 <label class="genderSelect" for="gender-man">
                                     <input class="genderRadio" data-testid="radio-Male" id="gender-man" name="gender"
-                                        type="radio" value="MALE">
-                                    <span class="checkBox">
-                                        <div class="checkBox2"></div>
+                                        type="radio" value="MALE" onclick="clickRadio()">
+                                    <span class="man checkBox">
+                                        <div class="man2 checkBox2"></div>
                                     </span>
                                     <span class="radioText">남자</span>
                                 </label>
                                 <label class="genderSelect" for="gender-woman">
                                     <input class="genderRadio" data-testid="radio-FEMALE" id="gender-woman"
-                                        name="gender" type="radio" value="FEMALE">
-                                    <span class="checkBox">
-                                        <div class="checkBox2"></div>
+                                        name="gender" type="radio" value="FEMALE" onclick="clickRadio()">
+                                    <span class="woman checkBox">
+                                        <div class="woman2 checkBox2"></div>
                                     </span>
                                     <span class="radioText">여자</span>
                                 </label>
                                 <label class="genderSelect" for="gender-none">
                                     <input class="genderRadio" data-testid="radio-NONE" id="gender-none" name="gender"
-                                        type="radio" value="NONE">
-                                    <span class="checkBox">
-                                        <div class="checkBox2"></div>
+                                        type="radio" value="NONE" onclick="clickRadio()">
+                                    <span class="none checkBox">
+                                        <div class="none2 checkBox2"></div>
                                     </span>
                                     <span class="radioText">선택안함</span>
                                 </label>
@@ -238,9 +256,11 @@
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
-                                                stroke="#ddd" fill="#fff"></path>
+                                                stroke="#ddd" fill="#fff">
+                                            </path>
                                             <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                            </path>
                                         </svg>
                                     </div>
                                     <span class="termTextArticle"> 전체 동의합니다.</span>
@@ -251,9 +271,18 @@
                                 <div class="otherTerms">
                                     <label class="requiredTerm" for="RequiredTermsCondition">
                                         <input class="termCheckBox" id="RequiredTermCondition" type="checkbox">
-                                        <img class="termCheckImg"
-                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
-                                            alt>
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                    stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
                                         <span class="termTextArticle">이용약관동의</span>
                                     </label>
                                     <span class="greyText">(필수)</span>
@@ -264,9 +293,18 @@
                                 <div class="otherTerms">
                                     <label class="requiredTerm" for="RequiredTermOfPrivacy">
                                         <input class="termCheckBox" id="RequiredTermOfPrivacy" type="checkbox">
-                                        <img class="termCheckImg"
-                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
-                                            alt>
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                    stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
                                         <span class="termTextArticle">개인정보 수집·이용 동의</span>
                                     </label>
                                     <span class="greyText">(필수)</span>
@@ -277,9 +315,18 @@
                                 <div class="otherTerms">
                                     <label class="requiredTerm" for="OptionalTermOfPrivacy">
                                         <input class="termCheckBox" id="OptionalTermOfPrivacy" type="checkbox">
-                                        <img class="termCheckImg"
-                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
-                                            alt>
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                    stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
                                         <span class="termTextArticle">개인정보 수집·이용 동의</span>
                                     </label>
                                     <span class="greyText">(선택)</span>
@@ -290,9 +337,18 @@
                                 <div class="otherTerms">
                                     <label class="requiredTerm" for="OptionalTermOfPrivacy">
                                         <input class="termCheckBox" id="RequiredSignupAge" type="checkbox">
-                                        <img class="termCheckImg"
-                                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
-                                            alt>
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                    stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
                                         <span class="termTextArticle">본인은 만 14세 이상입니다.</span>
                                     </label>
                                     <span class="greyText">(필수)</span>
@@ -311,7 +367,7 @@
         <!-- 푸터 -->
 
         <!-- 모달 -->
-        <div class="modal-container modal-center" style="overflow-y: auto; display: none;">
+        <div class="modal-container modal-center" style="overflow-y: auto; visibility: hidden;">
             <div class="modal-popup modal-show" role="dialog" style="display: flex;">
                 <div class="modal-content">
                     <div id="modal-content" class="modal-html-container" style="display: block;">
@@ -335,6 +391,6 @@
         $("#footers").load("../main/footer.html");
     });
 </script>
-<script src="/js/joinFrom.js"></script>
+<script src="../../static/js/joinLogin/joinForm.js"></script>
 
 </html>
