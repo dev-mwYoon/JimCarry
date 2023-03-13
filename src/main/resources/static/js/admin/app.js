@@ -6,6 +6,10 @@
  * @format
  */
 
+/* 사이드바 */
+const $sidebar = $(".sidebar__main");
+const $sidebarSlide = $(".sidebar__wrapper__slider");
+
 /* 테이블 내용(컨텐츠) */
 const $tableContent = $(".table__content");
 
@@ -25,3 +29,7 @@ const $searchBar = $(".search-input");
 /* 상세보기 관련 */
 const $detailButton = $(".content__detail__btn");
 const $modalStage = $(".modal-stage");
+
+/* 시게 */
+const clock = document.querySelector('.clock h1');
+

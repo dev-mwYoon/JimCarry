@@ -2,8 +2,8 @@
 
 body {
   margin: 0;
-  font-family: "NanumBarunGothic";
-  background-color: #fcfcfc;
+  font-family: 'NanumBarunGothic';
+  background-color: #f9f9f9;
 }
 
 div,
@@ -13,6 +13,8 @@ h3,
 h4,
 a,
 p,
+ul,
+li,
 input,
 button,
 svg {
@@ -30,7 +32,7 @@ section.main {
   display: flex;
 }
 
-.displayNone{
+.displayNone {
   display: none;
 }
 
@@ -42,7 +44,7 @@ section.main {
   font-size: 15px;
 }
 
-.input__type_1::placeholder{
+.input__type_1::placeholder {
   color: #2e2e2e;
 }
 
@@ -52,7 +54,8 @@ section.main {
 
 .listbox-selecter {
   width: 130px;
-  border: 1px solid #c4c4c4;
+  border: none;
+  box-shadow: 3px 3px 3px rgb(48 52 65 / 10%);
   background-color: #fcfcfc;
   border-radius: 5px;
   padding: 12px 13px;
@@ -66,8 +69,9 @@ section.main {
   z-index: 1;
   width: 130px;
   list-style: none;
-  background: #ffffff;
-  border: 1px solid #c4c4c4;
+  box-shadow: 3px 3px 3px rgb(48 52 65 / 10%);
+  background-color: #fcfcfc;
+  border: none;
   box-sizing: border-box;
   border-radius: 5px;
   margin-top: 9px;
@@ -82,14 +86,13 @@ section.main {
 .list {
   border: none;
   background-color: #ffffff;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   padding: 7px 10px;
   margin: 5px 7px;
-  box-sizing: border-box;
   cursor: pointer;
 }
 
@@ -117,11 +120,11 @@ section.main {
   background: #21825b;
 }
 
-.button__color__red{
+.button__color__red {
   background: #ec3d1e;
 }
 
-.button__color__red:hover{
+.button__color__red:hover {
   background: #c0331a;
 }
 
@@ -141,7 +144,7 @@ section.main {
 .select-box__btn {
   border: none;
   background-color: #ffffff;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -158,4 +161,25 @@ section.modal-stage {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* 문의관리 ============================ */
+.enquiryOk{
+  color: #00ae68;
+  font-family: 'NanumBarunGothic';
+  font-weight: 600;
+}
+
+.enquiryNo {
+  color: #ec3d1e;
+  font-family: 'NanumBarunGothic';
+  font-weight: 600;
+}
+
+/* 공지관리 */
+.notice-content{
+  width: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
