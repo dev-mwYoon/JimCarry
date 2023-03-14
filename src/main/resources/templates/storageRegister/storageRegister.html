@@ -216,6 +216,9 @@
                                         required autocomplete="none" value>
                                 </div>
                             </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
                         </div>
                         <div class="checkBoxLimitWidth"></div>
                     </div>
@@ -229,6 +232,9 @@
                             <div class="inputBox">
                                 <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone"
                                     required autocomplete="none">
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
                         <div class="checkBoxLimitWidth"></div>
@@ -257,10 +263,17 @@
                                     </label>
                                     <label class="sizeSelect" for="sizeBig">
                                         <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
-                                        <span id="sizeBigSpan" class="checkBox">
-                                            <div id="sizeBigDiv" class="checkBox2"></div>
+                                        <span class="checkBox">
+                                            <div class="checkBox2"></div>
                                         </span>
                                         <span class="radioText">대</span>
+                                    </label>
+                                    <label class="sizeSelect" for="sizeBBig">
+                                        <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
+                                        <span class="checkBox">
+                                            <div class="checkBox2"></div>
+                                        </span>
+                                        <span class="radioText">특대</span>
                                     </label>
                                 </form>
                                 <span class="explainText"> 사이즈는 공지사항을 참고하시기 바랍니다.</span>
@@ -518,6 +531,7 @@
         </footer>
     </div>
 </body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../../static/js/storageRegister/storageRegister.js"></script>
 <script src="../../static/js/main/header.js"></script>
