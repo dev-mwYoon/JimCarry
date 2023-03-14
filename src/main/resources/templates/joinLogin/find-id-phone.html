@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,19 +9,18 @@
     <!-- 로고 -->
     <link rel="shortcut icon" href="/market-kurly/faviconn.ico">
     <link rel="icon" href="/market-kurly/faviconn.ico">
-    <link rel="stylesheet" href="../../static/css/joinLogin/find-password.css">
+    <link rel="stylesheet" href="../../static/css/joinLogin/find-id-phone.css">
     <link rel="stylesheet" href="../../static/css/joinLogin/font.css">
-    <style>
-    </style>
 </head>
+
 <body>
 <!-- 영역 잡기  -->
 <div id="fullscreen">
     <!-- 헤더 -->
-    <div id="headers"></div>
+        <div id="headers"></div>
     <!-- 메인 -->
     <div class="findIdLayout">
-        <div class="findIdTitle">비밀번호 찾기</div>
+        <div class="findIdTitle">아이디 찾기</div>
         <div class="findIdInputLayout2">
             <div class="findIdButtonLayout">
                 <button class="authenticationPhoneButton">휴대폰 인증</button>
@@ -31,7 +31,8 @@
                     <div class="findIdLabelLayout">
                         <label class="findIdNameLabel" for="name">이름</label>
                         <div class="findIdnameInputLabel">
-                            <input class="findIdnameInputBox" data-testid="input-box" id="name" name="name" placeholder="이름을 입력해 주세요" type="text" value="">
+                            <input class="findIdnameInputBox" data-testid="input-box" id="name" name="name"
+                                   placeholder="이름를 입력해 주세요" type="text" value="">
                         </div>
                     </div>
                 </div>
@@ -39,9 +40,25 @@
                     <div class="findIdLabelLayout">
                         <label class="findIdpPhoneNum" for="phone">휴대폰 번호</label>
                         <div class="findIdPhoneInputLabel" height="46">
-                            <input class="findIdPhoneInputBox" data-testid="input-box" id="phone" name="phone" placeholder="휴대폰 번호를 입력해 주세요" type="tel" height="46" value="">
+                            <input class="findIdPhoneInputBox" data-testid="input-box" id="phone" name="phone"
+                                   placeholder="휴대폰 번호를 입력해 주세요" type="tel" height="46" value="">
                         </div>
                     </div>
+                </div>
+                <div>
+                    <div class="verification">
+                        <div class="verificationLayout">
+                            <label for="verification-number" class="verification-number">인증번호</label>
+                            <div class="verification-box" height="46">
+                                <input type="tel" height="46" name="verificationNumber" class="verification-input" placeholder="인증번호 7자리">
+                            </div>
+                        </div>
+                        <button class="verification-button" type="button" width="88" height="48" radius="4">
+                            <span class="resend">재발송</span>
+                        </button>
+                        <p class="verification-timer">00:00</p>
+                    </div>
+                    <p class="verificationError">인증번호를 입력해주세요</p>
                 </div>
                 <div class="codeLayout">
                     <button class="codeButton" type="submit" disabled radius="4">
@@ -51,16 +68,19 @@
             </form>
         </div>
     </div>
-    <!-- footer -->
-    <div id="footers"></div>
 
+
+
+    <!-- footer -->
+             <div id="footers"></div>
 </div>
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#headers").load("../main/header.html");
-        $("#footers").load("../main/footer.html");
-    });
+         $(document).ready(function(){
+            $("#headers").load("../main/header.html");
+            $("#footers").load("../main/footer.html");
+        });
 </script>
+
 </html>

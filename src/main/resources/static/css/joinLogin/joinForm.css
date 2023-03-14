@@ -124,6 +124,12 @@ html, button, input, select, textarea {
     position: relative;
     height: 48px;
 }
+.addressLayout {
+    padding-bottom: 12px;
+}
+.addressDetailLayout {
+    padding-bottom: 0px;
+}
 .inputBox {
     position: relative;
     height: 48px;

@@ -1,53 +1,3 @@
-/* 사이즈 라디오 버튼 클릭했을때 */
-
-
-/* const $manRadioCheck = $('.man');
-const $manRadioCheck2 = $('.man2');
-const $womanRadioCheck = $('.woman');
-const $womanRadioCheck2 = $('.woman2');
-const $noneRadioCheck = $('.none');
-const $noneRadioCheck2 = $('.none2');
-const $gender = $('input[name=gender]')
-console.log($gender);
-
-const $count = $gender.length;
-console.log($count); */
-
-/* $(document).ready(function () {
-    $manRadio.change(function () {
-        $manRadio.checked = true;
-        $womanRadio.checked = false;
-        $noneRadio.checked = false;
-        $manRadioCheck.css('background-color', 'rgb(95, 0, 128)');
-        $manRadioCheck2.css('background-color', 'white');
-        $womanRadioCheck.css('background-color', 'white');
-        $womanRadioCheck2.css('background-color', 'white');
-        $noneRadioCheck.css('background-color', 'white');
-        $noneRadioCheck2.css('background-color', 'white');
-    });
-    $womanRadio.change(function () {
-        $manRadio.checked = false;
-        $womanRadio.checked = true;
-        $noneRadio.checked = false;
-        $womanRadioCheck.css('background-color', 'rgb(95, 0, 128)');
-        $womanRadioCheck2.css('background-color', 'white');
-        $manRadioCheck.css('background-color', 'white');
-        $manRadioCheck2.css('background-color', 'white');
-        $noneRadioCheck.css('background-color', 'white');
-        $noneRadioCheck2.css('background-color', 'white');
-    });
-    $noneRadio.change(function () {
-        $manRadio.checked = false;
-        $womanRadio.checked = false;
-        $noneRadio.checked = true;
-        $noneRadioCheck.css('background-color', 'rgb(95, 0, 128)');
-        $noneRadioCheck2.css('background-color', 'white');
-        $womanRadioCheck.css('background-color', 'white');
-        $womanRadioCheck2.css('background-color', 'white');
-        $manRadioCheck.css('background-color', 'white');
-        $manRadioCheck2.css('background-color', 'white');
-    });
-}); */
 
 /* 사이즈 라디오 버튼 클릭했을때 */
 function clickRadio() {
@@ -147,3 +97,125 @@ $wrapperInputs.on("blur", function () {
     $errorMessage.eq(i).text("");
    
 });
+
+//생년월일 정규식
+// let yearRegex = /^(19[0-9][0-9]|20\d{2})$/;
+// let monthRegex = /^(0[0-9]|1[0-2])$/;
+// let dayRegex = /^(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
+// 주소 api
+function sample6_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function (data) {
+            document.querySelector('#numberAddress').value = data.address; // 주소 넣기
+            document.querySelector('#numberAddress').focus();
+        },
+    }).open();
+}
+
+
+const $checkboxes = $('.termCheckBox');
+const $path = $('.path1');
+const $all = $('.allCheck');
+const $checks = $('.checked');
+// 동의 버튼 효과
+$checkboxes.each((i,e)=>{
+    $(e).parent().on('click', function(){
+        var $ischecked = $(e).is(':checked');
+        if($ischecked){
+            // $path.eq(i).attr('fill', '#5f0080');
+            $path.eq(i).attr('fill', '#fff');
+            $(e).prop('checked', false);
+        }else{
+            // $path.eq(i).attr('fill', '#fff');
+            $path.eq(i).attr('fill', '#5f0080');
+            $(e).prop('checked', true);
+            
+        }
+    });
+});
+console.log($checks.children().filter(':checked').length);
+console.log($('#TermsAgreeAll'))
+console.log($all);
+// 전체동의 버튼 효과
+$all.on("click", function(){
+    var $checked = $('#TermsAgreeAll').is(':checked');
+    if($checked) {
+        $path.attr('fill', '#fff');
+        $('#TermsAgreeAll').prop('checked', false);
+        $checks.children().prop('checked', false);
+        console.log($checks.children().filter(':checked').length);
+    } else {
+        $path.attr('fill', '#5f0080');
+        $checks.children().prop('checked', true);
+        $('#TermsAgreeAll').prop('checked', true);
+        // console.log($checks.children().filter(':checked').length);
+  
+    }
+});
+
+// 동의 버튼 전체 확인 시 전체동의도 확인 효과, 필수사항 동의 시 submit 버튼 활성화
+$checks.on('click', function(){
+    var agreeCheck = [false, false, false, false];
+
+    if($checks.children().filter(":checked").length == 4) {
+        
+        $('.allPath').attr('fill', '#5f0080');
+        $('#TermsAgreeAll').prop('checked', false);
+    } else {
+        
+        $('.allPath').attr('fill', '#fff');
+        $('#TermsAgreeAll').prop('checked', true);
+    }
+});
+
+//모달
+const $modal = $('.modal-container');
+const $modalText = $('.popup-content');
+const $checkButton = $('.popup-check');
+
+const $duplicateIdButton = $('.idDuplicate');
+const $duplicateEmailButton = $('.emailDuplicate');
+
+$duplicateEmailButton.on('click', function(){
+    $modal.css('visibility', 'visible');
+    let valueEmail = $('.emailInput').val();
+    let errorCheck = emailRegex.test(valueEmail);
+    if(!valueEmail){
+        $modalText.text("이메일주소를 입력하세요.")
+        console.log(valueEmail);
+
+    }else if(!errorCheck){
+        $modalText.text("이메일 형식을 확인해주세요.")
+    }else{
+        $modalText.text("사용 가능 합니다.")
+        
+    }
+    
+    $checkButton.on('click',()=>{
+        $modal.css('visibility', 'hidden');
+    });
+
+});
+$duplicateIdButton.on('click', function(){
+    $modal.css('visibility', 'visible');
+    let valueId = $('.idInput').val();
+    let errorCheck = valueId.length > 3 && valueId.length < 21 && idRegex.test(valueId) && !specialCharacterRegex.test(valueId);
+    if(!valueId){
+        $modalText.text("아이디를 입력해주세요.");
+        
+
+    }else if(!errorCheck){
+        $modalText.text("영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.");
+        
+    }else{
+        $modalText.text("사용 가능 합니다.")
+    }
+    
+    $checkButton.on('click',()=>{
+        $modal.css('visibility', 'hidden');
+    });
+
+});
+
+
