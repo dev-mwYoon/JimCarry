@@ -1,0 +1,144 @@
+.pay-modal-container{
+    z-index: 9999!important;
+}
+
+.pay-modal-container{
+    display: flex;
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625em;
+    overflow-x: hidden;
+    transition: background-color .1s;
+    -webkit-overflow-scrolling: touch;
+}
+.pay-modal-content{
+    z-index: 1;
+    justify-content: center;
+    margin: 0;
+    padding: 0 1.6em;
+    color: #545454;
+    font-size: 1.125em;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    word-wrap: break-word;
+
+}
+[class^=modal] {
+    -webkit-tap-highlight-color: transparent;
+}
+.pay-modal-popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 100%;
+    padding: 1.25em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.pay-modal-show {
+    -webkit-animation: modal-show .3s;
+    animation: modal-show .3s;
+}
+.pay-modal-popup{
+    max-width: 360px;
+    border-radius: 12px;
+    padding: 0;
+}
+.pay-modal-show {
+    animation :none;
+}
+.pay-modal-container{
+    padding: 0 24px;
+}
+.pay-modal-container{
+    background: rgba(0,0,0, .4);
+}
+.pay-modal-container{
+    align-items: center;
+}
+
+.pay-modal-content{
+    padding: 0;
+}
+.pay-modal-html-container{
+    padding: 0;
+}
+
+.pay-popup-content {
+    padding: 24px 24px 0px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    color: rgb(51, 51, 51);
+    line-height: 21px;
+    margin-top: 0px;
+    white-space: pre-line;
+    letter-spacing: 0px;
+}
+
+.pay-popup-footer {
+    height: 56px;
+    border-top: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    padding: 0px 8px;
+    margin-top: 16px;
+}
+
+@media (min-width: 1050px){
+    .pay-popup-content{
+        padding: 40px 30px;
+        font-size: 16px;
+        text-align: center;
+        letter-spacing: -0.5px;
+    }
+}
+
+@media (min-width: 1050px){
+    .pay-popup-footer {
+        border-top: 1px solid rgb(247, 247, 247);
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        padding: 0px;
+        margin-top: 0px;
+    }
+}
+button {
+    border-radius: 0;
+}
+.pay-popup-check {
+    width: auto;
+    height: 100%;
+    border: none;
+    padding: 0px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(95, 0, 128);
+    background: transparent;
+}
+
+@media (min-width: 1050px){
+    .pay-popup-check {
+        width: 100%;
+        padding: 0px;
+        font-weight: 500;
+    }
+}
