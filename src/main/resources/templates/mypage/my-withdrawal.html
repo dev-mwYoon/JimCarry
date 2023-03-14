@@ -6,9 +6,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>짐캐리 | 마이페이지 | 회원 탈퇴</title>
     <link rel="stylesheet" href="/static/css/mypage/my-withdrawal.css">
+    <link rel="stylesheet" href="../../static/css/main/header.css">
+    <link rel="stylesheet" href="../../static/css/main/footer.css">
 </head>
 <body>
     <!-- 헤더 -->
+    <header>
+        <div class="header-layout">
+            <div class="login-all-menu">
+                <a href="/market-kurly/login.html" class="login-menu">
+                    <span class="welcome-box">웰컴</span>
+                    정현진 님
+                </a>
+                <div class="slash"></div>
+                <a href="/market-kurly/login.html" class="login-menu">로그아웃</a>
+                <div class="slash"></div>
+                <div class="customer-center-layout">
+                    <a class="customer-centertext">문의하기
+                    </a>
+                </div>
+            </div>
+            <div class="secondheader-layout">
+                <div class="second-header-layout1">
+                    <img class="logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODIiIGhlaWdodD0iNDIiIHZpZXdCb3g9IjAgMCA4MiA0MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGwtcnVsZT0ibm9uemVybyIgZmlsbD0ibm9uZSI+CiAgICAgICAgPHBhdGggZD0iTTAgMGg4MnY0MkgweiIvPgogICAgICAgIDxwYXRoIGQ9Ik02Mi41Ljk2NWMxLjAyNi0uNTU3IDIuNDY2LS43MTggMy4zNTYuMTA3Ljg5LjgyNS42NzYgMi4wNDggMCAzLjk3MyAwIDAtMS41MDUgNC4wNjYtMy4wNTUgOC4yNjJsLS4zOTggMS4wOGMtMS40MTQgMy44My0yLjc2MiA3LjQ4Ny0yLjkyNyA3Ljk2My0xLjQ5OCA0LjI0NSAxLjk2NyA0LjEyMiA0LjAyNC0uMTUyIDEuMTU5LTIuMzk0IDIuNjQ0LTYuMzU3IDIuNjQ0LTYuMzU3LjUyNC0xLjU2My42ODItMi41MDQuMzU5LTIuODI4LS4xMDctLjExMy4wNDUtLjI1Mi4xOC0uMzIzIDIuMjY5LTEuMTQ5IDQuNjMtLjA3MiAzLjMzNiAzLjMxbC0uMDU0LjEzOGMtLjM4Ny45NzgtMi42OCA2LjczMy0yLjY4IDYuNzMzLS42NzYgMS42Ni0uNTk1IDMuMjM2LjQxOCAzLjIzNi42ODYtLjAwNCAxLjQ2LS4zODUgMi4zMDQtMS4wODggMS44MTgtMS41MDQgMy4yMjItNC4zMTIgMy43MjctNS40NTQuMjMtLjUwOCAxLjA4Ny0yLjQyIDEuNzY2LTQuMzYxLjIzNi0uNjY1LjM2OS0xLjM2LjM5NS0yLjA2NWEuNDQzLjQ0MyAwIDAgMSAuMTk0LS40NTkgMy41NzggMy41NzggMCAwIDEgMS42Ny0uNDIgMS44MDUgMS44MDUgMCAwIDEgMS40NjUuNzA1Yy40NDMuNTk4LjU2NiAxLjU3OS4xMDMgMi44MDgtLjEyLjMyLTMuNzc1IDkuOTU4LTMuNzc1IDkuOTU4di4wMjZjMi4wNDEtMS4yMjMgMy44Ny0xLjMxMyA0Ljk1My0uODU0bC0uMDAzLS4wMTNjMS40OTUuNjQ3IDEuOTkgMi40NC45MzggMy41NTktLjEwMy4xMS0uMzYyLjA4NC0uMzYyLS4wOS0uMDk0LTEuMjUzLTIuNTE3LTMuNDk1LTYuMTA5LTEuMDc1bC0uMTQ1LjM4NS0xLjA2OCAyLjgwOGMtMi42MiA3LjAxOC01LjQwMyAxMi4xMzYtOS40MTUgMTEtMi42ODgtLjc2LTIuMzc3LTQuNjA3LjUxNS03Ljc5YTU0LjkgNTQuOSAwIDAgMSA2LjQ5LTUuODk4Yy4wNjgtLjE4OC4xMy0uMzUuMTg4LS41MTEuMjc4LS43OC40OTEtMS40MzQuNzkyLTIuMjY1bC4xNTktLjUxOGMtLjE3OC4yLS40OTguNTczLS43MTIuODEyLS43MTIuOC0yLjQ5NCAyLjc1Ny01LjMyOSAyLjIwN2wtLjIzNC0uMDUyYy0yLjA1LS41MDgtMi42MDgtMS45ODYtMi42NTUtMy4yNzctMi4xNDIgMi42NTYtNC4zNTEgMy40MjYtNS44MDcgMy4zOS0xLjk0OC0uMDQ4LTMuMzc4LTEuNTE0LTIuNDI3LTQuMjkgMS4wNTgtMy4xMDYgNS41LTE1LjMzMiA2Ljc5NS0xOSAuNDg1LTEuNTguNjY2LTIuNTguMTg0LTIuOTc0LS4xMjMtLjEwMy4wNTItLjI2NS4yLS4zNDZ6bTguMzY0IDI4Ljc3OGMtMS4xMDMuODgtNS41MjYgNC41My02Ljc1MiA3LjQ0MS0uNTA1IDEuMTk3LS4zNzYgMi4xNDkuNDg4IDIuMjMzIDEuOTYuMTk0IDQuMDEyLTMuODE4IDYuMjI4LTkuNTEyek0xNi4wMjggNS4zNTJjLS4wODcuMzMyLTEuMzE5IDMuODYtMi43MDEgNy43NDlsLS4yMDkuNTg2LS4yMS41ODktLjIxNS42MDRjNC42OTEtMS4xMjMgMTMuMDY0LTYuNTcgMTQuMDM1LTEwLjA4NS4xMi0uMTYxLjI5LS4yMi41NjYtLjAzNS40OTUuMzMuNjg2IDEuMTU1LjQ5NSAxLjkxOC0uNzY0IDMuMDM4LTYuNDE2IDcuMzQxLTExLjM3OSA5LjU1NC42MTIgMS42MzcgMi42ODIgNi4yNjcgNC4yMDYgOS4xMTEgMS42NjMgMy4xMTkgMy40MiA0LjU3NSA2LjE0NyA0LjczNyAxLjQ2LjA4NSAzLjAxNC0uNDQ3IDMuODkzLTEuMjJsLjE0OC0uMTQtLjAxMy4wM2MuMTk0LS4yMDQuNTExLjA3Ny4zNjYuMzIzYTYuNSA2LjUgMCAwIDEtNC45OTIgMi44NjdjLTYuMzQ1LjQyNy04Ljc3NC0zLjg3LTEzLjMwNC0xNC40OTQtLjM2Ni4xMjYtLjgwOS4yODgtMS4yNTUuNDUtLjA3NS4xODctMi4wNyA1LjY0Mi0yLjEzIDUuODIzLS45NDQgMi44Ny0xLjAwNSA0LjQ0Mi0uMzU4IDQuODk1LjE0NS4wOS4wNzQuMzMzLS4xNzguNDE0LTIuNTI3Ljc5Ni00Ljg1My0uNjk2LTMuNTU5LTQuNDQyIDEuMTYxLTMuMzE2IDUuNjktMTYuMTggNi45MTQtMTkuNjI2LjQyNy0xLjI5NC4xOTctMi4xMjUtLjQ5Mi0yLjMwNkM4LjUwNiAxLjc4Ljg3NyA4Ljc0OSAxLjk3MSAxNS4xODRjLjE5IDEuMTIuOTggMS43NDcgMS4zNzggMS42NjNhLjEzMy4xMzMgMCAwIDEgLjE1Ni4xNTkgMS41MDggMS41MDggMCAwIDEtMS44NDUgMS4wMzJDLjQ5IDE3Ljc4Mi4xMDcgMTYuNTI3LjA0MyAxNS44OC0uNjAxIDkuMjIgNi4xNDggMS4yMyAxMi4zODkuNThjMi4zNzgtLjI1IDQuNjEuOTYgMy42NCA0Ljc3MnptMjQuMDQgOS45MTMtLjA2LjIwNy0yLjgzIDguMTZjLS4zMDQuODUtLjEgMS43MzcuNTAxIDEuOTAyIDEuNzU3LjQ4MiA0LjAyOC0yLjE0NSA1LjEzMS00LjczM2E2Ny43OTQgNjcuNzk0IDAgMCAwIDEuNDc2LTMuODE1Yy41ODItMS42NDMgMS4xMDYtMy4xODMuNzgzLTMuOTA4LS4wNzUtLjE2OC4wNDUtLjI1Ni4yMjMtLjM1LjUwNS0uMjU1IDIuMjI2LS44MjUgMy4xNDEuMDY4LjY5NS42NzQuNjA5IDEuNzcxLS4wMyAzLjQzN2wtLjA5Ni4yNDIuMjItLjI3M2MyLjcwMy0zLjMgNC43OTItNC4yOTIgNi41NjMtMy41OTdsLjE0Ny4wNjJjMi4zODEgMS4wNzQgMS4xNDYgNS4yMTUtMi4xMTYgNS40OC0uMi4wMTctLjM1Ni0uMTI2LS4xNTgtLjQwNy4zOTUtLjYwNS4zNTYtMS45MDktLjc5Ni0yLjAyMi0xLjE1Mi0uMTEzLTIuODMgMS4yMDctNC4wMzggMi44NDQtMS4wODQgMS40NS0yLjIgMy45MTEtMy4zMjIgNy4yNzMtLjI3Mi44MTgtLjE0MyAxLjAxMi0uMTEgMS4wNjdhLjEuMSAwIDAgMSAwIC4wOTRjLS4xNDMuMjcyLS45NjUuNTk2LTEuNzYuNTk2LTEuNjI1LS4wMDctMi4yOTEtLjk0NS0xLjk2Ny0yLjQzNy0xLjg0OCAxLjc2NC0zLjcxMSAyLjYxNC01LjM1NSAyLjQ2NmEyLjUyNCAyLjUyNCAwIDAgMS0yLjIzNi0zLjEwM2MtMS40MjYgMS44MDktMy41NDIgMy4yNjgtNS42OTcgMy4wNjctMi4xNTUtLjItMy41LTEuNjY2LTIuODAyLTQuNzg4LjU5LTIuNTk4IDEuNTkyLTUuMjkgMi4yMDctNy4wMjcuNTE0LTEuNDU2LjYxOC0yLjQwNy4yOTQtMi43NS0uMTAzLS4xMTQuMDU1LS4yNS4xOTQtLjMyNCAxLjY5LS44ODYgNC4zOTQtLjMxNCAzLjYzIDIuMDktLjgwMiAyLjUyNy0yLjI1NSA2LjQ5LTIuNTUgNy40LS43MzcgMi4yODctLjI5IDMuNTIzLjc1NSAzLjU4IDEuMDQ1LjA2IDIuNDMtLjk2IDMuNDItMi41MDMgMS43Ni0yLjUyNCAyLjU4MS01LjY4NSAzLjM3Ny03Ljg4Mi4yMDQtLjU2LjUyNy0xLjg2Ni4xODUtMi4zNTItLjA5MS0uMTIzLjA2Ny0uMjU4LjI3NS0uMzcyIDEuNTM3LS44NDkgNC4yODUtLjY0IDMuNDAyIDIuNjA4eiIgZmlsbD0iIzVGMDA4MCIvPgogICAgPC9nPgo8L3N2Zz4K" alt="마켓컬리 로고">
+                </div>
+            </div>
+        </div>
+        <div id="header" class="menu-fix">
+            <div class="menu">
+                <div class="header-dropbox">
+                    <div class="category-layout">
+                        <span class="category-img"></span>
+                        <span class="category-text">카테고리</span>
+                    </div>
+                    <div class="header-dropbox-div">
+                        <ul class="header-dropbox-ul">
+                            <li class="header-dropbox-li">
+                                <span>서울특별시</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>경기도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>강원도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>충청북도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>충청남도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>경상북도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>경상남도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>전라북도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>전라남도</span>
+                            </li>
+                            <li class="header-dropbox-li">
+                                <span>제주도</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="menus-layout">
+                    <li class="menu-layout">
+                        <span class="menu-text">창고등록</span>
+                    </li>
+                    <li class="menu-layout">
+                        <span class="menu-text">공지사항</span>
+                    </li>
+                    <li class="menu-layout">
+                        <span class="menu-text">FAQ</span>
+                    </li>
+                </ul>
+                <div class="saetbyeol-notice-layout">
+                    <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/delivery_search/delivery_search" class="user-guide">
+                        <div class="saetbyeol-notice-box">
+                            <span class="saetbyeol-notice-text">서비스 이용</span>
+                            안내
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- 마이페이지 -->
     <div class="mypage">
         <div class="mypage-section">
             <div class="mypage-section-list">
@@ -18,6 +106,21 @@
                         <div class="mypage-section-list-left-name-container">
                             <strong class="mypage-section-list-left-name">서현님</strong>
                         </div>
+                    </div>
+                    <div>
+                        <li class="status-list-item">
+                            <div class="status-item-wrapper">
+                                <div class="status-item-name">내 창고</div>
+                                <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                            </div>
+                        </li>
+                        <div class="mypage-list-right-line"></div>
+                        <li class="status-list-item">
+                            <div class="status-item-wrapper">
+                                <div class="status-item-name">이용중인 창고</div>
+                                <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                            </div>
+                        </li>
                     </div>
                     <div class="mypage-section-list-left-btn-container">
                         <button class="mypage-section-list-left-btn">개인 정보 수정</button>
@@ -33,25 +136,17 @@
         </div>
         <div class="mypage-list">
             <div class="mypage-list-left-container">
-                <div class="mypage-list-left-name">마이컬리</div>
+                <div class="mypage-list-left-name">마이캐리</div>
                 <ul class="mypage-list-left-section">
                     <li>
                         <a class="mypage-list-left-section-name" href="/templates/mypage/myBox.html" style="text-decoration: none;">
                            내 창고
-                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">
-                                <path fill="#5f0080" fill-rule="evenodd" d="M1 11L6 5.5 1 0 0 1.1 4 5.5 0 9.9z"></path>
-                            </svg>
+                           <span class="mypage-list-left-section-arrow"></span>
                         </a>
                     </li>
                     <li>
                         <a class="mypage-list-left-section-name" href="/templates/mypage/use-myBox.html" style="text-decoration: none;">
                            이용 중인 창고
-                           <span class="mypage-list-left-section-arrow"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mypage-list-left-section-name" href="/templates/mypage/pay-history.html" style="text-decoration: none;">
-                           결제 내역
                            <span class="mypage-list-left-section-arrow"></span>
                         </a>
                     </li>
@@ -94,16 +189,266 @@
             <div class="list-right-container">
                 <div class="list-right-name-container">
                     <div class="list-right-name-wrapper">
-                        <h2 class="list-right-name">회원탈퇴</h2>
+                        <h2 class="list-right-name">회원탈퇴안내</h2>
                     </div>
                 </div>
                 <div class="mypage-list-right-line"></div>
-                <div class="mypage-list-right-list-container">
-                    <!-- 등록한 창고 목록추가 -->
+                <div class="withdraw-container">
+                    <!-- 탈퇴내용 -->
+                    <div class="withdraw-wrapper">
+                        <div class="withdraw-left">
+                            <label class="withdraw-left-text">회원탈퇴안내</label>
+                        </div>
+                        <div class="withdraw-right">
+                            <div style="padding-top: 10px; margin-right: -40px;">
+                                고객님께서 회원 탈퇴를 원하신다니 저희 짐캐리의 서비스가 많이 부족하고 미흡했나 봅니다. 불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의 불편함을 해결해 드리도록 노력하겠습니다.
+                                <strong class="withdraw-right-text">아울러 회원 탈퇴시의 아래 사항을 숙지하시기 바랍니다.</strong>
+                                <ul class="withdraw-right-text-list-container">
+                                    <li class="withdraw-right-text-list">1. 회원 탈퇴 시 고객님의 정보는 상품 취소 및 A/S를 위해 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한 고객정보 보호정책에따라 관리 됩니다.</li>
+                                    <li class="withdraw-right-text-list">2. 탈퇴 시 고객님께서 보유하셨던 적립금은 모두 삭제 됩니다.</li>
+                                    <li class="withdraw-right-text-list">3. 회원 탈퇴 후 3개월간 재가입이 불가능합니다.</li>
+                                    <li class="withdraw-right-text-list">4. 회원 탈퇴 시 컬리패스 해지는 별도로 고객행복센터(1644-1107)를 통해서 가능합니다. 직접 해지를 요청하지 않으면 해지 처리가 되지 않습니다.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="amend-container">
+                            <div class="amend-name-container">
+                                <label class="amend-name">현재 비밀번호</label>
+                            </div>
+                            <div class="amend-inputBox-container">
+                                <div class="amend-inputBox-wrapper">
+                                    <div class="amend-inputBox">
+                                        <input type="password" autocomplete="off" placeholder="현재 비밀번호를 입력해 주세요" class="amend-password-inputBox-in">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="amend-inputBox-right"></div>
+                        </div>
+                        <div class="amend-container">
+                            <div class="amend-name-container">
+                                <label class="amend-name">무엇이 불편하였나요?</label>
+                            </div>
+                            <div class="amend-inputBox-container">
+                                <div class="right-check-list-container">
+                                    <div class="right-check-list-wrapper">
+                                        <label class="right-check-list-label">
+                                            <div class="right-check-list">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </div>
+                                            <span>고객서비스(상담 등) 불만</span>
+                                        </label>
+                                        <label class="right-check-list-label">
+                                            <div class="right-check-list">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </div>
+                                            <span>환불 불만</span>
+                                        </label>
+                                        <label class="right-check-list-label">
+                                            <div class="right-check-list">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </div>
+                                            <span>방문 빈도가 낮음</span>
+                                        </label>
+                                        <label class="right-check-list-label">
+                                            <div class="right-check-list">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </div>
+                                            <span>창고가격 불만</span>
+                                        </label>
+                                        <label class="right-check-list-label">
+                                            <div class="right-check-list">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </div>
+                                            <span>개인 정보유출 우려</span>
+                                        </label>
+                                        <label class="right-check-list-label">
+                                            <div class="right-check-list">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg>
+                                            </div>
+                                            <span>사이트 신뢰도 불만</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-box-container">
+                                        <textarea inputmode="text" placeholder="고객님의 진심어린 충고 부탁드립니다." class="text-box"></textarea>
+                                        <div class="text-box-next"></div>
+                                        <span class="text-box-span"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 탈퇴, 취소 버튼 -->
+                        <div class="withdrawal-btn-container">
+                            <button class="withdrawal-left-btn">
+                                <span class="withdrawal-btn-span">취소</span>
+                            </button>
+                            <button class="withdrawal-right-btn">
+                                <span class="withdrawal-btn-span">탈퇴</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- 푸터 -->
+    <footer class="footer">
+        <div id="footer">
+            <div class="footer-layout">
+                <div class="footer-left-layout">
+                    <h2 class="footer-title">고객행복센터</h2>
+                    <strong class="footer-phonenum-text">
+                        1644-1107<span class="footer-phonenum-explain">월~토요일 오전 7시 - 오후 6시</span>
+                    </strong>
+                    <div class="inquiries-layout">
+                        <div class="inquiry-layout">
+                            <button class="inquiry-button">카카오톡 문의</button>
+                            <div class="inquiry-text">
+                                월~토요일
+                                <!-- 슬래쉬 본문에서는 svg 처리 But 나는 div 처리 -->
+                                <div class="slash2"></div>
+                                오전 7시 - 오후 6시
+                                <br>
+                                일/공휴일
+                                <div class="slash2"></div>
+                                오전 7시 - 오후 1시
+                            </div>
+                        </div>
+                        <div class="inquiry-layout">
+                            <button class="inquiry-button">1:1 문의</button>
+                            <div class="inquiry-text">
+                                365일
+                                <br>
+                                고객센터 운영시간에 순차적으로 답변드리겠습니다.
+                            </div>
+                        </div>
+                        <div class="inquiry-layout">
+                            <button class="inquiry-button">대량주문 문의</button>
+                            <div class="inquiry-text">
+                                월~금요일
+                                <div class="slash2"></div>
+                                오전 9시 - 오후 6시
+                                <br>
+                                점심시간
+                                <div class="slash2"></div>
+                                낮 12시 - 오후 1시
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inquiry-email">
+                        비회원 문의 : 
+                        <a href="mailto:help@kurlycorp.com">help@kurlycorp.com</a>
+                        <br>
+                        비회원 대량주문 문의 : 
+                        <a href="mailto:kurlygift@kurlycorp.com">kurlygift@kurlycorp.com</a>
+                    </div>
+                </div>
+                <div class="footer-right-layout">
+                    <div class="kurly-info">
+                        법인명 (상호) : 주식회사 컬리
+                        <span class="footer-slash-layout"></span>
+                        사업자등록번호 : 261-81-23567<a class="important-text" href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=2618123567&amp;apv_perm_no=">사업자정보 확인</a>
+                        <br>
+                        통신판매업 : 제 2018-서울강남-01646 호
+                        <span class="footer-slash-layout"></span>
+                        개인정보보호책임자 : 이원준
+                        <br>
+                        주소 : 서울특별시 강남구 테헤란로 133, 18층(역삼동)
+                        <span class="footer-slash-layout"></span>
+                        대표이사 : 김슬아
+                        <br>
+                        입점문의 :<a class="important-text" href="https://docs.google.com/forms/d/e/1FAIpQLScLB7YkGJwNRzpGpp0gbR1i4C1_uvTEFj43SFfJ_XEadTn3gQ/viewform?usp=sf_link">입점문의하기</a>
+                        <span class="footer-slash-layout"></span> 
+                        제휴문의 :
+                        <a class="important-text" href="mailto:business@kurlycorp.com">business@kurlycorp.com</a>
+                        <br>
+                        채용문의 :<a class="important-text" href="mailto:recruit@kurlycorp.com">recruit@kurlycorp.com</a>
+                        <br>
+                        팩스: 070 - 7500 - 6098
+                    </div>
+                    <!-- 마켓컬리sns아이콘 -->
+                    <ul class="icon-layout">
+                        <a class="sns-icon" href="https://instagram.com/marketkurly">
+                            <img src="https://res.kurly.com/pc/ico/1810/ico_instagram.png">
+                        </a>
+                        <a  class="sns-icon" href="https://www.facebook.com/marketkurly">
+                            <img src="https://res.kurly.com/pc/ico/1810/ico_fb.png">
+                        </a>
+                        <a class="sns-icon" href="https://blog.naver.com/marketkurly">
+                            <img src="https://res.kurly.com/pc/ico/1810/ico_blog.png">
+                        </a>
+                        <a class="sns-icon" href="https://m.post.naver.com/marketkurly">
+                            <img src="https://res.kurly.com/pc/ico/1810/ico_naverpost.png">
+                        </a>
+                        <a class="sns-icon" href="https://www.youtube.com/channel/UCfpdjL5pl-1qKT7Xp4UQzQg">
+                            <img src="https://res.kurly.com/pc/ico/1810/ico_youtube.png">
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <!-- 인증마크 -->
+            <div class="certification-mark-layout">
+                <button class="certification-mark-button">
+                    <img class="mark-img" src="https://res.kurly.com/pc/ico/2208/logo_isms.svg">
+                    <p class="mark-text">
+                        [인증범위] 컬리 쇼핑몰 서비스 개발·운영
+                        <br>
+                        (심사받지 않은 물리적 인프라 제외)
+                        <br>
+                        [유효기간] 2022.01.19 ~ 2025.01.18
+                    </p>
+                </button>
+                <button class="certification-mark-button">
+                    <img class="mark-img" src="https://res.kurly.com/pc/ico/2208/logo_privacy.svg">
+                    <p class="mark-text">
+                        개인정보보호 우수 웹사이트 ·
+                        <br>
+                        개인정보처리시스템 인증 (ePRIVACY PLUS)
+                    </p>
+                </button>
+                <button class="certification-mark-button">
+                    <img class="payments-mark-img" src="https://res.kurly.com/pc/ico/2208/logo_tosspayments.svg"> 
+                    <p class="mark-text">
+                        토스페이먼츠 구매안전(에스크로)
+                        <br>
+                        서비스를 이용하실 수 있습니다.
+                    </p>
+                </button>
+                <button class="certification-mark-button">
+                    <img class="wooriBank-mark-img" src="https://res.kurly.com/pc/ico/2208/logo_wooriBank.svg">
+                    <p class="mark-text">
+                        고객님이 현금으로 결제한 금액에 대해 우리은행과
+                        <br>
+                        채무지급보증 계약을 체결하여 안전거래를 보장하고
+                        <br>
+                        있습니다.
+                    </p>
+                </button>
+            </div>
+        </div>
+        <div class="all-right-reserved">
+            컬리에서 판매되는 상품 중에는 컬리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.
+            <br>
+            마켓플레이스(오픈마켓) 상품의 경우 컬리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 컬리는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.
+            <em class="all-right-reserved-text">© KURLY CORP. ALL RIGHTS RESERVED</em>
+        </div>
+    </footer>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="../../static/js/main/header.js"></script>
 </html>

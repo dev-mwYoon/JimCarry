@@ -1,4 +1,11 @@
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:300;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format("0woff"),url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:500;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:700;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format("truetype")}html{line-height:1.15; line-height:1.15;-webkit-tap-highlight-color:transparent}
+
+
 body{
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
     font-size: 14px;
     color: #333;
 }
@@ -23,7 +30,7 @@ ul{
     /* gap: 4px; */
 }
 .mypage-section-list-left{
-    padding: 30px 30px 26px;
+    padding: 30px 30px 20px;
     grid-row: 1 / 3;
     display: flex;
     flex-direction: column;
@@ -34,10 +41,11 @@ ul{
 }
 .mypage-section-list-left-container{
     display: flex;
+    margin-top: -5px;
 }
 .mypage-section-list-left-type{
-    min-width: 48px;
-    height: 48px;
+    min-width: 40px;
+    height: 20px;
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -46,11 +54,12 @@ ul{
     padding: 0px 5px;
     border-radius: 3px;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
     color: rgb(95, 0, 128);
     border: 1px solid rgb(95, 0, 128);
     background-color: rgb(255, 255, 255);
+    margin-top: -7px;
 }
 .mypage-section-list-left-name-container{
     display: flex;
@@ -59,13 +68,14 @@ ul{
     justify-content: center;
     min-width: 50%;
     min-height: 48px;
-    margin-left: 20px;
+    margin-left: 13px;
+    margin-top: -20px;
 }
 .mypage-section-list-left-name{
     display: block;
     overflow: hidden;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 15px;
     color: rgb(51, 51, 51);
     line-height: 28px;
     white-space: nowrap;
@@ -79,26 +89,26 @@ ul{
 .mypage-section-list-left-btn{
     width: 50%;
     height: 42px;
-    border: 1px solid rgb(244, 244, 244);
-    border-radius: 30px;
-    background-color: rgb(244, 244, 244);
-    font-size: 13px;
-    color: rgb(51, 51, 51);
+    border-radius: 7px;
+    font-size: 14px;
     text-align: center;
     -webkit-box-flex: 1;
     flex-grow: 1;
-    margin-top: 40px;
+    margin-top: 15px;
+    background-color: rgb(95, 0, 128);
+    color: rgb(255, 255, 255);
+    border: 0px none;
 }
 .mypage-section-list-right-benner{
     display: block;
     width: 1050px;
     overflow: hidden;
     margin-left: 380px;
-    margin-top: -188px;
+    margin-top: -222px;
 }
 .mypage-section-list-right-benner-img{
     width: 670px;
-    height: 188px;
+    height: 222px;
     object-fit: cover;
 }
 
@@ -122,12 +132,41 @@ ul{
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
+/* 내창고, 이용중인 창고 */
+.status-list-item{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background-color: #ffffff;
+    color: #303441;
+    margin-bottom: 3px;
+}
+.status-item-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.status-item-name {
+    display: flex;
+    font-weight: 400;
+    font-size: 15px;
+    margin-left: 5px
+}
+.status-item-count {
+    margin-top: 4px;
+    text-align: right;
+    color: #303441;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: default;
+    margin-right: 5px;
+}
 .mypage-list-left-container{
     width: 200px;
 }
 .mypage-list-left-name{
     height: 75px;
-    padding: 5px 0px 35px 1px;
+    padding: 5px 0px 4px 1px;
     font-weight: 500;
     font-size: 28px;
     line-height: 35px;
@@ -176,9 +215,9 @@ ul{
     background-position: center center;
 }
 .mypage-list-left-section-help{
-    width: 82%;
+    width: 100%;
     height: 60px;
-    padding: 0px 20px;
+    padding: 0px 10px;
     margin-top: 20px;
     display: flex;
     -webkit-box-pack: justify;
@@ -202,17 +241,18 @@ ul{
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 29px;
     -webkit-box-pack: justify;
-    justify-content: space-between;
+    justify-content: center;
 }
 .mypage-list-right-line{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 95%;
     -webkit-box-align: center;
     align-items: center;
-    border-bottom: 2px solid rgb(51, 51, 51);
+    border-bottom: 1px solid rgb(51, 51, 51);
+    margin-left: 7px;
 }
 .list-right-name-wrapper{
     display: flex;
@@ -247,4 +287,187 @@ ul{
     padding-top: 20px;
     position: relative;
     height: 100%;
+}
+.withdraw-container{
+    color: rgb(102, 102, 102);
+    line-height: 22px;
+}
+.withdraw-wrapper{
+    display: inline-flex;
+    width: 76%;
+    padding: 10px 0px 10px 100px;
+}
+.withdraw-left{
+    width: 139px;
+    padding-top: 12px;
+}
+.withdraw-left-text{
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    line-height: 20px;
+}
+.withdraw-right{
+    flex: 1 1 0%;
+}
+.withdraw-right-text{
+    display: block;
+    padding: 19px 0px 12px;
+    font-weight: normal;
+    color: rgb(95, 0, 128);
+}
+.withdraw-right-text-list{
+    box-sizing: border-box;
+    margin: 0;
+}
+.withdraw-right-text-list-container{
+    list-style-type: none;
+    padding: 0px;
+}
+/* 비밀번호 */
+.amend-container{
+    display: inline-flex;
+    width: 100%;
+    padding: 10px 100px;
+}
+.amend-name-container{
+    width: 139px;
+    padding-top: 12px;
+}
+.amend-name{
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    line-height: 20px;
+}
+.amend-inputBox-container{
+    flex: 1 1 0%;
+}
+.amend-inputBox-wrapper{
+    padding: 0px;
+}
+.amend-inputBox{
+    position: relative;
+    height: 48px;
+}
+.amend-inputBox-right{
+    width: 130px;
+    margin-left: 8px;
+}
+.amend-password-inputBox-in{
+    width: 100%;
+    height: 46px;
+    padding: 0px 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(221, 221, 221);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+}
+/* 무엇이 불편하였나요? */
+.right-check-list-container{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.right-check-list-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: -3px;
+}
+.right-check-list-label{
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: top;
+    line-height: normal;
+    color: rgb(51, 51, 51);
+    width: 50%;
+    padding: 13px 0px;
+    font-size: 14px;
+}
+.right-check-list{
+    margin-right: 12px;
+}
+/* 불만 작성글 상자 */
+.text-box-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 175px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 4px;
+}
+.text-box{
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 15px 16px;
+    font-size: 14px;
+    line-height: 21px;
+    word-break: break-all;
+    z-index: 1;
+    background: none;
+    border-radius: 4px;
+    color: rgb(51, 51, 51);
+    outline: none;
+    resize: none;
+    border: none;
+}
+.text-box-next{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    padding: 15px 15px 32px;
+}
+.text-box-span{
+    padding: 0px 16px 16px;
+    font-size: 12px;
+    text-align: right;
+}
+/* 탈퇴, 취소 버튼 */
+.withdrawal-btn-container{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 40px 0px 60px;
+}
+.withdrawal-left-btn{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    height: 44px;
+    color: rgb(95, 0, 128);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(95, 0, 128);
+    width: 120px;
+    margin: 0px 4px;
+    border-radius: 3px;
+}
+.withdrawal-right-btn{
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    height: 44px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(95, 0, 128);
+    border: 0px none;
+    width: 120px;
+    margin: 0px 4px;
+    border-radius: 3px;
+}
+.withdrawal-btn-span{
+    font-size: 14px;
+    font-weight: 500;
 }
