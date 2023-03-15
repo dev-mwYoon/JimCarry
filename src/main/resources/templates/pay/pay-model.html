@@ -6,26 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>modal</title>
     <link rel="stylesheet" href="/static/css/pay/pay-model.css">
-</head>
+    <link rel="stylesheet" href="/static/css/main/header.css">
+    
 <body>
     <div>    
         <button class="pay-btn">결제취소</button>
     </div>
 
    <!-- 모달 -->
-   <div class="pay-modal-container pay-modal-center" style="overflow-y: auto; visibility:hidden;">
-    <div class="pay-modal-popup pay-modal-show" role="dialog" style="display: flex;">
-        <div class="pay-modal-content">
-            <div id="pay-modal-content" class="pay-modal-html-container" style="display: block;">
-                <div class="pay-popup-content">결제를 취소했습니다</div>
-                <div class="pay-popup-footer">
-                    <button class="pay-popup-check">확인</button>
-                </div>
-            </div>
-        </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="pay-content">결제를 취소했습니다.</div>
+
+        <div class="pay-footer">
+        <button class="pay-popup-check">확인</button>
+      </div>
     </div>
-</div>
+    </div>
 <!-- 모달 끝 -->
 
 </body>
+<script>
+    const btn = document.querySelector(".pay-btn");
+    const container = document.querySelector(".modal");
+    const close = document.querySelector(".pay-popup-check");
+    
+    //모달창 열기
+    btn.addEventListener("click", function(){
+        container.style.display="block";
+    });
+
+    //모달창 닫기
+    close.addEventListener("click", function(){
+        container.style.display="none";
+    });
+
+    //모달창 외부 클릭 시 닫기
+    window.onclick = function(event) {
+        if(event.target == container) {
+            container.style.display = "none";
+        }
+    };
+
+
+</script>
 </html>
