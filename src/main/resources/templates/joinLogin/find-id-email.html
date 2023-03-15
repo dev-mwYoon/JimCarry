@@ -11,6 +11,7 @@
     <link rel="icon" href="/market-kurly/faviconn.ico">
     <link rel="stylesheet" href="../../static/css/joinLogin/find-id-email.css">
     <link rel="stylesheet" href="../../static/css/joinLogin/font.css">
+    <link rel="stylesheet" href="../../static/css/joinLogin/joinModal.css">
 </head>
 
 <body>
@@ -19,35 +20,37 @@
     <!-- 헤더 -->
         <div id="headers"></div>
     <!-- 메인 -->
-    <div class="findIdLayout">
-        <div class="findIdTitle">아이디 찾기</div>
-        <div class="findIdInputLayout2">
-            <div class="findIdButtonLayout">
+    <div class="findLayout">
+        <div class="findTitle">아이디 찾기</div>
+        <div class="findInputLayout2">
+            <div class="findButtonLayout">
                 <button class="authenticationPhoneButton">휴대폰 인증</button>
                 <button class="authenticationEmailButton">이메일 인증</button>
             </div>
-            <form class="findIdInputLayout">
-                <div class="findIdInputDiv">
-                    <div class="findIdLabelLayout">
-                        <label class="findIdNameLabel" for="name">이름</label>
-                        <div class="findIdnameInputLabel">
-                            <input class="findIdnameInputBox" data-testid="input-box" id="name" name="name"
-                                   placeholder="이름를 입력해 주세요" type="text" value="">
+            <form class="findInputLayout">
+                <div class="findInputDiv">
+                    <div class="findLabelLayout">
+                        <label class="findNameLabel" for="name">이름</label>
+                        <div class="findnameInputLabel">
+                            <input class="findnameInputBox" data-testid="input-box" id="name" name="name"
+                                   placeholder="이름를 입력해 주세요" type="text" value="" >
                         </div>
                     </div>
+                    <p class="errorMsg1"></p>
                 </div>
-                <div class="findIdInputDiv">
-                    <div class="findIdLabelLayout">
-                        <label class="findIdpPhoneNum" for="email">이메일</label>
-                        <div class="findIdPhoneInputLabel" height="46">
-                            <input class="findIdPhoneInputBox" data-testid="input-box" id="email" name="email"
-                                   placeholder="이메일을 입력해 주세요" type="tel" height="46" value="">
+                <div class="findInputDiv">
+                    <div class="findLabelLayout">
+                        <label class="findEmailNum" for="email">이메일</label>
+                        <div class="findEmailInputLabel" height="46">
+                            <input class="findEmailInputBox" data-testid="input-box" id="email" name="email"
+                                   placeholder="이메일을 입력해 주세요" type="text" height="46" value="" >
                         </div>
                     </div>
+                    <p class="errorMsg2"></p>
                 </div>
                 <div class="codeLayout">
-                    <button class="codeButton" type="submit" disabled radius="4">
-                        <span class="buttonBox">인증번호 받기</span>
+                    <button class="codeButton" type="button" radius="4">
+                        <span class="buttonBox">확인</span>
                     </button>
                 </div>
             </form>
@@ -59,6 +62,20 @@
     <!-- footer -->
              <div id="footers"></div>
 </div>
+ <!-- 모달 -->
+ <div class="modal-container modal-center" style="overflow-y: auto; visibility:hidden;">
+    <div class="modal-popup modal-show" role="dialog" style="display: flex;">
+        <div class="modal-content">
+            <div id="modal-content" class="modal-html-container" style="display: block;">
+                <div class="popup-content">가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해 주세요</div>
+                <div class="popup-footer">
+                    <button class="popup-check">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 모달 끝 -->
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
@@ -67,5 +84,5 @@
             $("#footers").load("../main/footer.html");
         });
 </script>
-
+<script src="../../static/js/joinLogin/find-id-email.js"></script>
 </html>
