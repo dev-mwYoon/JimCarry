@@ -881,13 +881,14 @@ canvas, img, video {
   line-height: 40px;
 }
 .termStart {
+  width: 495px;
   padding: 0px;
 }
 
 .termsLayout {
   display: inline-flex;
-    width: 100%;
-    padding: 10px 0px 10px 20px;
+  width: 100%;
+  padding: 10px 0px 10px 20px;
 }
 
 .termsTitle {
@@ -1063,7 +1064,7 @@ a {
 /* 창고사진등록 */
 .imageContainer {
   flex: 1 1 0%;
-  width: 640px;
+  width: 333px;
 }
 
 .imageWrapperPadding > div{
@@ -1132,6 +1133,9 @@ imageDiv > span {
 }
 
 .imageThumbnail{
+  height: 72px;
+  width: 72px;
+  display: inline-flex;
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
@@ -1154,6 +1158,135 @@ imageDiv > span {
 .errorDiv {
   padding: 10px 0px;
   display: none;
+}
+
+/* 모달 */
+
+.modalContainer {
+  padding: 0 24px;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  z-index: 1060;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625em;
+  overflow-x: hidden;
+  transition: background-color .1s;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modalContainer.modalShow {
+  background: rgba(0,0,0,.4);
+}
+
+.popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 100%;
+    padding: 1.25em;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.modalHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.8em;
+}
+
+.progressStep{
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 0 1.25em;
+    padding: 0;
+    background: inherit;
+    font-weight: 600;
+}
+
+.modalIcon {
+    position: relative;
+    box-sizing: content-box;
+    justify-content: center;
+    width: 5em;
+    height: 5em;
+    margin: 1.25em auto 1.875em;
+    border: 0.25em solid transparent;
+    border-radius: 50%;
+    border-color: #000;
+    font-family: inherit;
+    line-height: 5em;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.modalContent {
+    z-index: 1;
+    justify-content: center;
+    margin: 0;
+    padding: 0 1.6em;
+    color: #545454;
+    font-size: 1.125em;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.modalContentContainer{
+  padding: 0;
+}
+
+.modalContentInput{
+  padding: 24px 24px 0px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  color: rgb(51, 51, 51);
+  line-height: 21px;
+  margin-top: 0px;
+  white-space: pre-line;
+  letter-spacing: 0px;
+}
+
+.modalFooterInput {
+  height: 56px;
+    border-top: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    padding: 0px 8px;
+    margin-top: 16px;
+}
+
+.modalCheckButton {
+  width: auto;
+    height: 100%;
+    border: none;
+    padding: 0px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(95, 0, 128);
+    background: transparent;
 }
 
 /* 푸터 */
