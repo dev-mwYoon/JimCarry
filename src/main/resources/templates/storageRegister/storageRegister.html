@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,6 @@
 <body>
     <!-- 영역 잡기  -->
     <div id="fullscreen">
-        <!-- 비로그인시 -->
         <!-- <header>
             <div class="header-layout">
                 <div class="login-all-menu">
@@ -320,10 +319,16 @@
                                 <div class="addressInputLayout">
                                     <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="">
                                 </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
+                                </div>
                             </div>
                             <div class="addressDetailWrapper">
                                 <div class="addressInputLayout">
                                     <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="addressDetail" required autocomplete="none">
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
                                 </div>
                             </div>
                         </div>
@@ -348,17 +353,14 @@
                     <div class="imageContainer">
                         <div class="imageWrapperPadding">
                             <div class="imageWrapper">
-                                <div class="imageDiv">
+                                <div id="thumbnail-list" class="imageDiv">
                                     <div>
                                         <label for="photo-picker">
                                             <div class="imgButton" >
                                                 <span class="cameraIconImg"></span>
                                             </div>
-                                            <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp">
+                                            <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" multiple />
                                         </label>
-                                    </div>
-                                    <div class="imageThumbnail">
-                                        <span class="closeImgButton"></span>
                                     </div>
                                 </div>
                                 <div class="imgTextWrapper">
@@ -387,6 +389,31 @@
             </div>
             </div>
         </div>
+        <!-- 파일 개수 제한 모달 -->
+        <!-- <div class="modalContainer modalShow" style="overflow-y: auto;">
+            <div class="popup" style="display:flex;">
+                <div class="modalHeader">
+                    <ul class="progressStep" style="display:none;"></ul>
+                    <div class="modalIcon" style="display:none"></div>
+                    <img src="" alt="">
+                    <h2></h2>
+                    <button></button>
+                </div>
+                <div class="modalContent">
+                    <div class="modalContentContainer" style="display: block;">
+                       <div class="modalContentInput"> 사진 첨부는 최대 8장까지만 가능합니다.</div>
+                       <div class="modalFooterInput">
+                            <button class="modalCheckButton">확인</button>
+                       </div>
+                    </div>
+                    <input type="text" style="display: none;">
+                    <input type="text" style="display: none;">
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div> -->
         <!-- 푸터 -->
         <footer class="footer">
             <div id="footer">
@@ -432,10 +459,10 @@
                             </div>
                         </div>
                         <div class="inquiry-email">
-                            비회원 문의 : 
+                            비회원 문의 :
                             <a href="mailto:help@kurlycorp.com">help@kurlycorp.com</a>
                             <br>
-                            비회원 대량주문 문의 : 
+                            비회원 대량주문 문의 :
                             <a href="mailto:kurlygift@kurlycorp.com">kurlygift@kurlycorp.com</a>
                         </div>
                     </div>
@@ -454,7 +481,7 @@
                             대표이사 : 김슬아
                             <br>
                             입점문의 :<a class="important-text" href="https://docs.google.com/forms/d/e/1FAIpQLScLB7YkGJwNRzpGpp0gbR1i4C1_uvTEFj43SFfJ_XEadTn3gQ/viewform?usp=sf_link">입점문의하기</a>
-                            <span class="footer-slash-layout"></span> 
+                            <span class="footer-slash-layout"></span>
                             제휴문의 :
                             <a class="important-text" href="mailto:business@kurlycorp.com">business@kurlycorp.com</a>
                             <br>
@@ -503,7 +530,7 @@
                         </p>
                     </button>
                     <button class="certification-mark-button">
-                        <img class="payments-mark-img" src="https://res.kurly.com/pc/ico/2208/logo_tosspayments.svg"> 
+                        <img class="payments-mark-img" src="https://res.kurly.com/pc/ico/2208/logo_tosspayments.svg">
                         <p class="mark-text">
                             토스페이먼츠 구매안전(에스크로)
                             <br>
