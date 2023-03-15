@@ -156,6 +156,15 @@
     line-height: 29px;
 }
 
+.payment-select-wrap-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.payment-select-wrapper {
+    width: 742px;
+}
 
 .payment-select-wrap {
     display: flex;
@@ -177,6 +186,9 @@
 
 .pay-select-container {
     flex: 1 1 0%;
+}
+
+.pay-select-wrap {
     width: 414px;
 }
 
