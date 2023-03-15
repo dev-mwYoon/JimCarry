@@ -6,9 +6,9 @@
  * @format
  */
 
-window.onload = function() {
+window.onload = function () {
   initClock();
-}
+};
 
 /* 사이드바 접기 */
 $sidebarSlide.on('click', function () {
@@ -61,6 +61,7 @@ $list.on('click', function (e) {
 /* 검색바 이벤트 ======================================= */
 $searchBar.on('keyup', function (key) {
   /* 추후 검색조건과 연동하여 ajax 작성 요망 */
+  /* 입력한 키가 엔터인가 검사 */
   if (key.keyCode == 13) {
     alert('검색 실행');
   }
@@ -69,15 +70,44 @@ $searchBar.on('keyup', function (key) {
 /* 상세보기 모달창 ======================================= */
 $detailButton.on('click', function () {
   var i = $detailButton.index($(this));
+
   /* 해당 컨텐츠 번호 */
   var contentId = $detailButton.eq(i).parent().siblings('.content__id').text();
-  
+
   /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
 
   /* 추후 타임리프로 대체할 예정 */
   $modalStage.css('display', 'block');
-  $modalStage.load('/templates/admin/modals/user-modal.html');
+  $modalStage.show();
 
+  /* 모달 닫는 이벤트 */
+  /* 추후 외부로 빼야함 */
+  $('.modal-close').on('click', function (e) {
+    $modalStage.hide();
+  });
+});
+
+/* 항목 한개이상 선택안되게 */
+
+/* 창고 썸네일변경 */
+$storageFile.on('change', function (e) {
+  let i = $storageFile.index($(this));
+  console.log(i);
+  var reader = new FileReader();
+  reader.readAsDataURL(e.target.files[0]);
+  console.log(e.target);
+  reader.onload = function (e) {
+    console.log(e.target);
+    let url = e.target.result;
+    if (url.includes('image')) {
+      $('label.attach').eq(i).find('h6').hide();
+      $('div.x').eq(i).show();
+      $thumbnail.eq(i).show();
+      $thumbnail.eq(i).attr('src', url);
+    } else {
+      showWarnModal('이미지 파일만 등록 가능합니다.');
+    }
+  };
 });
 
 /* 체크박스 이벤트 ======================================= */
@@ -97,12 +127,14 @@ $check.click(function () {
 
 /* 실시간 시계 */
 
-function getTime(){
+function getTime() {
   const time = new Date();
   const hour = time.getHours();
   const minutes = time.getMinutes();
   const seconds = time.getSeconds();
-  clock.innerHTML = `${hour<10 ? `0${hour}`:hour}:${minutes<10 ? `0${minutes}`:minutes}:${seconds<10 ? `0${seconds}`:seconds}`
+  clock.innerHTML = `${hour < 10 ? `0${hour}` : hour}:${minutes < 10 ? `0${minutes}` : minutes}:${
+    seconds < 10 ? `0${seconds}` : seconds
+  }`;
 }
 
 function initClock() {
