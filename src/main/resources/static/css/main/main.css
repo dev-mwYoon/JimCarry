@@ -22,14 +22,14 @@ section.container {
 }
 
 div.banner {
-    width: 31104px;
+    width: 25920px;
     transition: transform 0.3s;
     /* transform: translate(-90vw); */
 }
 
 div.banner div {
     width: 1728px;
-    height: 35vh;
+    height: 37vh;
     float: left;
     background-size: 100%;
 }

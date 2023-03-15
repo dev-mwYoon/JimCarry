@@ -28,7 +28,7 @@ updateBannerCount();
 function autoSlide(){
     banner.style.transition = "transform 0.3s";
     banner.style.transform = `translate(${-1728 * ++count}px)`;
-    if(count == 17) {
+    if(count == 14) {
         count = 1;
         updateBannerCount();
         setTimeout(function(){
@@ -46,7 +46,7 @@ prev.addEventListener("click", function(){
     banner.style.transition = "transform 0.3s";
     banner.style.transform = `translate(${-1728 * --count}px)`;
     if(count == 0) {
-        count = 16;
+        count = 13;
         updateBannerCount();
         setTimeout(function(){
             banner.style.transition = "transform 0s";
@@ -64,7 +64,7 @@ next.addEventListener("click", function(){
     clearInterval(auto);
     banner.style.transition = "transform 0.3s";
     banner.style.transform = `translate(${-1728 * ++count}px)`;
-    if(count == 17) {
+    if(count == 14) {
         count = 1;
         updateBannerCount();
         setTimeout(function(){
