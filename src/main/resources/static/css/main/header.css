@@ -25,6 +25,11 @@ html, button, input, select, textarea {
   font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
 }
 
+code, kbd, pre, samp {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
 *, :after, :before {
   box-sizing: border-box;
   margin: 0;
@@ -109,6 +114,7 @@ html, button, input, select, textarea {
 
 .second-header-layout {
     height: 100px;
+    margin-left: -10px;
 }
 
 .second-header-layout1 {
@@ -226,6 +232,8 @@ html, button, input, select, textarea {
 
 .logo {
   flex: 0 0 82px;
+  width: 165px;
+  cursor: pointer;
 }
 
 .header-dropbox-ul {
