@@ -11,6 +11,7 @@
     <link rel="icon" href="/market-kurly/faviconn.ico">
     <link rel="stylesheet" href="../../static/css/joinLogin/login.css">
     <link rel="stylesheet" href="../../static/css/joinLogin/font.css">
+    <link rel="stylesheet" href="../../static/css/joinLogin/joinModal.css">
     <style>
     </style>
 </head>
@@ -58,6 +59,20 @@
     </div>
     <!--footer-->
     <div id="footers"></div>
+    <!-- 모달 -->
+    <div class="modal-container modal-center" style="overflow-y: auto; visibility:hidden;">
+        <div class="modal-popup modal-show" role="dialog" style="display: flex;">
+            <div class="modal-content">
+                <div id="modal-content" class="modal-html-container" style="display: block;">
+                    <div class="popup-content">아이디 또는 비밀번호를 입력해주세요</div>
+                    <div class="popup-footer">
+                        <button class="popup-check">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 모달 끝 -->
 
 </div>
 </body>
@@ -68,6 +83,6 @@
         $("#footers").load("../main/footer.html");
     });
 </script>
-<script src="/js/login.js"></script>
+<script src="../../static/js/joinLogin/login.js"></script>
 
 </html>

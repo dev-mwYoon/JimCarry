@@ -7,6 +7,7 @@
     <title>컬리 - 마켓컬리/뷰티컬리</title>
     <link rel="stylesheet" href="../../static/css/joinLogin/find-id-result.css">
     <link rel="stylesheet" href="/static/css/joinLogin/font.css">
+    <link rel="stylesheet" href="/static/css/joinLogin/joinModal.css">
 </head>
 <body style="padding-right: 0px;">
     <div class="findLayout">
@@ -30,7 +31,7 @@
                     </li>
                 </ul>
                 <div class="result-buttons">
-                    <button class="allButton">
+                    <button class="allButton" style="cursor: pointer;">
                         <span class="allButton-span">아이디 전체보기</span>
                     </button>
                     <button class="loginButton">
@@ -42,6 +43,20 @@
         <!-- footer -->
     <div id="footers"></div>
     </div>
+     <!-- 모달 -->
+ <div class="modal-container modal-center" style="overflow-y: auto; visibility:hidden;">
+    <div class="modal-popup modal-show" role="dialog" style="display: flex;">
+        <div class="modal-content">
+            <div id="modal-content" class="modal-html-container" style="display: block;">
+                <div class="popup-content">가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해 주세요</div>
+                <div class="popup-footer">
+                    <button class="popup-check">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 모달 끝 -->
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
@@ -50,4 +65,5 @@
         $("#footers").load("../main/footer.html");
     });
 </script>
+<script src="../../static/js/joinLogin/find-id-result.js"></script>
 </html>
