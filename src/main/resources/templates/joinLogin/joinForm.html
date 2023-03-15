@@ -38,7 +38,7 @@
                         <div class="flexLayout">
                             <div class="paddingBottom">
                                 <div class="inputBox">
-                                    <input class="input" type="text" placeholder="아이디를 입력해주세요" name="userId" required
+                                    <input class="input idInput" type="text" placeholder="아이디를 입력해주세요" name="userId" required
                                         autocomplete="none">
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="dCheckBox">
-                            <button class="duplicateBox" type="button"><span class="buttonBox">중복확인</span></button>
+                            <button class="duplicateBox idDuplicate" type="button"><span class="buttonBox">중복확인</span></button>
                         </div>
                     </div>
                     <!-- ----------------비밀번호------------------ -->
@@ -117,7 +117,7 @@
 
                         <div class="flexLayout">
                             <div class="inputBox">
-                                <input class="input" type="text" placeholder="예: marketkurly@kurly.com" name="userEmail"
+                                <input class="input emailInput" type="text" placeholder="예: jimCarry@kurly.com" name="userEmail"
                                     required autocomplete="none">
                             </div>
                             <div class="errorDiv">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <div class="dCheckBox">
-                            <button class="duplicateBox" type="button">
+                            <button class="duplicateBox emailDuplicate" type="button">
                                 <span class="buttonBox">중복확인</span>
                             </button>
                         </div>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <!-- ----------------주소------------------ -->
-                    <div class="wrapper">
+                    <div class="wrapper address1" style="display: none;">
                         <div class="title">
                             <label class="label">
                                 주소<span class="RequiredInput">*</span>
@@ -169,6 +169,34 @@
                             <span class="explainText"></span>
                         </div>
                         <div class="dCheckBox"></div>
+                    </div>
+
+                    <div class="wrapper address2">
+                        <div class="title">
+                            <label class="label">
+                                주소<span class="RequiredInput">*</span>
+                            </label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="addressLayout">
+                                <div class="inputBox">
+                                    <input class="input" placeholder="주소를 검색해주세요" name="address" id="numberAddress" type="text">
+                                </div>
+                            </div>
+                            <div class="addressDetailLayout">
+                                <div class="inputBox">
+                                    <input class="input" placeholder="나머지 주소를 입력해주세요" name="subAddress" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" onclick="sample6_execDaumPostcode()">
+                                <span class="buttonBox>
+                                    <img src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg" alt="">검색
+                                </span>
+                            </button>
+                        </div>
                     </div>
                     <!-- ----------------성별------------------ -->
                     <div class="wrapper">
@@ -214,22 +242,22 @@
                             <div class="layout3">
                                 <div class="paddingBottom2">
                                     <div class="yearBox" height="40">
-                                        <input class="birthInput" type="text" data-testid="input-box" name="birthYear"
-                                            placeholder="YYYY" height="40" value>
+                                        <input class="birthInput yearInput" type="text" data-testid="input-box" name="birthYear"
+                                            placeholder="YYYY" height="40" value maxlength="4">
                                     </div>
                                 </div>
                                 <span class="birth-span"></span>
                                 <div class="paddingBottom2">
                                     <div class="yearBox" height="40">
-                                        <input class="birthInput" type="text" data-testid="input-box" name="birthMonth"
-                                            placeholder="MM" height="40" value>
+                                        <input class="birthInput monthInput" type="text" data-testid="input-box" name="birthMonth"
+                                            placeholder="MM" height="40" value maxlength="2">
                                     </div>
                                 </div>
                                 <span class="birth-span"></span>
                                 <div class="paddingBottom2">
                                     <div class="yearBox" height="40">
-                                        <input class="birthInput" type="text" data-testid="input-box" name="birthDay"
-                                            placeholder="DD" height="40" value>
+                                        <input class="birthInput dayInput" type="text" data-testid="input-box" name="birthDay"
+                                            placeholder="DD" height="40" value maxlength="2">
                                     </div>
                                 </div>
                             </div>
@@ -249,16 +277,16 @@
                         </div>
                         <div class="flexLayout">
                             <div class="termText">
-                                <label class="firstTerm" for="TermsAgreeAll">
+                                <label class="firstTerm allCheck" for="TermsAgreeAll">
                                     <input class="termCheckBox" type="checkbox" id="TermsAgreeAll">
                                     <div class="svg-1">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path
+                                            <path class="path1 allPath"
                                                 d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
                                                 stroke="#ddd" fill="#fff">
                                             </path>
-                                            <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                            <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
                                                 stroke-linecap="round" stroke-linejoin="round">
                                             </path>
                                         </svg>
@@ -269,16 +297,16 @@
                             </div>
                             <div class="termText">
                                 <div class="otherTerms">
-                                    <label class="requiredTerm" for="RequiredTermsCondition">
-                                        <input class="termCheckBox" id="RequiredTermCondition" type="checkbox">
+                                    <label class="requiredTerm checked " for="RequiredTermsCondition">
+                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
                                         <div class="svg-1">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
+                                                <path class="path1"
                                                     d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
                                                     stroke="#ddd" fill="#fff">
                                                 </path>
-                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
                                                     stroke-linecap="round" stroke-linejoin="round">
                                                 </path>
                                             </svg>
@@ -291,16 +319,16 @@
                             </div>
                             <div class="termText">
                                 <div class="otherTerms">
-                                    <label class="requiredTerm" for="RequiredTermOfPrivacy">
-                                        <input class="termCheckBox" id="RequiredTermOfPrivacy" type="checkbox">
+                                    <label class="requiredTerm checked" for="RequiredTermOfPrivacy">
+                                        <input class="termCheckBox test" id="RequiredTermOfPrivacy" type="checkbox">
                                         <div class="svg-1">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
+                                                <path class="path1"
                                                     d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
                                                     stroke="#ddd" fill="#fff">
                                                 </path>
-                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
                                                     stroke-linecap="round" stroke-linejoin="round">
                                                 </path>
                                             </svg>
@@ -313,16 +341,16 @@
                             </div>
                             <div class="termText">
                                 <div class="otherTerms">
-                                    <label class="requiredTerm" for="OptionalTermOfPrivacy">
-                                        <input class="termCheckBox" id="OptionalTermOfPrivacy" type="checkbox">
+                                    <label class="requiredTerm checked" for="OptionalTermOfPrivacy">
+                                        <input class="termCheckBox test" id="OptionalTermOfPrivacy" type="checkbox">
                                         <div class="svg-1">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
+                                                <path class="path1"
                                                     d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
                                                     stroke="#ddd" fill="#fff">
                                                 </path>
-                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
                                                     stroke-linecap="round" stroke-linejoin="round">
                                                 </path>
                                             </svg>
@@ -335,16 +363,16 @@
                             </div>
                             <div class="termText">
                                 <div class="otherTerms">
-                                    <label class="requiredTerm" for="OptionalTermOfPrivacy">
-                                        <input class="termCheckBox" id="RequiredSignupAge" type="checkbox">
+                                    <label class="requiredTerm checked" for="OptionalTermOfPrivacy">
+                                        <input class="termCheckBox test" id="RequiredSignupAge" type="checkbox">
                                         <div class="svg-1">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
+                                                <path class="path1"
                                                     d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
                                                     stroke="#ddd" fill="#fff">
                                                 </path>
-                                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
                                                     stroke-linecap="round" stroke-linejoin="round">
                                                 </path>
                                             </svg>
@@ -367,7 +395,7 @@
         <!-- 푸터 -->
 
         <!-- 모달 -->
-        <div class="modal-container modal-center" style="overflow-y: auto; visibility: hidden;">
+        <div class="modal-container modal-center" style="overflow-y: auto; visibility:hidden;">
             <div class="modal-popup modal-show" role="dialog" style="display: flex;">
                 <div class="modal-content">
                     <div id="modal-content" class="modal-html-container" style="display: block;">
@@ -379,12 +407,14 @@
                 </div>
             </div>
         </div>
+        <!-- 모달 끝 -->
         <!--footer-->
         <div id="footers"></div>
 
     </div>
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#headers").load("../main/header.html");
