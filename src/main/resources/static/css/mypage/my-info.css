@@ -101,14 +101,14 @@ ul{
 }
 .mypage-section-list-right-benner{
     display: block;
-    width: 1050px;
+    width: 725px;
     overflow: hidden;
-    margin-left: 380px;
-    margin-top: -222px;
+    margin-left: 325px;
+    margin-top: -215px;
 }
 .mypage-section-list-right-benner-img{
-    width: 670px;
-    height: 222px;
+    width: 725px;
+    height: 215px;
     object-fit: cover;
 }
 
