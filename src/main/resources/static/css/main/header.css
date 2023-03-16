@@ -13,7 +13,6 @@ button, input, optgroup, select, textarea, a {
   color: inherit;
   font: inherit;
   margin: 0;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body, button, input, select, textarea {
@@ -23,11 +22,6 @@ body, button, input, select, textarea {
 
 html, button, input, select, textarea {
   font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
-}
-
-code, kbd, pre, samp {
-  font-family: monospace,monospace;
-  font-size: 1em;
 }
 
 *, :after, :before {
