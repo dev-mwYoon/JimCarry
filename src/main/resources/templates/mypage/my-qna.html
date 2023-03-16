@@ -215,8 +215,8 @@
                     </ul> -->
                     <!-- 문의 있을 때 -->
                     <ul class="qna-list-main-container">
-                        <li>
-                            <button type="button" class="qna-list-main-btn-container">
+                        <li style="border-color: white;">
+                            <button type="button" class="qna-list-main-btn-container" id="flip">
                                 <div class="qna-list-main-title-container">
                                     <a href="#" class="qna-list-main-title-img-weapper">
                                         <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png" class="title-img">
@@ -233,6 +233,103 @@
                                     <span>답변대기</span>
                                 </div>
                             </button>
+                            <!-- 슬라이드 효과 (수정, 삭제) -->
+                            <div class="qna-slide-container" id="panel">
+                                <div class="qna-slide-wrapper">
+                                    <div class="qna-slide-content">
+                                        <div class="qna-slide-content-wrapper">
+                                            <div class="qna-slide-content-icon">
+                                                <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
+                                                    <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+                                                        <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2724%27%20height=%2724%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;">
+                                                    </span>
+                                                    <img alt="질문" src="https://res.kurly.com/kurly/ico/2021/question_24_24_purple.svg" decoding="async" data-nimg="intrinsic" class="css-0" srcset="https://res.kurly.com/kurly/ico/2021/question_24_24_purple.svg 1x, https://res.kurly.com/kurly/ico/2021/question_24_24_purple.svg 2x" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;">
+                                                </span>
+                                            </div>
+                                            <p class="qna-slide-content-text">이 정도 크기면 대략적으로 얼마나 많은 짐이 들어가나요?</p>
+                                        </div>
+                                    </div>
+                                    <div class="qna-slide-actions">
+                                        <button class="qna-slide-actions-btn modal-btn">수정</button>
+                                        <button class="qna-slide-actions-btn">삭제</button>
+                                        <!-- 수정 모달 -->
+                                    </div>
+                                    <div class="change-modal" id="modal">
+                                        <div class="change-modal-root"></div>
+                                        <div class="change-modal-container">
+                                            <div class="change-modal-wrapper">
+                                                <div>
+                                                    <div class="change-modal-title-row">
+                                                        <h4 class="change-modal-title-text">창고 문의하기</h4>
+                                                        <!-- x버튼 -->
+                                                        <button type="button" class="close-btn" style="cursor: pointer;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                                                <g fill="none" fill-rule="evenodd">
+                                                                    <g>
+                                                                        <g>
+                                                                            <g>
+                                                                                <path fill="#fff" fill-opacity="0" d="M0 0H32V32H0z" transform="translate(-884 -270) translate(500 240) translate(384 30)"></path>
+                                                                                    <g stroke="#999" stroke-linecap="round">
+                                                                                        <path d="M20 20L0 0M0 20L20 0" transform="translate(-884 -270) translate(500 240) translate(384 30) translate(6 6)"></path>
+                                                                                    </g>
+                                                                                <g fill="#999">
+                                                                                    <path d="M.784.089l.07.057L10.5 9.793 20.146.146c.196-.195.512-.195.708 0 .173.174.192.443.057.638l-.057.07-9.647 9.646 9.647 9.646c.195.196.195.512 0 .708-.174.173-.443.192-.638.057l-.07-.057-9.646-9.647-9.646 9.647c-.196.195-.512.195-.708 0-.173-.174-.192-.443-.057-.638l.057-.07L9.793 10.5.146.854C-.049.658-.049.342.146.146.32-.027.59-.046.784.09z" transform="translate(-884 -270) translate(500 240) translate(384 30) translate(5.5 5.5)"></path>
+                                                                                </g>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="change-modal-image-row">
+                                                        <div class="change-modal-image-wrapper">
+                                                            <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
+                                                                <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+                                                                    <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2772%27%20height=%2772%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;">
+                                                                </span>
+                                                                <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png" class="change-modal-image">
+                                                            </span>
+                                                        </div>
+                                                        <p class="change-modal-image-title-text">[소] 100cm(가로) x 75cm(세로) x 220cm(높이)</p>
+                                                    </div>
+                                                    <form class="change-modal-form-wrapper">
+                                                        <div class="change-modal-form-row">
+                                                            <span class="change-modal-form-label">제목</span>
+                                                            <div class="change-modal-form-field">
+                                                                <div class="change-modal-form-title">
+                                                                    <input type="text" placeholder="제목을 입력해주세요." class="change-modal-form-title-input">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="change-modal-form-row">
+                                                            <span class="change-modal-form-label">내용</span>
+                                                            <div class="change-modal-form-field">
+                                                                <div class="change-modal-form-field-container">
+                                                                    <textarea inputmode="text" class="change-modal-form-field-text">이 정도 크기면 대략적으로 얼마나 많은 짐이 들어가나요?</textarea>
+                                                                    <span class="change-modal-form-field-content">
+                                                                        <span style="color: rgb(51, 51, 51);">31자</span>
+                                                                        <span style="color: rgb(153, 153, 153);">/5000자</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <div class="change-modal-actions-row">
+                                                        <button type="button" class="change-modal-delete-btn">
+                                                            <span class="change-modal-btn">취소</span>
+                                                        </button>
+                                                        <button type="button" class="change-modal-ok-btn">
+                                                            <span class="change-modal-btn">등록</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 삭제 모달 -->
+                                </div>
+                            </div>
                         </li>
                     </ul>
                     <ul class="qna-list-btn-container">
@@ -408,4 +505,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../../static/js/main/header.js"></script>
+<script src="../../static/js/mypage/my-qna.js"></script>
 </html>
