@@ -204,7 +204,7 @@
                             <div class="amend-inputBox-container">
                                 <div class="amend-inputBox-wrapper">
                                     <div class="amend-inputBox">
-                                        <input type="text" class="amend-id-inputBox-in">
+                                        <input type="text" class="amend-id-inputBox-in" placeholder="아이디를 입력해 주세요">
                                     </div>
                                 </div>
                             </div>
@@ -420,10 +420,19 @@
                         </div>
                         <!-- 수정버튼 -->
                         <div class="amend-btn-container">
-                            <button class="amend-btn">
+                            <button class="amend-btn pay-btn" type="button">
                                 <span class="amend-btn-text">회원정보수정</span>
                             </button>
+                            <!-- 회원정보가 수정되었습니다. 모달 -->
+                            <div id="modal" class="modal">
+                                <div class="modal-content">
+                                    <div class="pay-content">회원정보가 수정되었습니다.</div>
+                                    <div class="pay-footer"></div>
+                                    <button class="pay-popup-check">확인</button>
+                                </div>
+                            </div>
                         </div>
+                        <!--  -->
                     </form>
                 </div>
             </div>
@@ -572,6 +581,28 @@
         </div>
     </footer>
 </body>
+<script>
+    const btn = document.querySelector(".pay-btn");
+    const container = document.querySelector(".modal");
+    const close = document.querySelector(".pay-popup-check");
+    
+    //모달창 열기
+    btn.addEventListener("click", function(){
+        container.style.display="block";
+    });
+
+    //모달창 닫기
+    close.addEventListener("click", function(){
+        container.style.display="none";
+    });
+
+    //모달창 외부 클릭 시 닫기
+    window.onclick = function(event) {
+        if(event.target == container) {
+            container.style.display = "none";
+        }
+    };
+</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../../static/js/main/header.js"></script>
 </html>
