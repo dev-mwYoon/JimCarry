@@ -30,9 +30,17 @@
   height: 24px;
 }
 
-.sidebar__title {
-  padding: 21px 32px;
-  border-bottom: 5px solid #24232f;
+.sidebar__logo {
+  width: 100%;
+  border-bottom: 2px solid #24232f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar__logo img {
+  height: 61px;
+  margin: 0;
 }
 
 .sidebar__menu-nav {
@@ -48,7 +56,6 @@
   margin: 0 14px;
   height: 60px;
   font-weight: 300;
-  border-bottom: 1px solid #24232f;
   align-items: center;
   justify-content: space-between;
 }
@@ -63,7 +70,7 @@
 }
 
 .sidebar__menu svg polygon {
-  fill: white;
+  fill: #24232f;
 }
 
 .sidebar__menu__name{
