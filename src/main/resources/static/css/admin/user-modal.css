@@ -40,6 +40,7 @@
 }
 .modal__profile__top h4 {
   color: #363636;
+  margin-bottom: 10px;
 }
 
 .modal__profile__bottom {
@@ -51,6 +52,7 @@
 }
 .modal__profile__bottom h4 {
   color: #363636;
+  margin-bottom: 10px;
 }
 
 .user__profile {
@@ -61,6 +63,7 @@
 
 .user__profile h5 {
   width: 12%;
+  margin: 15px 0;
 }
 
 .user__profile__input {
