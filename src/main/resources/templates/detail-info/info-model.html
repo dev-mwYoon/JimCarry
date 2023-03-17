@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal</title>
+    <link rel="stylesheet" href="/static/css/pay/pay-model.css">
+    <link rel="stylesheet" href="/static/css/main/header.css">
+    
+<body>
+    <div>    
+        <button class="pay-btn">결제취소</button>
+    </div>
+
+   <!-- 모달 -->
+
+    <!-- <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="pay-content">결제를 취소했습니다.</div>
+
+        <div class="pay-footer">
+        <button class="pay-popup-check">확인</button>
+      </div>
+    </div>
+    </div> -->
+
+    <div class="info-container">
+        <div class="info-wrapper">
+            <div class="wrapper">
+                <h1>개인정보 수집·이용 및 처리 동의 (필수)</h1>
+            <div class="scroll_wrapper box_tbl">
+                
+                <h4 class="tit_main">개인정보 수집·이용 동의</h4>
+                
+                <table>
+                    <caption class="screen_out">개인정보의 수집 및 이용목적</caption>
+                
+                    <colgroup>
+                        <col width="30%">
+                        <col width="35%">
+                        <col width="35%">
+                    </colgroup>
+                
+                    <thead>
+                        <tr>
+                
+                            <th scope="row">수집 목적</th>
+                            <th scope="row">수집 항목</th>
+                            <th scope="row">보유 기간</th>
+                        </tr>
+                    </thead>
+               
+                    <tbody>
+                        <tr>
+                <td>온라인 쇼핑 구매자에 대한 상품 결제 및 배송</td>
+                <td>결제정보, 수취인명, 휴대폰 번호, 수취인 주소, 구매상품정보</td>
+                <td rowspan="4" class="emph">업무 목적 달성 후 파기<br>(단, 타 법령에 따라 법령에서 규정한 기간 동안 보존)</td>
+                </tr>
+                <tr>
+                <td>주류 구매 관리 및 신고</td>
+                <td>구매자 이름(성인인증 정보를 이용함), 구매자 주소</td>
+                </tr>
+                <tr>
+                <td>여행상품(숙박) 예약</td>
+                <td>투숙자 정보(이름, 휴대폰 번호)</td>
+                </tr>
+                <tr>
+                <td>여행상품(항공) 예약</td>
+                <td>탑승자 정보(이름, 휴대폰 번호, 생년월일, 성별)</td>
+                </tr>
+                </tbody>
+                </table>
+               
+                <p class="txt_service">
+                서비스 제공을 위해서 필요한 최소한의 개인정보입니다. 동의를 해 주셔야 서비스를 이용하실 수 있으며, 동의하지 않으실 경우 서비스에 제한이 있을 수 있습니다.
+                </p>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 모달 끝 -->
+
+</body>
+<script>
+    const btn = document.querySelector(".pay-btn");
+    const container = document.querySelector(".modal");
+    const close = document.querySelector(".pay-popup-check");
+    
+    //모달창 열기
+    btn.addEventListener("click", function(){
+        container.style.display="block";
+    });
+
+    //모달창 닫기
+    close.addEventListener("click", function(){
+        container.style.display="none";
+    });
+
+    //모달창 외부 클릭 시 닫기
+    window.onclick = function(event) {
+        if(event.target == container) {
+            container.style.display = "none";
+        }
+    };
+
+
+</script>
+</html>
