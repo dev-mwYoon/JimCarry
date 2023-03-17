@@ -1,6 +1,6 @@
 const phoneRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 const idRegex = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
-const $findnameInputBox = $('.findnameInputBox');
+const $findIDInputBox = $('.findIDInputBox');
 const $findPhoneInputBox = $('.findPhoneInputBox');
 const $errorMsg1 = $('.errorMsg1');
 const $errorMsg2 = $('.errorMsg2');
@@ -9,7 +9,7 @@ const $verificationInput = $('.verification-input');
 const $verifiCheck = $('.verifiCheck');
 
 console.log($('.codeButton'));
-$findnameInputBox.on('blur', function(){
+$findIDInputBox.on('blur', function(){
     let value = $(this).val();
     let errorCheck = idRegex.test(value);
     console.log(value);
