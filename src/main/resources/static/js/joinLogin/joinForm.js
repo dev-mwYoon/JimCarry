@@ -95,7 +95,7 @@ $wrapperInputs.on("blur", function () {
         $errorDiv.eq(i).css("display", "none");
     }
     $errorMessage.eq(i).text("");
-   
+    
 });
 
 //생년월일 정규식
@@ -218,4 +218,23 @@ $duplicateIdButton.on('click', function(){
 
 });
 
+$checkWrapper = $('#checkWrapper');
+$checkNum = $('#checkNum');
+
+$checkNum.on('click', function(){
+    $modal.css('visibility', 'visible');
+    $modalText.text("인증번호가 전송되었습니다.")
+    $checkWrapper.css("display", "flex");
+    $checkButton.on('click',()=>{
+        $modal.css('visibility', 'hidden');
+    });
+});
+$duplicateBox = $('#duplicateBox');
+$duplicateBox.on('click', function(){
+    $modal.css('visibility', 'visible');
+    $modalText.text("잘못된 인증 코드 입니다.")
+    $checkButton.on('click',()=>{
+    $modal.css('visibility', 'hidden');
+});
+});
 
