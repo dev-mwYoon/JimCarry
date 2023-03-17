@@ -30,65 +30,107 @@ function clickRadio() {
         }
     }
 }
+/* 모달창 */
+const showModal = document.querySelector(".modalContainer");
+const clickModalBtn= document.querySelector(".modalCheckButton");
 
 /* 파일 썸네일 */
 /* 파일인풋 */
 const file = document.querySelector('input[type=file]');
 const imgButton = document.querySelector(".imgButton");
+const imgUrlArr = [];
+let url = "";
 console.log(imgButton);
-/* x버튼 */
-/* const closeButton = document.querySelector('span.closeImgButton'); */
-/* const size = imgDiv.length(); */
 
-
-let count = 0;
 function handleFiles(files) {
-
-    /* 썸네일 담을 div */
+    /* 썸네일 담을 div의 부모 */
     const thumbnailList = document.getElementById("thumbnail-list");
+
     for (let i = 0; i < files.length; i++) {
         if(files.length > 8) {
-            alert("파일첨부는 최대 8개 까지만 가능합니다.");
+            showModal.classList.add("showModal");
             break;
         }
-      const file = files[i];
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const thumbnail = document.createElement("img");
-        let result = event.target.result;
-        thumbnail.classList.add("imageThumbnail");
-        thumbnail.src = event.target.result;
-        thumbnailList.prepend(thumbnail);
-        };
-      reader.readAsDataURL(file);
-    }
-    count += files.length
-    console.log("count: "+ count);
 
-    if(files.length <= 8){
-        if(count > 7) {
-            imgButton.style.display = "none";
-            const thumbnail = document.removeElement("img");
+        if ($(".imageThumbnail").length > 7) {
+            $(".imgButtonWrap").hide();
         }
+
+        /* 파일절대경로얻기 */  
+        const file = files[i];
+        const reader = new FileReader();
+        /* reader가 onload 할때 */
+        reader.onload = function(event) {
+            /* 썸네일 담을 div와 그 자식의 span 선언 */   
+            const thumbnail = document.createElement("div");
+            const thumbnailSpan = document.createElement("span");
+
+
+            let result = event.target.result;
+            url = result;
+
+            /* 썸네일 담을 div와 그 자식의 span에 썸네일 css와 x버튼 css 추가*/
+            thumbnail.classList.add("imageThumbnail");
+            thumbnailSpan.classList.add("closeImgButton");
+
+            /* 썸네일 담을 div에 절대경로 넣어주기 */
+            thumbnail.style.backgroundImage = `url('${result}')`;
+
+            /* 썸네일 담을 div와 그 자식의 span 추가해주기 */
+            thumbnailList.prepend(thumbnail);
+            thumbnail.appendChild(thumbnailSpan);
+
+            /* x버튼 */
+            const closeButton = document.querySelector(".closeImgButton");
+
+            /* x버튼 누를 시 x버튼과 backgroundImage 지워주기 */
+            closeButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                file.value = "";
+                this.style.display = 'none';
+                thumbnail.style.backgroundImage = `url('')`;
+                thumbnail.remove(thumbnail);
+                $(".imgButtonWrap").show();
+            });
+
+            /* 파일 개수가 8개 이상이면 모달창 띄우고 break */
+           if($(".imageThumbnail").length > 7 ){
+            $(".imgButtonWrap").hide();
+            return;
+           }
+            
+        };
+        /* result 속성(attribute)에 담기 */
+        reader.readAsDataURL(file);
+           
     }
+
+    imgUrlArr.forEach((e) => {
+        console.log("emfdjdha");
+        if(e.includes(null)){
+            console.log("이미 선택된 사진");
+        }
+    })
+
+    imgUrlArr.push(url);
+
+    console.log(imgUrlArr);
 }
-  const fileInput = document.getElementById("photo-picker");
-  fileInput.addEventListener("change", function(event) {
+
+/* 버튼을 감싸고있는 label객체 들고오기 */
+const fileInput = document.getElementById("photo-picker");
+
+/* 버튼을 감싸고있는 label객체 클릭하면 위에 function handleFiles 실행 */
+fileInput.addEventListener("change", function(event) {
     handleFiles(event.target.files);
+
 });
 
 
-/* x버튼 누르면 기본이미지로 변경 */
-/* closeButton.addEventListener('click', function (e) {
-    this.style.display = 'none'; */
-
-    /* div도 같이 삭제 */
-    /* $(".imageThumbnail").remove(); */
-
-    /* 삭제했을 때 이미지 뿐만 아니라 data 없애주기 */
-    /* file.value = '';
-    imgDiv.style.backgroundImage = '';
-}); */
+/* 모달창 확인버튼 누르면 없애기 */
+function hideModal() {
+    showModal.classList.remove("showModal");
+}
 
 /* 정규식 */
 const $infoInputs = $('.wrapper input[type=text]');
@@ -154,3 +196,4 @@ $infoInputs.on('blur', function () {
 
     $erroMessage.eq(i).text('');
 });
+
