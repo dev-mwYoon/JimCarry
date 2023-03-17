@@ -1,0 +1,19 @@
+.info-container {
+    height: 100%;
+    outline: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.info-wrapper {
+    border-radius: 12px;
+    width: 440px;
+    height: 600px;
+    margin: 0px;
+    box-shadow: none !important;
+    max-width: 600px;
+    flex-direction: column;
+    background-color: #fff;
+}
