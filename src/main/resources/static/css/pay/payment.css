@@ -241,14 +241,6 @@
 }
 
 .kakao-pay-btn {
-   /*  position: relative;
-    width: 100%;
-    height: 48px;
-    border: 1px solid rgb(226, 226, 226);
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 3px; */
-
     position: relative;
     width: 100%;
     height: 48px;
@@ -260,19 +252,6 @@
     border-radius: 3px;
 }
 
-.credit-card {
-    margin-top: 12px;
-}
-
-.credit-card-btn {
-    position: relative;
-    width: 100%;
-    height: 48px;
-    border: 1px solid rgb(226, 226, 226);
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 3px;
-}
 
 .card-select{
     margin-top: 20px;
@@ -364,6 +343,14 @@
     line-height: 19px;
 }
 
+.priv-info-cont + div {
+    padding-top: 12px;
+}
+
+.priv-info-cont + strong {
+    padding-top: 20px;
+}
+
 .prom {
     color: rgb(153, 153, 153);
     text-decoration: underline;
@@ -411,4 +398,108 @@
     display: inline-block;
     font-size: 16px;
     font-weight: 500;
+}
+
+.agree-read + p {
+    padding-top: 4px;
+}
+
+.payment-price-container {
+    position: relative;
+    width: 284px;
+}
+
+.payment-price-wrap {
+    position: absolute;
+    width: 335px;
+    top: 0px;
+}
+
+.payment-price-title-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-price-title {
+    padding: 16px 0px;
+    font-weight: 500;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
+    line-height: 29px;
+}
+
+.payment-sharebox-use-date-container  {
+    width: 100%;
+    padding: 17px 16px 18px 18px;
+    background: rgb(250, 250, 250);
+    border: 1px solid rgb(242, 242, 242);
+}
+
+.payment-sharebox-use-date-wrap  {
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    font-size: 16px;
+    color: rgb(51, 51, 51);
+    padding-bottom: 8px;
+}
+
+.payment-sharebox-use-date-title {
+    width: 96px;
+}
+
+.payment-sharebox-date-wrap {
+    font-size: 18px;
+}
+
+.payment-sharebox-use-date {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.payment-sharebox-date {
+    margin-left: 4px;
+    vertical-align: 1px;
+}
+
+.payment-sharebox-price-container {
+    display: flex;
+    margin-top: 8px;
+    justify-content: space-between;
+    font-size: 16px;
+    color: rgb(51, 51, 51);
+    padding-bottom: 8px;
+   
+}
+
+.payment-sharebox-price-title {
+    width: 96px;
+}
+
+.payment-sharebox-price {
+    font-size: 18px;
+}
+
+.payment-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding: 16px 0px 1px;
+    border-top: 1px solid rgb(244, 244, 244);
+    font-size: 16px;
+    color: rgb(76, 76, 76);
+}
+
+.payment-title-d {
+    display: flex;
+    flex-shrink: 0;
+    font-weight: 400;
+}
+
+.payment {
+    font-size: 22px;
+    font-weight: bold;
 }
