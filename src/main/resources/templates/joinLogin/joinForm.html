@@ -133,7 +133,9 @@
                     <!-- ----------------휴대폰------------------ -->
                     <div class="wrapper">
                         <div class="title">
-                            <label class="label">휴대폰<span class="RequiredInput">*</span></label>
+                            <label class="label">
+                                휴대폰<span class="RequiredInput">*</span>
+                            </label>
                         </div>
 
                         <div class="flexLayout">
@@ -146,8 +148,29 @@
                             </div>
                         </div>
                         <div class="dCheckBox">
-                            <button class="duplicateBox" type="button" disabled>
+                            <button class="duplicateBox" id="checkNum" type="button">
                                 <span class="buttonBox">인증번호 받기</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- 휴대폰 인증번호 -->
+                    <div class="wrapper" style="display: none;" id="checkWrapper">
+                        <div class="title">
+                            <label class="label"></label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="paddingBottom ">
+                                <div class="inputBox ">
+                                    <input maxlength="6" data-testid="input-box" name="authCode" type="text" required="" class="input" value="">
+                                    <span class="checknum1 ">
+                                        <span class="checknum2 ">00:00</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" type="button" id="duplicateBox">
+                                <span class="buttonBox">인증번호 확인</span>
                             </button>
                         </div>
                     </div>
@@ -315,7 +338,7 @@
                                     </label>
                                     <span class="greyText">(필수)</span>
                                 </div>
-                                <a class="viewTerm">약관보기</a>
+                                
                             </div>
                             <div class="termText">
                                 <div class="otherTerms">
@@ -337,7 +360,7 @@
                                     </label>
                                     <span class="greyText">(필수)</span>
                                 </div>
-                                <a class="viewTerm">약관보기</a>
+                                
                             </div>
                             <div class="termText">
                                 <div class="otherTerms">
@@ -359,7 +382,7 @@
                                     </label>
                                     <span class="greyText">(선택)</span>
                                 </div>
-                                <a class="viewTerm">약관보기</a>
+                                
                             </div>
                             <div class="termText">
                                 <div class="otherTerms">

@@ -354,12 +354,12 @@
                         <div class="imageWrapperPadding">
                             <div class="imageWrapper">
                                 <div id="thumbnail-list" class="imageDiv">
-                                    <div>
+                                    <div class="imgButtonWrap">
                                         <label for="photo-picker">
                                             <div class="imgButton" >
                                                 <span class="cameraIconImg"></span>
                                             </div>
-                                            <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" multiple />
+                                            <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp"/>
                                         </label>
                                     </div>
                                 </div>
@@ -389,8 +389,8 @@
             </div>
             </div>
         </div>
-        <!-- 파일 개수 제한 모달 -->
-        <!-- <div class="modalContainer modalShow" style="overflow-y: auto;">
+        <!-- 선택 사진 제한 모달 -->
+        <div class="modalContainer modalShow" style="overflow-y: auto;">
             <div class="popup" style="display:flex;">
                 <div class="modalHeader">
                     <ul class="progressStep" style="display:none;"></ul>
@@ -401,10 +401,10 @@
                 </div>
                 <div class="modalContent">
                     <div class="modalContentContainer" style="display: block;">
-                       <div class="modalContentInput"> 사진 첨부는 최대 8장까지만 가능합니다.</div>
-                       <div class="modalFooterInput">
-                            <button class="modalCheckButton">확인</button>
-                       </div>
+                    <div class="modalContentInput"> 이미 선택된 사진은 포함할 수 없습니다.</div>
+                    <div class="modalFooterInput">
+                            <button class="modalCheckButton" onclick="hideModal()">확인</button>
+                    </div>
                     </div>
                     <input type="text" style="display: none;">
                     <input type="text" style="display: none;">
@@ -413,7 +413,7 @@
                 <div></div>
                 <div></div>
             </div>
-        </div> -->
+        </div>
         <!-- 푸터 -->
         <footer class="footer">
             <div id="footer">

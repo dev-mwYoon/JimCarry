@@ -134,6 +134,15 @@ html, button, input, select, textarea {
     position: relative;
     height: 48px;
 }
+.checknum1{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 12px;
+}
+.checknum2{
+    color: rgb(240, 63, 64);
+}
 .errorDiv {
     padding: 10px 0px;
     display: none;
@@ -148,6 +157,7 @@ html, button, input, select, textarea {
     width: 120px;
     margin-left: 8px;
 }
+
 .duplicateBox {
     display: block;
     padding: 0px 10px;
