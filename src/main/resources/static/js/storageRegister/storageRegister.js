@@ -38,8 +38,6 @@ const clickModalBtn= document.querySelector(".modalCheckButton");
 /* 파일인풋 */
 const file = document.querySelector('input[type=file]');
 const imgButton = document.querySelector(".imgButton");
-const imgUrlArr = [];
-let url = "";
 console.log(imgButton);
 
 function handleFiles(files) {
@@ -47,11 +45,8 @@ function handleFiles(files) {
     const thumbnailList = document.getElementById("thumbnail-list");
 
     for (let i = 0; i < files.length; i++) {
-        if(files.length > 8) {
-            showModal.classList.add("showModal");
-            break;
-        }
 
+        /* 8개 이미지 추가되면 버튼 없애기 */
         if ($(".imageThumbnail").length > 7) {
             $(".imgButtonWrap").hide();
         }
@@ -67,7 +62,6 @@ function handleFiles(files) {
 
 
             let result = event.target.result;
-            url = result;
 
             /* 썸네일 담을 div와 그 자식의 span에 썸네일 css와 x버튼 css 추가*/
             thumbnail.classList.add("imageThumbnail");
@@ -80,7 +74,7 @@ function handleFiles(files) {
             thumbnailList.prepend(thumbnail);
             thumbnail.appendChild(thumbnailSpan);
 
-            /* x버튼 */
+            /* x버튼 선언 */
             const closeButton = document.querySelector(".closeImgButton");
 
             /* x버튼 누를 시 x버튼과 backgroundImage 지워주기 */
@@ -105,16 +99,6 @@ function handleFiles(files) {
            
     }
 
-    imgUrlArr.forEach((e) => {
-        console.log("emfdjdha");
-        if(e.includes(null)){
-            console.log("이미 선택된 사진");
-        }
-    })
-
-    imgUrlArr.push(url);
-
-    console.log(imgUrlArr);
 }
 
 /* 버튼을 감싸고있는 label객체 들고오기 */
@@ -123,7 +107,6 @@ const fileInput = document.getElementById("photo-picker");
 /* 버튼을 감싸고있는 label객체 클릭하면 위에 function handleFiles 실행 */
 fileInput.addEventListener("change", function(event) {
     handleFiles(event.target.files);
-
 });
 
 
