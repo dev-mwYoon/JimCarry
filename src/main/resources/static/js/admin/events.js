@@ -77,14 +77,27 @@ $detailButton.on('click', function () {
   /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
 
   /* 추후 타임리프로 대체할 예정 */
-  $modalStage.css('display', 'block');
   $modalStage.show();
 
   /* 모달 닫는 이벤트 */
   /* 추후 외부로 빼야함 */
   $('.modal-close').on('click', function (e) {
-    $modalStage.hide();
+    $modalStage.fadeOut(500);
   });
+});
+
+/* 상세보기 모달 내용 submit 이벤트 */
+$('#completeBtn').on('click', function (e) {
+  e.preventDefault();
+  return new Promise(
+    function () {
+      console.log('으으아');
+      $modalStage.fadeOut(500);
+    },
+    () => {
+      $('.storage_form').submit();
+    }
+  );
 });
 
 /* 항목 한개이상 선택안되게 */
@@ -140,3 +153,23 @@ function getTime() {
 function initClock() {
   setInterval(getTime, 1000);
 }
+
+/* 확인 모달창 */
+const deleteButton = $('#delete-button');
+const modal = $('#confirm-modal');
+const confirmButton = $('#confirm-delete');
+const cancelButton = $('#cancel-delete');
+
+deleteButton.click(function () {
+  modal.css('display', 'block');
+});
+
+confirmButton.click(function () {
+  // 삭제를 실행하는 코드 작성
+  location.reload();
+  modal.css('display', 'none');
+});
+
+cancelButton.click(function () {
+  modal.css('display', 'none');
+});

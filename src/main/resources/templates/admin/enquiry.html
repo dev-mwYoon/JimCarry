@@ -123,7 +123,10 @@
             </section>
             <div class="table__box">
               <div class="table__search__form">
-                <button class="button__type_2 button__color__red" style="width: 120px">
+                <button
+                  id="delete-button"
+                  class="button__type_2 button__color__red"
+                  style="width: 120px">
                   문의내역 삭제
                 </button>
                 <!-- default.css -->
@@ -223,6 +226,15 @@
       </section>
       <!-- 모달창 들어가야할 곳 -->
       <!-- 추후 타임리프로 불러와야 함 -->
+      <div id="confirm-modal" style="display: none">
+        <div class="confirm_modal_content">
+          <p>정말로 삭제하겠습니까?</p>
+          <div class="confirm_btn">
+            <button id="confirm-delete">확인</button>
+            <button id="cancel-delete">취소</button>
+          </div>
+        </div>
+      </div>
       <section class="modal-stage" style="display: none">
         <section class="modal">
           <div class="modal__header">
@@ -263,7 +275,12 @@
               </div>
               <div class="modal__profile__bottom">
                 <h4>테스트 문의 제목</h4>
-                <textarea cols="30" rows="10"></textarea>
+                <textarea cols="30" rows="10" readonly="true">테스트 문의 내용</textarea>
+              </div>
+              <div class="user__profile__button">
+                <button id="completeBtn" class="button__type_2 button__color__green">
+                  답변완료
+                </button>
               </div>
             </main>
           </form>
