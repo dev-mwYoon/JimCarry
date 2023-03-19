@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/static/css/admin/sidebar.css" />
     <link rel="stylesheet" href="/static/css/admin/content.css" />
     <link rel="stylesheet" href="/static/css/admin/status.css" />
+    <link rel="stylesheet" href="/static/css/admin/user-modal.css" />
   </head>
   <body>
     <section class="main">
@@ -36,7 +37,7 @@
         </div>
         <div class="sidebar__main">
           <div class="sidebar__logo">
-            <img src="/static/image/logo.png">
+            <img src="/static/image/logo.png" />
           </div>
           <div class="sidebar__menu-nav">
             <!-- 회원관리 -->
@@ -328,7 +329,9 @@
             </section>
             <div class="table__box">
               <div class="table__search__form">
-                <button class="button__type_2 button__color__red">사용자 삭제</button>
+                <button id="delete-button" class="button__type_2 button__color__red">
+                  사용자 삭제
+                </button>
                 <!-- default.css -->
                 <div class="search-box-wrap">
                   <div class="select-box">
@@ -424,13 +427,92 @@
       </section>
       <!-- 모달창 들어가야할 곳 -->
       <!-- 추후 타임리프로 불러와야 함 -->
-      <section class="modal-stage" style="display: none"></section>
+      <div id="confirm-modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>삭제 확인</h3>
+            <button class="close-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>정말로 삭제하시겠습니까?</p>
+          </div>
+          <div class="modal-footer">
+            <button id="confirm-delete" class="btn confirm-btn">확인</button>
+            <button id="cancel-delete" class="btn cancel-btn">취소</button>
+          </div>
+        </div>
+      </div>
+      <section class="modal-stage" style="display: none">
+        <section class="modal">
+          <div class="modal__header">
+            <h3 class="modal__title">회원 상세보기</h3>
+            <a class="modal-close">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                data-name="Capa 1"
+                id="Capa_1"
+                viewBox="0 0 20 19.84">
+                <path
+                  d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z" />
+              </svg>
+            </a>
+          </div>
+          <form class="storage_form" action="">
+            <main class="modal__main">
+              <div class="modal__profile__top">
+                <h4>수정가능</h4>
+                <div class="user__profile">
+                  <h5>아이디</h5>
+                  <div class="user__profile__input">
+                    <input type="text" name="" value="example1234" />
+                  </div>
+                </div>
+                <div class="user__profile">
+                  <h5>이메일</h5>
+                  <div class="user__profile__input">
+                    <input type="text" name="" value="example@gmail.com" />
+                  </div>
+                </div>
+                <div class="user__profile">
+                  <h5>전화번호</h5>
+                  <div class="user__profile__input">
+                    <input type="text" name="" value="01012341234" />
+                  </div>
+                </div>
+              </div>
+              <div class="modal__profile__bottom">
+                <h4>수정 불가능</h4>
+                <div class="user__profile">
+                  <h5>이름</h5>
+                  <div class="user__profile__input">
+                    <input type="text" name="" value="홍길동" readonly="true" />
+                  </div>
+                </div>
+                <div class="user__profile">
+                  <h5>가입일</h5>
+                  <div class="user__profile__input">
+                    <input type="text" name="" value="2023-01-01" readonly="true" />
+                  </div>
+                </div>
+                <div class="user__profile">
+                  <h5>성별</h5>
+                  <div class="user__profile__input">
+                    <input type="text" name="" value="성별" readonly="true" />
+                  </div>
+                </div>
+              </div>
+              <div class="user__profile__button">
+                <button id="completeBtn" class="button__type_2 button__color__green">
+                  수정완료
+                </button>
+              </div>
+            </main>
+          </form>
+        </section>
+      </section>
     </section>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="/static/js/admin/app.js"></script>
   <script src="/static/js/admin/events.js"></script>
-  <script>
-    $modalStage.load('/templates/admin/modals/user-modal.html');
-  </script>
 </html>

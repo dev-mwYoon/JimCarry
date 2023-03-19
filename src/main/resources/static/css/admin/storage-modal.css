@@ -1,5 +1,5 @@
 /** @format */
-li{
+li {
   list-style: none;
 }
 
@@ -10,6 +10,19 @@ li{
   background-color: #fcfcfc;
   border: 1px solid #3b4e7d;
   border-radius: 12px;
+  opacity: 0; /* 처음에 투명도 0으로 설정 */
+  animation: fade-in 0.4s ease-in-out forwards; /* 애니메이션 효과 적용 */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    scale: 95%;
+  }
+  to {
+    opacity: 1;
+    scale: 100%;
+  }
 }
 
 .modal__header {
@@ -87,16 +100,38 @@ li{
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgb(48 52 65 / 8%);
+  overflow-x: auto;
+}
+
+.content__img__wrap::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+}
+
+.content__img__wrap::-webkit-scrollbar-thumb {
+  background-color: #3b4e7d;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+
+.content__img__wrap::-webkit-scrollbar-track {
+  padding: 0 8px;
+  background-color: #fcfcfc;
+  border-radius: 4px;
 }
 
 .content__img__wrap label {
   display: flex;
-  flex: 1;
+  /* flex: 1; */
   cursor: pointer;
 }
 
 .content__img img {
-  width: 100%;
+  width: 200px;
+}
+
+.content__list__wrap{
+  margin-top: 15px;
 }
 
 .content__list {

@@ -91,7 +91,9 @@
             </section>
             <div class="table__box">
               <div class="table__search__form">
-                <button class="button__type_2 button__color__red">창고 삭제</button>
+                <button id="delete-button" class="button__type_2 button__color__red">
+                  창고 삭제
+                </button>
                 <!-- default.css -->
                 <div class="search-box-wrap">
                   <div class="select-box">
@@ -190,10 +192,19 @@
       </section>
       <!-- 모달창 들어가야할 곳 -->
       <!-- 추후 타임리프로 불러와야 함 -->
+      <div id="confirm-modal" style="display: none">
+        <div class="confirm_modal_content">
+          <p>정말로 삭제하겠습니까?</p>
+          <div class="confirm_btn">
+            <button id="confirm-delete">확인</button>
+            <button id="cancel-delete">취소</button>
+          </div>
+        </div>
+      </div>
       <section class="modal-stage" style="display: none">
         <section class="modal">
           <div class="modal__header">
-            <h3 class="modal__title">공지 상세보기</h3>
+            <h3 class="modal__title">창고 상세보기</h3>
             <a class="modal-close">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -205,11 +216,11 @@
               </svg>
             </a>
           </div>
-          <form action="">
+          <form class="storage_form" action="">
             <main class="modal__main">
               <div class="modal__content">
                 <div class="content__title">
-                  <h4>창고 상세보기</h4>
+                  <h4>창고 위치</h4>
                 </div>
                 <div class="content__intput input_box_shadow">
                   <input type="text" name="" value="경기 의왕시 경수대로 262" readonly="true" />
@@ -222,80 +233,96 @@
                         <img
                           src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
                       </div>
-                      <input type="file" name="file" style="display: none;"/>
+                      <input type="file" name="file" style="display: none" />
                     </label>
                     <label>
                       <div class="content__img">
                         <img
                           src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
                       </div>
-                      <input type="file" name="file" style="display: none;"/>
+                      <input type="file" name="file" style="display: none" />
                     </label>
                     <label>
                       <div class="content__img">
                         <img
                           src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
                       </div>
-                      <input type="file" name="file" style="display: none;"/>
+                      <input type="file" name="file" style="display: none" />
                     </label>
                     <label>
                       <div class="content__img">
                         <img
                           src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
                       </div>
-                      <input type="file" name="file" style="display: none;"/>
+                      <input type="file" name="file" style="display: none" />
                     </label>
                     <label>
                       <div class="content__img">
                         <img
                           src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
                       </div>
-                      <input type="file" name="file" style="display: none;"/>
+                      <input type="file" name="file" style="display: none" />
                     </label>
                     <label>
                       <div class="content__img">
                         <img
                           src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
                       </div>
-                      <input type="file" name="file" style="display: none;"/>
+                      <input type="file" name="file" style="display: none" />
+                    </label>
+                    <label>
+                      <div class="content__img">
+                        <img
+                          src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
+                      </div>
+                      <input type="file" name="file" style="display: none" />
+                    </label>
+                    <label>
+                      <div class="content__img">
+                        <img
+                          src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
+                      </div>
+                      <input type="file" name="file" style="display: none" />
                     </label>
                   </div>
-                  <ul >
+                  <ul class="content__list__wrap">
                     <li class="content__list">
                       <span>항목1</span>
-                      <div  class="content__intput input_box_shadow">
-                        <input type="text">
+                      <div class="content__intput input_box_shadow">
+                        <input type="text" />
                       </div>
                     </li>
                     <li class="content__list">
                       <span>항목2</span>
-                      <div  class="content__intput input_box_shadow">
-                        <input type="text">
+                      <div class="content__intput input_box_shadow">
+                        <input type="text" />
                       </div>
                     </li>
                     <li class="content__list">
                       <span>항목3</span>
-                      <div  class="content__intput input_box_shadow">
-                        <input type="text">
+                      <div class="content__intput input_box_shadow">
+                        <input type="text" />
                       </div>
                     </li>
                     <li class="content__list">
                       <span>항목4</span>
-                      <div  class="content__intput input_box_shadow">
-                        <input type="text">
+                      <div class="content__intput input_box_shadow">
+                        <input type="text" />
                       </div>
                     </li>
                     <li class="content__list">
                       <span>항목5</span>
-                      <div  class="content__intput input_box_shadow">
-                        <input type="text">
+                      <div class="content__intput input_box_shadow">
+                        <input type="text" />
                       </div>
                     </li>
                   </ul>
                 </div>
               </div>
               <div class="user__profile__button">
-                <button class="button__type_2 button__color__green">작성완료</button>
+                <button id="completeBtn" class="button__type_2 button__color__green">
+                  작성완료
+                </button>
               </div>
             </main>
           </form>
