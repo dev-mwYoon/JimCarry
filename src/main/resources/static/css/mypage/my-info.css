@@ -754,3 +754,14 @@ button {
         padding-bottom: 20px;
     }
 }
+
+/* 에러메세지 */
+.errorDiv {
+    padding: 10px 0px;
+    display: none;
+}
+.errorMessage {
+    font-size: 13px;
+    color: rgb(240, 63, 64);
+    margin-top: -4px;
+}

@@ -250,10 +250,10 @@
                                         </div>
                                     </div>
                                     <div class="qna-slide-actions">
-                                        <button class="qna-slide-actions-btn modal-btn">수정</button>
-                                        <button class="qna-slide-actions-btn">삭제</button>
-                                        <!-- 수정 모달 -->
+                                        <button class="qna-slide-actions-btn modal-btn" id="update-btn">수정</button>
+                                        <button class="qna-slide-actions-btn" id="delete-btn">삭제</button>
                                     </div>
+                                    <!-- 수정 모달 -->
                                     <div class="change-modal" id="modal">
                                         <div class="change-modal-root"></div>
                                         <div class="change-modal-container">
@@ -328,6 +328,17 @@
                                         </div>
                                     </div>
                                     <!-- 삭제 모달 -->
+                                    <div id="modal" class="deleteModal">
+                                        <div class="modal-content">
+                                        <div class="pay-content">작성된 문의를 삭제하시겠습니까?</div>
+                                        <div class="pay-footer"></div>
+                                        <div class="qna-modal-btn">
+                                            <button class="pay-popup-check">취소</button>
+                                            <button class="pay-popup-check">확인</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
                                 </div>
                             </div>
                         </li>
