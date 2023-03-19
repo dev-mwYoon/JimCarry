@@ -2,14 +2,14 @@ let blurMsg = ["가입 시 등록한 이름을 입력하세요", "가입 시 등
 const emailRegex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 const phoneRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 const idRegex = /^(?!(?:[0-9]+)$)([a-zA-Z]|[0-9a-zA-Z]){4,}$/;
-const $findnameInputBox = $('.findnameInputBox');
+const $findIdInputBox = $('.findIdInputBox');
 const $findEmailInputBox = $('.findEmailInputBox');
 const $errorMsg1 = $('.errorMsg1');
 const $errorMsg2 = $('.errorMsg2');
 
 
 console.log($('.codeButton'));
-$findnameInputBox.on('blur', function(){
+$findIdInputBox.on('blur', function(){
     let value = $(this).val();
     let errorCheck = idRegex.test(value);
     console.log(value);
