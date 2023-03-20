@@ -4,16 +4,16 @@
     margin: 0px auto;
 }
 
-.container-pay > div{
+/* .container-pay > div{
     padding-top: 50px;
-}
+} */
 
 .container-pay h2 {
     font-weight: 500;
     font-size: 28px;
     line-height: 36px;
     letter-spacing: -0.5px;
-    padding-bottom: 48px;
+    padding-bottom: 40px;
     text-align: center;
 }
 

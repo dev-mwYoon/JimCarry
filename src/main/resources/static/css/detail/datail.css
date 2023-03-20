@@ -479,7 +479,7 @@ button, input[type=button], input[type=reset], input[type=submit] {
 }
 
 .sharebox-photo-wrap .sharebox-photo {
-    width: 721px;
+    width: 765px;
     margin: 0px auto;
     font-family: "Noto Sans";
     font-weight: 300;
@@ -490,7 +490,7 @@ button, input[type=button], input[type=reset], input[type=submit] {
     border: 0;
     vertical-align: top;
     max-width: 100%;
-    width: 721px;
+    width: 765px;
 }
 
 
@@ -619,7 +619,7 @@ ul {
 .sharebox-img-container {
     display: flex;
     flex-wrap: nowrap;
-    gap: 4px;
+    gap: 3px;
     overflow: auto;
     padding: 48px 0px 0px;
     justify-content: center;
@@ -629,7 +629,29 @@ ul {
     width: 93px;
     height: 93px;
     flex-shrink: 0;
-    background: url('https://img-cf.kurly.com/cdn-cgi/image/width=640,height=640,quality=90/shop/data/review/20220407/c52e6f80bcb0c8afa09309b9493fab9d.jpg') 0% 0% / cover no-repeat;
+    background : 0% 0% / cover no-repeat;
+    background-image: url('/static/image/chocolate.jpg');
+    border:  none;
+}
+.review-img2 {
+    width: 93px;
+    height: 93px;
+    flex-shrink: 0;
+    background : 0% 0% / cover no-repeat;
+    background-image: url('/static/image/elements.jpg');
     border:  none;
 }
 
+
+.review-img1 {
+    width: 93px;
+    height: 93px;
+    flex-shrink: 0;
+    background : 0% 0% / cover no-repeat;
+    background-image: url('/static/image/starwbarry.jpg');
+    border:  none;
+}
+
+button {
+    cursor: pointer;
+}
