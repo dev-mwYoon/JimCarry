@@ -171,7 +171,7 @@ section.modal-stage {
   border-radius: 12px;
   opacity: 0;
   animation: fade-in 0.4s ease-in-out forwards;
-  height: 80vh;
+  max-height: 80vh;
   overflow: scroll;
 }
 
