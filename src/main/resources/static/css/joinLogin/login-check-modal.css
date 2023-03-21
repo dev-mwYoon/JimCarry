@@ -1,0 +1,140 @@
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:300;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format("0woff"),url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:500;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format("truetype")}
+@font-face{font-family:Noto Sans;font-style:normal;font-weight:700;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format("truetype")}html{line-height:1.15; line-height:1.15;-webkit-tap-highlight-color:transparent}
+
+html {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Noto Sans KR", "malgun gothic", AppleGothic, dotum, sans-serif;
+}
+
+/* 모달 */
+.modalContainer {
+    padding: 0 24px;
+    align-items: center;
+    display: none;
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625em;
+    overflow-x: hidden;
+    transition: background-color .1s;
+    -webkit-overflow-scrolling: touch;
+}
+
+.popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 360px;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.modalHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.8em;
+}
+
+.progressStep{
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 0 1.25em;
+    padding: 0;
+    background: inherit;
+    font-weight: 600;
+}
+
+.modalIcon {
+    position: relative;
+    box-sizing: content-box;
+    justify-content: center;
+    width: 5em;
+    height: 5em;
+    margin: 1.25em auto 1.875em;
+    border: 0.25em solid transparent;
+    border-radius: 50%;
+    border-color: #000;
+    font-family: inherit;
+    line-height: 5em;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.modalContent {
+    z-index: 1;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-size: 1.125em;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.modalContentContainer{
+padding: 0;
+}
+
+.modalContentInput{
+padding: 40px 30px;
+font-size: 16px;
+font-weight: 500;
+text-align: center;
+color: rgb(51, 51, 51);
+line-height: 21px;
+margin-top: 0px;
+white-space: pre-line;
+letter-spacing: -0.5px;
+}
+
+.modalFooterInput {
+height: 56px;
+border-top: 1px solid rgb(247, 247, 247);
+border-bottom-left-radius: 6px;
+border-bottom-right-radius: 6px;
+display: flex;
+-webkit-box-pack: start;
+padding: 0px;
+margin-top: 0px;
+justify-content: space-around;
+}
+
+.modalCheckButton {
+cursor:pointer;
+width: auto;
+height: 100%;
+border: none;
+padding: 0px 18px;
+font-size: 16px;
+font-weight: 600;
+color: rgb(95, 0, 128);
+background: transparent;
+}
+
+.showModal{
+display: flex;
+background: rgba(0,0,0,.4);
+}
