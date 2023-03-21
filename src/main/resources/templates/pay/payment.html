@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/main/header.css">
     <link rel="stylesheet" href="/static/css/pay/payment.css">
     <link rel="stylesheet" href="/static/css/main/footer.css">
+    <link rel="icon" href="../../static/image/favicon.png">
 
 </head>
 <body>
@@ -110,15 +111,40 @@
         <h2 class="big">예약정보</h2>
         <div class="wrapper">
             <div class="wrap-pay">
-                <h3 class="medium">주문 상품</h3>
-                <button class="">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICAgPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="펼치기" class="css-jusoug e17cst860"></button>
+                <h3 class="medium">예약 창고</h3>
+                <!-- <button class="">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53
+                    My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iN2EwMnFxZzNqYSIgZD0iTTExIDEyaDl2OSIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMCAwaDMwdjMwSDB6Ii8+CiAgICAgICA
+                    gPHVzZSBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgdHJhbnNmb3JtPSJyb3RhdGUoLTQ1IDE1LjUgMTYuNSkiIHhsaW5rOmhyZWY9IiM3YTAycXFnM2phIi8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="펼치기" class="css-jusoug e17cst860">
+                </button> -->
                 </div>
 
-                <div class="content-pay">[사미헌] 갈비탕 외 
+                <div class="sharebox-payment-container">
+                    <span class="sharbox-photo"></span>
+                    <span class="sharebox-size-wrap">
+                        <span class="sharebox-size">[사미헌] 갈비탕</span>
+                    </span>
+                    <span class="sharebox-count-month">2개월</span>
+                    <span class="sharbox-price-wrap">
+                        <span class="sharebox-price">12,000원</span>
+                    </span>
+                </div>
+
+                <div class="sharebox-payment-container">
+                    <span class="sharbox-photo"></span>
+                    <span class="sharebox-size-wrap">
+                        <span class="sharebox-size">[이비에] KF94 새부리형 마스크 베이지 대형 10매</span>
+                    </span>
+                    <span class="sharebox-count-month">1개월</span>
+                    <span class="sharbox-price-wrap">
+                        <span class="sharebox-price">9,800원</span>
+                    </span>
+                </div>
+
+                <!-- <div class="content-pay">[사미헌] 갈비탕 외 
                     <span class="content-count"> 1개</span> 
                     상품을 주문합니다.
-                </div>
+                </div> -->
                     
                 <div class="my-info">
                     <h3 class="my-title">예약자 정보</h3>
@@ -157,18 +183,7 @@
                         <div class="payment-title-wrap">
                             <h3 class="payment-title">결제 수단</h3>
                     
-                    <!-- <label class="css-jkaqjj e1dcessg3" for="payment-selected">
-                        <input data-testid="payment-selected" id="payment-selected" type="checkbox" class="css-agvwxo e1dcessg2" checked="">
-                        <div class="css-79hxr7 e1dcessg1">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#5f0080"></path>
-                                <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
                         </div>
-                        <span>선택한 결제 수단을 다음에도 사용</span>
-                    </label> -->
-
-                      </div>
 
 
                      <!-- 결제 선택 -->   
@@ -182,41 +197,11 @@
                                                 jU0Ny0zLjM4MyAwLS42NzctLjA5LTEuMzg1LS4yNzgtMS45LS4zNTctLjk3Ny0xLjI0Ny0xLjUtMS44NzQtMS41ek0zMy44MTcgMy4wNDZjMi4wODUgMCAyLjk0Mi43MTggMy40NDggMS4zNTQuNDgxLjYwNC44NjIgMS40OTcuODYyIDIuOHY2LjY4aC0yLjI2di0uOTU0cy0uNDQyLjQyLTEuMzc5LjgzMWMtLjk4LjQzLTIuNjUzLjg3Ny00LjA0MS0uMTg0LTEuMzk3LTEuMDY4LTEuMi0zLjQ3MS0uODUyLTQuMTU0LjQ4LS45MzggMS4zNjMtMS45NjggMy43MTYtMS45NjhoMi4wMjl2LS45MDhjMC0uNTU0LS41ODMtMS4xMDctMS43My0xLjEwNy0xLjI4IDAtMS44MzMuMTkyLTIuODE3LjYzNWwtLjk5Ni0xLjk0M3MxLjQ5Ni0xLjA4MiA0LjAyLTEuMDgyem0xLjQ3NyA2LjI1aC0xLjQxNWMtLjU5OSAwLTEuOTYxLjIxNi0xLjk2MSAxLjQ3NyAwIDEuMjgzIDEuMDkgMS4yNiAxLjQ0OCAxLjIzIDEuMDg5LS4wOTEgMS45MzgtLjc5NCAxLjkzOC0uNzk0bC0uMDEtMS45MTN6TTQ3LjA2MSAzLjA0NmwtMi4yOTEgOC4xMTEtMi41NC04LjExLTIuODQ5LjgyczMuNSA5LjM4MyAzLjYyNCA5Ljc4M2MuMTIzLjQtLjAwNS44NTgtLjI4IDEuMzIyLS4zNzEuNjMtMS44MjYgMi4wMy0xLjgyNiAyLjAzbDEuODc4IDEuNjYzcy44NTctLjY4OCAxLjc0NS0xLjc1NWMuNzQzLS44OTIgMS42MzYtMi44MyAxLjkzOC0zLjU3Ny44NTktMi4xMTkgMy40Mi05LjQ2NiAzLjQyLTkuNDY2bC0yLjgxOS0uODJ6Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="카카오페이"></button>
                                         </div>
 
-                                            <!-- <div class="credit-card">
-                                                <button type="button" class="credit-card-btn">
-                                                    신용카드
-                                                </button>
-                                                    
-                                            </div> -->
+                                            
                                     </div>
                                 </div>
                     </div>
-                               <!--  
-                                <div class="card-select">
-                                <div>
-                                    <div class="card-select-btn">
-                                        <button tabindex="0" aria-expanded="false" aria-haspopup="listbox" class="card-kind" type="button">삼성</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="payment-card">
-                                    <div class="card-select-btn">
-                                        <button tabindex="0" aria-expanded="false" aria-haspopup="listbox" class="card-kind" type="button">일시불</button>
-                                    </div>
-                                </div>
-                                <p class="card">은행계열/체크/기프트/선불/법인/개인사업자 기업카드는 무이자 할부 시 제외</p>
-                            </div>
-                            
-                            
-                            <div class="pay-des">
-                                <div class="">
-                                    <p class="pay-kind">
-                                        KB Pay
-                                    </p>
-                                    <p class="pay-date">· KB Pay로 1만원 이상 22년 1월 이후 최초 결제 시 5천원 캐시백</p>
-                                    <p class="pay-date">· ~3/31 24시</p>
-                                </div>
-                            </div> -->
+                               
                             
                             
                             <ul class="pay-ul">
@@ -231,15 +216,15 @@
                     <div class="priv-info-wrap">
                         <div class="priv-info-cont">
                             <span class="priv-title">개인정보 수집∙이용 및 처리 동의</span>
-                            <button class="prom">보기</button>
+                           <!--  <button class="prom">보기</button> -->
                         </div>
                         
                         
                         <div class="priv-info-cont">
                             <span class="priv-title">전자지급 결제대행 서비스 이용약관 동의</span>
-                            <button class="prom">
+                            <!-- <button class="prom">
                                 보기
-                            </button>
+                            </button> -->
                         </div>
                         <strong class="priv-agree">
                             위 내용을 확인 하였으며 결제에 동의합니다.</strong>
@@ -248,86 +233,96 @@
                         <p class="agree-read">예약완료 상태일 경우에만 예약 취소가 가능하며, 예약 하루 전까지  결제하신 수단으로 환불됩니다.</p>
                         <p class="agree-read">JimCarry 내 개별 판매자가 등록한 오픈창고 상품의 경우 JimCarry는 통신판매중개자로서 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.</p>
                     </div>
-                </div>
-            </div>
-            
-                   <!--  
-                    <div class="css-1rz7w0y epvroj91">
-                        <div class="css-1gxrfiw epvroj90">
-                            <div class="css-6hge48 edbbr7c2">
-                                <h3 class="css-1ddzp0m edbbr7c1">결제 금액</h3>
+
+
+                    <!-- 결제금액 영수증같은애 -->
+                    <div class="payment-price-container">
+                        <div class="payment-price-wrap">
+                            <div class="payment-price-title-wrap">
+                                <h3 class="payment-price-title">결제 금액</h3>
                             </div>
-                            <div class="css-hdnk73 e12lli9y0">
-                                            <div class="css-11quaim eahaaoi10">
-                                                <div class="css-yct5co eahaaoi9">주문금액</div>
-                                                <div>
+                            
+                            <div class="payment-sharebox-use-date-container">
+                                 <div class="payment-sharebox-use-date-wrap">
+                                    <div class="payment-sharebox-use-date-title">창고이용기간</div>
+                                    <div>
+                                        <span class="payment-sharebox-date-wrap">
+                                            2023.03.15 ~ 2023.04.15
+                                        </span>
+                                       <!--  <span class="payment-sharebox-date">원</span> -->
+                                    </div>
+                                </div>
+
+                                <div class="payment-sharebox-price-container">
+                                    <div class="payment-sharebox-price-title">창고이용금액</div>
+                                    <div>
+                                        <span class="payment-sharebox-price">
+                                            10,900
+                                        </span>
+                                        <span class="payment-sharebox-date">원</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="css-ulbnf2 eahaaoi7">
+                                    <div class="css-yct5co eahaaoi9">상품할인금액</div>
+                                    <div>
+                                        <span class="css-2pg1ps eahaaoi8">
+                                            <span class="css-rfpchb eahaaoi1">-</span>
+                                            400
+                                        </span>
+                                        <span class="css-vu318a eahaaoi6">원</span>
+                                    </div>
+                                </div> -->
+                                <!-- div class="css-1bj5qaf eahaaoi10">
+                                    <div class="css-yct5co eahaaoi9">배송비</div>
+                                    <div>
+                                        <span class="css-2pg1ps eahaaoi8">
+                                            <span class="css-rfpchb eahaaoi1">+</span>
+                                            3,000</span>
+                                            <span class="css-vu318a eahaaoi6">원</span>
+                                        </div> -->
+                                        <!-- <div class="css-1bj5qaf eahaaoi10">
+                                            <div class="css-yct5co eahaaoi9">쿠폰할인</div>
+                                            <div class="css-0">
+                                                <span class="css-2pg1ps eahaaoi8">
+                                                    <span class="css-rfpchb eahaaoi1"></span>
+                                                    0</span>
+                                                    <span class="css-vu318a eahaaoi6">원</span>
+                                                </div>
+                                            </div> -->
+                                            <!--   <div class="css-1bj5qaf eahaaoi10">
+                                                <div class="css-yct5co eahaaoi9">적립금사용</div>
+                                                <div class="css-37wf0k">
                                                     <span class="css-2pg1ps eahaaoi8">
-                                                        <span class="css-rfpchb eahaaoi1"></span>16,900
+                                                        <span class="css-rfpchb eahaaoi1"></span>0
                                                     </span>
                                                     <span class="css-vu318a eahaaoi6">원</span>
                                                 </div>
-                                            </div>
-                                            <div class="css-ulbnf2 eahaaoi7">
-                                                <div class="css-yct5coeahaaoi9">상품금액
-                                                </div>
-                                                
+                                            </div> -->
+                                            <div class="payment-container">
+                                                <div class="payment-title-d">최종결제금액</div>
                                                 <div>
-                                                    <span class="css-2pg1ps eahaaoi8">
-                                                        <span class="css-rfpchb eahaaoi1"></span>21,900
+                                                    <span class="payment">
+                                                        13,500
                                                     </span>
-                                                    <span class="css-vu318a eahaaoi6">
-                                                        원</span>
+                                                    <span class="payment-sharebox-date">원</span>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="css-ulbnf2 eahaaoi7">
-                                                
-                                                <div>
-                                                    <span class="css-2pg1ps eahaaoi8">
-                                                        <span class="css-rfpchb eahaaoi1">
-                                                            -</span>
-                                                            5,000
-                                                        </span>
-                                                        <span class="css-vu318a eahaaoi6">
-                                                            원</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="css-1bj5qaf eahaaoi10">
-                                                        <div class="css-yct5co eahaaoi9">
-                                                            배송비</div>
-                                                            <div>
-                                                                <span class="css-2pg1ps eahaaoi8">
-                                                                    <span class="css-rfpchb eahaaoi1">
-                                                                        +
-                                                                    </span>
-                                                                    3,000
-                                                                </span>
-                                                                    <span class="css-vu318a eahaaoi6">원</span>
-                                                                </div>
-                                                            </div> -->
-                                                            <!-- 
-                                                             <div class="">
-                                                                 <div class="">최종결제금액</div>
-                                                                    <div>
-                                                                        <span class="">
-                                                                            <span class="css-rfpchb eahaaoi1"></span>
-                                                                                19,900
-                                                                        </span>
-                                                                             <span class="css-vu318a eahaaoi6">원</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                    </div> -->
+                                        </div> 
+                                    </div>
+                                </div>
+                </div>
+                </div>
+            </div>
+            
+                  
                                                             
-                                                <!-- 결제 버튼 -->   
-                                                <!-- 결제버튼 누르면 카카오 결제 api창으로 이동하기 -->                 
-                                                            <div class="last-payment-wrap">
-                                                                <button class="last-payment-btn" type="button" width="240" height="56" radius="3">
-                                                                    <span class="last-payment-name">19,900원 결제하기</span>
-                                                                </button>
-                                                            </div>
+            <!-- 결제 버튼 -->   
+            <!-- 결제버튼 누르면 카카오 결제 api창으로 이동하기 -->                 
+                <div class="last-payment-wrap">
+                    <button class="last-payment-btn" type="button" width="240" height="56" radius="3">
+                         <span class="last-payment-name">19,900원 결제하기</span>
+                    </button>
+                </div>
     </div>
 </div>
 
@@ -476,4 +471,6 @@
 
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </html>

@@ -1,39 +1,3 @@
-// 주소 api
-function sample6_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function (data) {
-            document.querySelector('#address').value = data.address; // 주소 넣기
-            document.querySelector('#address').focus();
-        },
-    }).open();
-}
-
-/* 사이즈 라디오 버튼 클릭했을때 */
-function clickRadio() {
-    /* size의 모든값 조회 */
-    const $sizes = $('input[name=size]');
-
-    const $count = $sizes.length;
-
-    const $checkboxes = $('span.checkBox');
-    const $checkboxes2 = $('div.checkBox2');
-
-    for (let i = 0; i < $count; i++) {
-        if ($sizes[i].checked) {
-            console.log('들어옴');
-            console.log($sizes[i]);
-            $checkboxes[i].classList.add('radioSpanClick');
-            $checkboxes2[i].classList.add('radioBoxDivClick');
-        } else {
-            $checkboxes[i].classList.remove('radioSpanClick');
-            $checkboxes2[i].classList.remove('radioBoxDivClick');
-        }
-    }
-}
-/* 모달창 */
-const showModal = document.querySelector(".modalContainer");
-const clickModalBtn= document.querySelector(".modalCheckButton");
-
 /* 파일 썸네일 */
 /* 파일인풋 */
 const file = document.querySelector('input[type=file]');
@@ -45,11 +9,6 @@ function handleFiles(files) {
     const thumbnailList = document.getElementById("thumbnail-list");
 
     for (let i = 0; i < files.length; i++) {
-
-        /* 8개 이미지 추가되면 버튼 없애기 */
-        if ($(".imageThumbnail").length > 7) {
-            $(".imgButtonWrap").hide();
-        }
 
         /* 파일절대경로얻기 */  
         const file = files[i];
@@ -110,33 +69,41 @@ fileInput.addEventListener("change", function(event) {
 });
 
 
-/* 모달창 확인버튼 누르면 없애기 */
-function hideModal() {
-    showModal.classList.remove("showModal");
-}
+$('#inquiry-contents').keyup(function (e) {
+	let content = $(this).val();
+    
+    // 글자수 세기
+    if (content.length == 0 || content == '') {
+    	$('.content-length-count').text('0자');
+    } else {
+    	$('.content-length-count').text(content.length + '자');
+    }
+    
+    // 글자수 제한
+    if (content.length > 5000) {
+    	// 5000자 부터는 타이핑 되지 않도록
+        $(this).val($(this).val().substring(0, 5000));
+        
+    };
+});
 
-/* 정규식 */
-const $infoInputs = $('.wrapper input[type=text]');
-const nameRegex = /^[가-힣|a-z|A-Z|]+$/;
-const specialCharacterRegex = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim;
-const phoneRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+/* 필수 input 확인 */
+const $subject = $("#inquiry-subject")
+const $contents = $("#inquiry-contents")
 let infoBlurMessages = [
-    '이름을 입력하세요.',
-    '휴대폰 번호를 입력하세요.',
-    '주소를 입력하세요.',
-    '상세주소를 입력하세요.',
+    '제목을 입력하세요.',
+    '내용을 입력하세요.',
 ];
-let infoRegexMessages = ['영문 혹은 한글로 2자~20자로 입력해주세요.', '휴대폰 번호를 확인하세요.'];
 let infoCheck;
-let infoCheckAll = [false, false, false, false];
+let infoCheckAll = [false, false];
 
 const $errorDiv = $('div.errorDiv');
 const $erroMessage = $('div.errorDiv p.errorMessage');
 
-console.log($infoInputs);
-
-$infoInputs.on('blur', function () {
-    let i = $infoInputs.index($(this));
+/* 제목 input */
+$subject.on('blur', function () {
+    let i = 0;
     let value = $(this).val();
 
     if (!value) {
@@ -149,34 +116,58 @@ $infoInputs.on('blur', function () {
         $errorDiv.eq(i).css('display', 'none');
     }
 
-    switch (i) {
-        case 0:
-            infoCheck = value.length > 1 && value.length < 21 && nameRegex.test(value);
-            break;
-        case 1:
-            infoCheck = phoneRegex.test(value);
-            if (infoCheck) {
-                $(this).val(value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`));
-            }
-            break;
-        case 2:
-            infoCheck = value.length > 1;
-            break;
-        case 3:
-            infoCheck = value.length > 1;
-            break;
-    }
+    infoCheck = value.length > 1;
 
     infoCheckAll[i] = infoCheck;
 
-    if (!infoCheck) {
+    $erroMessage.eq(i).text('');
+    requireCheck();
+});
+
+/* 내용 input */
+$contents.on('blur', function () {
+    let i = 1;
+    let value = $(this).val();
+
+    if (!value) {
         $errorDiv.eq(i).css('display', 'block');
-        $erroMessage.eq(i).text(infoRegexMessages[i]);
+        $erroMessage.eq(i).text(infoBlurMessages[i]);
+        infoCheck = false;
+        infoCheckAll[i] = infoCheck;
         return;
     } else {
         $errorDiv.eq(i).css('display', 'none');
     }
 
+    infoCheck = value.length > 1;
+
+    infoCheckAll[i] = infoCheck;
+
     $erroMessage.eq(i).text('');
+    requireCheck();
 });
 
+/* 필수 확인 후 버튼 활성화 */
+function requireCheck() {
+    const arr = [true, true];
+    const $submitBtn = $(".submit-button");
+    console.log($submitBtn);
+    
+    $(".submit-button").attr("disabled", true);
+
+    if(JSON.stringify(infoCheckAll) === JSON.stringify(arr)) {
+        $(".submit-button").attr("disabled", false);
+
+        $(".submit-button").css("background-color", "#5f0080");
+
+        /* $(".submit-button").removeClass('submit-button-disabled');
+        $(".submit-button").addClass('submit-button'); */
+    }
+    else {
+        $(".submit-button").attr("disabled", true);
+
+        $(".submit-button").css("background-color", "#ddd");
+        /* $(".submit-button").removeClass('submit-button');
+        $(".submit-button").addClass('submit-button-disabled'); */
+    }
+}

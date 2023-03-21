@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>창고등록</title>
+    <title>1대1문의 작성하기</title>
     <link rel="icon" href="../../static/image/favicon.png">
-    <link rel="stylesheet" href="../../static/css/storageRegister/storageRegister.css">
+    <link rel="stylesheet" href="../../static/css/notice/qna-write.css">
     <link rel="stylesheet" href="../../static/css/main/header.css">
     <link rel="stylesheet" href="../../static/css/main/footer.css">
 </head>
@@ -187,229 +187,186 @@
         </header>
     </div>
 
-    <div class="warehouseRegisterLayout">
-        <div class="warehouseRegister">창고등록</div>
-        <div class="formWrapper">
-            <div class="formStartLine">
-                <span class="RequiredInput">*</span>
-                필수입력사항
+
+    <div class="faq-list-all-outer-div">
+        <div class="faq-list-all-inner-div">
+            <div class="faq-list-side-bar">
+                <div class="faq-list-side-bar-title">고객센터</div>
+                <ul class="faq-list-side-bar-ul">
+                    <li>
+                        <a href="#" class="faq-list-side-bar-menu">
+                            공지사항
+                            <span class="faq-list-side-bar-arrow"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="faq-list-side-bar-menu">
+                            FAQ
+                            <span class="faq-list-side-bar-arrow"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="faq-list-side-bar-select">
+                            1:1문의하기
+                            <span class="faq-list-side-bar-arrow"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="formstart">
-                <!-- ----------------이름------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">
-                            이름<span class ="RequiredInput">*</span></label>
+            <div class="faq-list-content-all">
+                <div class="faq-list-title">
+                    <div class="faq-list-title-content">
+                        <h2 class="faq-list-all-title-text">1:1 문의</h2>
                     </div>
-
-                    <div class="flexLayout">
-                        <div class="paddingBottom">
-                            <div class="inputBox">
-                                <input class="input" type="text" placeholder="이름을 입력해 주세요" name="userName"
-                                    required autocomplete="none" value>
-                            </div>
-                        </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
-                        </div>
-                    </div>
-                    <div class="checkBoxLimitWidth"></div>
                 </div>
-                <!-- ----------------휴대폰------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">휴대폰<span class ="RequiredInput">*</span></label>
-                    </div>
-
-                    <div class="flexLayout">
-                        <div class="inputBox">
-                            <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone"
-                                required autocomplete="none">
-                        </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
-                        </div>
-                    </div>
-                    <div class="checkBoxLimitWidth"></div>
-                </div>
-                <!-- ----------------창고사이즈------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">창고 사이즈<span class ="RequiredInput">*</span>
-                        </label>
-                    </div>
-                    <div class="flexLayout">
-                            <form class="radioLayout">
-                                <label class="sizeSelect" for="sizeSmall">
-                                    <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="size" type="radio" value="SMALL" onclick="clickRadio()">
-                                    <span id = "sizeSmallSpan" class="checkBox">
-                                        <div id="sizeSmallDiv" class="checkBox2"></div>
-                                    </span>
-                                    <span class="radioText">소</span>
+                <div class="qna-write-content">
+                    <form action="">
+                        <div class="qna-original-input-layout">
+                            <div class="qna-write-content-title-div">
+                                <label for="inquiry-subject">
+                                    제목<span class="required-red-span">*</span>
                                 </label>
-                                <label class="sizeSelect" for="sizeMiddle">
-                                    <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="size" type="radio" value="MIDDLE" onclick="clickRadio()">
-                                    <span id="sizeMiddleSpan" class="checkBox">
-                                        <div id="sizeMiddleDiv" class="checkBox2"></div>
-                                    </span>
-                                    <span class="radioText">중</span>
-                                </label>
-                                <label class="sizeSelect" for="sizeBig">
-                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
-                                    <span class="checkBox">
-                                        <div class="checkBox2"></div>
-                                    </span>
-                                    <span class="radioText">대</span>
-                                </label>
-                                <label class="sizeSelect" for="sizeBBig">
-                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
-                                    <span class="checkBox">
-                                        <div class="checkBox2"></div>
-                                    </span>
-                                    <span class="radioText">특대</span>
-                                </label>
-                            </form>
-                            <span class="explainText"> 사이즈는 공지사항을 참고하시기 바랍니다.</span>
-                        </div>
-                        <div class="checkBoxLimitWidth"></div>
-                    </div>
-                <!-- ----------------창고이용가능기간------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">창고이용가능기간<span class ="RequiredInput">*</span>
-                        </label>
-                    </div>
-                    <div class="periodOfUseFlexLayout">
-                        <div class="periodOfUse">
-                            <div class="periodOfUseInputLayout">
-                                <form>
-                                    <input class="useDateInput" type="date">
-                                </form>
+                            </div>
+                            <div class="qna-write-content-input">
+                                <div class="write-content-input-outter-div">
+                                    <div class="write-content-input-inner-div">
+                                        <input type="text" id="inquiry-subject" class="write-content-input-tag" name="subject" placeholder="제목을 입력해주세요">
+                                    </div>
+                                    <div class="errorDiv">
+                                        <p class="errorMessage"></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="wave">~</div>
-                        <div class="periodOfUse">
-                            <div class="periodOfUseInputLayout">
-                                <form>
-                                    <input class="useDateInput" type="date">
-                                </form>
-                                <!-- <span class="periodOfUseInputText">2023.03.10</span>
-                                <span class="calendarSVG"></span> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="checkBoxLimitWidth"></div>
-                </div>
-                <!-- ----------------창고주소------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">
-                            창고 주소<span class ="RequiredInput">*</span>
-                        </label>
-                    </div>
-
-                    <div class="flexLayout">
-                        <div class="addressWrapper">
-                            <div class="addressInputLayout">
-                                <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="">
-                            </div>
-                            <div class="errorDiv">
-                                <p class="errorMessage"></p>
-                            </div>
-                        </div>
-                        <div class="addressDetailWrapper">
-                            <div class="addressInputLayout">
-                                <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="addressDetail" required autocomplete="none">
-                            </div>
-                            <div class="errorDiv">
-                                <p class="errorMessage"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="checkBoxLimitWidth">
-                        <button class="searchAddressBt" type="button" height="44" radius="4"  onclick="sample6_execDaumPostcode()">
-                            <span class="addressImgClass">
-                                <img class="addressImg" src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg" >주소 검색
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- 창고사진등록 -->
-            <div class="termsLine"></div>
-        <div class="termStart">
-            <div class="termsLayout">
-                <div class="termsTitle">
-                    <label class="termsLabel">
-                        창고사진등록<span class="RequiredInput">*</span>
-                    </label>
-                </div>
-                <div class="imageContainer">
-                    <div class="imageWrapperPadding">
-                        <div class="imageWrapper">
-                            <div id="thumbnail-list" class="imageDiv">
-                                <div class="imgButtonWrap">
-                                    <label for="photo-picker">
-                                        <div class="imgButton" >
-                                            <span class="cameraIconImg"></span>
-                                        </div>
-                                        <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp"/>
+                        <div class="qna-content-input-layout">
+                            <div class="qna-original-input-layout">
+                                <div class="qna-write-content-title-div">
+                                    <label for="inquiry-contents">
+                                        내용<span class="required-red-span">*</span>
                                     </label>
                                 </div>
-                            </div>
-                            <div class="imgTextWrapper">
-                                <div class="imgTextDiv">
-                                    <span></span>
-                                    30MB 이하의 이미지만 업로드 가능합니다.
-                                </div>
-                                <div class="imgTextDiv">
-                                    <span></span>
-                                    상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
-                                </div>
-                                <div class="imgTextDiv">
-                                    <span></span>
-                                    사진은 최대 8장까지 등록가능합니다.
+                                <div class="qna-write-content-input">
+                                    <div class="write-content-contents-outter-div">
+                                        <div class="write-content-contents-inner-div">
+                                            <textarea id="inquiry-contents" class="write-content-contents-textarea" name="contents" inputmode="text" cols="30" rows="10" style="resize: none;" maxlength="5000" placeholder="전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지 않도록 주의해 주시기 바랍니다."></textarea>
+                                            <!-- <div class="contents-textarea-placeholder">
+                                                <div class="contents-textarea-text">
+                                                    <strong class="textarea-text-title">1:1 문의 작성 전 확인해주세요</strong>
+                                                    <strong class="textarea-text-small-title">반품 / 환불</strong>
+                                                    <p class="textarea-text-contents">
+                                                        제품 하자 혹은 이상으로 반품(환불)이 필요한 경우 사진과 함께 구체적인 내용을 남겨주세요.
+                                                    </p>
+                                                    <strong class="textarea-text-small-title">배송</strong>
+                                                    <p class="textarea-text-contents">
+                                                        주문 완료 후 배송 방법(샛별/택배)은 변경이 불가능합니다.
+                                                    </p>
+                                                    <p class="textarea-text-contents">
+                                                        배송일 배송시간 지정은 불가능합니다. (예약배송 포함)
+                                                    </p>
+                                                    <p class="textarea-text-contents-red">
+                                                        전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지 않도록 주의해 주시기 바랍니다.
+                                                    </p>
+                                                </div>
+                                            </div> -->
+                                            <span class="content-length-counter">
+                                                <span>
+                                                    <span class="content-length-count">0자</span>
+                                                    <span class="content-length-max-count">
+                                                        /
+                                                        5000자
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="errorDiv">
+                                            <p class="errorMessage"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="qna-original-input-layout">
+                            <div class="qna-write-content-title-div">
+                                <label data-testid="label-text"></label>
+                            </div>
+                            <div class="imageContainer">
+                                <div class="imageWrapperPadding">
+                                    <div class="imageWrapper">
+                                        <div id="thumbnail-list" class="imageDiv">
+                                            <div class="imgButtonWrap">
+                                                <label for="photo-picker">
+                                                    <div class="imgButton" >
+                                                        <span class="cameraIconImg"></span>
+                                                    </div>
+                                                    <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="imgTextWrapper">
+                                            <div class="imgTextDiv">
+                                                <span></span>
+                                                30MB 이하의 이미지만 업로드 가능합니다.
+                                            </div>
+                                            <div class="imgTextDiv">
+                                                <span></span>
+                                                상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
+                                            </div>
+                                            <div class="imgTextDiv">
+                                                <span></span>
+                                                사진은 최대 8장까지 등록가능합니다.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="receive-answer-layout">
+                            <div class="receive-answer-outter-div">
+                                <div class="qna-write-content-title-div">
+                                    <label for="inquiryAllowsNotificationCheck" data-testid="label-text">답변 수신</label>
+                                </div>
+                                <div class="qna-write-content-input">
+                                    <div class="receive-answer-inner-div">
+                                        <div class="phone-number-input-layout">
+                                            <div class="phone-number-input-outter-div">
+                                                <div class="phone-number-input-inner-div">
+                                                    <input type="text" id="inquiryAllowsNotificationCheck" disabled type="text" class="phone-number-input" value="010-1234-****">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="alarm-check-layout">
+                                            <label for="InputAllowsNotificationCheck" class="alarm-check-label">
+                                                <input name="allowsNotification" id="InputAllowsNotificationCheck" type="checkbox" class="alarm-checkbox" checked="">
+                                                <div class="check-box-svg-layout">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path>
+                                                        <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#5f0080"></path>
+                                                        <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </div>
+                                                <span>문자/알림톡 받기</span>
+                                            </label>
+                                        </div>
+                                        <a href="#" class="my-info-update">
+                                            개인정보 수정
+                                        </a>
+                                    </div>
+                                    <div class="receive-answer-info-text">
+                                        <span>※ 야간에도 답변 완료 알림톡이 발송 되는 점 참고 부탁드립니다.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-button-layout">
+                            <input type="submit" class="submit-button" value="등록" disabled=""></input>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
-        <div class="submitLayout">
-            <button class="submitButton" type="submit" width="240" height="56" radius="3">
-                <span class="buttonBox">등록하기</span>
-            </button>
-        </div>
-        </div>
-    </div>
-    <!-- 선택 사진 제한 모달 -->
-    <div class="modalContainer" style="overflow-y: auto;">
-        <div class="popup" style="display:flex;">
-            <div class="modalHeader">
-                <ul class="progressStep" style="display:none;"></ul>
-                <div class="modalIcon" style="display:none"></div>
-                <img src="" alt="">
-                <h2></h2>
-                <button></button>
-            </div>
-            <div class="modalContent">
-                <div class="modalContentContainer" style="display: block;">
-                <div class="modalContentInput"> 로그인하셔야 본 서비스를 이용하실 수 있습니다.</div>
-                <div class="modalFooterInput">
-                        <button class="modalCheckButton" onclick="hideModal()">확인</button>
-                </div>
-                </div>
-                <input type="text" style="display: none;">
-                <input type="text" style="display: none;">
-            </div>
-            <div></div>
-            <div></div>
-            <div></div>
         </div>
     </div>
 
-    <!-- 푸터 -->
     <footer class="footer">
         <div id="footer">
             <div class="footer-layout">
@@ -514,9 +471,11 @@
             <em class="all-right-reserved-text">© JimCarry CORP. ALL RIGHTS RESERVED</em>
         </div>
     </footer>
+
+    
+    
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../../static/js/storageRegister/storageRegister.js"></script>
+<script src="../../static/js/notice/qnaWrite.js"></script>
 <script src="../../static/js/main/header.js"></script>
 </html>
