@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>짐캐리 | 마이페이지 | 이용 중인 창고</title>
-    <link rel="stylesheet" href="/static/css/mypage/use-myBox.css">
+    <link rel="stylesheet" href="../../static/css/mypage/use-myBox.css">
     <link rel="stylesheet" href="../../static/css/main/header.css">
     <link rel="stylesheet" href="../../static/css/main/footer.css">
     <link rel="icon" href="../../static/image/favicon.png">
@@ -200,6 +200,7 @@
                     <div class="use-box-container">
                         <div class="use-box-date-container">
                             <span class="use-box-date">2023.03.13 (10시 10분)</span>
+                            <a class="use-box-detail" id="flip">주문내역 상세보기</a>
                         </div>
                         <div class="use-box-content-container">
                             <div class="use-box-content-left-container">
@@ -229,6 +230,54 @@
                         </div>
                     </div>
                     <!--  -->
+                    <!-- 슬라이드 -->
+                    <div class="qna-slide-container" id="panel">
+                        <div class="qna-slide-wrapper">
+                            <div class="detail-pay-container">
+                                <h3 class="detail-pay-text">결제정보</h3>
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li class="detail-pay-content">
+                                    <span class="detail-pay-content-text">창고금액</span>
+                                    <span class="detail-pay-content-text-pay">
+                                        116,000
+                                        <span class="detail-pay-content-text-pay-next">원</span>
+                                    </span>
+                                </li>
+                                <li class="detail-pay-content">
+                                    <span class="detail-pay-content-text">결제금액</span>
+                                    <span class="detail-pay-content-text-pay">
+                                        116,000
+                                        <span class="detail-pay-content-text-pay-next">원</span>
+                                    </span>
+                                </li>
+                                <li class="detail-pay-content">
+                                    <span class="detail-pay-content-text">결제방법</span>
+                                    <span class="detail-pay-content-text-pay">
+                                        카카오페이(카카오페이머니)
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="detail-pay-container" style="padding-top: 70px;">
+                                <h3 class="detail-pay-text">주문정보</h3>
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li class="detail-order-content">
+                                    <span class="detail-order-content-text">예약번호</span>
+                                    <span class="detail-order-content-text-next">123456789</span>
+                                </li>
+                                <li class="detail-order-content">
+                                    <span class="detail-order-content-text">이용고객</span>
+                                    <span class="detail-order-content-text-next">김서현</span>
+                                </li>
+                                <li class="detail-order-content">
+                                    <span class="detail-order-content-text">결제일시</span>
+                                    <span class="detail-order-content-text-next">2023-03-20 17:28:32</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--  -->
                 </div>
             </div>
         </div>
@@ -244,19 +293,6 @@
                     </strong>
                     <div class="inquiries-layout">
                         <div class="inquiry-layout">
-                            <button class="inquiry-button">카카오톡 문의</button>
-                            <div class="inquiry-text">
-                                월~토요일
-                                <!-- 슬래쉬 본문에서는 svg 처리 But 나는 div 처리 -->
-                                <div class="slash2"></div>
-                                오전 7시 - 오후 6시
-                                <br>
-                                일/공휴일
-                                <div class="slash2"></div>
-                                오전 7시 - 오후 1시
-                            </div>
-                        </div>
-                        <div class="inquiry-layout">
                             <button class="inquiry-button">1:1 문의</button>
                             <div class="inquiry-text">
                                 365일
@@ -265,67 +301,41 @@
                             </div>
                         </div>
                         <div class="inquiry-layout">
-                            <button class="inquiry-button">대량주문 문의</button>
+                            <button class="inquiry-button">FAQ</button>
                             <div class="inquiry-text">
-                                월~금요일
-                                <div class="slash2"></div>
-                                오전 9시 - 오후 6시
+                                문의 전 고객님들이
                                 <br>
-                                점심시간
-                                <div class="slash2"></div>
-                                낮 12시 - 오후 1시
+                                자주 하신 질문을 찾아보세요.
                             </div>
                         </div>
                     </div>
                     <div class="inquiry-email">
                         비회원 문의 : 
-                        <a href="mailto:help@kurlycorp.com">help@kurlycorp.com</a>
+                        <a href="mailto:help@kurlycorp.com">help@jimcarrycorp.com</a>
                         <br>
                         비회원 대량주문 문의 : 
-                        <a href="mailto:kurlygift@kurlycorp.com">kurlygift@kurlycorp.com</a>
+                        <a href="mailto:kurlygift@kurlycorp.com">jimcarrygift@gimcarrycorp.com</a>
                     </div>
                 </div>
                 <div class="footer-right-layout">
                     <div class="kurly-info">
-                        법인명 (상호) : 주식회사 컬리
+                        법인명 (상호) : 주식회사 짐캐리
                         <span class="footer-slash-layout"></span>
                         사업자등록번호 : 261-81-23567<a class="important-text" href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=2618123567&amp;apv_perm_no=">사업자정보 확인</a>
                         <br>
                         통신판매업 : 제 2018-서울강남-01646 호
                         <span class="footer-slash-layout"></span>
-                        개인정보보호책임자 : 이원준
+                        개인정보보호책임자 : 황자현
                         <br>
-                        주소 : 서울특별시 강남구 테헤란로 133, 18층(역삼동)
+                        주소 : 서울특별시 강남구 테헤란로 146, 4층(역삼동)
                         <span class="footer-slash-layout"></span>
-                        대표이사 : 김슬아
+                        대표이사 : 황자현
                         <br>
-                        입점문의 :<a class="important-text" href="https://docs.google.com/forms/d/e/1FAIpQLScLB7YkGJwNRzpGpp0gbR1i4C1_uvTEFj43SFfJ_XEadTn3gQ/viewform?usp=sf_link">입점문의하기</a>
-                        <span class="footer-slash-layout"></span> 
                         제휴문의 :
-                        <a class="important-text" href="mailto:business@kurlycorp.com">business@kurlycorp.com</a>
+                        <a class="important-text" href="mailto:business@kurlycorp.com">business@gimcarrycorp.com</a>
                         <br>
-                        채용문의 :<a class="important-text" href="mailto:recruit@kurlycorp.com">recruit@kurlycorp.com</a>
-                        <br>
-                        팩스: 070 - 7500 - 6098
+                        채용문의 :<a class="important-text" href="mailto:recruit@kurlycorp.com">recruit@gimcarrycorp.com</a>
                     </div>
-                    <!-- 마켓컬리sns아이콘 -->
-                    <ul class="icon-layout">
-                        <a class="sns-icon" href="https://instagram.com/marketkurly">
-                            <img src="https://res.kurly.com/pc/ico/1810/ico_instagram.png">
-                        </a>
-                        <a  class="sns-icon" href="https://www.facebook.com/marketkurly">
-                            <img src="https://res.kurly.com/pc/ico/1810/ico_fb.png">
-                        </a>
-                        <a class="sns-icon" href="https://blog.naver.com/marketkurly">
-                            <img src="https://res.kurly.com/pc/ico/1810/ico_blog.png">
-                        </a>
-                        <a class="sns-icon" href="https://m.post.naver.com/marketkurly">
-                            <img src="https://res.kurly.com/pc/ico/1810/ico_naverpost.png">
-                        </a>
-                        <a class="sns-icon" href="https://www.youtube.com/channel/UCfpdjL5pl-1qKT7Xp4UQzQg">
-                            <img src="https://res.kurly.com/pc/ico/1810/ico_youtube.png">
-                        </a>
-                    </ul>
                 </div>
             </div>
             <!-- 인증마크 -->
@@ -333,7 +343,7 @@
                 <button class="certification-mark-button">
                     <img class="mark-img" src="https://res.kurly.com/pc/ico/2208/logo_isms.svg">
                     <p class="mark-text">
-                        [인증범위] 컬리 쇼핑몰 서비스 개발·운영
+                        [인증범위] 짐캐리 쇼핑몰 서비스 개발·운영
                         <br>
                         (심사받지 않은 물리적 인프라 제외)
                         <br>
@@ -369,13 +379,14 @@
             </div>
         </div>
         <div class="all-right-reserved">
-            컬리에서 판매되는 상품 중에는 컬리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.
+            짐캐리에서 판매되는 상품 중에는 짐캐리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.
             <br>
-            마켓플레이스(오픈마켓) 상품의 경우 컬리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 컬리는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.
-            <em class="all-right-reserved-text">© KURLY CORP. ALL RIGHTS RESERVED</em>
+            마켓플레이스(오픈마켓) 상품의 경우 짐캐리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 짐캐리는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.
+            <em class="all-right-reserved-text">© JimCarry CORP. ALL RIGHTS RESERVED</em>
         </div>
     </footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../../static/js/main/header.js"></script>
+<script src="../../static/js/mypage/use-myBox.js"></script>
 </html>

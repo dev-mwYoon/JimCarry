@@ -4,16 +4,16 @@
     margin: 0px auto;
 }
 
-.container-pay > div{
+/* .container-pay > div{
     padding-top: 50px;
-}
+} */
 
 .container-pay h2 {
     font-weight: 500;
     font-size: 28px;
     line-height: 36px;
     letter-spacing: -0.5px;
-    padding-bottom: 48px;
+    padding-bottom: 40px;
     text-align: center;
 }
 
@@ -406,13 +406,15 @@
 
 .payment-price-container {
     position: relative;
-    width: 284px;
+    width: 335px;
+    padding-left: 30px;
 }
 
 .payment-price-wrap {
     position: absolute;
     width: 335px;
     top: 0px;
+    position: sticky;
 }
 
 .payment-price-title-wrap {
@@ -441,7 +443,7 @@
     margin-top: 0px;
     display: flex;
     justify-content: space-between;
-    margin-top: 16px;
+   /*  margin-top: 16px; */
     font-size: 16px;
     color: rgb(51, 51, 51);
     padding-bottom: 8px;
@@ -452,7 +454,7 @@
 }
 
 .payment-sharebox-date-wrap {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .payment-sharebox-use-date {
@@ -500,6 +502,6 @@
 }
 
 .payment {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 500
 }
