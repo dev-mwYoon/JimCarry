@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../static/css/main/header.css">
     <link rel="stylesheet" href="../../static/css/main/footer.css">
     <link rel="icon" href="../../static/image/favicon.png">
+    <link rel="stylesheet" href="../../static/css/storageRegister/storageRegister.css">
 </head>
 <body>
     <!-- 헤더 -->
@@ -300,6 +301,15 @@
                                 <button type="button" class="amend-inputBox-right-btn">
                                     <span class="amend-inputBox-right-btn-name">중복확인</span>
                                 </button>
+                                <!-- 중복확인 모달 -->
+                                <div id="emailmodal" class="modal emailmodal">
+                                    <div class="modal-content">
+                                    <div class="pay-content">이메일을 입력해주세요.</div>
+                                    <div class="pay-footer"></div>
+                                    <button class="pay-popup-check emailclose">확인</button>
+                                    </div>
+                                </div>
+                                <!--  -->
                             </div>
                         </div>
                         <!-- 휴대폰 -->
@@ -318,9 +328,18 @@
                                 </div>
                             </div>
                             <div class="amend-inputBox-right-btn-container">
-                                <button type="button" class="amend-inputBox-right-btn">
+                                <button type="button" class="amend-inputBox-right-btn phoneBtn">
                                     <span class="amend-inputBox-right-btn-name">다른번호 인증</span>
                                 </button>
+                                <!-- 다른번호 인증 모달 -->
+                                <div id="phonemodal" class="modal phonemodal">
+                                    <div class="modal-content">
+                                    <div class="pay-content">휴대폰 번호를 확인해주세요.</div>
+                                    <div class="pay-footer"></div>
+                                    <button class="pay-popup-check phoneclose">확인</button>
+                                    </div>
+                                </div>
+                                <!--  -->
                             </div>
                         </div>
                         <!-- 성별 -->
@@ -330,33 +349,33 @@
                             </div>
                             <div class="amend-gender-container">
                                 <div class="amend-gender-wrapper">
-                                    <label for="gender-man" class="amend-gender">
-                                        <input type="radio" class="amend-gender-choice">
-                                        <span class="amend-gender-choice-span">
-                                            <div class="amend-gender-choice-span-in"></div>
+                                    <label class="sizeSelect" for="sizeSmall">
+                                        <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="size" type="radio" value="SMALL" onclick="clickRadio()">
+                                        <span id = "sizeSmallSpan" class="checkBox">
+                                            <div id="sizeSmallDiv" class="checkBox2"></div>
                                         </span>
-                                        <span class="amend-gender-text">남자</span>
+                                        <span class="radioText">남자</span>
                                     </label>
-                                    <label for="gender-woman" class="amend-gender">
-                                        <input type="radio" class="amend-gender-choice">
-                                        <span class="amend-gender-choice-span">
-                                            <div class="amend-gender-choice-span-in"></div>
+                                    <label class="sizeSelect" for="sizeMiddle">
+                                        <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="size" type="radio" value="MIDDLE" onclick="clickRadio()">
+                                        <span id="sizeMiddleSpan" class="checkBox">
+                                            <div id="sizeMiddleDiv" class="checkBox2"></div>
                                         </span>
-                                        <span class="amend-gender-text">여자</span>
+                                        <span class="radioText">여자</span>
                                     </label>
-                                    <label for="gender-none" class="amend-gender">
-                                        <input type="radio" class="amend-gender-choice">
-                                        <span class="amend-gender-choice-none-span">
-                                            <div class="amend-gender-choice-none-span-in"></div>
+                                    <label class="sizeSelect" for="sizeBig">
+                                        <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
+                                        <span class="checkBox">
+                                            <div class="checkBox2"></div>
                                         </span>
-                                        <span class="amend-gender-text">선택안함</span>
+                                        <span class="radioText">선택안함</span>
                                     </label>
                                 </div>
                             </div>
                             <div class="amend-inputBox-right"></div>
                         </div>
                         <!-- 생년월일 -->
-                        <div class="amend-container">
+                        <div class="amend-container" style="padding-bottom: 30px;">
                             <div class="amend-name-container">
                                 <label class="amend-name">생년월일</label>
                             </div>
@@ -377,29 +396,6 @@
                             </div>
                             <div class="amend-inputBox-right"></div>
                         </div>
-                        <!-- 선택약관동의 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">선택약관동의</label>
-                            </div>
-                            <div class="amend-choice-agree-container">
-                                <div class="amend-choice-agree-wrapper">
-                                    <div class="amend-choice-agree">
-                                        <label class="amend-choice-agree-checkBox">
-                                            <div class="amend-choice-agree-checkBox-next">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#5f0080"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </div>
-                                            <span>개인정보 수집·이용 동의</span>
-                                        </label>
-                                        <span class="amend-choice-agree-choice">(선택)</span>
-                                    </div>
-                                    <a href="#" class="amend-choice-agree-look">약관보기</a>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
                         <div class="amend-line"></div>
                         <!-- 이용약관동의 -->
                         <div class="amend-container">
@@ -408,10 +404,11 @@
                             </div>
                             <div class="amend-use-agree-container">
                                 <div class="amend-use-agree-checkBox-container">
-                                    <label class="amend-use-agree-checkBox-wrapper">
+                                    <label class="amend-use-agree-checkBox-wrapper allCheck">
+                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
                                         <div class="amend-choice-agree-checkBox-next">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#5f0080"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path class="path1 allPath" d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
                                         </div>
                                         <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의</span>
@@ -419,18 +416,20 @@
                                     <span class="amend-choice-agree-choice">(선택)</span>
                                 </div>
                                 <div class="amend-use-agree-check-container">
-                                    <label class="amend-use-agree-check-sms">
+                                    <label class="amend-use-agree-check-sms checked">
+                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
                                         <div class="amend-choice-agree-checkBox-next">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#5f0080"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path class="path1" d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
                                         </div>
                                         <span>SMS</span>
                                     </label>
-                                    <label class="amend-use-agree-check-email">
+                                    <label class="amend-use-agree-check-email checked">
+                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
                                         <div class="amend-choice-agree-checkBox-next">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#5f0080"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path class="path1" d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
                                         </div>
                                         <span>이메일</span>
@@ -441,15 +440,15 @@
                         </div>
                         <!-- 수정버튼 -->
                         <div class="amend-btn-container">
-                            <button class="amend-btn pay-btn" type="button">
+                            <button class="amend-btn" type="button">
                                 <span class="amend-btn-text">회원정보수정</span>
                             </button>
                             <!-- 회원정보가 수정되었습니다. 모달 -->
-                            <div id="modal" class="modal">
+                            <div id="infomodal" class="modal infomodal">
                                 <div class="modal-content">
                                     <div class="pay-content">회원정보가 수정되었습니다.</div>
                                     <div class="pay-footer"></div>
-                                    <button class="pay-popup-check">확인</button>
+                                    <button class="pay-popup-check infocheck">확인</button>
                                 </div>
                             </div>
                         </div>
@@ -563,28 +562,6 @@
         </div>
     </footer>
 </body>
-<script>
-    const btn = document.querySelector(".pay-btn");
-    const container = document.querySelector(".modal");
-    const close = document.querySelector(".pay-popup-check");
-    
-    //모달창 열기
-    btn.addEventListener("click", function(){
-        container.style.display="block";
-    });
-
-    //모달창 닫기
-    close.addEventListener("click", function(){
-        container.style.display="none";
-    });
-
-    //모달창 외부 클릭 시 닫기
-    window.onclick = function(event) {
-        if(event.target == container) {
-            container.style.display = "none";
-        }
-    };
-</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="../../static/js/main/header.js"></script>
 <script src="../../static/js/mypage/my-info.js"></script>

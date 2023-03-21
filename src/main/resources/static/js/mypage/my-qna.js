@@ -9,6 +9,7 @@ $(document).ready(function(){
     const btn = document.querySelector(".modal-btn");
     const container = document.querySelector(".change-modal");
     const close = document.querySelector(".close-btn");
+    const cancel = document.querySelector(".change-modal-delete-btn")
     
     //모달창 열기
     btn.addEventListener("click", function(){
@@ -20,6 +21,11 @@ $(document).ready(function(){
         container.style.display="none";
     });
 
+    //모달창 취소 닫기
+    cancel.addEventListener("click", function(){
+        container.style.display="none";
+    });
+
     //모달창 외부 클릭 시 닫기
     window.onclick = function(event) {
         if(event.target == container) {
@@ -28,23 +34,17 @@ $(document).ready(function(){
     };
 
     /* 삭제 모달 */
-    const deleteBtn = document.querySelector(".delete-btn");
-    const deleteContainer = document.querySelector(".deleteModal");
-    const deleteClose = document.querySelector(".pay-popup-check");
-    
-    //모달창 열기
-    deleteBtn.addEventListener("click", function(){
-        deleteContainer.style.display="block";
-    });
+const modal = document.querySelector("#delete-btn");
+const openBtn = document.querySelector("#delete-modal");
+const span = document.querySelector("#close");
 
-    //모달창 닫기
-    deleteClose.addEventListener("click", function(){
-        deleteContainer.style.display="none";
-    });
+// 모달창 열기
+modal.addEventListener("click", function(){
+    openBtn.style.display="block";
+});
 
-    //모달창 외부 클릭 시 닫기
-    window.onclick = function(event) {
-        if(event.target == deleteContainer) {
-            deleteContainer.style.display = "none";
-        }
-    };
+// 모달창 닫기
+span.addEventListener("click", function(){
+    openBtn.style.display="none";
+});
+

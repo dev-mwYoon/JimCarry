@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>짐캐리 | 마이페이지 | 문의 사항</title>
-    <link rel="stylesheet" href="../../static/css/mypage/my-qna.css">
+    <link rel="stylesheet" href="/static/css/mypage/my-qna.css">
     <link rel="stylesheet" href="../../static/css/main/header.css">
     <link rel="stylesheet" href="../../static/css/main/footer.css">
     <link rel="icon" href="../../static/image/favicon.png">
@@ -328,14 +328,17 @@
                                         </div>
                                     </div>
                                     <!-- 삭제 모달 -->
-                                    <div id="modal" class="deleteModal">
-                                        <div class="modal-content">
-                                        <div class="pay-content">작성된 문의를 삭제하시겠습니까?</div>
-                                        <div class="pay-footer"></div>
-                                        <div class="qna-modal-btn">
-                                            <button class="pay-popup-check">취소</button>
-                                            <button class="pay-popup-check">확인</button>
-                                        </div>
+                                    <div class="delete-modal-container" id="delete-modal" style="display: none;">
+                                        <div class="delete-modal-wrapper">
+                                            <div class="delete-modal-content-container">
+                                                <div class="delete-modal-content-wrapper">
+                                                    <div class="delete-modal-content-text">작성된 문의를 삭제하시겠습니까?</div>
+                                                    <div class="delete-modal-content-btn">
+                                                        <button class="cancel-btn" id="close">취소</button>
+                                                        <button class="check-btn">확인</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!--  -->

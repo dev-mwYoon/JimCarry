@@ -453,6 +453,7 @@ ul{
     width: 120px;
     margin: 0px 4px;
     border-radius: 3px;
+    cursor: pointer;
 }
 .withdrawal-right-btn{
     display: block;
@@ -466,6 +467,7 @@ ul{
     width: 120px;
     margin: 0px 4px;
     border-radius: 3px;
+    cursor: pointer;
 }
 .withdrawal-btn-span{
     font-size: 14px;
@@ -640,4 +642,12 @@ button {
         font-weight: 500;
         padding-bottom: 20px;
     }
+}
+.termCheckBox {
+    overflow: hidden;
+    position: absolute;
+    clip: rect(0px, 0px, 0px, 0px);
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
 }
