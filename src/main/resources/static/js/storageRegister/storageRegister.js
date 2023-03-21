@@ -35,6 +35,7 @@ const showModal = document.querySelector(".modalContainer");
 const clickModalBtn= document.querySelector(".modalCheckButton");
 
 /* 파일 썸네일 */
+
 /* 파일인풋 */
 const file = document.querySelector('input[type=file]');
 const imgButton = document.querySelector(".imgButton");
@@ -96,7 +97,6 @@ function handleFiles(files) {
         };
         /* result 속성(attribute)에 담기 */
         reader.readAsDataURL(file);
-           
     }
 
 }
@@ -139,30 +139,31 @@ $infoInputs.on('blur', function () {
     let i = $infoInputs.index($(this));
     let value = $(this).val();
 
+    console.log("i: "+i);
     if (!value) {
-        $errorDiv.eq(i).css('display', 'block');
-        $erroMessage.eq(i).text(infoBlurMessages[i]);
+        $errorDiv.eq(i-1).css('display', 'block');
+        $erroMessage.eq(i-1).text(infoBlurMessages[i-1]);
         infoCheck = false;
-        infoCheckAll[i] = infoCheck;
+        infoCheckAll[i-1] = infoCheck;
         return;
     } else {
-        $errorDiv.eq(i).css('display', 'none');
+        $errorDiv.eq(i-1).css('display', 'none');
     }
 
     switch (i) {
-        case 0:
+        case 1:
             infoCheck = value.length > 1 && value.length < 21 && nameRegex.test(value);
             break;
-        case 1:
+        case 2:
             infoCheck = phoneRegex.test(value);
             if (infoCheck) {
                 $(this).val(value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`));
             }
             break;
-        case 2:
+        case 3:
             infoCheck = value.length > 1;
             break;
-        case 3:
+        case 4:
             infoCheck = value.length > 1;
             break;
     }
