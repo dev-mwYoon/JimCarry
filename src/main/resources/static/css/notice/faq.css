@@ -286,7 +286,7 @@ svg:not(:root) {
     padding: 20px 0px 20px 20px;
     color: rgb(76, 76, 76);
     flex: 1 1 0%;
-    text-align: left;
+    text-align: center;
 }
 
 .button-div {
