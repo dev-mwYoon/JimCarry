@@ -23,6 +23,7 @@ $plusBtn.on("click", function() {
     $price.text($resultPrice);
 
     
+    
 
 });
 
