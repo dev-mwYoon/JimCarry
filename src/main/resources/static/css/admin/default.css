@@ -162,6 +162,23 @@ section.modal-stage {
   transform: translate(-50%, -50%);
 }
 
+.modal {
+  width: 900px;
+  margin: 0 auto;
+  padding: 12px;
+  background-color: #fcfcfc;
+  border: 1px solid #3b4e7d;
+  border-radius: 12px;
+  opacity: 0;
+  animation: fade-in 0.4s ease-in-out forwards;
+  height: 80vh;
+  overflow: scroll;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
 /* 문의관리 ============================ */
 .enquiryOk {
   color: #00ae68;

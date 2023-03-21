@@ -1,15 +1,5 @@
 /** @format */
 
-.modal {
-  width: 900px;
-  margin: 0 auto;
-  padding: 12px;
-  background-color: #fcfcfc;
-  border: 1px solid #3b4e7d;
-  border-radius: 12px;
-  animation: fade-in 0.4s ease-in-out forwards; /* 애니메이션 효과 적용 */
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
