@@ -207,7 +207,7 @@
                     </li>
                     <li>
                         <a href="#" class="faq-list-side-bar-select">
-                            1:1문의
+                            1:1문의하기
                             <span class="faq-list-side-bar-arrow"></span>
                         </a>
                     </li>
@@ -232,6 +232,9 @@
                                     <div class="write-content-input-inner-div">
                                         <input type="text" id="inquiry-subject" class="write-content-input-tag" name="subject" placeholder="제목을 입력해주세요">
                                     </div>
+                                    <div class="errorDiv">
+                                        <p class="errorMessage"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -245,8 +248,8 @@
                                 <div class="qna-write-content-input">
                                     <div class="write-content-contents-outter-div">
                                         <div class="write-content-contents-inner-div">
-                                            <textarea id="inquiry-contents" class="write-content-contents-textarea" name="contents" inputmode="text" cols="30" rows="10"></textarea>
-                                            <div class="contents-textarea-placeholder">
+                                            <textarea id="inquiry-contents" class="write-content-contents-textarea" name="contents" inputmode="text" cols="30" rows="10" style="resize: none;" maxlength="5000" placeholder="전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지 않도록 주의해 주시기 바랍니다."></textarea>
+                                            <!-- <div class="contents-textarea-placeholder">
                                                 <div class="contents-textarea-text">
                                                     <strong class="textarea-text-title">1:1 문의 작성 전 확인해주세요</strong>
                                                     <strong class="textarea-text-small-title">반품 / 환불</strong>
@@ -264,7 +267,7 @@
                                                         전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지 않도록 주의해 주시기 바랍니다.
                                                     </p>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <span class="content-length-counter">
                                                 <span>
                                                     <span class="content-length-count">0자</span>
@@ -274,6 +277,9 @@
                                                     </span>
                                                 </span>
                                             </span>
+                                        </div>
+                                        <div class="errorDiv">
+                                            <p class="errorMessage"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -333,6 +339,8 @@
                                                 <input name="allowsNotification" id="InputAllowsNotificationCheck" type="checkbox" class="alarm-checkbox" checked="">
                                                 <div class="check-box-svg-layout">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path>
+                                                        <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#5f0080"></path>
                                                         <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                     </svg>
@@ -351,7 +359,7 @@
                             </div>
                         </div>
                         <div class="submit-button-layout">
-                            <button type="submit" disabled class="submit-button">등록</button>
+                            <input type="submit" class="submit-button" value="등록" disabled=""></input>
                         </div>
                     </form>
                 </div>
@@ -468,5 +476,6 @@
     
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="../../static/js/notice/qnaWrite.js"></script>
 <script src="../../static/js/main/header.js"></script>
 </html>
