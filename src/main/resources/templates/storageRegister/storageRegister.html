@@ -195,17 +195,34 @@
                 필수입력사항
             </div>
             <div class="formstart">
-                <!-- ----------------이름------------------ -->
+                <!-- ----------------창고이름------------------ -->
                 <div class="wrapper">
                     <div class="title">
                         <label class="label">
-                            이름<span class ="RequiredInput">*</span></label>
+                            창고이름
                     </div>
 
                     <div class="flexLayout">
                         <div class="paddingBottom">
                             <div class="inputBox">
-                                <input class="input" type="text" placeholder="이름을 입력해 주세요" name="userName"
+                                <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageName"
+                                    required autocomplete="none" value>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkBoxLimitWidth"></div>
+                </div>
+                <!-- ----------------소유주------------------ -->
+                <div class="wrapper">
+                    <div class="title">
+                        <label class="label">
+                            소유주<span class ="RequiredInput">*</span></label>
+                    </div>
+
+                    <div class="flexLayout">
+                        <div class="paddingBottom">
+                            <div class="inputBox">
+                                <input class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="userName"
                                     required autocomplete="none" value>
                             </div>
                         </div>
@@ -311,7 +328,7 @@
                     <div class="flexLayout">
                         <div class="addressWrapper">
                             <div class="addressInputLayout">
-                                <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="">
+                                <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="" readonly>
                             </div>
                             <div class="errorDiv">
                                 <p class="errorMessage"></p>
@@ -353,7 +370,7 @@
                                         <div class="imgButton" >
                                             <span class="cameraIconImg"></span>
                                         </div>
-                                        <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp"/>
+                                        <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" multiple/>
                                     </label>
                                 </div>
                             </div>
