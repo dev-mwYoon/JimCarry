@@ -9,6 +9,10 @@ html {
     font-family: "Noto Sans KR", "malgun gothic", AppleGothic, dotum, sans-serif;
 }
 
+strong {
+    font-weight: 700;
+}
+
 .faq-list-all-outer-div {
     position: relative;
     min-width: 1050px;
@@ -335,4 +339,27 @@ svg:not(:root) {
 .button-next:disabled {
     background-image: url(https://res.kurly.com/kurly/ico/2021/paging-next-disabled.svg);
     cursor: default;
+}
+
+.faq-detail-wrapper{
+    display:none;
+    overflow: hidden;
+}
+
+.detail-outer-div{
+    position: relative;
+    padding: 0px 30px 30px 70px;
+    text-align: left;
+    color: rgb(76, 76, 76);
+    white-space: pre-line;
+}
+
+.detail-outer-div::after {
+    content: "";
+    position: absolute;
+    top: 51px;
+    left: 30px;
+    width: 24px;
+    height: 12px;
+    background: url(https://res.kurly.com/images/common/icon_faq.gif) 0px 0px no-repeat;
 }
