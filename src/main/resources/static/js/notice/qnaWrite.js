@@ -109,7 +109,6 @@ $subject.on('blur', function () {
 
     infoCheckAll[i] = infoCheck;
 
-    $erroMessage.eq(i).text('');
     requireCheck();
 });
 
@@ -132,7 +131,6 @@ $contents.on('blur', function () {
     console.log('infocheck: ' + infoCheck);
     infoCheckAll[i] = infoCheck;
 
-    $erroMessage.eq(i).text('');
     requireCheck();
 });
 
