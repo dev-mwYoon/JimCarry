@@ -1,0 +1,53 @@
+.error-wrapper {
+    width: 1050px;
+    margin: 0 auto;
+}
+
+.error-div {
+    padding: 220px 0 100px;
+    text-align: center;
+    color: #333;
+}
+
+.error-inner {
+    font-weight: 400;
+}
+
+.error-inner h3 {
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 28px;
+    color: #666;
+}
+
+.error-inner h3::before {
+    display: block;
+    margin: 0 auto 22px;
+    width: 100px;
+    height: 100px;
+    background: url(https://res.kurly.com/kurly/ico/2021/error_100_100_gray.svg) 0 0 no-repeat;
+    content: "";
+}
+
+.error-inner p {
+    padding-bottom: 30px;
+    font-size: 16px;
+    line-height: 23px;
+    color: #b5b5b5;
+}
+
+.go-home {
+    display: block;
+    border: 1px solid #5f0081;
+    background-color: #5f0080;
+    margin: 0 auto;
+    width: 150px;
+    height: 44px;
+    border-radius: 3px;
+}
+
+.go-home-text {
+    color: #fff;
+    line-height: 43px;
+    font-size: 14px;
+}
