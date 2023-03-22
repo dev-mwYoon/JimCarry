@@ -173,7 +173,7 @@ ol, ul {
 }
 
 .array-li:first-child::before {
-    content: none
+    content: none;
 }
 
 .array-a {
