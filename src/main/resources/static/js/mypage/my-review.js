@@ -43,10 +43,8 @@ span.onclick = function() {
 /* 파일인풋 */
 const file = document.querySelector('input[type=file]');
 const imgButton = document.querySelector(".imgButton");
-console.log(imgButton);
 
 function handleFiles(files) {
-    /* 썸네일 담을 div의 부모 */
     const thumbnailList = document.getElementById("thumbnail-list");
 
     for (let i = 0; i < files.length; i++) {
@@ -61,7 +59,6 @@ function handleFiles(files) {
         const reader = new FileReader();
         /* reader가 onload 할때 */
         reader.onload = function(event) {
-            /* 썸네일 담을 div와 그 자식의 span 선언 */   
             const thumbnail = document.createElement("div");
             const thumbnailSpan = document.createElement("span");
 
@@ -113,8 +110,53 @@ fileInput.addEventListener("change", function(event) {
     handleFiles(event.target.files);
 });
 
-
 /* 모달창 확인버튼 누르면 없애기 */
 function hideModal() {
     showModal.classList.remove("showModal");
 }
+
+
+// 글자수세기, 제한 
+const textarea = document.querySelector('.review-modal-content-inputBox');
+const counter = document.querySelector('.review-modal-content-inputBox-number-container span:first-child');
+const maxLength = 5000;
+
+// 텍스트 입력이 일어날 때마다 글자수를 세고, 글자수를 표시
+textarea.addEventListener('input', () => {
+  const textLength = textarea.value.length;
+  counter.textContent = `${textLength} / ${maxLength}`;
+
+  // 최대 글자수를 초과하면 입력을 제한
+  if (textLength > maxLength) {
+    textarea.value = textarea.value.slice(0, maxLength);
+    counter.textContent = `${maxLength} / ${maxLength}`;
+  }
+
+  // 글자 수가 10자 초과할 경우 버튼 색을 변경
+  if (textLength > 10) {
+    $('.change-modal-ok-btn').css('background-color', '#5f0080');
+  } else {
+    $('.change-modal-ok-btn').css('background-color', '#ddd');
+  }
+});
+
+
+/* 유효성검사 후 버튼 활성화 */
+function requireCheck() {
+  const arr = [true, true];
+  const $submitBtn = $('.change-modal-ok-btn');
+
+  $('.change-modal-ok-btn').attr('disabled', true);
+
+  if (JSON.stringify(infoCheckAll) === JSON.stringify(arr)) {
+    $('.change-modal-ok-btn').attr('disabled', false);
+  }
+
+  // 버튼 색이 변경되도록 코드를 추가
+  if (textarea.value.length > 10) {
+    $('.change-modal-ok-btn').css('background-color', '#5f0080');
+  } else {
+    $('.change-modal-ok-btn').css('background-color', '#ddd');
+  }
+}
+

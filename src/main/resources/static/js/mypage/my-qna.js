@@ -48,3 +48,22 @@ span.addEventListener("click", function(){
     openBtn.style.display="none";
 });
 
+
+// 글자수 세기, 제한
+const textarea = document.querySelector('.change-modal-form-field-text');
+const counter = document.querySelector('.change-modal-form-field-content span:first-child');
+
+// 최대 글자수를 정합니다.
+const maxLength = 5000;
+
+// 텍스트 입력이 일어날 때마다 글자수를 세고, 글자수를 표시합니다.
+textarea.addEventListener('input', () => {
+  const textLength = textarea.value.length;
+  counter.textContent = `${textLength}자 / ${maxLength}자`;
+
+  // 최대 글자수를 초과하면 입력을 막습니다.
+  if (textLength > maxLength) {
+    textarea.value = textarea.value.slice(0, maxLength);
+    counter.textContent = `${maxLength}자 / ${maxLength}자`;
+  }
+});

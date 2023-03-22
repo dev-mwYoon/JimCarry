@@ -278,10 +278,7 @@
                                                                         <label class="review-modal-content-name">내용</label>
                                                                         <div style="width: 100%;">
                                                                             <div class="review-modal-content-inputBox-container">
-                                                                                <textarea inputmode="text" class="review-modal-content-inputBox"></textarea>
-                                                                                <div class="review-modal-content-inputBox-inner">
-                                                                                    <p class="review-modal-content-inputBox-inner-text">창고 특성에 맞는 후기를 작성해주세요. 예) 창고 크기, 실제 창고 사진, 창고의 청결도 등 (최소 10자 이상)</p>
-                                                                                </div>
+                                                                                <textarea inputmode="text" maxlength="5000" placeholder="창고 특성에 맞는 후기를 작성해주세요. 예) 창고 크기, 실제 창고 사진, 창고의 청결도 등 (최소 10자 이상)" class="review-modal-content-inputBox"></textarea>
                                                                                 <span class="review-modal-content-inputBox-number-container">
                                                                                     <span>
                                                                                         <span style="color: rgb(153, 153, 153);">0</span>
@@ -321,7 +318,7 @@
                                                                 </div>
                                                                 <div class="change-modal-actions-row">
                                                                     <button type="button" class="change-modal-delete-btn">취소</button>
-                                                                    <button type="button" class="change-modal-ok-btn">등록</button>
+                                                                    <button type="submit" class="change-modal-ok-btn" value="등록" disabled="" style="cursor: pointer;">등록</button>
                                                                 </div>
                                                             </form>
                                                         </div>

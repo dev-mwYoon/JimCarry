@@ -738,12 +738,13 @@ button {
     width: auto;
     height: 100%;
     border: none;
-    padding: 0px 18px;
+    padding: 0px 20px;
     font-size: 16px;
     font-weight: 600;
     color: rgb(95, 0, 128);
     background: transparent;
     cursor: pointer;
+    padding-bottom: 10px;
 }
 
 @media (min-width: 1050px){
