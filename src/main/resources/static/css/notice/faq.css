@@ -13,6 +13,10 @@ strong {
     font-weight: 700;
 }
 
+li {
+    list-style: none;
+}
+
 .faq-list-all-outer-div {
     position: relative;
     min-width: 1050px;
