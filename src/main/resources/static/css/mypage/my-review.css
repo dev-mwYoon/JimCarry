@@ -398,6 +398,7 @@ ul{
     line-height: 16px;
     text-align: center;
     color: rgb(51, 51, 51);
+    cursor: pointer;
 }
 
 /* 작성한 후기 내용창*/
@@ -427,6 +428,7 @@ ul{
     font-size: 12px;
     line-height: 16px;
     text-align: center;
+    cursor: pointer;
 }
 .ok-review-content-title-container{
     display: flex;
@@ -535,8 +537,9 @@ ul{
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    max-height: calc(100% - 64px);
+    /* max-height: calc(100% - 64px); */
     max-width: 600px;
+    padding-bottom: 0px;
 }
 .change-modal-title-row{
     display: flex;
@@ -545,11 +548,11 @@ ul{
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     border-bottom: 1px solid rgb(244, 244, 244);
 }
 .change-modal-image-row{
-    padding: 20px 0px;
+    padding: 10px 0px;
     display: flex;
     flex-direction: row;
     -webkit-box-align: center;
@@ -728,7 +731,7 @@ ul{
     flex: 1 1 auto;
     overflow-y: auto;
     position: relative;
-    padding: 0px 30px;
+    padding: 0px 0px;
     font-weight: 400;
     font-size: 14px;
     line-height: 19px;
@@ -744,7 +747,7 @@ ul{
     border-bottom: 1px solid rgb(244, 244, 244);
 }
 .review-modal-main-container{
-    padding: 30px;
+    padding: 20px;
     border-bottom: 1px solid rgb(244, 244, 244);
 }
 .review-modal-main-text{
@@ -761,11 +764,11 @@ ul{
     text-align: center;
     color: rgb(128, 128, 128);
     white-space: pre-line;
-    margin-top: 6px;
+    margin-top: 0px;
 }
 .review-modal-content-container{
     position: relative;
-    min-height: 411px;
+    min-height: 240px;
     overflow: hidden;
 }
 .review-modal-content-wrapper{
@@ -875,3 +878,199 @@ ul{
     list-style-position: outside;
     padding-inline-start: 3px;
 }
+/* 작성한 후기 */
+.review-title-left-btn2{
+    flex: 1 1 0%;
+    border: 1px solid rgb(244, 244, 244);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    cursor: pointer;
+}
+.review-title-right-btn2{
+    border-bottom-width: 0px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(95, 0, 128);
+    flex: 1 1 0%;
+    border: 1px solid rgb(244, 244, 244);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    cursor: pointer;
+}
+.review-modal-photo-text2{
+    padding-left: 6px;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+    line-height: 21px;
+}
+.review-modal-photo-text-list2{
+    line-height: 22px;
+    list-style-type: "·";
+    list-style-position: outside;
+    padding-inline-start: 3px;
+}
+.review-none-btn{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 10px;
+    padding-top: 2px;
+}
+/* 포토 이미지 */
+.imgButtonWrap{
+    height: 72px;
+    width: 72px;
+}
+.imgButton{
+    cursor:pointer;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 6px;
+  }
+  .cameraIconImg{
+    margin: 20px;
+    display: inline-block;
+    width: 1.875rem;
+    height: 1.875rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxwYXRoIGQ9Ik0wIDBoMzB2MzBIMHoiLz4KICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Ljc3OSA2LjExMSkiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjMiPgogICAgICAgICAgICA8cGF0aCBkPSJNMTEuNzkyIDBjLjM5OSAwIC43MTcuMDU2Ljk1NS4xNy4xNzkuMDg0LjM0Ni4xOTkuNTAzLjM0NGwuMTUzLjE1NS42MzEuNzAzYy4xMjIuMTMuMjM0LjIzMy4zMzcuMzFhLjk1Ljk1IDAgMCAwIC4zNC4xNmMuMTI1LjAzMS4yOTIuMDQ3LjUwMy4wNDdsMi45MDYtLjAwM2MxLjI4NCAwIDIuMzI0IDEuMDYyIDIuMzI0IDIuMzd2MTEuMTUxYzAgMS4zMS0xLjA0IDIuMzctMi4zMjQgMi4zN0gyLjMyNGMtMS4yODMgMC0yLjMyNC0xLjA2LTIuMzI0LTIuMzdWNC4yNTdjMC0xLjMxIDEuMDQtMi4zNyAyLjMyNC0yLjM3aDIuOTgzYy4yNDUtLjAwOS40MzItLjA0NS41NTktLjEwOC4xMS0uMDU1LjIzLS4xNDUuMzYtLjI3bC4xMzQtLjEzNy42MzEtLjcwM2MuMi0uMjIuNDE4LS4zODcuNjU3LS41LjE5LS4wOS40MzItLjE0NC43MjUtLjE2Mkw4LjYwMyAwaDMuMTg5eiIvPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMC4xNDIiIGN5PSI5LjUyOSIgcj0iMy41NTYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .imageFileInput{
+    display: none;
+  }
+  /* 선택사진제한 모달 */
+  .modalContainer {
+    padding: 0 24px;
+    align-items: center;
+    display: none;
+    position: fixed;
+    z-index: 1060;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625em;
+    overflow-x: hidden;
+    transition: background-color .1s;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .popup {
+      display: none;
+      position: relative;
+      box-sizing: border-box;
+      flex-direction: column;
+      justify-content: center;
+      width: 32em;
+      max-width: 360px;
+      padding: 0;
+      border: none;
+      border-radius: 12px;
+      background: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+  }
+  
+  .modalHeader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1.8em;
+  }
+  
+  .progressStep{
+      flex-wrap: wrap;
+      align-items: center;
+      max-width: 100%;
+      margin: 0 0 1.25em;
+      padding: 0;
+      background: inherit;
+      font-weight: 600;
+  }
+  
+  .modalIcon {
+      position: relative;
+      box-sizing: content-box;
+      justify-content: center;
+      width: 5em;
+      height: 5em;
+      margin: 1.25em auto 1.875em;
+      border: 0.25em solid transparent;
+      border-radius: 50%;
+      border-color: #000;
+      font-family: inherit;
+      line-height: 5em;
+      cursor: default;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+  
+  .modalContent {
+      z-index: 1;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      color: #545454;
+      font-size: 1.125em;
+      font-weight: 400;
+      line-height: normal;
+      text-align: center;
+      word-wrap: break-word;
+  }
+  
+  .modalContentContainer{
+    padding: 0;
+  }
+  
+  .modalContentInput{
+    padding: 40px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: rgb(51, 51, 51);
+    line-height: 21px;
+    margin-top: 0px;
+    white-space: pre-line;
+    letter-spacing: -0.5px;
+  }
+  
+  .modalFooterInput {
+    height: 56px;
+    border-top: 1px solid rgb(247, 247, 247);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: flex;
+    -webkit-box-pack: start;
+    padding: 0px;
+    margin-top: 0px;
+    justify-content: space-around;
+  }
+  
+  .modalCheckButton {
+    cursor:pointer;
+    width: auto;
+    height: 100%;
+    border: none;
+    padding: 0px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(95, 0, 128);
+    background: transparent;
+  }
+  
+  .showModal{
+    display: flex;
+    background: rgba(0,0,0,.4);
+  }
