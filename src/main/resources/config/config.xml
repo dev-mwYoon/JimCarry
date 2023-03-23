@@ -11,5 +11,6 @@
         <typeAlias type="com.app.jimcarry.domain.vo.ReviewFileVO" alias="reviewFileVO"/>
         <typeAlias type="com.app.jimcarry.domain.vo.StorageFileVO" alias="storageFileVO"/>
         <typeAlias type="com.app.jimcarry.domain.vo.InquiryFileVO" alias="inquiryFileVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.Criteria" alias="criteria" />
     </typeAliases>
 </configuration>

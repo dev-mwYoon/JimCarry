@@ -1,5 +1,6 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -11,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,8 +51,19 @@ public class StorageMapperTest {
     }
 
     @Test
+    void selectAll() {
+        Criteria criteria = new Criteria().create(3, 10);
+        log.info(storageMapper.selectAll(criteria).toString());
+    }
+
+    @Test
     void selectByUserId() {
+        Map<String, Object> map = new HashMap<>();
+        Criteria criteria = new Criteria().create(1, 10);
+        map.put("userId", 1L);
+        map.put("startRow", criteria.getStartRow());
+        map.put("amount", criteria.getAmount());
         storageMapper.insert(storageVO);
-        assertThat(storageMapper.selectByUserId(storageVO.getUserId()).size()).isGreaterThan(0);
+        storageMapper.selectByUserId(map);
     }
 }

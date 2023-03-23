@@ -34,6 +34,16 @@ class MypageControllerTest {
     }
 
     @Test
+    void myBox() throws Exception {
+        log.info(
+                "........getModelAndView" +
+                        mockMvc.perform(MockMvcRequestBuilders.get("/users/mypage/mybox")
+                                .param("page", "2")
+                                .param("amount", "10")
+                        ).andReturn().getModelAndView().getModelMap().toString());
+    }
+
+    @Test
     void updateUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/update")
                 .param("userIdentification", "MypageControllerUpdateTest")

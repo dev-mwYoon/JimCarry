@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -85,9 +82,10 @@ class UserMapperTest {
 
     @Test
     void selectAll() {
-        Criteria criteria = new Criteria().create(1, 10);
-        userMapper.insert(userVO);
-        assertThat(userMapper.selectAll(criteria).size()).isGreaterThan(0);
+        Criteria criteria = new Criteria().create(2, 10);
+        List<UserVO> list = userMapper.selectAll(criteria);
+        assertThat(list.size()).isGreaterThan(0);
+        log.info("list : " + list);
     }
 
     @Test

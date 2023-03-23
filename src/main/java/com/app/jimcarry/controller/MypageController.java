@@ -1,6 +1,8 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.aspect.annotation.LogStatus;
+import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +25,18 @@ public class MypageController {
 
     /* ============================== 내 창고 ================================ */
     @GetMapping("mybox")
-    public String myBox(){
+    public String myBox(Criteria criteria, Model model){
+        // 페이지 번호가 없을 때, 디폴트 1페이지
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        }
+        int totalMemberCount = userService.getList(criteria).size();
+        model.addAttribute("members", userService.getList(criteria));
+        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, totalMemberCount));
+        model.addAttribute("memberTotal", totalMemberCount);
+
         return "mypage/myBox";
     }
-
 
     /* ============================== 회원정보 수정 ================================ */
     @GetMapping("update")
