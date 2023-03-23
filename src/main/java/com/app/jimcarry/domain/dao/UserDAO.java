@@ -1,10 +1,12 @@
 package com.app.jimcarry.domain.dao;
 
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +42,7 @@ public class UserDAO {
 
     //    목록
     public List<UserVO> findAll() {
-        return userMapper.selectAll();
+        return /*userMapper.selectAll(criteria)*/new ArrayList<UserVO>();
     }
 
     //    수정
