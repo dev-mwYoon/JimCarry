@@ -9,6 +9,7 @@
     <!-- 로고 -->
     <link rel="icon" href="/image/favicon.png">
     <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/joinLogin/joinModal.css">
     <link rel="stylesheet" href="/css/joinLogin/joinForm.css">
 </head>
@@ -16,7 +17,7 @@
 <!-- 영역 잡기  -->
 <div id="fullscreen">
     <!-- 헤더 -->
-    <div id="headers"></div>
+    <header th:insert="~{main/header.html :: mainHeader}"></header>
 
     <div class="joinLayout">
         <div class="join">회원가입</div>
@@ -159,8 +160,8 @@
                             <div class="inputBox ">
                                 <input maxlength="6" data-testid="input-box" name="authCode" type="text" required="" class="input" value="">
                                 <span class="checknum1 ">
-                                        <span class="checknum2 ">00:00</span>
-                                    </span>
+                                    <span class="checknum2 ">00:00</span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -393,9 +394,8 @@
         </div>
     </div>
     <!-- 푸터 -->
+    <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 
-    <!--footer-->
-    <div id="footers"></div>
 
 
 
@@ -424,4 +424,5 @@
     });
 </script>
 <script src="/js/joinLogin/joinForm.js"></script>
+<script src="/js/main/header.js"></script>
 </html>
