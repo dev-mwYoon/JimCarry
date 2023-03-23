@@ -24,7 +24,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Qualifier("mypageUserService")
-/*추후에 클래스명 변경 요망*/
 public class MypageUserService implements UserService {
     private final UserDAO userDAO;
 
