@@ -21,7 +21,7 @@ public interface UserMapper {
     public Long selectByIdentificationAndPassword(String userIdentification, String userPassword);
 
     //    아이디 갯수 조회(중복검사)
-    public int selecBytIdentification(String userIdentification);
+    public int selectBytIdentification(String userIdentification);
 
     //    목록
     public List<UserVO> selectAll();

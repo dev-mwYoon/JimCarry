@@ -35,7 +35,7 @@ public class UserDAO {
 
     //    아이디 갯수 조회(중복검사)
     public int findCountByUserIdentification(String userIdentification) {
-        return userMapper.selecBytIdentification(userIdentification);
+        return userMapper.selectBytIdentification(userIdentification);
     }
 
     //    목록

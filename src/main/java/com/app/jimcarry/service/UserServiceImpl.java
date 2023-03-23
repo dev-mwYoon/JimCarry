@@ -42,6 +42,10 @@ public class UserServiceImpl implements UserService {
         Optional.ofNullable(userVO).orElseThrow();
         String userIdentification = userVO.getUserIdentification();
 
+        if(userVO.getUserGender() == null) {
+            userVO.setUserGender("선택 안함");
+        }
+
         /* 아이디 중복검사 */
         if (checkIdentificationDuplicate(userIdentification)) {
             userDAO.save(userVO);
