@@ -171,6 +171,19 @@ html, button, input, select, textarea {
     border: 1px solid rgb(95, 0, 128);
 }
 
+.duplicateBox:disabled {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 44px;
+    border-radius: 3px;
+    color: rgb(153, 153, 153);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(153, 153, 153);
+}
+
 .dCheckBox > button{
     height: 44px;
     border-radius: 3px;
@@ -368,6 +381,7 @@ html, button, input, select, textarea {
     padding: 0px;
     font-weight: 500;
     font-size: 18px;
+    cursor: pointer;
 }
 .termCheckBox {
     overflow: hidden;
@@ -415,7 +429,7 @@ svg:not(:root) {
     color: rgb(51, 51, 51);
     padding: 0px;
     font-size: 14px;
-
+    cursor: pointer;
 }
 .termCheckBox {
     overflow: hidden;
@@ -504,6 +518,19 @@ svg:not(:root) {
     border-radius: 3px;
     color: rgb(255, 255, 255);
     background-color: rgb(95, 0, 128);
+    border: 0px none;
+}
+
+.submitButton:disabled {
+    display: block;
+    padding: 0px 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 240px;
+    height: 56px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(153, 153, 153);
     border: 0px none;
 }
 

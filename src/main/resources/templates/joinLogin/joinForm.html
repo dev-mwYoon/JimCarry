@@ -26,284 +26,265 @@
                 <span class="RequiredInput">*</span>
                 필수입력사항
             </div>
-            <div class="formstart">
-                <!-- ----------------아이디------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">아이디<span class="RequiredInput">*</span></label>
-                    </div>
-                    <div class="flexLayout">
-                        <div class="paddingBottom">
-                            <div class="inputBox">
-                                <input class="input idInput" type="text" placeholder="아이디를 입력해주세요" name="userId" required
-                                       autocomplete="none">
+            <form th:action="@{/user/join}" method="post" name="joinForm">
+                <div class="formstart">
+                    <!-- ----------------아이디------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">아이디<span class="RequiredInput">*</span></label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input idInput necessary" type="text" placeholder="아이디를 입력해주세요" name="userIdentification" required
+                                           autocomplete="none">
+                                </div>
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox idDuplicate" type="button"><span class="buttonBox">중복확인</span></button>
                         </div>
                     </div>
-                    <div class="dCheckBox">
-                        <button class="duplicateBox idDuplicate" type="button"><span class="buttonBox">중복확인</span></button>
-                    </div>
-                </div>
-                <!-- ----------------비밀번호------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">비밀번호<span class="RequiredInput">*</span></label>
-                    </div>
+                    <!-- ----------------비밀번호------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">비밀번호<span class="RequiredInput">*</span></label>
+                        </div>
 
-                    <div class="flexLayout">
-                        <div class="paddingBottom">
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input necessary" type="password" placeholder="비밀번호를 입력해주세요" name="userPassword"
+                                           required autocomplete="none">
+                                </div>
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------비번확인------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">비밀번호확인<span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input necessary" type="password" placeholder="비밀번호를 한번 더 입력해주세요"
+                                           name="checkPassword" required autocomplete="none">
+                                </div>
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------이름------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">
+                                이름
+                                <span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input necessary" type="text" placeholder="이름을 입력해 주세요" name="userName" required
+                                           autocomplete="none" value>
+                                </div>
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------이메일------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">이메일<span class="RequiredInput">*</span></label>
+                        </div>
+
+                        <div class="flexLayout">
                             <div class="inputBox">
-                                <input class="input" type="password" placeholder="비밀번호를 입력해주세요" name="userPassword"
+                                <input class="input emailInput necessary" type="text" placeholder="예: jimCarry@carry.com" name="userEmail"
                                        required autocomplete="none">
                             </div>
-                        </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
-                        </div>
-                    </div>
-                    <div class="dCheckBox"></div>
-                </div>
-                <!-- ----------------비번확인------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">비밀번호확인<span class="RequiredInput">*</span></label>
-                    </div>
-
-                    <div class="flexLayout">
-                        <div class="paddingBottom">
-                            <div class="inputBox">
-                                <input class="input" type="password" placeholder="비밀번호를 한번 더 입력해주세요"
-                                       name="checkPassword" required autocomplete="none">
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox emailDuplicate" type="button">
+                                <span class="buttonBox">중복확인</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="dCheckBox"></div>
-                </div>
-                <!-- ----------------이름------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">
-                            이름
-                            <span class="RequiredInput">*</span></label>
-                    </div>
+                    <!-- ----------------휴대폰------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">
+                                휴대폰<span class="RequiredInput">*</span>
+                            </label>
+                        </div>
 
-                    <div class="flexLayout">
-                        <div class="paddingBottom">
+                        <div class="flexLayout">
                             <div class="inputBox">
-                                <input class="input" type="text" placeholder="이름을 입력해 주세요" name="userName" required
-                                       autocomplete="none" value>
+                                <input class="input necessary" type="text" placeholder="숫자만 입력해주세요." name="userPhone" required
+                                       autocomplete="none">
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
                             </div>
                         </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" id="checkNum" type="button">
+                                <span class="buttonBox">인증번호 받기</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="dCheckBox"></div>
-                </div>
-                <!-- ----------------이메일------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">이메일<span class="RequiredInput">*</span></label>
+                    <!-- 휴대폰 인증번호 -->
+                    <div class="wrapper" style="display: none;" id="checkWrapper">
+                        <div class="title">
+                            <label class="label"></label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input maxlength="6" data-testid="input-box" name="authCode" type="text" required="" class="input necessary" value="">
+                                    <span class="checknum1 ">
+                                        <span class="checknum2 ">00:00</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" type="button" id="duplicateBox">
+                                <span class="buttonBox">인증번호 확인</span>
+                            </button>
+                        </div>
                     </div>
+                    <!-- ----------------주소------------------ -->
+                    <div class="wrapper address2">
+                        <div class="title">
+                            <label class="label">
+                                주소<span class="RequiredInput">*</span>
+                            </label>
+                        </div>
 
-                    <div class="flexLayout">
-                        <div class="inputBox">
-                            <input class="input emailInput" type="text" placeholder="예: jimCarry@carry.com" name="userEmail"
-                                   required autocomplete="none">
+                        <div class="flexLayout">
+                            <div class="addressLayout">
+                                <div class="inputBox">
+                                    <input class="input necessary" placeholder="주소를 검색해주세요" name="userAddress" id="numberAddress" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="addressDetailLayout">
+                                <div class="inputBox">
+                                    <input class="input necessary" placeholder="나머지 주소를 입력해주세요" name="userAddressDetail" type="text">
+                                </div>
+                            </div>
                         </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
-                        </div>
-                    </div>
-                    <div class="dCheckBox">
-                        <button class="duplicateBox emailDuplicate" type="button">
-                            <span class="buttonBox">중복확인</span>
-                        </button>
-                    </div>
-                </div>
-                <!-- ----------------휴대폰------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">
-                            휴대폰<span class="RequiredInput">*</span>
-                        </label>
-                    </div>
-
-                    <div class="flexLayout">
-                        <div class="inputBox">
-                            <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone" required
-                                   autocomplete="none">
-                        </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
-                        </div>
-                    </div>
-                    <div class="dCheckBox">
-                        <button class="duplicateBox" id="checkNum" type="button">
-                            <span class="buttonBox">인증번호 받기</span>
-                        </button>
-                    </div>
-                </div>
-                <!-- 휴대폰 인증번호 -->
-                <div class="wrapper" style="display: none;" id="checkWrapper">
-                    <div class="title">
-                        <label class="label"></label>
-                    </div>
-                    <div class="flexLayout">
-                        <div class="paddingBottom ">
-                            <div class="inputBox ">
-                                <input maxlength="6" data-testid="input-box" name="authCode" type="text" required="" class="input" value="">
-                                <span class="checknum1 ">
-                                    <span class="checknum2 ">00:00</span>
+                        <div class="dCheckBox">
+                            <button class="duplicateBox" type="button" onclick="sample6_execDaumPostcode()">
+                                <span class="buttonBox">
+                                    검색
                                 </span>
-                            </div>
+                            </button>
                         </div>
                     </div>
-                    <div class="dCheckBox">
-                        <button class="duplicateBox" type="button" id="duplicateBox">
-                            <span class="buttonBox">인증번호 확인</span>
-                        </button>
+                    <!-- ----------------성별------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">성별</label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="radioLayout">
+                                <label class="genderSelect" for="gender-man">
+                                    <input class="genderRadio" data-testid="radio-Male" id="gender-man" name="userGender"
+                                           type="radio" value="남" onclick="clickRadio()">
+                                    <span class="man checkBox">
+                                            <div class="man2 checkBox2"></div>
+                                        </span>
+                                    <span class="radioText">남자</span>
+                                </label>
+                                <label class="genderSelect" for="gender-woman">
+                                    <input class="genderRadio" data-testid="radio-FEMALE" id="gender-woman"
+                                           name="userGender" type="radio" value="여" onclick="clickRadio()">
+                                    <span class="woman checkBox">
+                                            <div class="woman2 checkBox2"></div>
+                                        </span>
+                                    <span class="radioText">여자</span>
+                                </label>
+                                <label class="genderSelect" for="gender-none">
+                                    <input class="genderRadio" data-testid="radio-NONE" id="gender-none" name="userGender"
+                                           type="radio" value="선택 안함" onclick="clickRadio()">
+                                    <span class="none checkBox">
+                                            <div class="none2 checkBox2"></div>
+                                        </span>
+                                    <span class="radioText">선택안함</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
+                    </div>
+                    <!-- ----------------생년월일------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">생년월일</label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="layout3">
+                                <div class="paddingBottom2">
+                                    <div class="yearBox" height="40">
+                                        <input class="birthInput yearInput" type="text" data-testid="input-box" name="userBirth"
+                                               placeholder="YYYY" height="40" value maxlength="4">
+                                    </div>
+                                </div>
+                                <span class="birth-span"></span>
+                                <div class="paddingBottom2">
+                                    <div class="yearBox" height="40">
+                                        <input class="birthInput monthInput" type="text" data-testid="input-box" name="userBirth"
+                                               placeholder="MM" height="40" value maxlength="2">
+                                    </div>
+                                </div>
+                                <span class="birth-span"></span>
+                                <div class="paddingBottom2">
+                                    <div class="yearBox" height="40">
+                                        <input class="birthInput dayInput" type="text" data-testid="input-box" name="userBirth"
+                                               placeholder="DD" height="40" value maxlength="2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dCheckBox"></div>
                     </div>
                 </div>
-                <!-- ----------------주소------------------ -->
-                <div class="wrapper address2">
-                    <div class="title">
-                        <label class="label">
-                            주소<span class="RequiredInput">*</span>
-                        </label>
-                    </div>
 
-                    <div class="flexLayout">
-                        <div class="addressLayout">
-                            <div class="inputBox">
-                                <input class="input" placeholder="주소를 검색해주세요" name="address" id="numberAddress" type="text">
-                            </div>
-                        </div>
-                        <div class="addressDetailLayout">
-                            <div class="inputBox">
-                                <input class="input" placeholder="나머지 주소를 입력해주세요" name="subAddress" type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dCheckBox">
-                        <button class="duplicateBox" onclick="sample6_execDaumPostcode()">
-                            <span class="buttonBox">
-                                검색
-                            </span>
-                        </button>
-                    </div>
-                </div>
-                <!-- ----------------성별------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">성별</label>
-                    </div>
-                    <div class="flexLayout">
-                        <div class="radioLayout">
-                            <label class="genderSelect" for="gender-man">
-                                <input class="genderRadio" data-testid="radio-Male" id="gender-man" name="gender"
-                                       type="radio" value="MALE" onclick="clickRadio()">
-                                <span class="man checkBox">
-                                        <div class="man2 checkBox2"></div>
-                                    </span>
-                                <span class="radioText">남자</span>
-                            </label>
-                            <label class="genderSelect" for="gender-woman">
-                                <input class="genderRadio" data-testid="radio-FEMALE" id="gender-woman"
-                                       name="gender" type="radio" value="FEMALE" onclick="clickRadio()">
-                                <span class="woman checkBox">
-                                        <div class="woman2 checkBox2"></div>
-                                    </span>
-                                <span class="radioText">여자</span>
-                            </label>
-                            <label class="genderSelect" for="gender-none">
-                                <input class="genderRadio" data-testid="radio-NONE" id="gender-none" name="gender"
-                                       type="radio" value="NONE" onclick="clickRadio()">
-                                <span class="none checkBox">
-                                        <div class="none2 checkBox2"></div>
-                                    </span>
-                                <span class="radioText">선택안함</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="dCheckBox"></div>
-                </div>
-                <!-- ----------------생년월일------------------ -->
-                <div class="wrapper">
-                    <div class="title">
-                        <label class="label">생년월일</label>
-                    </div>
-                    <div class="flexLayout">
-                        <div class="layout3">
-                            <div class="paddingBottom2">
-                                <div class="yearBox" height="40">
-                                    <input class="birthInput yearInput" type="text" data-testid="input-box" name="birthYear"
-                                           placeholder="YYYY" height="40" value maxlength="4">
-                                </div>
-                            </div>
-                            <span class="birth-span"></span>
-                            <div class="paddingBottom2">
-                                <div class="yearBox" height="40">
-                                    <input class="birthInput monthInput" type="text" data-testid="input-box" name="birthMonth"
-                                           placeholder="MM" height="40" value maxlength="2">
-                                </div>
-                            </div>
-                            <span class="birth-span"></span>
-                            <div class="paddingBottom2">
-                                <div class="yearBox" height="40">
-                                    <input class="birthInput dayInput" type="text" data-testid="input-box" name="birthDay"
-                                           placeholder="DD" height="40" value maxlength="2">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dCheckBox"></div>
-                </div>
-                <!-- ----------------추가입력사항------------------ -->
-            </div>
             <!-- 이용약관 -->
-            <div class="layout4"></div>
-            <div class="termStart">
-                <div class="termsLayout">
-                    <div class="termsTitle">
-                        <label class="termsLabel">
-                            이용약관동의<span class="RequiredInput">*</span>
-                        </label>
-                    </div>
-                    <div class="flexLayout">
-                        <div class="termText">
-                            <label class="firstTerm allCheck" for="TermsAgreeAll">
-                                <input class="termCheckBox" type="checkbox" id="TermsAgreeAll">
-                                <div class="svg-1">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path class="path1 allPath"
-                                              d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
-                                              stroke="#ddd" fill="#fff">
-                                        </path>
-                                        <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
-                                              stroke-linecap="round" stroke-linejoin="round">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <span class="termTextArticle"> 전체 동의합니다.</span>
+                <div class="layout4"></div>
+                <div class="termStart">
+                    <div class="termsLayout">
+                        <div class="termsTitle">
+                            <label class="termsLabel">
+                                이용약관동의<span class="RequiredInput">*</span>
                             </label>
-                            <p class="explainText">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
                         </div>
-                        <div class="termText">
-                            <div class="otherTerms">
-                                <label class="requiredTerm checked " for="RequiredTermsCondition">
-                                    <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
+                        <div class="flexLayout">
+                            <div class="termText">
+                                <label class="firstTerm allCheck" for="TermsAgreeAll">
+                                    <input class="termCheckBox" type="checkbox" id="TermsAgreeAll">
                                     <div class="svg-1">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
-                                            <path class="path1"
+                                            <path class="path1 allPath"
                                                   d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
                                                   stroke="#ddd" fill="#fff">
                                             </path>
@@ -312,92 +293,110 @@
                                             </path>
                                         </svg>
                                     </div>
-                                    <span class="termTextArticle">이용약관동의</span>
+                                    <span class="termTextArticle"> 전체 동의합니다.</span>
                                 </label>
-                                <span class="greyText">(필수)</span>
+                                <p class="explainText">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
                             </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm checked " for="RequiredTermCondition">
+                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path class="path1"
+                                                      d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                      stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                      stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="termTextArticle">이용약관동의</span>
+                                    </label>
+                                    <span class="greyText">(필수)</span>
+                                </div>
 
-                        </div>
-                        <div class="termText">
-                            <div class="otherTerms">
-                                <label class="requiredTerm checked" for="RequiredTermOfPrivacy">
-                                    <input class="termCheckBox test" id="RequiredTermOfPrivacy" type="checkbox">
-                                    <div class="svg-1">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path class="path1"
-                                                  d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
-                                                  stroke="#ddd" fill="#fff">
-                                            </path>
-                                            <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
-                                                  stroke-linecap="round" stroke-linejoin="round">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <span class="termTextArticle">개인정보 수집·이용 동의</span>
-                                </label>
-                                <span class="greyText">(필수)</span>
                             </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm checked" for="RequiredTermOfPrivacy">
+                                        <input class="termCheckBox test" id="RequiredTermOfPrivacy" type="checkbox">
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path class="path1"
+                                                      d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                      stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                      stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="termTextArticle">개인정보 수집·이용 동의</span>
+                                    </label>
+                                    <span class="greyText">(필수)</span>
+                                </div>
 
-                        </div>
-                        <div class="termText">
-                            <div class="otherTerms">
-                                <label class="requiredTerm checked" for="OptionalTermOfPrivacy">
-                                    <input class="termCheckBox test" id="OptionalTermOfPrivacy" type="checkbox">
-                                    <div class="svg-1">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path class="path1"
-                                                  d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
-                                                  stroke="#ddd" fill="#fff">
-                                            </path>
-                                            <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
-                                                  stroke-linecap="round" stroke-linejoin="round">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <span class="termTextArticle">개인정보 수집·이용 동의</span>
-                                </label>
-                                <span class="greyText">(선택)</span>
                             </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm checked" for="OptionalTermOfPrivacy">
+                                        <input class="termCheckBox test" id="OptionalTermOfPrivacy" type="checkbox">
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path class="path1"
+                                                      d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                      stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                      stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="termTextArticle">개인정보 수집·이용 동의</span>
+                                    </label>
+                                    <span class="greyText">(선택)</span>
+                                </div>
 
-                        </div>
-                        <div class="termText">
-                            <div class="otherTerms">
-                                <label class="requiredTerm checked" for="OptionalTermOfPrivacy">
-                                    <input class="termCheckBox test" id="RequiredSignupAge" type="checkbox">
-                                    <div class="svg-1">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path class="path1"
-                                                  d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
-                                                  stroke="#ddd" fill="#fff">
-                                            </path>
-                                            <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
-                                                  stroke-linecap="round" stroke-linejoin="round">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <span class="termTextArticle">본인은 만 14세 이상입니다.</span>
-                                </label>
-                                <span class="greyText">(필수)</span>
+                            </div>
+                            <div class="termText">
+                                <div class="otherTerms">
+                                    <label class="requiredTerm checked" for="OptionalTermOfPrivacy">
+                                        <input class="termCheckBox test" id="RequiredSignupAge" type="checkbox">
+                                        <div class="svg-1">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path class="path1"
+                                                      d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                      stroke="#ddd" fill="#fff">
+                                                </path>
+                                                <path class="path2" d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                      stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="termTextArticle">본인은 만 14세 이상입니다.</span>
+                                    </label>
+                                    <span class="greyText">(필수)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="submitLayout">
-                <button class="submitButton" type="submit" width="240" height="56" radius="3">
-                    <span class="buttonBox">가입하기</span>
-                </button>
+                <div class="submitLayout">
+                    <button class="submitButton" type="submit" width="240" height="56" radius="3">
+                        <span class="buttonBox">가입하기</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
     <!-- 푸터 -->
     <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
-
-
-
 
 </div>
 <!-- 모달 -->
@@ -405,9 +404,9 @@
     <div class="modal-popup modal-show" role="dialog" style="display: flex;">
         <div class="modal-content">
             <div id="modal-content" class="modal-html-container" style="display: block;">
-                <div class="popup-content">6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합</div>
+                <div class="popup-content"></div>
                 <div class="popup-footer">
-                    <button class="popup-check">확인</button>
+                    <button type="button" class="popup-check">확인</button>
                 </div>
             </div>
         </div>
@@ -415,14 +414,8 @@
 </div>
 <!— 모달 끝 —>
 </body>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#headers").load("/main/header.html");
-        $("#footers").load("/main/footer.html");
-    });
-</script>
 <script src="/js/joinLogin/joinForm.js"></script>
 <script src="/js/main/header.js"></script>
 </html>

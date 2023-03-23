@@ -2,15 +2,13 @@
 /* 사이즈 라디오 버튼 클릭했을때 */
 function clickRadio() {
     /* size의 모든값 조회 */
-    const $sizes = $('input[name=gender]');
+    const $sizes = $('.genderRadio');
     const $count = $sizes.length;
     const $checkboxes = $('span.checkBox');
     const $checkboxes2 = $('div.checkBox2');
 
     for (let i = 0; i < $count; i++) {
         if ($sizes[i].checked) {
-            console.log('들어옴');
-            console.log($sizes[i]);
             $checkboxes[i].classList.add('radioSpanClick');
             $checkboxes2[i].classList.add('radioBoxDivClick');
         } else {
@@ -36,7 +34,6 @@ let blurMessages = ["아이디를 입력하세요.", "비밀번호를 입력하�
 let regexMessages = ["영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.", "공백 제외 영어 및 숫자, 특수문자 모두 포함하여 10~20자로 입력해주세요.", "위 비밀번호와 일치하지 않습니다. 다시 입력해주세요.", "영문 혹은 한글로 2자~20자로 입력해주세요.", "이메일 주소를 확인해주세요.", "휴대폰 번호를 확인하세요."];
 
 const $wrapperInputs = $('.wrapper input[type=text], input[type=password]');
-console.log($wrapperInputs);
 const $errorMessage = $('div.errorDiv p.errorMessage');
 let errorCheck;
 let errorCheckAll = [false, false, false, false, false, false];
@@ -134,9 +131,6 @@ $checkboxes.each((i,e)=>{
         }
     });
 });
-console.log($checks.children().filter(':checked').length);
-console.log($('#TermsAgreeAll'))
-console.log($all);
 // 전체동의 버튼 효과
 $all.on("click", function(){
     var $checked = $('#TermsAgreeAll').is(':checked');
@@ -144,13 +138,10 @@ $all.on("click", function(){
         $path.attr('fill', '#fff');
         $('#TermsAgreeAll').prop('checked', false);
         $checks.children().prop('checked', false);
-        console.log($checks.children().filter(':checked').length);
     } else {
         $path.attr('fill', '#5f0080');
         $checks.children().prop('checked', true);
         $('#TermsAgreeAll').prop('checked', true);
-        // console.log($checks.children().filter(':checked').length);
-  
     }
 });
 
@@ -159,15 +150,16 @@ $checks.on('click', function(){
     var agreeCheck = [false, false, false, false];
 
     if($checks.children().filter(":checked").length == 4) {
-        
         $('.allPath').attr('fill', '#5f0080');
         $('#TermsAgreeAll').prop('checked', false);
     } else {
-        
+
         $('.allPath').attr('fill', '#fff');
         $('#TermsAgreeAll').prop('checked', true);
     }
 });
+
+
 
 //모달
 const $modal = $('.modal-container');
@@ -183,13 +175,23 @@ $duplicateEmailButton.on('click', function(){
     let errorCheck = emailRegex.test(valueEmail);
     if(!valueEmail){
         $modalText.text("이메일주소를 입력하세요.")
-        console.log(valueEmail);
-
     }else if(!errorCheck){
         $modalText.text("이메일 형식을 확인해주세요.")
     }else{
-        $modalText.text("사용 가능 합니다.")
-        
+        $.ajax({
+            url: "/user/checkEmailDuplicate",
+            type: "post",
+            data: { userEmail : valueEmail },
+            success: function(result) {
+                if(result) {
+                    $modalText.text("사용 가능 합니다.");
+                    $($('.duplicateBox')[1]).attr('disabled', true);
+                } else {
+                    $modalText.text("사용 불가능 합니다.");
+                    $('.emailInput').val('');
+                }
+            }
+        });
     }
     
     $checkButton.on('click',()=>{
@@ -203,13 +205,23 @@ $duplicateIdButton.on('click', function(){
     let errorCheck = valueId.length > 3 && valueId.length < 21 && idRegex.test(valueId) && !specialCharacterRegex.test(valueId);
     if(!valueId){
         $modalText.text("아이디를 입력해주세요.");
-        
-
     }else if(!errorCheck){
         $modalText.text("영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.");
-        
     }else{
-        $modalText.text("사용 가능 합니다.")
+        $.ajax({
+            url: "/user/checkIdentificationDuplicate",
+            type: "post",
+            data: { userIdentification : valueId },
+            success: function(result) {
+                if(result) {
+                    $modalText.text("사용 가능 합니다.");
+                    $($('.duplicateBox')[0]).attr('disabled', true);
+                } else {
+                    $modalText.text("사용 불가능 합니다.");
+                    $('.idInput').val('');
+                }
+            }
+        });
     }
     
     $checkButton.on('click',()=>{
@@ -221,20 +233,104 @@ $duplicateIdButton.on('click', function(){
 $checkWrapper = $('#checkWrapper');
 $checkNum = $('#checkNum');
 
+$submitButton = $('.submitButton');
+$submitButton.on('click', function(event) {
+    event.preventDefault();
+
+    for (let i = 0; i < $('.necessary').length; i++) {
+        if(!$($('.necessary')[i]).val()) {
+            $modal.css('visibility', 'visible');
+            $modalText.text("필수입력사항을 모두 입력해주세요.");
+            $checkButton.on('click',()=>{
+                $modal.css('visibility', 'hidden');
+            });
+            return;
+        }
+    }
+
+    if(!$($('.duplicateBox')[0]).attr('disabled')) {
+        $modal.css('visibility', 'visible');
+        $modalText.text("아이디 중복확인을 해주세요.");
+        $checkButton.on('click',()=>{
+            $modal.css('visibility', 'hidden');
+        });
+        return;
+    }
+    if(!$($('.duplicateBox')[1]).attr('disabled')) {
+        $modal.css('visibility', 'visible');
+        $modalText.text("이메일 중복확인을 해주세요.");
+        $checkButton.on('click',()=>{
+            $modal.css('visibility', 'hidden');
+        });
+        return;
+    }
+    // if(!($('.buttonBox').text() == '확인')) {
+    //     $modal.css('visibility', 'visible');
+    //     $modalText.text("인증번호를 확인해주세요.");
+    //     $checkButton.on('click',()=>{
+    //         $modal.css('visibility', 'hidden');
+    //     });
+    //     return false;
+    // }
+
+    if(!($($('.test')[0]).is(':checked')) || !($($('.test')[1]).is(':checked')) || !($($('.test')[3]).is(':checked'))) {
+        $modal.css('visibility', 'visible');
+        $modalText.text("필수 이용약관을 모두 선택 해주세요.");
+        $checkButton.on('click',()=>{
+            $modal.css('visibility', 'hidden');
+        });
+        return;
+    }
+    // console.log('서브밋');
+    joinForm.submit();
+});
+
 $checkNum.on('click', function(){
-    $modal.css('visibility', 'visible');
-    $modalText.text("인증번호가 전송되었습니다.")
-    $checkWrapper.css("display", "flex");
-    $checkButton.on('click',()=>{
-        $modal.css('visibility', 'hidden');
-    });
+    if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
+        $modal.css('visibility', 'visible');
+        $modalText.text("인증번호가 전송되었습니다.");
+        $checkWrapper.css("display", "flex");
+        $('#duplicateBox').attr('disabled', false);
+        $checkButton.on('click',()=>{
+            $modal.css('visibility', 'hidden');
+        });
+
+
+        var display = $(".checknum2");
+        // 유효시간 설정
+        var leftSec = 180;
+
+        startTimer(leftSec, display);
+    }
 });
 $duplicateBox = $('#duplicateBox');
 $duplicateBox.on('click', function(){
     $modal.css('visibility', 'visible');
-    $modalText.text("잘못된 인증 코드 입니다.")
+    $modalText.text("잘못된 인증 코드 입니다.");
     $checkButton.on('click',()=>{
-    $modal.css('visibility', 'hidden');
-});
+        $modal.css('visibility', 'hidden');
+    });
 });
 
+var timer = null;
+function startTimer(count, display) {
+    var minutes, seconds;
+    timer = setInterval(function () {
+        minutes = parseInt(count / 60, 10);
+        seconds = parseInt(count % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.html(minutes + ":" + seconds);
+
+        // 타이머 끝
+        if (--count < 0) {
+            clearInterval(timer);
+            display.html("00:00");
+            $modal.css('visibility', 'visible');
+            $modalText.text("유효시간이 만료되었습니다.\n다시 시도해주세요.");
+            $('#duplicateBox').attr('disabled', true);
+        }
+    }, 1000);
+}
