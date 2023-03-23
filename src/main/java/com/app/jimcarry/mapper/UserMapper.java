@@ -1,5 +1,6 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -26,7 +27,7 @@ public interface UserMapper {
     public int selectByEmail(String userEmail);
 
     //    목록
-    public List<UserVO> selectAll();
+    public List<UserVO> selectAll(Criteria criteria);
 
     //    수정
     public void update(UserVO userVO);
