@@ -21,10 +21,20 @@ public class MypageController {
 
     private final UserService userService;
 
+    /* ============================== 내 창고 ================================ */
+    
+
+
     /* ============================== 회원정보 수정 ================================ */
     @GetMapping("update")
     public String updateUser(Model model){
-        model.addAttribute(new UserVO());
+        /* 나중에 세션으로 수정 */
+        UserVO userVO = userService.getUser(2L);
+        model.addAttribute(userVO);
+        String[] births = userVO.getUserBirth().split("/");
+        model.addAttribute("birthFirtst", births[0]);
+        model.addAttribute("birthMiddle", births[1]);
+        model.addAttribute("birthLast", births[2]);
 
         return "mypage/my-info";
     }
@@ -38,7 +48,7 @@ public class MypageController {
         userVO.setUserAddress(temp.getUserAddress());
         userVO.setUserAddressDetail(temp.getUserAddressDetail());
         userVO.setUserGender(userVO.getUserGender().equals("") ? null : userVO.getUserGender());
-//        userService.updateUser(userVO);
+        userService.updateUser(userVO);
 
         return new RedirectView("/users/mypage/update");
     }
@@ -70,6 +80,11 @@ public class MypageController {
 
     /* =========================================================================== */
     /* ================================= 회원탈퇴 ================================= */
+    @GetMapping("unregister")
+    public String unregister(){
+        return "mypage/my-withdrawal";
+    }
+
     @PostMapping("checkPassword")
     @ResponseBody
     public boolean checkPassword(@RequestBody Map<String, String> map) {

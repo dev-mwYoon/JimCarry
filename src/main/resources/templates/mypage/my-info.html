@@ -56,64 +56,7 @@
         </a>
     </div>
     <div class="mypage-list">
-        <div class="mypage-list-left-container">
-            <div class="mypage-list-left-name">마이컬리</div>
-            <ul class="mypage-list-left-section">
-                <li>
-                    <a class="mypage-list-left-section-name" href="/templates/mypage/myBox.html"
-                       style="text-decoration: none;">
-                        내 창고
-                        <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">
-                            <path fill="#5f0080" fill-rule="evenodd" d="M1 11L6 5.5 1 0 0 1.1 4 5.5 0 9.9z"></path>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a class="mypage-list-left-section-name" href="/templates/mypage/use-myBox.html"
-                       style="text-decoration: none;">
-                        이용 중인 창고
-                        <span class="mypage-list-left-section-arrow"></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="mypage-list-left-section-name" href="/templates/mypage/my-qna.html"
-                       style="text-decoration: none;">
-                        문의 사항
-                        <span class="mypage-list-left-section-arrow"></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="mypage-list-left-section-name" href="/templates/mypage/my-review.html"
-                       style="text-decoration: none;">
-                        내 후기
-                        <span class="mypage-list-left-section-arrow"></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="mypage-list-left-section-name1" href="/templates/mypage/my-info.html"
-                       style="text-decoration: none;">
-                        개인 정보 수정
-                        <span class="mypage-list-left-section-arrow"></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="mypage-list-left-section-name" href="/templates/mypage/my-withdrawal.html"
-                       style="text-decoration: none;">
-                        회원 탈퇴
-                        <span class="mypage-list-left-section-arrow"></span>
-                    </a>
-                </li>
-            </ul>
-            <a href="#" class="mypage-list-left-section-help" style="text-decoration: none;">
-                <div class="mypage-list-left-section-help-text">
-                    <span style="font-weight: 500;">도움이 필요하신가요?</span>
-                    <span style="font-size: 12px;">1:1 문의하기</span>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">
-                    <path fill="#5f0080" fill-rule="evenodd" d="M1 11L6 5.5 1 0 0 1.1 4 5.5 0 9.9z"></path>
-                </svg>
-            </a>
-        </div>
+        <div class="mypage-list-left-container" th:insert="~{mypage/side-menu.html :: sidebar}"></div>
         <div class="mypage-list-right">
             <div class="mypage-list-right-name-container">
                 <div class="mypage-list-right-name-wrapper">
@@ -121,7 +64,7 @@
                 </div>
             </div>
             <div class="mypage-list-right-amend">
-                <form action="/users/mypage/update" th:object="${userVO}" method="post">
+                <form name="userForm" action="/users/mypage/update" th:object="${userVO}" method="post">
                     <!-- 아이디 -->
                     <div class="amend-container">
                         <div class="amend-name-container">
@@ -130,7 +73,7 @@
                         <div class="amend-inputBox-container">
                             <div class="amend-inputBox-wrapper">
                                 <div class="amend-inputBox">
-                                    <input type="text" th:field="*{userIdentification}" class="amend-id-inputBox-in"
+                                    <input type="text" th:value="*{userIdentification}" th:field="*{userIdentification}" class="amend-id-inputBox-in"
                                            placeholder="아이디를 입력해 주세요">
                                 </div>
                                 <div class="errorDiv">
@@ -166,7 +109,7 @@
                         <div class="amend-inputBox-container">
                             <div class="amend-inputBox-wrapper">
                                 <div class="amend-inputBox">
-                                    <input type="password" th:field="*{userPassword}" autocomplete="off"
+                                    <input type="password" name="userPassword" autocomplete="off"
                                            placeholder="새 비밀번호를 입력해 주세요"
                                            class="amend-password-inputBox-in">
                                 </div>
@@ -203,7 +146,7 @@
                         <div class="amend-inputBox-container">
                             <div class="amend-inputBox-wrapper">
                                 <div class="amend-inputBox">
-                                    <input type="text" th:field="*{userEmail}" placeholder="이메일을 입력해 주세요"
+                                    <input type="text" th:value="*{userEmail}" th:field="*{userEmail}" placeholder="이메일을 입력해 주세요"
                                            class="amend-password-inputBox-in">
                                 </div>
                                 <div class="errorDiv">
@@ -221,7 +164,7 @@
                         <div class="amend-inputBox-container">
                             <div class="amend-inputBox-wrapper">
                                 <div class="amend-inputBox">
-                                    <input type="text" th:field="*{userPhone}" placeholder="숫자만 입력해 주세요"
+                                    <input type="text" th:value="*{userPhone}" th:field="*{userPhone}" placeholder="숫자만 입력해 주세요"
                                            class="amend-password-inputBox-in">
                                 </div>
                                 <div class="errorDiv">
@@ -230,18 +173,18 @@
                             </div>
                         </div>
                         <div class="amend-inputBox-right-btn-container">
-                            <button type="button" class="amend-inputBox-right-btn phoneBtn">
-                                <span class="amend-inputBox-right-btn-name">다른번호 인증</span>
-                            </button>
-                            <!-- 다른번호 인증 모달 -->
-                            <div id="phonemodal" class="modal phonemodal">
-                                <div class="modal-content">
-                                    <div class="pay-content">휴대폰 번호를 확인해주세요.</div>
-                                    <div class="pay-footer"></div>
-                                    <button class="pay-popup-check phoneclose">확인</button>
-                                </div>
-                            </div>
-                            <!--  -->
+                            <!--                            <button type="button" class="amend-inputBox-right-btn phoneBtn">-->
+                            <!--                                <span class="amend-inputBox-right-btn-name">다른번호 인증</span>-->
+                            <!--                            </button>-->
+                            <!--                            &lt;!&ndash; 다른번호 인증 모달 &ndash;&gt;-->
+                            <!--                            <div id="phonemodal" class="modal phonemodal">-->
+                            <!--                                <div class="modal-content">-->
+                            <!--                                    <div class="pay-content">휴대폰 번호를 확인해주세요.</div>-->
+                            <!--                                    <div class="pay-footer"></div>-->
+                            <!--                                    <button class="pay-popup-check phoneclose">확인</button>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <!--                            &lt;!&ndash;  &ndash;&gt;-->
                         </div>
                     </div>
                     <!-- 성별 -->
@@ -282,17 +225,21 @@
                         <div class="amend-birth-container">
                             <div class="amend-birth-wrapper">
                                 <div class="amend-birth-input-container">
-                                    <input type="text" placeholder="YYYY" class="amend-birth-input-text">
+                                    <input type="text" placeholder="YYYY" th:value="${birthFirtst}"
+                                           class="amend-birth-input-text">
                                 </div>
                                 <span class="amend-birth-input-span">/</span>
                                 <div class="amend-birth-input-container">
-                                    <input type="text" placeholder="MM" class="amend-birth-input-text">
+                                    <input type="text" placeholder="MM" th:value="${birthMiddle}"
+                                           class="amend-birth-input-text">
                                 </div>
                                 <span class="amend-birth-input-span">/</span>
                                 <div class="amend-birth-input-container">
-                                    <input type="text" placeholder="DD" class="amend-birth-input-text">
+                                    <input type="text" placeholder="DD" th:value="${birthLast}"
+                                           class="amend-birth-input-text">
                                 </div>
                             </div>
+                            <input type="text" th:field="*{userBirth}" id="userBirth" style="display:none;">
                         </div>
                         <div class="amend-inputBox-right"></div>
                     </div>
@@ -356,7 +303,7 @@
                     </div>
                     <!-- 수정버튼 -->
                     <div class="amend-btn-container">
-                        <button class="amend-btn" type="submit">
+                        <button class="amend-btn" type="button">
                             <span class="amend-btn-text">회원정보수정</span>
                         </button>
                         <!-- 회원정보가 수정되었습니다. 모달 -->
@@ -364,7 +311,7 @@
                             <div class="modal-content">
                                 <div class="pay-content">회원정보가 수정되었습니다.</div>
                                 <div class="pay-footer"></div>
-                                <button class="pay-popup-check infocheck">확인</button>
+                                <button class="pay-popup-check infocheck" type="button">확인</button>
                             </div>
                         </div>
                     </div>
@@ -381,4 +328,29 @@
 <script src="/js/main/header.js"></script>
 <script src="/js/mypage/components.js"></script>
 <script src="/js/mypage/my-info.js"></script>
+<script th:inline="javascript">
+    let $gender = [[${userVO.userGender}]];
+    switch ($gender) {
+        case '남':
+            $("span.checkBox").eq(0).addClass('radioSpanClick');
+            $('div.checkBox2').eq(0).addClass('radioBoxDivClick');
+            $("input[name='userGender']").val("남");
+            break;
+        case '여':
+            $("span.checkBox").eq(1).addClass('radioSpanClick');
+            $('div.checkBox2').eq(1).addClass('radioBoxDivClick');
+            $("input[name='userGender']").val("여");
+            break;
+        default:
+            $("span.checkBox").eq(2).addClass('radioSpanClick');
+            $('div.checkBox2').eq(2).addClass('radioBoxDivClick');
+            $("input[name='userGender']").val("");
+            break;
+    }
+
+    $(".mypage-list-left-section-name").eq(4).css({
+        "background-color": "rgb(250, 250, 250)",
+        "color": "rgb(95, 0, 128)"
+    });
+</script>
 </html>

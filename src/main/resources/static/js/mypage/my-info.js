@@ -9,12 +9,12 @@ const passwordSpecialCharacterRegex = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
 const emailRegex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 let blurMessages = [
     "올바른 아이디 형식이 아닙니다.", "현재 비밀번호를 입력하세요.", "올바른 비밀번호 형식이 아닙니다.",
-    "동일한 비밀번호를 입력해주세요.", "이름을 입력하세요.", "이메일을 입력하세요.", "휴대폰 번호를 입력하세요."
+    "동일한 비밀번호를 입력해주세요.", "이메일을 입력하세요.", "휴대폰 번호를 입력하세요."
 ];
 let regexMessages = [
     "현재 아이디를 입력해주세요.", "현재 비밀번호를 입력하세요.",
     "숫자, 영문, 특수문자를 조합하여 8~15자 이내로 입력해주세요.", "동일한 비밀번호를 입력해주세요",
-    "영문 혹은 한글로 2자~20자로 입력해주세요.", "이메일 주소를 확인해주세요.", "휴대폰 번호를 확인하세요."];
+    "이메일 주소를 확인해주세요.", "휴대폰 번호를 확인하세요."];
 //아이디, 비밀번호, 새비밀번호, 비밀번호 확인, 이름, 이메일, 휴대폰
 
 const $wrapperInputs = $('input[type=text], input[type=password]');
@@ -90,10 +90,7 @@ $wrapperInputs.on("blur", function () {
         case 3: // 새 비밀번호 확인
             errorCheck = $wrapperInputs.eq(i - 1).val() == value;
             break;
-        case 4: // 이름
-            errorCheck = value.length > 1 && value.length < 21 && nameRegex.test(value) && !specialCharacterRegex.test(value);
-            break;
-        case 5: // 이메일
+        case 4: // 이메일
             errorCheck = emailRegex.test(value);
             if (errorCheck) {
                 doAjax(checkEmailAjaxConfig(value), (result) => {
@@ -109,7 +106,7 @@ $wrapperInputs.on("blur", function () {
                 })
             }
             break;
-        case 6: // 휴대폰
+        case 5: // 휴대폰
             errorCheck = phoneRegex.test(value);
             if (errorCheck) {
                 $(this).val(value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`));
@@ -131,34 +128,47 @@ $wrapperInputs.on("blur", function () {
 });
 
 /* 휴대폰 다른번호 인증 모달---------------- */
-const phonebtn = document.querySelector(".phoneBtn");
-const phonecontainer = document.querySelector(".phonemodal");
-const phoneclose = document.querySelector(".phoneclose");
-
-//모달창 열기
-phonebtn.addEventListener("click", function () {
-    phonecontainer.style.display = "block";
-});
-
-//모달창 닫기
-phoneclose.addEventListener("click", function () {
-    phonecontainer.style.display = "none";
-});
+// const phonebtn = document.querySelector(".phoneBtn");
+// const phonecontainer = document.querySelector(".phonemodal");
+// const phoneclose = document.querySelector(".phoneclose");
+//
+// //모달창 열기
+// phonebtn.addEventListener("click", function () {
+//     phonecontainer.style.display = "block";
+// });
+//
+// //모달창 닫기
+// phoneclose.addEventListener("click", function () {
+//     phonecontainer.style.display = "none";
+// });
 
 
 /* 회원정보 수정 모달----------------------- */
-const infobtn = document.querySelector(".amend-btn");
-const infocontainer = document.querySelector(".infomodal");
-const infoclose = document.querySelector(".infocheck");
+const $infobtn = $("button[type='button']");
+const $infocontainer = $(".infomodal");
+const $infoclose = $(".infocheck");
+
+console.log($infobtn, $infocontainer, $infoclose);
 
 //모달창 열기
-infobtn.addEventListener("click", function () {
-    infocontainer.style.display = "block";
+$infobtn.on("click", function (e) {
+    e.preventDefault();
+    let check = errorCheckAll.filter(e => e).length > 0;
+    console.log(check);
+
+    if (check) {
+        $(".pay-content").text("회원정보가 수정되었습니다.");
+        $infocontainer.css("display", "block");
+        setTimeout(() => $("form[name='userForm']").submit(), 1500);
+    } else {
+        $(".pay-content").text("입력하지 않은 사항이 있습니다.");
+        $infocontainer.css("display", "block");
+    }
 });
 
 //모달창 닫기
-infoclose.addEventListener("click", function () {
-    infocontainer.style.display = "none";
+$infoclose.on("click", function () {
+    $infocontainer.css("display", "none");
 });
 
 
@@ -184,7 +194,7 @@ $checkboxes.each((i, e) => {
 });
 // 전체동의 버튼 효과
 $all.on("click", function () {
-    var $checked = $('#RequiredTermCondition').prop("checked");
+    let $checked = $('.RequiredTermCondition').prop("checked");
     console.log($checked);
     if ($checked) {
         $path.attr('fill', '#fff');
@@ -214,33 +224,6 @@ $checks.on('click', function () {
 
 
 /* 성별 버튼 */
-function clickRadio() {
-    const $sizes = $('input[name=size]');
-
-    const $count = $sizes.length;
-
-    const $checkboxes = $('span.checkBox');
-    const $checkboxes2 = $('div.checkBox2');
-
-    for (let i = 0; i < $count; i++) {
-        if ($sizes[i].checked) {
-            console.log('들어옴');
-            console.log($sizes[i]);
-            $checkboxes[i].classList.add('radioSpanClick');
-            $checkboxes2[i].classList.add('radioBoxDivClick');
-            setGenderValue(i);
-        } else {
-            $checkboxes[i].classList.remove('radioSpanClick');
-            $checkboxes2[i].classList.remove('radioBoxDivClick');
-        }
-    }
-}
-
-$("div.sizeSelect").on("click", function() {
-    console.log("클릭됨")
-    clickRadio();
-});
-
 function setGenderValue(i) {
     switch (i) {
         case 0:
@@ -253,3 +236,22 @@ function setGenderValue(i) {
             $("input[name='userGender']").val("");
     }
 }
+
+$("div.sizeSelect").on("click", function () {
+    let i = $("div.sizeSelect").index($(this));
+    $("span.checkBox").eq(i).addClass('radioSpanClick');
+    $("span.checkBox")
+        .not($("span.checkBox").eq(i)).removeClass('radioSpanClick');
+    $('div.checkBox2').eq(i).addClass('radioBoxDivClick');
+    $('div.checkBox2')
+        .not($('div.checkBox2').eq(i)).removeClass('radioBoxDivClick');
+    setGenderValue(i);
+});
+
+$(".amend-birth-input-text").eq(2).on("blur", function () {
+    let $date = $(".amend-birth-input-text");
+    let format = `${$date.eq(0).val()}/${$date.eq(1).val()}/${$date.eq(2).val()}`
+    console.log(format);
+    $("input#userBirth").val(format);
+})
+

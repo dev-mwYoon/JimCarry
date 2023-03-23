@@ -2,6 +2,8 @@
 const $checkboxes = $('.termCheckBox');
 const $path = $('.path1');
 
+let check = false;
+
 $checkboxes.each((i,e)=>{
     $(e).parent().on('click', function(){
         var $ischecked = $(e).is(':checked');
@@ -15,3 +17,25 @@ $checkboxes.each((i,e)=>{
         }
     });
 });
+
+$(".amend-password-inputBox-in").on("blur", function () {
+    doAjax({
+        url: "/users/mypage/checkPassword",
+        method: "POST",
+        data: JSON.stringify({userPassword: $(this).val()})
+    }, (result) => {
+        if(result == true){
+            $(".errorDiv").css("display", "none");
+            check = true;
+        } else {
+            $(".errorDiv").css("display", "block");
+            $(".errorMessage").css("color", "red");
+            check = false;
+        }
+    });
+})
+
+$(".withdrawal-right-btn").on("click", function () {
+    check ?
+        setTimeout(() => {$("form[name='unregister-form']").submit()}, 1500) : () => {};
+})
