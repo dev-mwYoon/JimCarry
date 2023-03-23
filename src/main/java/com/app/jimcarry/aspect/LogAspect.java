@@ -2,6 +2,7 @@ package com.app.jimcarry.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,7 @@ public class LogAspect {
 
     @Before("@annotation(com.app.jimcarry.aspect.annotation.LogStatus)")
     public void beforeStart(JoinPoint joinPoint){
-        log.info("......method : " + joinPoint.getSignature().getName());
-        Arrays.asList(joinPoint.getArgs()).stream().map(String::valueOf).forEach(e -> log.info("......args : " + e));
+        log.info("............method : " + joinPoint.getSignature().getName());
+        Arrays.asList(joinPoint.getArgs()).stream().map(String::valueOf).forEach(e -> log.info("............args : " + e));
     }
 }

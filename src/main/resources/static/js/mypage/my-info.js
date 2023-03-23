@@ -7,8 +7,14 @@ const passwordNumberRegex = /[0-9]/g;
 const passwordEnglishRegex = /[a-z]/ig;
 const passwordSpecialCharacterRegex = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
 const emailRegex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-let blurMessages = ["현재 아이디를 입력해주세요.","현재 비밀번호를 입력하세요.", "10자 이상 입력", "동일한 비밀번호를 입력해주세요.", "이름을 입력하세요.", "이메일을 입력하세요.", "휴대폰 번호를 입력하세요."];
-let regexMessages = ["현재 아이디를 입력해주세요.", "현재 비밀번호를 입력하세요.", "영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.", "동일한 비밀번호를 입력해주세요", "영문 혹은 한글로 2자~20자로 입력해주세요.", "이메일 주소를 확인해주세요.", "휴대폰 번호를 확인하세요."];
+let blurMessages = [
+    "올바른 아이디 형식이 아닙니다.", "현재 비밀번호를 입력하세요.", "올바른 비밀번호 형식이 아닙니다.",
+    "동일한 비밀번호를 입력해주세요.", "이름을 입력하세요.", "이메일을 입력하세요.", "휴대폰 번호를 입력하세요."
+];
+let regexMessages = [
+    "현재 아이디를 입력해주세요.", "현재 비밀번호를 입력하세요.",
+    "숫자, 영문, 특수문자를 조합하여 8~15자 이내로 입력해주세요.", "동일한 비밀번호를 입력해주세요",
+    "영문 혹은 한글로 2자~20자로 입력해주세요.", "이메일 주소를 확인해주세요.", "휴대폰 번호를 확인하세요."];
 //아이디, 비밀번호, 새비밀번호, 비밀번호 확인, 이름, 이메일, 휴대폰
 
 const $wrapperInputs = $('input[type=text], input[type=password]');
@@ -23,16 +29,31 @@ $wrapperInputs.on("blur", function () {
 
     if (!value) {
         $errorDiv.eq(i).css("display", "block");
+        $errorDiv.eq(i).css("color", "red");
         $errorMessage.eq(i).text(blurMessages[i]);
         errorCheck = false;
         errorCheckAll[i] = errorCheck;
         return;
-    }else{
+    } else {
         $errorDiv.eq(i).css("display", "none");
     }
     switch (i) {
         case 0: // 아이디
             errorCheck = value.length > 3 && value.length < 21 && idRegex.test(value) && !specialCharacterRegex.test(value);
+            /* Ajax 통신 */
+            if (errorCheck) {
+                doAjax(checkIdentificationAjaxConfig(value), (result) => {
+                    if (result == true) {
+                        $errorDiv.eq(i).css("display", "block");
+                        $errorDiv.eq(i).css("color", "green");
+                        $errorMessage.eq(i).text(ajaxSuccessMsgs.identification);
+                    } else {
+                        $errorDiv.eq(i).css("display", "block");
+                        $errorDiv.eq(i).css("color", "red");
+                        $errorMessage.eq(i).text(ajaxErrorMsgs.identification);
+                    }
+                });
+            }
             break;
         case 1: // 현재 비밀번호
 
@@ -45,18 +66,26 @@ $wrapperInputs.on("blur", function () {
             var condition2 = value.length > 9 && value.length < 21;
             var condition3 = value.search(/\s/) < 0;
 
-            errorCheck = condition1 && condition2 && condition3;
+            // errorCheck = condition1 && condition2 && condition3;
+            errorCheck = true;
+
+            if (errorCheck) {
+                doAjax(checkPasswordAjaxConfig(value), (result) => {
+                    if (result == true) {
+                        $errorDiv.eq(i).css("display", "none");
+                        $errorMessage.eq(i).text(ajaxSuccessMsgs.password);
+                    } else {
+                        $errorDiv.eq(i).css("display", "block");
+                        $errorDiv.eq(i).css("color", "red");
+                        $errorMessage.eq(i).text(ajaxErrorMsgs.password);
+                    }
+                });
+            }
+
             break;
         case 2: //새 비밀번호
-            let numbercheck = value.search(passwordNumberRegex);
-            let englishcheck = value.search(passwordEnglishRegex);
-            let specialcharacterCheck = value.search(passwordSpecialCharacterRegex);
-
-            var condition4 = (numbercheck >= 0 && englishcheck >= 0) && (englishcheck >= 0 && specialcharacterCheck >= 0) && (specialcharacterCheck >= 0 && numbercheck >= 0)
-            var condition5 = value.length > 9 && value.length < 21;
-            var condition6 = value.search(/\s/) < 0;
-
-            errorCheck = condition4 && condition5 && condition6;
+            let reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/;
+            errorCheck = reg.test(value);
             break;
         case 3: // 새 비밀번호 확인
             errorCheck = $wrapperInputs.eq(i - 1).val() == value;
@@ -66,6 +95,19 @@ $wrapperInputs.on("blur", function () {
             break;
         case 5: // 이메일
             errorCheck = emailRegex.test(value);
+            if (errorCheck) {
+                doAjax(checkEmailAjaxConfig(value), (result) => {
+                    if (result == true) {
+                        $errorDiv.eq(i).css("display", "block");
+                        $errorDiv.eq(i).css("color", "green");
+                        $errorMessage.eq(i).text(ajaxSuccessMsgs.email);
+                    } else {
+                        $errorDiv.eq(i).css("display", "block");
+                        $errorDiv.eq(i).css("color", "red");
+                        $errorMessage.eq(i).text(ajaxErrorMsgs.email);
+                    }
+                })
+            }
             break;
         case 6: // 휴대폰
             errorCheck = phoneRegex.test(value);
@@ -78,28 +120,14 @@ $wrapperInputs.on("blur", function () {
 
     if (!errorCheck) {
         $errorDiv.eq(i).css("display", "block");
+        $errorDiv.eq(i).css("color", "red");
         $errorMessage.eq(i).text(regexMessages[i]);
         return;
-    }else{
+    } else {
         $errorDiv.eq(i).css("display", "none");
     }
     $errorMessage.eq(i).text("");
-    
-});
 
-/* 이메일 중복확인 모달--------------------- */
-const emailbtn = document.querySelector(".amend-inputBox-right-btn");
-const emailcontainer = document.querySelector(".emailmodal");
-const emailclose = document.querySelector(".emailclose");
-
-//모달창 열기
-emailbtn.addEventListener("click", function(){
-    emailcontainer.style.display="block";
-});
-
-//모달창 닫기
-emailclose.addEventListener("click", function(){
-    emailcontainer.style.display="none";
 });
 
 /* 휴대폰 다른번호 인증 모달---------------- */
@@ -108,13 +136,13 @@ const phonecontainer = document.querySelector(".phonemodal");
 const phoneclose = document.querySelector(".phoneclose");
 
 //모달창 열기
-phonebtn.addEventListener("click", function(){
-    phonecontainer.style.display="block";
+phonebtn.addEventListener("click", function () {
+    phonecontainer.style.display = "block";
 });
 
 //모달창 닫기
-phoneclose.addEventListener("click", function(){
-    phonecontainer.style.display="none";
+phoneclose.addEventListener("click", function () {
+    phonecontainer.style.display = "none";
 });
 
 
@@ -124,13 +152,13 @@ const infocontainer = document.querySelector(".infomodal");
 const infoclose = document.querySelector(".infocheck");
 
 //모달창 열기
-infobtn.addEventListener("click", function(){
-    infocontainer.style.display="block";
+infobtn.addEventListener("click", function () {
+    infocontainer.style.display = "block";
 });
 
 //모달창 닫기
-infoclose.addEventListener("click", function(){
-    infocontainer.style.display="none";
+infoclose.addEventListener("click", function () {
+    infocontainer.style.display = "none";
 });
 
 
@@ -139,26 +167,26 @@ const $checkboxes = $('.termCheckBox');
 const $path = $('.path1');
 const $all = $('.allCheck');
 const $checks = $('.checked');
-$checkboxes.each((i,e)=>{
-    $(e).parent().on('click', function(){
+$checkboxes.each((i, e) => {
+    $(e).parent().on('click', function () {
         var $ischecked = $(e).is(':checked');
-        if($ischecked){
+        if ($ischecked) {
             // $path.eq(i).attr('fill', '#5f0080');
             $path.eq(i).attr('fill', '#fff');
             $(e).prop('checked', false);
-        }else{
+        } else {
             // $path.eq(i).attr('fill', '#fff');
             $path.eq(i).attr('fill', '#5f0080');
             $(e).prop('checked', true);
-            
+
         }
     });
 });
 // 전체동의 버튼 효과
-$all.on("click", function(){
+$all.on("click", function () {
     var $checked = $('#RequiredTermCondition').prop("checked");
     console.log($checked);
-    if($checked) {
+    if ($checked) {
         $path.attr('fill', '#fff');
         $('#TermsAgreeAll').prop('checked', false);
         $checks.children().prop('checked', false);
@@ -166,24 +194,23 @@ $all.on("click", function(){
         $path.attr('fill', '#5f0080');
         $('#TermsAgreeAll').prop('checked', true);
         $checks.children().prop('checked', true);
-  
+
     }
 });
 // 동의 버튼 전체 확인 시 전체동의도 확인 효과, 필수사항 동의 시 submit 버튼 활성화
-$checks.on('click', function(){
+$checks.on('click', function () {
     var agreeCheck = [false, false];
 
-    if($checks.children().filter(":checked").length == 2) {
-        
+    if ($checks.children().filter(":checked").length == 2) {
+
         $('.allPath').attr('fill', '#5f0080');
         $('#TermsAgreeAll').prop('checked', false);
     } else {
-        
+
         $('.allPath').attr('fill', '#fff');
         $('#TermsAgreeAll').prop('checked', true);
     }
 });
-
 
 
 /* 성별 버튼 */
@@ -201,9 +228,28 @@ function clickRadio() {
             console.log($sizes[i]);
             $checkboxes[i].classList.add('radioSpanClick');
             $checkboxes2[i].classList.add('radioBoxDivClick');
+            setGenderValue(i);
         } else {
             $checkboxes[i].classList.remove('radioSpanClick');
             $checkboxes2[i].classList.remove('radioBoxDivClick');
         }
+    }
+}
+
+$("div.sizeSelect").on("click", function() {
+    console.log("클릭됨")
+    clickRadio();
+});
+
+function setGenderValue(i) {
+    switch (i) {
+        case 0:
+            $("input[name='userGender']").val("남");
+            break;
+        case 1:
+            $("input[name='userGender']").val("여");
+            break;
+        default:
+            $("input[name='userGender']").val("");
     }
 }

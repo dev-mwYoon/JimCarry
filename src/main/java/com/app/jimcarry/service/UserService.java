@@ -5,6 +5,7 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.UserDAO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ import java.util.*;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 /*추후에 클래스명 변경 요망*/
 public class UserService {
     private final UserDAO userDAO;
@@ -139,6 +141,7 @@ public class UserService {
     @LogStatus
     public boolean checkEmailDuplicate(String userEmail) {
         //     사용가능 = true, 사용불가 = false
+        log.info("checkEmailDuplicate : " + (userDAO.findCountByUserEmail(userEmail) == 0));
         return userDAO.findCountByUserEmail(userEmail) == 0;
     }
 }

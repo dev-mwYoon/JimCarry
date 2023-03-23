@@ -1,568 +1,384 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>짐캐리 | 마이페이지 | 개인 정보 수정</title>
-    <link rel="stylesheet" href="../../static/css/mypage/my-info.css">
-    <link rel="stylesheet" href="../../static/css/main/header.css">
-    <link rel="stylesheet" href="../../static/css/main/footer.css">
-    <link rel="icon" href="../../static/image/favicon.png">
-    <link rel="stylesheet" href="../../static/css/storageRegister/storageRegister.css">
+    <link rel="stylesheet" href="/css/mypage/my-info.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="icon" href="/image/favicon.png">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
-    <!-- 헤더 -->
-    <header>
-        <div class="header-layout">
-            <div class="login-all-menu">
-                <a href="/market-kurly/login.html" class="login-menu">
-                    <span class="welcome-box">웰컴</span>
-                    정현진 님
-                </a>
-                <div class="slash"></div>
-                <a href="/market-kurly/login.html" class="login-menu">로그아웃</a>
-                <div class="slash"></div>
-                <div class="customer-center-layout">
-                    <a class="customer-centertext">문의하기
-                    </a>
-                </div>
-            </div>
-            <div class="secondheader-layout">
-                <div class="second-header-layout1">
-                    <img class="logo" src="../../static/image/logo.png" alt="마켓컬리 로고">
-                </div>
-            </div>
-        </div>
-        <div id="header" class="menu-fix">
-            <div class="menu">
-                <div class="header-dropbox">
-                    <div class="category-layout">
-                        <span class="category-img"></span>
-                        <span class="category-text">카테고리</span>
-                    </div>
-                    <div class="header-dropbox-div">
-                        <ul class="header-dropbox-ul">
-                            <li class="header-dropbox-li">
-                                <span>서울특별시</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>경기도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>강원도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>충청북도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>충청남도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>경상북도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>경상남도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>전라북도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>전라남도</span>
-                            </li>
-                            <li class="header-dropbox-li">
-                                <span>제주도</span>
-                            </li>
-                        </ul>
+<!-- 헤더 -->
+<header th:insert="~{main/header.html :: mainHeader}"></header>
+<!-- 마이페이지 -->
+<div class="mypage">
+    <div class="mypage-section">
+        <div class="mypage-section-list">
+            <div class="mypage-section-list-left">
+                <div class="mypage-section-list-left-container">
+                    <div class="mypage-section-list-left-type">일반</div>
+                    <div class="mypage-section-list-left-name-container">
+                        <strong class="mypage-section-list-left-name">서현님</strong>
                     </div>
                 </div>
-                <ul class="menus-layout">
-                    <li class="menu-layout">
-                        <span class="menu-text">창고등록</span>
-                    </li>
-                    <li class="menu-layout">
-                        <span class="menu-text">공지사항</span>
-                    </li>
-                    <li class="menu-layout">
-                        <span class="menu-text">FAQ</span>
-                    </li>
-                </ul>
-                <div class="saetbyeol-notice-layout">
-                    <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/delivery_search/delivery_search" class="user-guide">
-                        <div class="saetbyeol-notice-box">
-                            <span class="saetbyeol-notice-text">서비스 이용</span>
-                            안내
+                <div>
+                    <li class="status-list-item">
+                        <div class="status-item-wrapper">
+                            <div class="status-item-name">내 창고</div>
+                            <a href="" class="status-item-count" style="text-decoration: none;">0</a>
                         </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- 마이페이지 -->
-    <div class="mypage">
-        <div class="mypage-section">
-            <div class="mypage-section-list">
-                <div class="mypage-section-list-left">
-                    <div class="mypage-section-list-left-container">
-                        <div class="mypage-section-list-left-type">일반</div>
-                        <div class="mypage-section-list-left-name-container">
-                            <strong class="mypage-section-list-left-name">서현님</strong>
+                    </li>
+                    <div class="mypage-list-right-line"></div>
+                    <li class="status-list-item">
+                        <div class="status-item-wrapper">
+                            <div class="status-item-name">이용중인 창고</div>
+                            <a href="" class="status-item-count" style="text-decoration: none;">0</a>
                         </div>
-                    </div>
-                    <div>
-                        <li class="status-list-item">
-                            <div class="status-item-wrapper">
-                                <div class="status-item-name">내 창고</div>
-                                <a href="" class="status-item-count" style="text-decoration: none;">0</a>
-                            </div>
-                        </li>
-                        <div class="mypage-list-right-line"></div>
-                        <li class="status-list-item">
-                            <div class="status-item-wrapper">
-                                <div class="status-item-name">이용중인 창고</div>
-                                <a href="" class="status-item-count" style="text-decoration: none;">0</a>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="mypage-section-list-left-btn-container">
-                        <button class="mypage-section-list-left-btn">개인 정보 수정</button>
-                    </div>
+                    </li>
                 </div>
-                <a href="#" class="mypage-section-list-right-benner">
-                    <img src="https://product-image.kurly.com/cdn-cgi/image/quality=85/banner/main/pc/img/20139e33-d871-4de9-a2e8-18a3024af36d.jpg" class="mypage-section-list-right-benner-img">
-                </a>
+                <div class="mypage-section-list-left-btn-container">
+                    <button class="mypage-section-list-left-btn">개인 정보 수정</button>
+                </div>
             </div>
-            <a href="#" class="mypage-section-list-benner">
-                <img src="https://product-image.kurly.com/banner/da-banner/9ecbd6df-5911-419c-8b62-cb44c937e568.jpg" class="mypage-section-list-benner-img">
+            <a href="#" class="mypage-section-list-right-benner">
+                <img src="https://product-image.kurly.com/cdn-cgi/image/quality=85/banner/main/pc/img/20139e33-d871-4de9-a2e8-18a3024af36d.jpg"
+                     class="mypage-section-list-right-benner-img">
             </a>
         </div>
-        <div class="mypage-list">
-            <div class="mypage-list-left-container">
-                <div class="mypage-list-left-name">마이컬리</div>
-                <ul class="mypage-list-left-section">
-                    <li>
-                        <a class="mypage-list-left-section-name" href="/templates/mypage/myBox.html" style="text-decoration: none;">
-                           내 창고
-                            <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">
-                                <path fill="#5f0080" fill-rule="evenodd" d="M1 11L6 5.5 1 0 0 1.1 4 5.5 0 9.9z"></path>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mypage-list-left-section-name" href="/templates/mypage/use-myBox.html" style="text-decoration: none;">
-                           이용 중인 창고
-                           <span class="mypage-list-left-section-arrow"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mypage-list-left-section-name" href="/templates/mypage/my-qna.html" style="text-decoration: none;">
-                           문의 사항
-                           <span class="mypage-list-left-section-arrow"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mypage-list-left-section-name" href="/templates/mypage/my-review.html" style="text-decoration: none;">
-                           내 후기
-                           <span class="mypage-list-left-section-arrow"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mypage-list-left-section-name1" href="/templates/mypage/my-info.html" style="text-decoration: none;">
-                           개인 정보 수정
-                           <span class="mypage-list-left-section-arrow"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="mypage-list-left-section-name" href="/templates/mypage/my-withdrawal.html" style="text-decoration: none;">
-                           회원 탈퇴
-                           <span class="mypage-list-left-section-arrow"></span>
-                        </a>
-                    </li>
-                </ul>
-                <a href="#" class="mypage-list-left-section-help" style="text-decoration: none;">
-                    <div class="mypage-list-left-section-help-text">
-                        <span style="font-weight: 500;">도움이 필요하신가요?</span>
-                        <span style="font-size: 12px;">1:1 문의하기</span>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">
-                        <path fill="#5f0080" fill-rule="evenodd" d="M1 11L6 5.5 1 0 0 1.1 4 5.5 0 9.9z"></path>
-                    </svg>
-                </a>
-            </div>
-            <div class="mypage-list-right">
-                <div class="mypage-list-right-name-container">
-                    <div class="mypage-list-right-name-wrapper">
-                        <h2 class="mypage-list-right-name">개인 정보 수정</h2>
-                    </div>
+        <a href="#" class="mypage-section-list-benner">
+            <img src="https://product-image.kurly.com/banner/da-banner/9ecbd6df-5911-419c-8b62-cb44c937e568.jpg"
+                 class="mypage-section-list-benner-img">
+        </a>
+    </div>
+    <div class="mypage-list">
+        <div class="mypage-list-left-container">
+            <div class="mypage-list-left-name">마이컬리</div>
+            <ul class="mypage-list-left-section">
+                <li>
+                    <a class="mypage-list-left-section-name" href="/templates/mypage/myBox.html"
+                       style="text-decoration: none;">
+                        내 창고
+                        <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">
+                            <path fill="#5f0080" fill-rule="evenodd" d="M1 11L6 5.5 1 0 0 1.1 4 5.5 0 9.9z"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="mypage-list-left-section-name" href="/templates/mypage/use-myBox.html"
+                       style="text-decoration: none;">
+                        이용 중인 창고
+                        <span class="mypage-list-left-section-arrow"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="mypage-list-left-section-name" href="/templates/mypage/my-qna.html"
+                       style="text-decoration: none;">
+                        문의 사항
+                        <span class="mypage-list-left-section-arrow"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="mypage-list-left-section-name" href="/templates/mypage/my-review.html"
+                       style="text-decoration: none;">
+                        내 후기
+                        <span class="mypage-list-left-section-arrow"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="mypage-list-left-section-name1" href="/templates/mypage/my-info.html"
+                       style="text-decoration: none;">
+                        개인 정보 수정
+                        <span class="mypage-list-left-section-arrow"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="mypage-list-left-section-name" href="/templates/mypage/my-withdrawal.html"
+                       style="text-decoration: none;">
+                        회원 탈퇴
+                        <span class="mypage-list-left-section-arrow"></span>
+                    </a>
+                </li>
+            </ul>
+            <a href="#" class="mypage-list-left-section-help" style="text-decoration: none;">
+                <div class="mypage-list-left-section-help-text">
+                    <span style="font-weight: 500;">도움이 필요하신가요?</span>
+                    <span style="font-size: 12px;">1:1 문의하기</span>
                 </div>
-                <div class="mypage-list-right-amend">
-                    <form action="#">
-                        <!-- 아이디 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">아이디</label>
-                            </div>
-                            <div class="amend-inputBox-container">
-                                <div class="amend-inputBox-wrapper">
-                                    <div class="amend-inputBox">
-                                        <input type="text" class="amend-id-inputBox-in" placeholder="아이디를 입력해 주세요">
-                                    </div>
-                                    <div class="errorDiv">
-                                        <p class="errorMessage"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">
+                    <path fill="#5f0080" fill-rule="evenodd" d="M1 11L6 5.5 1 0 0 1.1 4 5.5 0 9.9z"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="mypage-list-right">
+            <div class="mypage-list-right-name-container">
+                <div class="mypage-list-right-name-wrapper">
+                    <h2 class="mypage-list-right-name">개인 정보 수정</h2>
+                </div>
+            </div>
+            <div class="mypage-list-right-amend">
+                <form action="/users/mypage/update" th:object="${userVO}" method="post">
+                    <!-- 아이디 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">아이디</label>
                         </div>
-                        <!-- 현재 비밀번호 --> 
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">현재 비밀번호</label>
-                            </div>
-                            <div class="amend-inputBox-container">
-                                <div class="amend-inputBox-wrapper">
-                                    <div class="amend-inputBox">
-                                        <input type="password" autocomplete="off" placeholder="비밀번호를 입력해 주세요" class="amend-password-inputBox-in">
-                                    </div>
-                                    <div class="errorDiv">
-                                        <p class="errorMessage"></p>
-                                    </div>
+                        <div class="amend-inputBox-container">
+                            <div class="amend-inputBox-wrapper">
+                                <div class="amend-inputBox">
+                                    <input type="text" th:field="*{userIdentification}" class="amend-id-inputBox-in"
+                                           placeholder="아이디를 입력해 주세요">
                                 </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
-                        <!-- 새 비밀번호 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">새 비밀번호</label>
-                            </div>
-                            <div class="amend-inputBox-container">
-                                <div class="amend-inputBox-wrapper">
-                                    <div class="amend-inputBox">
-                                        <input type="password" autocomplete="off" placeholder="새 비밀번호를 입력해 주세요" class="amend-password-inputBox-in">
-                                    </div>
-                                    <div class="errorDiv">
-                                        <p class="errorMessage"></p>
-                                    </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
                                 </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
-                        <!-- 새 비밀번호 확인 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">새 비밀번호 확인</label>
-                            </div>
-                            <div class="amend-inputBox-container">
-                                <div class="amend-inputBox-wrapper">
-                                    <div class="amend-inputBox">
-                                        <input type="password" autocomplete="off" placeholder="새 비밀번호를 다시 입력해 주세요" class="amend-password-inputBox-in">
-                                    </div>
-                                    <div class="errorDiv">
-                                        <p class="errorMessage"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
-                        <!-- 이름 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">이름</label>
-                            </div>
-                            <div class="amend-inputBox-container">
-                                <div class="amend-inputBox-wrapper">
-                                    <div class="amend-inputBox">
-                                        <input type="text" placeholder="이름을 입력해 주세요" class="amend-password-inputBox-in">
-                                    </div>
-                                    <div class="errorDiv">
-                                        <p class="errorMessage"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
-                        <!-- 이메일 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">이메일</label>
-                            </div>
-                            <div class="amend-inputBox-container">
-                                <div class="amend-inputBox-wrapper">
-                                    <div class="amend-inputBox">
-                                        <input type="text" placeholder="이메일을 입력해 주세요" class="amend-password-inputBox-in">
-                                    </div>
-                                    <div class="errorDiv">
-                                        <p class="errorMessage"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right-btn-container">
-                                <button type="button" class="amend-inputBox-right-btn">
-                                    <span class="amend-inputBox-right-btn-name">중복확인</span>
-                                </button>
-                                <!-- 중복확인 모달 -->
-                                <div id="emailmodal" class="modal emailmodal">
-                                    <div class="modal-content">
-                                    <div class="pay-content">이메일을 입력해주세요.</div>
-                                    <div class="pay-footer"></div>
-                                    <button class="pay-popup-check emailclose">확인</button>
-                                    </div>
-                                </div>
-                                <!--  -->
                             </div>
                         </div>
-                        <!-- 휴대폰 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">휴대폰</label>
-                            </div>
-                            <div class="amend-inputBox-container">
-                                <div class="amend-inputBox-wrapper">
-                                    <div class="amend-inputBox">
-                                        <input type="text" placeholder="숫자만 입력해 주세요" class="amend-password-inputBox-in">
-                                    </div>
-                                    <div class="errorDiv">
-                                        <p class="errorMessage"></p>
-                                    </div>
+                        <div class="amend-inputBox-right"></div>
+                    </div>
+                    <!-- 현재 비밀번호 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">현재 비밀번호</label>
+                        </div>
+                        <div class="amend-inputBox-container">
+                            <div class="amend-inputBox-wrapper">
+                                <div class="amend-inputBox">
+                                    <input type="password" autocomplete="off" placeholder="비밀번호를 입력해 주세요"
+                                           class="amend-password-inputBox-in">
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
                                 </div>
                             </div>
-                            <div class="amend-inputBox-right-btn-container">
-                                <button type="button" class="amend-inputBox-right-btn phoneBtn">
-                                    <span class="amend-inputBox-right-btn-name">다른번호 인증</span>
-                                </button>
-                                <!-- 다른번호 인증 모달 -->
-                                <div id="phonemodal" class="modal phonemodal">
-                                    <div class="modal-content">
+                        </div>
+                        <div class="amend-inputBox-right"></div>
+                    </div>
+                    <!-- 새 비밀번호 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">새 비밀번호</label>
+                        </div>
+                        <div class="amend-inputBox-container">
+                            <div class="amend-inputBox-wrapper">
+                                <div class="amend-inputBox">
+                                    <input type="password" th:field="*{userPassword}" autocomplete="off"
+                                           placeholder="새 비밀번호를 입력해 주세요"
+                                           class="amend-password-inputBox-in">
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amend-inputBox-right"></div>
+                    </div>
+                    <!-- 새 비밀번호 확인 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">새 비밀번호 확인</label>
+                        </div>
+                        <div class="amend-inputBox-container">
+                            <div class="amend-inputBox-wrapper">
+                                <div class="amend-inputBox">
+                                    <input type="password" autocomplete="off" placeholder="새 비밀번호를 다시 입력해 주세요"
+                                           class="amend-password-inputBox-in">
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amend-inputBox-right"></div>
+                    </div>
+                    <!-- 이메일 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">이메일</label>
+                        </div>
+                        <div class="amend-inputBox-container">
+                            <div class="amend-inputBox-wrapper">
+                                <div class="amend-inputBox">
+                                    <input type="text" th:field="*{userEmail}" placeholder="이메일을 입력해 주세요"
+                                           class="amend-password-inputBox-in">
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amend-inputBox-right-btn-container"></div>
+                    </div>
+                    <!-- 휴대폰 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">휴대폰</label>
+                        </div>
+                        <div class="amend-inputBox-container">
+                            <div class="amend-inputBox-wrapper">
+                                <div class="amend-inputBox">
+                                    <input type="text" th:field="*{userPhone}" placeholder="숫자만 입력해 주세요"
+                                           class="amend-password-inputBox-in">
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amend-inputBox-right-btn-container">
+                            <button type="button" class="amend-inputBox-right-btn phoneBtn">
+                                <span class="amend-inputBox-right-btn-name">다른번호 인증</span>
+                            </button>
+                            <!-- 다른번호 인증 모달 -->
+                            <div id="phonemodal" class="modal phonemodal">
+                                <div class="modal-content">
                                     <div class="pay-content">휴대폰 번호를 확인해주세요.</div>
                                     <div class="pay-footer"></div>
                                     <button class="pay-popup-check phoneclose">확인</button>
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+                    </div>
+                    <!-- 성별 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">성별</label>
+                        </div>
+                        <div class="amend-gender-container">
+                            <div class="amend-gender-wrapper">
+                                <div class="sizeSelect">
+                                    <span id="sizeSmallSpan" class="checkBox">
+                                        <div id="sizeSmallDiv" class="checkBox2"></div>
+                                    </span>
+                                    <span class="radioText">남자</span>
+                                </div>
+                                <div class="sizeSelect">
+                                    <span id="sizeMiddleSpan" class="checkBox">
+                                        <div id="sizeMiddleDiv" class="checkBox2"></div>
+                                    </span>
+                                    <span class="radioText">여자</span>
+                                </div>
+                                <div class="sizeSelect">
+                                    <span class="checkBox">
+                                        <div class="checkBox2"></div>
+                                    </span>
+                                    <span class="radioText">선택안함</span>
+                                </div>
+                                <input type="text" th:field="*{userGender}" id="user_gender" style="display: none">
+                            </div>
+                        </div>
+                        <div class="amend-inputBox-right"></div>
+                    </div>
+                    <!-- 생년월일 -->
+                    <div class="amend-container" style="padding-bottom: 30px;">
+                        <div class="amend-name-container">
+                            <label class="amend-name">생년월일</label>
+                        </div>
+                        <div class="amend-birth-container">
+                            <div class="amend-birth-wrapper">
+                                <div class="amend-birth-input-container">
+                                    <input type="text" placeholder="YYYY" class="amend-birth-input-text">
+                                </div>
+                                <span class="amend-birth-input-span">/</span>
+                                <div class="amend-birth-input-container">
+                                    <input type="text" placeholder="MM" class="amend-birth-input-text">
+                                </div>
+                                <span class="amend-birth-input-span">/</span>
+                                <div class="amend-birth-input-container">
+                                    <input type="text" placeholder="DD" class="amend-birth-input-text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amend-inputBox-right"></div>
+                    </div>
+                    <div class="amend-line"></div>
+                    <!-- 이용약관동의 -->
+                    <div class="amend-container">
+                        <div class="amend-name-container">
+                            <label class="amend-name">이용약관동의</label>
+                        </div>
+                        <div class="amend-use-agree-container">
+                            <div class="amend-use-agree-checkBox-container">
+                                <label class="amend-use-agree-checkBox-wrapper allCheck">
+                                    <input class="termCheckBox test RequiredTermCondition" type="checkbox"
+                                           id="TermsAgreeAll">
+                                    <div class="amend-choice-agree-checkBox-next">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path class="path1 allPath"
+                                                  d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                  stroke="#ddd" fill="#fff"></path>
+                                            <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
                                     </div>
-                                </div>
-                                <!--  -->
+                                    <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의</span>
+                                </label>
+                                <span class="amend-choice-agree-choice">(선택)</span>
                             </div>
-                        </div>
-                        <!-- 성별 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">성별</label>
-                            </div>
-                            <div class="amend-gender-container">
-                                <div class="amend-gender-wrapper">
-                                    <label class="sizeSelect" for="sizeSmall">
-                                        <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="size" type="radio" value="SMALL" onclick="clickRadio()">
-                                        <span id = "sizeSmallSpan" class="checkBox">
-                                            <div id="sizeSmallDiv" class="checkBox2"></div>
-                                        </span>
-                                        <span class="radioText">남자</span>
-                                    </label>
-                                    <label class="sizeSelect" for="sizeMiddle">
-                                        <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="size" type="radio" value="MIDDLE" onclick="clickRadio()">
-                                        <span id="sizeMiddleSpan" class="checkBox">
-                                            <div id="sizeMiddleDiv" class="checkBox2"></div>
-                                        </span>
-                                        <span class="radioText">여자</span>
-                                    </label>
-                                    <label class="sizeSelect" for="sizeBig">
-                                        <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
-                                        <span class="checkBox">
-                                            <div class="checkBox2"></div>
-                                        </span>
-                                        <span class="radioText">선택안함</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
-                        <!-- 생년월일 -->
-                        <div class="amend-container" style="padding-bottom: 30px;">
-                            <div class="amend-name-container">
-                                <label class="amend-name">생년월일</label>
-                            </div>
-                            <div class="amend-birth-container">
-                                <div class="amend-birth-wrapper">
-                                    <div class="amend-birth-input-container">
-                                        <input type="text" placeholder="YYYY" class="amend-birth-input-text">
+                            <div class="amend-use-agree-check-container">
+                                <label class="amend-use-agree-check-sms checked">
+                                    <input class="termCheckBox test RequiredTermCondition" type="checkbox">
+                                    <div class="amend-choice-agree-checkBox-next">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path class="path1"
+                                                  d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                  stroke="#ddd" fill="#fff"></path>
+                                            <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
                                     </div>
-                                    <span class="amend-birth-input-span">/</span>
-                                    <div class="amend-birth-input-container">
-                                        <input type="text" placeholder="MM" class="amend-birth-input-text">
+                                    <span>SMS</span>
+                                </label>
+                                <label class="amend-use-agree-check-email checked">
+                                    <input class="termCheckBox test RequiredTermCondition" type="checkbox">
+                                    <div class="amend-choice-agree-checkBox-next">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path class="path1"
+                                                  d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+                                                  stroke="#ddd" fill="#fff"></path>
+                                            <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5"
+                                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
                                     </div>
-                                    <span class="amend-birth-input-span">/</span>
-                                    <div class="amend-birth-input-container">
-                                        <input type="text" placeholder="DD" class="amend-birth-input-text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
-                        <div class="amend-line"></div>
-                        <!-- 이용약관동의 -->
-                        <div class="amend-container">
-                            <div class="amend-name-container">
-                                <label class="amend-name">이용약관동의</label>
-                            </div>
-                            <div class="amend-use-agree-container">
-                                <div class="amend-use-agree-checkBox-container">
-                                    <label class="amend-use-agree-checkBox-wrapper allCheck">
-                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox" id="TermsAgreeAll">
-                                        <div class="amend-choice-agree-checkBox-next">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path class="path1 allPath" d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <span>무료배송, 할인쿠폰 등 혜택/정보 수신 동의</span>
-                                    </label>
-                                    <span class="amend-choice-agree-choice">(선택)</span>
-                                </div>
-                                <div class="amend-use-agree-check-container">
-                                    <label class="amend-use-agree-check-sms checked">
-                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
-                                        <div class="amend-choice-agree-checkBox-next">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path class="path1" d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <span>SMS</span>
-                                    </label>
-                                    <label class="amend-use-agree-check-email checked">
-                                        <input class="termCheckBox test" id="RequiredTermCondition" type="checkbox">
-                                        <div class="amend-choice-agree-checkBox-next">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path class="path1" d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z" stroke="#ddd" fill="#fff"></path><path d="M7 12.6667L10.3846 16L18 8.5" stroke="#ddd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                        <span>이메일</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="amend-inputBox-right"></div>
-                        </div>
-                        <!-- 수정버튼 -->
-                        <div class="amend-btn-container">
-                            <button class="amend-btn" type="button">
-                                <span class="amend-btn-text">회원정보수정</span>
-                            </button>
-                            <!-- 회원정보가 수정되었습니다. 모달 -->
-                            <div id="infomodal" class="modal infomodal">
-                                <div class="modal-content">
-                                    <div class="pay-content">회원정보가 수정되었습니다.</div>
-                                    <div class="pay-footer"></div>
-                                    <button class="pay-popup-check infocheck">확인</button>
-                                </div>
+                                    <span>이메일</span>
+                                </label>
                             </div>
                         </div>
-                        <!--  -->
-                    </form>
-                </div>
+                        <div class="amend-inputBox-right"></div>
+                    </div>
+                    <!-- 수정버튼 -->
+                    <div class="amend-btn-container">
+                        <button class="amend-btn" type="submit">
+                            <span class="amend-btn-text">회원정보수정</span>
+                        </button>
+                        <!-- 회원정보가 수정되었습니다. 모달 -->
+                        <div id="infomodal" class="modal infomodal">
+                            <div class="modal-content">
+                                <div class="pay-content">회원정보가 수정되었습니다.</div>
+                                <div class="pay-footer"></div>
+                                <button class="pay-popup-check infocheck">확인</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </form>
             </div>
         </div>
     </div>
-    <!-- 푸터 -->
-    <footer class="footer">
-        <div id="footer">
-            <div class="footer-layout">
-                <div class="footer-left-layout">
-                    <h2 class="footer-title">고객행복센터</h2>
-                    <strong class="footer-phonenum-text">
-                        1644-1107<span class="footer-phonenum-explain">월~토요일 오전 7시 - 오후 6시</span>
-                    </strong>
-                    <div class="inquiries-layout">
-                        <div class="inquiry-layout">
-                            <button class="inquiry-button">1:1 문의</button>
-                            <div class="inquiry-text">
-                                365일
-                                <br>
-                                고객센터 운영시간에 순차적으로 답변드리겠습니다.
-                            </div>
-                        </div>
-                        <div class="inquiry-layout">
-                            <button class="inquiry-button">FAQ</button>
-                            <div class="inquiry-text">
-                                문의 전 고객님들이
-                                <br>
-                                자주 하신 질문을 찾아보세요.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inquiry-email">
-                        비회원 문의 : 
-                        <a href="mailto:help@kurlycorp.com">help@jimcarrycorp.com</a>
-                        <br>
-                        비회원 대량주문 문의 : 
-                        <a href="mailto:kurlygift@kurlycorp.com">jimcarrygift@gimcarrycorp.com</a>
-                    </div>
-                </div>
-                <div class="footer-right-layout">
-                    <div class="kurly-info">
-                        법인명 (상호) : 주식회사 짐캐리
-                        <span class="footer-slash-layout"></span>
-                        사업자등록번호 : 261-81-23567<a class="important-text" href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=2618123567&amp;apv_perm_no=">사업자정보 확인</a>
-                        <br>
-                        통신판매업 : 제 2018-서울강남-01646 호
-                        <span class="footer-slash-layout"></span>
-                        개인정보보호책임자 : 황자현
-                        <br>
-                        주소 : 서울특별시 강남구 테헤란로 146, 4층(역삼동)
-                        <span class="footer-slash-layout"></span>
-                        대표이사 : 황자현
-                        <br>
-                        제휴문의 :
-                        <a class="important-text" href="mailto:business@kurlycorp.com">business@gimcarrycorp.com</a>
-                        <br>
-                        채용문의 :<a class="important-text" href="mailto:recruit@kurlycorp.com">recruit@gimcarrycorp.com</a>
-                    </div>
-                </div>
-            </div>
-            <!-- 인증마크 -->
-            <div class="certification-mark-layout">
-                <button class="certification-mark-button">
-                    <img class="mark-img" src="https://res.kurly.com/pc/ico/2208/logo_isms.svg">
-                    <p class="mark-text">
-                        [인증범위] 짐캐리 쇼핑몰 서비스 개발·운영
-                        <br>
-                        (심사받지 않은 물리적 인프라 제외)
-                        <br>
-                        [유효기간] 2022.01.19 ~ 2025.01.18
-                    </p>
-                </button>
-                <button class="certification-mark-button">
-                    <img class="mark-img" src="https://res.kurly.com/pc/ico/2208/logo_privacy.svg">
-                    <p class="mark-text">
-                        개인정보보호 우수 웹사이트 ·
-                        <br>
-                        개인정보처리시스템 인증 (ePRIVACY PLUS)
-                    </p>
-                </button>
-                <button class="certification-mark-button">
-                    <img class="payments-mark-img" src="https://res.kurly.com/pc/ico/2208/logo_tosspayments.svg"> 
-                    <p class="mark-text">
-                        토스페이먼츠 구매안전(에스크로)
-                        <br>
-                        서비스를 이용하실 수 있습니다.
-                    </p>
-                </button>
-                <button class="certification-mark-button">
-                    <img class="wooriBank-mark-img" src="https://res.kurly.com/pc/ico/2208/logo_wooriBank.svg">
-                    <p class="mark-text">
-                        고객님이 현금으로 결제한 금액에 대해 우리은행과
-                        <br>
-                        채무지급보증 계약을 체결하여 안전거래를 보장하고
-                        <br>
-                        있습니다.
-                    </p>
-                </button>
-            </div>
-        </div>
-        <div class="all-right-reserved">
-            짐캐리에서 판매되는 상품 중에는 짐캐리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.
-            <br>
-            마켓플레이스(오픈마켓) 상품의 경우 짐캐리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 짐캐리는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.
-            <em class="all-right-reserved-text">© JimCarry CORP. ALL RIGHTS RESERVED</em>
-        </div>
-    </footer>
+</div>
+<!-- 푸터 -->
+<footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="../../static/js/main/header.js"></script>
-<script src="../../static/js/mypage/my-info.js"></script>
+<script src="/js/main/header.js"></script>
+<script src="/js/mypage/components.js"></script>
+<script src="/js/mypage/my-info.js"></script>
 </html>

@@ -1,5 +1,6 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Base64;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/users/mypage/*")
@@ -27,30 +29,39 @@ public class MypageController {
         return "mypage/my-info";
     }
 
-    @PostMapping("update/{userId}")
+    @PostMapping("update")
     @ResponseBody
-    public RedirectView updateUser(UserVO userVO, @PathVariable Long userId) {
-        userVO.setUserId(userId);
-
-        userService.updateUser(userVO);
+    public RedirectView updateUser(UserVO userVO) {
+        /* 나중에 세션으로 수정 */
+        UserVO temp = userService.getUser(2L);
+        userVO.setUserId(2L);
+        userVO.setUserAddress(temp.getUserAddress());
+        userVO.setUserAddressDetail(temp.getUserAddressDetail());
+        userVO.setUserGender(userVO.getUserGender().equals("") ? null : userVO.getUserGender());
+//        userService.updateUser(userVO);
 
         return new RedirectView("/users/mypage/update");
     }
 
-    @PostMapping("checkIdentification/{userId}")
+    @PostMapping("checkIdentification")
     @ResponseBody
-    public boolean checkIdentificationDuplicate(String userIdentification, @PathVariable Long userId) {
-        if (userService.getUser(userId).getUserIdentification().equals(userIdentification)) {
+    public boolean checkIdentificationDuplicate(@RequestBody Map<String, String> map) {
+        String userIdentification = map.get("userIdentification");
+        /* 나중에 세션으로 수정 */
+        if (userService.getUser(2L).getUserIdentification().equals(userIdentification)) {
             return true;
         }
 
         return userService.checkIdentificationDuplicate(userIdentification);
     }
 
-    @PostMapping("checkEmail/{userId}")
+    @PostMapping("checkEmail")
     @ResponseBody
-    public boolean checkEmailDuplicate(String userEmail, @PathVariable Long userId) {
-        if (userService.getUser(userId).getUserEmail().equals(userEmail)) {
+    @LogStatus
+    public boolean checkEmailDuplicate(@RequestBody Map<String, String> map) {
+        String userEmail = map.get("userEmail");
+        /* 나중에 세션으로 수정 */
+        if (userService.getUser(2L).getUserEmail().equals(userEmail)) {
             return true;
         }
 
@@ -59,20 +70,24 @@ public class MypageController {
 
     /* =========================================================================== */
     /* ================================= 회원탈퇴 ================================= */
-    @PostMapping("checkPassword/{userId}")
+    @PostMapping("checkPassword")
     @ResponseBody
-    public boolean checkPassword(String userPassword, @PathVariable Long userId) {
-        if (userService.getUser(userId).getUserPassword().equals(encryptPassword(userPassword))) {
+    public boolean checkPassword(@RequestBody Map<String, String> map) {
+        String userPassword = map.get("userPassword");
+        /* 나중에 세션으로 수정 */
+        if (userService.getUser(2L).getUserPassword().equals(encryptPassword(userPassword))) {
             return true;
         }
+
 
         return false;
     }
 
-    @DeleteMapping("delete/{userId}")
+    @DeleteMapping("delete")
     @ResponseBody
-    public RedirectView deleteUser(@PathVariable Long userId) {
-        userService.removeUser(userId);
+    public RedirectView deleteUser() {
+        /* 나중에 세션으로 수정 */
+        userService.removeUser(2L);
 
         /* 메인페이지 주소 작성 필요 */
         return new RedirectView("/main");

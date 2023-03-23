@@ -35,7 +35,7 @@ class MypageControllerTest {
 
     @Test
     void updateUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/update/2")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/update")
                 .param("userIdentification", "MypageControllerUpdateTest")
                 .param("userPassword", "4321")
                 .param("userEmail", "ControllerTest@gmail.com")
@@ -51,17 +51,17 @@ class MypageControllerTest {
 
     @Test
     void checkIdentificationDuplicate() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkIdentification/2")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkIdentification")
                 .param("userIdentification", "ControllerUpdateTest")
         ).andExpect(MockMvcResultMatchers.content().string("true"));
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail/2")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail")
                 .param("userIdentification", "agagsdbsrtbhergdfv")
         ).andExpect(MockMvcResultMatchers.content().string("true"));
     }
 
     @Test
     void checkEmailDuplicate() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail/2")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail")
                 .param("userEmail", "ControllerTest@gmail.com")
         ).andExpect(MockMvcResultMatchers.content().string("true"));
         mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail/2")
@@ -71,17 +71,17 @@ class MypageControllerTest {
 
     @Test
     void checkPassword() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkPassword/2")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkPassword")
                 .param("userPassword", "4321")
         ).andExpect(MockMvcResultMatchers.content().string("true"));
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkPassword/2")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkPassword")
                 .param("userPassword", "sftgsdf23r3qfgsdf")
         ).andExpect(MockMvcResultMatchers.content().string("false"));
     }
 
     @Test
     void deleteUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/users/mypage/delete/2"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/users/mypage/delete"))
                 .andExpect(status().is3xxRedirection()).andExpect(MockMvcResultMatchers.redirectedUrl("/main"));
     }
 }
