@@ -24,13 +24,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class UserServiceImplTest {
 
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
     @Autowired
     UserVO userVO;
 
     @BeforeEach
     void setUserVO() {
-        userVO.setUserIdentification("userServiceTest");
+        userVO.setUserIdentification("MypageUserServiceTest");
         userVO.setUserPassword("1234");
         userVO.setUserEmail("userMapperTest@gmail.com");
         userVO.setUserPhone("01012341234");
@@ -42,17 +42,16 @@ class UserServiceImplTest {
 
     @Test
     void registerUser() {
-//        assertDoesNotThrow(() -> {
-//            userService.registerUser(userVO);
-//        });
-//        userVO.setUserIdentification("userServiceTest");
-//        assertThrows(IllegalArgumentException.class, () -> {
-//            userService.registerUser(userVO);
-//        });
-//        assertThrows(NoSuchElementException.class, () -> {
-//            userService.registerUser(null);
-//        });
-        userService.registerUser(userVO);
+        assertDoesNotThrow(() -> {
+            userService.registerUser(userVO);
+        });
+        userVO.setUserIdentification("userServiceTest");
+        assertThrows(IllegalArgumentException.class, () -> {
+            userService.registerUser(userVO);
+        });
+        assertThrows(NoSuchElementException.class, () -> {
+            userService.registerUser(null);
+        });
     }
 
     @Test
@@ -87,10 +86,13 @@ class UserServiceImplTest {
     @Test
     void updateUser() {
         String update = "updateduserMapperTest";
+        String updatePassword = "4321";
         userService.registerUser(userVO);
         userVO.setUserIdentification(update);
+        userVO.setUserPassword(updatePassword);
         userService.updateUser(userVO);
         assertThat(userService.getUser(userVO.getUserId()).getUserIdentification()).isEqualTo(update);
+        log.info(userService.getUser(userVO.getUserId()).getUserPassword());
     }
 
     @Test
@@ -106,15 +108,8 @@ class UserServiceImplTest {
     }
 
     @Test
-    void login() {
+    void checkEmailDuplicate() {
         userService.registerUser(userVO);
-        assertThat(userService.login("userServiceTest", "1234")).isEqualTo(userVO.getUserId());
-    }
-
-    @Test
-    void checkIdentificationDuplicate() {
-//        userService.registerUser(userVO);
-//        assertThat(userService.checkIdentificationDuplicate(userVO.getUserIdentification())).isFalse();
-        assertThat(userService.checkIdentificationDuplicate("userServiceTest")).isEqualTo(false);
+        assertThat(userService.checkEmailDuplicate(userVO.getUserEmail())).isFalse();
     }
 }

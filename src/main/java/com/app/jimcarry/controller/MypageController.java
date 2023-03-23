@@ -1,11 +1,11 @@
 package com.app.jimcarry.controller;
 
-import com.app.jimcarry.aspect.annotation.Encryption;
 import com.app.jimcarry.domain.vo.UserVO;
-import com.app.jimcarry.service.MypageUserService;
+import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -17,9 +17,16 @@ import java.util.Base64;
 @Slf4j
 public class MypageController {
 
-    private final MypageUserService userService;
+    private final UserService userService;
 
     /* ============================== 회원정보 수정 ================================ */
+    @GetMapping("update")
+    public String updateUser(Model model){
+        model.addAttribute(new UserVO());
+
+        return "mypage/my-info";
+    }
+
     @PostMapping("update/{userId}")
     @ResponseBody
     public RedirectView updateUser(UserVO userVO, @PathVariable Long userId) {
@@ -62,8 +69,18 @@ public class MypageController {
         return false;
     }
 
+    @DeleteMapping("delete/{userId}")
+    @ResponseBody
+    public RedirectView deleteUser(@PathVariable Long userId) {
+        userService.removeUser(userId);
+
+        /* 메인페이지 주소 작성 필요 */
+        return new RedirectView("/main");
+    }
 
     private String encryptPassword(String arg) {
         return new String(Base64.getEncoder().encode(arg.getBytes()));
     }
+
+    /* =========================================================================== */
 }
