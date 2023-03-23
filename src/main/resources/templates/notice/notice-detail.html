@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="icon" href="../../static/image/favicon.png">
-    <link rel="stylesheet" href="../../static/css/main/header.css">
-    <link rel="stylesheet" href="../../static/css/notice/notice-detail.css">
-    <link rel="stylesheet" href="../../static/css/main/footer.css">
+    <link rel="icon" href="/image/favicon.png">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/notice/notice-detail.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
+
+<header th:insert="~{main/header.html :: mainHeader}"></header>
+
     <div class="notice-all">
 
         <div class="notice-basic-title">
@@ -63,5 +66,9 @@
         </div>
 
     </div>
+
+<footer th:insert="~{main/footer.html :: mainFooter}"></footer>
+
 </body>
+<script src="/js/main/header.js"></script>
 </html>
