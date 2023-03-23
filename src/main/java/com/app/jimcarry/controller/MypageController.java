@@ -22,7 +22,10 @@ public class MypageController {
     private final UserService userService;
 
     /* ============================== 내 창고 ================================ */
-    
+    @GetMapping("mybox")
+    public String myBox(){
+        return "mypage/myBox";
+    }
 
 
     /* ============================== 회원정보 수정 ================================ */
