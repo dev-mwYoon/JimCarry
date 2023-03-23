@@ -11,6 +11,8 @@ public class StorageVO {
     private String storageTitle;
     private String storageSize;
     private String storagePrice;
+    private String storage_address;
+    private String storage_address_detail;
     private String storageUseDate;
     private String storageEndDate;
 }
