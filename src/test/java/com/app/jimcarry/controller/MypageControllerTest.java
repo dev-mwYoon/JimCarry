@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
@@ -49,14 +50,38 @@ class MypageControllerTest {
     }
 
     @Test
-    void checkIdentificationDuplicate() {
+    void checkIdentificationDuplicate() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkIdentification/2")
+                .param("userIdentification", "ControllerUpdateTest")
+        ).andExpect(MockMvcResultMatchers.content().string("true"));
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail/2")
+                .param("userIdentification", "agagsdbsrtbhergdfv")
+        ).andExpect(MockMvcResultMatchers.content().string("true"));
     }
 
     @Test
-    void checkEmailDuplicate() {
+    void checkEmailDuplicate() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail/2")
+                .param("userEmail", "ControllerTest@gmail.com")
+        ).andExpect(MockMvcResultMatchers.content().string("true"));
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkEmail/2")
+                .param("userEmail", "agagsdbsrtbhergdfv")
+        ).andExpect(MockMvcResultMatchers.content().string("true"));
     }
 
     @Test
-    void checkPassword() {
+    void checkPassword() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkPassword/2")
+                .param("userPassword", "4321")
+        ).andExpect(MockMvcResultMatchers.content().string("true"));
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/checkPassword/2")
+                .param("userPassword", "sftgsdf23r3qfgsdf")
+        ).andExpect(MockMvcResultMatchers.content().string("false"));
+    }
+
+    @Test
+    void deleteUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/users/mypage/delete/2"))
+                .andExpect(status().is3xxRedirection()).andExpect(MockMvcResultMatchers.redirectedUrl("/main"));
     }
 }
