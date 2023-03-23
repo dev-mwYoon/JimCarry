@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * */
 @SpringBootTest
 @Slf4j
-//@Transactional
+@Transactional
 class UserMapperTest {
 
     @Autowired
@@ -40,7 +40,7 @@ class UserMapperTest {
         userVO.setUserAddress("서울시 강남구 역삼동");
         userVO.setUserAddressDetail("경리단길 123");
         /*userVO.setUserGender(null);*/ // 선택안함
-        userVO.setUserGender("선택 안함"); // 선택안함
+//        userVO.setUserGender("선택 안함"); // 선택안함
         userVO.setUserBirth("1900-01-01");
     }
 
@@ -111,8 +111,14 @@ class UserMapperTest {
 
     @Test
     void selectBytIdentification() {
-//        userMapper.insert(userVO);
+        userMapper.insert(userVO);
 //        assertThat(userMapper.selectBytIdentification(userVO.getUserIdentification())).isGreaterThan(0);
-        assertThat(userMapper.selectBytIdentification(userVO.getUserIdentification())).isEqualTo(0);
+        assertThat(userMapper.selectByIdentification(userVO.getUserIdentification())).isEqualTo(0);
+    }
+
+    @Test
+    void selectByEmail() {
+        userMapper.insert(userVO);
+        assertThat(userMapper.selectByEmail(userVO.getUserEmail())).isGreaterThan(0);
     }
 }

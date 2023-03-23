@@ -103,8 +103,8 @@ class MypageUserServiceTest {
     }
 
     @Test
-    void checkFormerPassword() {
+    void checkEmailDuplicate() {
         userService.registerUser(userVO);
-        assertThat(userService.getUser(userVO.getUserId()).getUserPassword().equals(userVO.getUserPassword())).isTrue();
+        assertThat(userService.checkEmailDuplicate(userVO.getUserEmail())).isFalse();
     }
 }

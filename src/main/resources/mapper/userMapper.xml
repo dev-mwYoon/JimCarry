@@ -27,9 +27,13 @@
         select user_id from tbl_user
         where user_identification = #{userIdentification} and user_password = #{userPassword}
     </select>
-    <select id="selectBytIdentification" parameterType="string" resultType="int">
+    <select id="selectByIdentification" parameterType="string" resultType="int">
         select count(user_id) from tbl_user
         where user_identification = #{userIdentification}
+    </select>
+    <select id="selectByEmail" parameterType="string" resultType="int">
+        select count(user_id) from tbl_user
+        where user_email = #{userEmail}
     </select>
     <update id="update" parameterType="userVO">
         update tbl_user

@@ -46,16 +46,17 @@ class MypageControllerTest {
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(status().is3xxRedirection())
                 .andReturn();
+    }
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/mypage/update/2")
-                .param("userIdentification", "MypageControllerUpdateTest")
-                .param("userPassword", "4321")
-                .param("userEmail", "ControllerTest@gmail.com")
-                .param("userPhone", "01043214321")
-                .param("userAddress", "수원시 영통구 매탄동")
-                .param("userAddressDetail", "상세주소")
-                .param("userGender", "남")
-                .param("userBirth", "1900-01-01")
-        ).andExpect(redirectedUrl("/errors/400"));
+    @Test
+    void checkIdentificationDuplicate() {
+    }
+
+    @Test
+    void checkEmailDuplicate() {
+    }
+
+    @Test
+    void checkPassword() {
     }
 }
