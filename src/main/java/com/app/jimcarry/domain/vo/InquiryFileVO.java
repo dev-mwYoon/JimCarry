@@ -8,5 +8,4 @@ import org.springframework.stereotype.Component;
 @Data
 public class InquiryFileVO extends FileVO{
     private Long inquiryId;
-
 }
