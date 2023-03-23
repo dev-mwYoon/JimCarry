@@ -397,11 +397,11 @@ ul{
     height: auto;
     overflow: hidden;
     display: none;
+    box-shadow: 0 3px 7px 0px rgba(0, 0, 0, 0.1);
 }
 .qna-slide-wrapper{
     padding: 20px 26px 30px 30px;
     border-bottom: 1px solid rgb(244, 244, 244);
-    background-color: rgb(253 249 255);
 }
 .detail-pay-container{
     display: flex;

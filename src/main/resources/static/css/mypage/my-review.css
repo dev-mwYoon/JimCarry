@@ -709,6 +709,7 @@ ul{
     cursor: pointer;
 }
 .change-modal-ok-btn{
+    cursor: pointer;
     background-color: rgb(221, 221, 221);
     width: 160px;
     height: 56px;
@@ -720,7 +721,6 @@ ul{
     line-height: 20px;
     font-weight: 500;
     color: rgb(255, 255, 255);
-    cursor: pointer;
 }
 .change-modal-btn{
     display: inline-block;
@@ -798,8 +798,7 @@ ul{
     width: 100%;
     height: 100%;
     padding: 15px 16px;
-    font-size: 16px;
-    line-height: 21px;
+    line-height: 13px;
     word-break: break-all;
     z-index: 1;
     background: none;
@@ -808,6 +807,8 @@ ul{
     outline: none;
     resize: none;
     border: none;
+    font-size: 14px;
+    font-weight: 400;
 }
 .review-modal-content-inputBox-inner{
     position: absolute;
