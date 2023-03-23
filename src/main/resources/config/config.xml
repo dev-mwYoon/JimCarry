@@ -3,5 +3,14 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.app.jimcarry.domain.vo.UserVO" alias="userVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.FileVO" alias="fileVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.PaymentVO" alias="paymentVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.ReviewVO" alias="reviewVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.InquiryVO" alias="inquiryVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.StorageVO" alias="storageVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.ReviewFileVO" alias="reviewFileVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.StorageFileVO" alias="storageFileVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.InquiryFileVO" alias="inquiryFileVO"/>
+        <typeAlias type="com.app.jimcarry.domain.vo.NoticeFileVO" alias="noticeFileVO"/>
     </typeAliases>
 </configuration>

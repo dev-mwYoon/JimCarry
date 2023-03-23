@@ -27,7 +27,7 @@
         select user_id from tbl_user
         where user_identification = #{userIdentification} and user_password = #{userPassword}
     </select>
-    <select id="selecBytIdentification" parameterType="string" resultType="int">
+    <select id="selectBytIdentification" parameterType="string" resultType="int">
         select count(user_id) from tbl_user
         where user_identification = #{userIdentification}
     </select>
