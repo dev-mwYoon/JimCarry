@@ -23,17 +23,32 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
-@Qualifier("mainUserService")
-@Primary
+@Qualifier("mypageUserService")
 /*추후에 클래스명 변경 요망*/
 public class MypageUserService implements UserService {
     private final UserDAO userDAO;
 
     /**
-     * 회원가입 서비스 (사용안함)
+     * 회원가입 서비스
+     *
+     * @param userVO 화면에서 입력받은 회원정보
+     * @throws NoSuchElementException   회원정보VO NULL값 들어옴
+     * @throws IllegalArgumentException 중복된 회원 아이디가 들어옴
      */
     @Override
-    public void registerUser(UserVO userVO) {;}
+    @LogStatus
+    @Encryption /* 회원 비밀번호 암호화 Aspect */
+    @Transactional(rollbackFor = Exception.class)
+    public void registerUser(UserVO userVO) {
+//        userVO null 검사
+        Optional.ofNullable(userVO).orElseThrow();
+        String userIdentification = userVO.getUserIdentification();
+
+        /* 아이디 중복검사 */
+        if (checkIdentificationDuplicate(userIdentification)) {
+            userDAO.save(userVO);
+        } else throw new IllegalArgumentException("Duplicate Identification");
+    }
 
     /**
      * 회원조회 서비스
@@ -81,8 +96,13 @@ public class MypageUserService implements UserService {
      * @param userVO 화면에서 입력받은 회원정보
      */
     @Override
+    @Encryption
     @LogStatus
+    @Transactional
     public void updateUser(UserVO userVO) {
+        if(!checkIdentificationDuplicate(userVO.getUserIdentification())) {
+            throw new IllegalArgumentException("중복된 회원 아이디.");
+        }
         userDAO.setUserVO(userVO);
     }
 
@@ -109,5 +129,17 @@ public class MypageUserService implements UserService {
     @Encryption
     public boolean checkFormerPassword(Long userId, String userPassword) {
         return userDAO.findById(userId).getUserPassword().equals(userPassword);
+    }
+
+    /**
+     * 회원 아이디 중복검사 메소드
+     * 사용가능 = true, 사용불가 = false
+     *
+     * @param userIdentification 회원 아이디
+     */
+    @LogStatus
+    public boolean checkIdentificationDuplicate(String userIdentification) {
+//        사용가능 = true, 사용불가 = false
+        return userDAO.findCountByUserIdentification(userIdentification) == 0;
     }
 }

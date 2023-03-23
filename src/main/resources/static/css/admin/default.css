@@ -296,3 +296,8 @@ section.modal-stage {
 .btn:focus {
   outline: none;
 }
+
+section.trip-status{
+  background-color: #ffffff;
+  min-width: 946px;
+}

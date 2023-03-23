@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
-//@Transactional
+@Transactional
 class MypageUserServiceTest {
 
     @Autowired
@@ -25,7 +25,7 @@ class MypageUserServiceTest {
 
     @BeforeEach
     void setUserVO() {
-        userVO.setUserIdentification("userServiceTest");
+        userVO.setUserIdentification("MypageUserServiceTest");
         userVO.setUserPassword("1234");
         userVO.setUserEmail("userMapperTest@gmail.com");
         userVO.setUserPhone("01012341234");
@@ -33,6 +33,20 @@ class MypageUserServiceTest {
         userVO.setUserAddressDetail("경리단길 123");
         userVO.setUserGender(null); // 선택안함
         userVO.setUserBirth("1900-01-01");
+    }
+
+    @Test
+    void registerUser() {
+        assertDoesNotThrow(() -> {
+            userService.registerUser(userVO);
+        });
+        userVO.setUserIdentification("userServiceTest");
+        assertThrows(IllegalArgumentException.class, () -> {
+            userService.registerUser(userVO);
+        });
+        assertThrows(NoSuchElementException.class, () -> {
+            userService.registerUser(null);
+        });
     }
 
     @Test
@@ -87,6 +101,7 @@ class MypageUserServiceTest {
 
     @Test
     void checkFormerPassword() {
-        userService.checkFormerPassword(1L, "1234");
+        userService.registerUser(userVO);
+        assertThat(userService.getUser(userVO.getUserId()).getUserPassword().equals(userVO.getUserPassword())).isTrue();
     }
 }
