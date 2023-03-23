@@ -17,7 +17,44 @@
 <header th:insert="~{main/header.html :: mainHeader}"></header>
 <!-- 마이페이지 -->
 <div class="mypage">
-    <div class="mypage-section" th:insert="~{mypage/side-menu.html :: top_menu}"></div>
+    <div class="mypage-section">
+        <div class="mypage-section-list">
+            <div class="mypage-section-list-left">
+                <div class="mypage-section-list-left-container">
+                    <div class="mypage-section-list-left-type">일반</div>
+                    <div class="mypage-section-list-left-name-container">
+                        <strong class="mypage-section-list-left-name">서현님</strong>
+                    </div>
+                </div>
+                <div>
+                    <li class="status-list-item">
+                        <div class="status-item-wrapper">
+                            <div class="status-item-name">내 창고</div>
+                            <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                        </div>
+                    </li>
+                    <div class="mypage-list-right-line"></div>
+                    <li class="status-list-item">
+                        <div class="status-item-wrapper">
+                            <div class="status-item-name">이용중인 창고</div>
+                            <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                        </div>
+                    </li>
+                </div>
+                <div class="mypage-section-list-left-btn-container">
+                    <button class="mypage-section-list-left-btn">개인 정보 수정</button>
+                </div>
+            </div>
+            <a href="#" class="mypage-section-list-right-benner">
+                <img src="https://product-image.kurly.com/cdn-cgi/image/quality=85/banner/main/pc/img/20139e33-d871-4de9-a2e8-18a3024af36d.jpg"
+                     class="mypage-section-list-right-benner-img">
+            </a>
+        </div>
+        <a href="#" class="mypage-section-list-benner">
+            <img src="https://product-image.kurly.com/banner/da-banner/9ecbd6df-5911-419c-8b62-cb44c937e568.jpg"
+                 class="mypage-section-list-benner-img">
+        </a>
+    </div>
     <div class="mypage-list">
         <div class="mypage-list-left-container" th:insert="~{mypage/side-menu.html :: sidebar}"></div>
         <div class="mypage-list-right">
@@ -36,8 +73,7 @@
                         <div class="amend-inputBox-container">
                             <div class="amend-inputBox-wrapper">
                                 <div class="amend-inputBox">
-                                    <input type="text" th:value="*{userIdentification}" th:field="*{userIdentification}"
-                                           class="amend-id-inputBox-in"
+                                    <input type="text" th:value="*{userIdentification}" th:field="*{userIdentification}" class="amend-id-inputBox-in"
                                            placeholder="아이디를 입력해 주세요">
                                 </div>
                                 <div class="errorDiv">
@@ -110,8 +146,7 @@
                         <div class="amend-inputBox-container">
                             <div class="amend-inputBox-wrapper">
                                 <div class="amend-inputBox">
-                                    <input type="text" th:value="*{userEmail}" th:field="*{userEmail}"
-                                           placeholder="이메일을 입력해 주세요"
+                                    <input type="text" th:value="*{userEmail}" th:field="*{userEmail}" placeholder="이메일을 입력해 주세요"
                                            class="amend-password-inputBox-in">
                                 </div>
                                 <div class="errorDiv">
@@ -129,8 +164,7 @@
                         <div class="amend-inputBox-container">
                             <div class="amend-inputBox-wrapper">
                                 <div class="amend-inputBox">
-                                    <input type="text" th:value="*{userPhone}" th:field="*{userPhone}"
-                                           placeholder="숫자만 입력해 주세요"
+                                    <input type="text" th:value="*{userPhone}" th:field="*{userPhone}" placeholder="숫자만 입력해 주세요"
                                            class="amend-password-inputBox-in">
                                 </div>
                                 <div class="errorDiv">

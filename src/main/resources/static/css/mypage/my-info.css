@@ -132,17 +132,16 @@ ul {
 
 .mypage-section-list-left-btn {
     width: 50%;
-    display: flex;
     height: 42px;
     border-radius: 7px;
     font-size: 14px;
+    text-align: center;
+    -webkit-box-flex: 1;
     flex-grow: 1;
     margin-top: 15px;
     background-color: rgb(95, 0, 128);
     color: rgb(255, 255, 255);
     border: 0px none;
-    justify-content: center;
-    align-items: center;
 }
 
 .mypage-section-list-right-benner {

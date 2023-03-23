@@ -1,6 +1,5 @@
 package com.app.jimcarry.mapper;
 
-import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,8 +42,6 @@ class UserMapperTest {
         /*userVO.setUserGender(null);*/ // 선택안함
 //        userVO.setUserGender("선택 안함"); // 선택안함
         userVO.setUserBirth("1900-01-01");
-
-
     }
 
     @Test
@@ -85,9 +82,8 @@ class UserMapperTest {
 
     @Test
     void selectAll() {
-        Criteria criteria = new Criteria().create(1, 10);
         userMapper.insert(userVO);
-        assertThat(userMapper.selectAll(criteria).size()).isGreaterThan(0);
+        assertThat(userMapper.selectAll().size()).isGreaterThan(0);
     }
 
     @Test

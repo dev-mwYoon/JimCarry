@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.app.jimcarry.mapper.StorageMapper">
-    <insert id="insert" parameterType="storageVO" useGeneratedKeys="true" keyProperty="storageId">
-        insert into tbl_storage
-        (user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date)
-        values(
-        #{userId}, #{storageTitle}, #{storageSize},
-        #{storagePrice}, #{storageAddress}, #{storageAddressDetail},
-        #{storageUseDate}, #{storageEndDate}
-        )
-    </insert>
-    <!--  조회  -->
-    <select id="select" parameterType="long" resultType="storageVO">
+<mapper namespace="com.example.JimCarry.mapper.storageMapper">
+    <!--창고조회-->
+    <select id="select" resultType="StorageVO">
         select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
-        from tbl_storage
-        where storage_id = #{storageId}
-    </select>
-    <select id="selectByUserId" resultType="storageVO">
-        select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
-        from tbl_storage
-        where user_id = #{userId}
+        from jimcarry.tbl_storage
     </select>
 </mapper>
