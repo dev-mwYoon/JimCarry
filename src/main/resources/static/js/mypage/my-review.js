@@ -25,6 +25,7 @@ cancel.addEventListener("click", function(){
 var modal = document.getElementById("myModal");
 var openbtn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
+var xbtn = document.getElementById("delete-btn");
 
 
 // 모달창 열기
@@ -34,6 +35,11 @@ openbtn.onclick = function() {
 
 // 모달창 x버튼 닫기
 span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// 모달창 취소버튼 닫기
+xbtn.onclick = function() {
   modal.style.display = "none";
 }
 
@@ -116,7 +122,7 @@ function hideModal() {
 }
 
 
-// 글자수세기, 제한 
+// 글자수세기, 제한  <작성가능 후기>
 const textarea = document.querySelector('.review-modal-content-inputBox');
 const counter = document.querySelector('.review-modal-content-inputBox-number-container span:first-child');
 const maxLength = 5000;
@@ -160,3 +166,49 @@ function requireCheck() {
   }
 }
 
+/* ................................................................................. */
+
+// 글자수세기, 제한  <작성한 후기>
+const textareas = document.querySelector('#content-inputBox');
+const charCountSpan = document.querySelector('#content-inputBox-number span:first-child');
+const maxChars = 5000;
+
+// textarea의 내용이 변경될 때마다 이벤트를 발생
+textareas.addEventListener('input', function() {
+  // 현재 textarea의 글자수를 가져오기
+  const currentChars = textareas.value.length;
+  
+  // 글자수
+  charCountSpan.textContent = `${currentChars}/${maxChars}`;
+  
+  // 최대 글자수를 초과하면 textarea의 값을 자르기
+  if (currentChars > maxChars) {
+    textareas.value = textareas.value.slice(0, maxChars);
+  }
+
+  // 글자수가 10자 이상인 경우 배경색을 바꾸기
+  if (currentChars >= 10) {
+    $('#ok-btn').css('background-color', '#5f0080');
+  } else {
+    $('#ok-btn').css('background-color', '#ddd');
+  }
+});
+
+// 동의 버튼 효과
+const $checkboxes = $('.termCheckBox');
+const $path = $('.path1');
+const $checks = $('.checked');
+
+$checkboxes.each((i,e)=>{
+    $(e).parent().on('click', function(){
+        var $ischecked = $(e).is(':checked');
+        if($ischecked){
+            $path.eq(i).attr('fill', '#fff');
+            $(e).prop('checked', false);
+        }else{
+            $path.eq(i).attr('fill', '#5f0080');
+            $(e).prop('checked', true);
+            
+        }
+    });
+});

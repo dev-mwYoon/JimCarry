@@ -1075,3 +1075,14 @@ ul{
     display: flex;
     background: rgba(0,0,0,.4);
   }
+  .amend-use-agree-checkBox-wrapper{
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: top;
+    line-height: normal;
+    color: rgb(51, 51, 51);
+    padding: 0px;
+    font-size: 14px;
+}

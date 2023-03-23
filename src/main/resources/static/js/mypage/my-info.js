@@ -7,14 +7,15 @@ const passwordNumberRegex = /[0-9]/g;
 const passwordEnglishRegex = /[a-z]/ig;
 const passwordSpecialCharacterRegex = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
 const emailRegex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-let blurMessages = ["아이디를 입력하세요.", "현재 비밀번호를 입력하세요.", "10자 이상 입력", "동일한 비밀번호를 입력해주세요.", "이름을 입력하세요.", "이메일을 입력하세요.", "휴대폰 번호를 입력하세요."];
-let regexMessages = ["아이디를 입력하세요.", "현재 비밀번호를 입력하세요.", "새 비밀번호를 입력해주세요.", "새 비밀번호를 다시 입력해주세요", "영문 혹은 한글로 2자~20자로 입력해주세요.", "이메일 주소를 확인해주세요.", "휴대폰 번호를 확인하세요."];
+let blurMessages = ["현재 아이디를 입력해주세요.","현재 비밀번호를 입력하세요.", "10자 이상 입력", "동일한 비밀번호를 입력해주세요.", "이름을 입력하세요.", "이메일을 입력하세요.", "휴대폰 번호를 입력하세요."];
+let regexMessages = ["현재 아이디를 입력해주세요.", "현재 비밀번호를 입력하세요.", "영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.", "동일한 비밀번호를 입력해주세요", "영문 혹은 한글로 2자~20자로 입력해주세요.", "이메일 주소를 확인해주세요.", "휴대폰 번호를 확인하세요."];
+//아이디, 비밀번호, 새비밀번호, 비밀번호 확인, 이름, 이메일, 휴대폰
 
-const $wrapperInputs = $('.wrapper input[type=text], input[type=password]');
+const $wrapperInputs = $('input[type=text], input[type=password]');
 console.log($wrapperInputs);
 const $errorMessage = $('div.errorDiv p.errorMessage');
 let errorCheck;
-let errorCheckAll = [false, false, false, false, false, false, false];
+let errorCheckAll = [false, false, false, false, false, false];
 const $errorDiv = $('div.errorDiv');
 $wrapperInputs.on("blur", function () {
     let i = $wrapperInputs.index($(this));
@@ -34,6 +35,8 @@ $wrapperInputs.on("blur", function () {
             errorCheck = value.length > 3 && value.length < 21 && idRegex.test(value) && !specialCharacterRegex.test(value);
             break;
         case 1: // 현재 비밀번호
+
+            // 로그인상태로 수정하는것이기 때문에 DB의 비밀번호랑 비교 해야 될것 같음
             let numberCheck = value.search(passwordNumberRegex);
             let englishCheck = value.search(passwordEnglishRegex);
             let specialCharacterCheck = value.search(passwordSpecialCharacterRegex);
@@ -136,14 +139,15 @@ const $checkboxes = $('.termCheckBox');
 const $path = $('.path1');
 const $all = $('.allCheck');
 const $checks = $('.checked');
-
 $checkboxes.each((i,e)=>{
     $(e).parent().on('click', function(){
         var $ischecked = $(e).is(':checked');
         if($ischecked){
+            // $path.eq(i).attr('fill', '#5f0080');
             $path.eq(i).attr('fill', '#fff');
             $(e).prop('checked', false);
         }else{
+            // $path.eq(i).attr('fill', '#fff');
             $path.eq(i).attr('fill', '#5f0080');
             $(e).prop('checked', true);
             
@@ -152,20 +156,19 @@ $checkboxes.each((i,e)=>{
 });
 // 전체동의 버튼 효과
 $all.on("click", function(){
-    var $checked = $('#TermsAgreeAll').is(':checked');
+    var $checked = $('#RequiredTermCondition').prop("checked");
+    console.log($checked);
     if($checked) {
         $path.attr('fill', '#fff');
         $('#TermsAgreeAll').prop('checked', false);
         $checks.children().prop('checked', false);
-        console.log($checks.children().filter(':checked').length);
     } else {
         $path.attr('fill', '#5f0080');
-        $checks.children().prop('checked', true);
         $('#TermsAgreeAll').prop('checked', true);
+        $checks.children().prop('checked', true);
   
     }
 });
-
 // 동의 버튼 전체 확인 시 전체동의도 확인 효과, 필수사항 동의 시 submit 버튼 활성화
 $checks.on('click', function(){
     var agreeCheck = [false, false];
@@ -180,6 +183,8 @@ $checks.on('click', function(){
         $('#TermsAgreeAll').prop('checked', true);
     }
 });
+
+
 
 /* 성별 버튼 */
 function clickRadio() {
