@@ -39,7 +39,7 @@ class UserMapperTest {
         userVO.setUserPhone("01012341234");
         userVO.setUserAddress("서울시 강남구 역삼동");
         userVO.setUserAddressDetail("경리단길 123");
-        userVO.setUserGender(null); // 선택안함
+        /*userVO.setUserGender(null);*/ // 선택안함
         userVO.setUserBirth("1900-01-01");
     }
 
