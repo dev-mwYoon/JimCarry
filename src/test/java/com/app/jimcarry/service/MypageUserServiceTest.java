@@ -81,10 +81,13 @@ class MypageUserServiceTest {
     @Test
     void updateUser() {
         String update = "updateduserMapperTest";
+        String updatePassword = "4321";
         userService.registerUser(userVO);
         userVO.setUserIdentification(update);
+        userVO.setUserPassword(updatePassword);
         userService.updateUser(userVO);
         assertThat(userService.getUser(userVO.getUserId()).getUserIdentification()).isEqualTo(update);
+        log.info(userService.getUser(userVO.getUserId()).getUserPassword());
     }
 
     @Test
@@ -100,8 +103,8 @@ class MypageUserServiceTest {
     }
 
     @Test
-    void checkFormerPassword() {
+    void checkEmailDuplicate() {
         userService.registerUser(userVO);
-        assertThat(userService.getUser(userVO.getUserId()).getUserPassword().equals(userVO.getUserPassword())).isTrue();
+        assertThat(userService.checkEmailDuplicate(userVO.getUserEmail())).isFalse();
     }
 }

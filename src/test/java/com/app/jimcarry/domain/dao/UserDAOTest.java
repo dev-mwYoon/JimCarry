@@ -85,4 +85,10 @@ class UserDAOTest {
     @Test
     void findCountByUserIdentification() {
     }
+
+    @Test
+    void findCountByUserEmail() {
+        userDAO.save(userVO);
+        assertThat(userDAO.findCountByUserEmail(userVO.getUserEmail())).isGreaterThan(0);
+    }
 }

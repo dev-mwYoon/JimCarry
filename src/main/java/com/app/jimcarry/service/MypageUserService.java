@@ -24,7 +24,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Qualifier("mypageUserService")
-/*추후에 클래스명 변경 요망*/
 public class MypageUserService implements UserService {
     private final UserDAO userDAO;
 
@@ -100,9 +99,6 @@ public class MypageUserService implements UserService {
     @LogStatus
     @Transactional
     public void updateUser(UserVO userVO) {
-        if(!checkIdentificationDuplicate(userVO.getUserIdentification())) {
-            throw new IllegalArgumentException("중복된 회원 아이디.");
-        }
         userDAO.setUserVO(userVO);
     }
 
@@ -119,18 +115,6 @@ public class MypageUserService implements UserService {
         userDAO.deleteById(userId);
     }
 
-
-    /**
-     * 회원 이전 비밀번호 검사 서비스
-     * 사용가능 = true, 사용불가 = false
-     *
-     */
-    @LogStatus
-    @Encryption
-    public boolean checkFormerPassword(Long userId, String userPassword) {
-        return userDAO.findById(userId).getUserPassword().equals(userPassword);
-    }
-
     /**
      * 회원 아이디 중복검사 메소드
      * 사용가능 = true, 사용불가 = false
@@ -139,7 +123,19 @@ public class MypageUserService implements UserService {
      */
     @LogStatus
     public boolean checkIdentificationDuplicate(String userIdentification) {
-//        사용가능 = true, 사용불가 = false
+        //     사용가능 = true, 사용불가 = false
         return userDAO.findCountByUserIdentification(userIdentification) == 0;
+    }
+
+    /**
+     * 회원 이메일 중복검사 메소드
+     * 사용가능 = true, 사용불가 = false
+     *
+     * @param userEmail 회원 이메일
+     */
+    @LogStatus
+    public boolean checkEmailDuplicate(String userEmail) {
+        //     사용가능 = true, 사용불가 = false
+        return userDAO.findCountByUserEmail(userEmail) == 0;
     }
 }

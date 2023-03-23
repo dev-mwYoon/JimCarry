@@ -29,13 +29,13 @@ public class UserDAO {
     }
 
     //    아이디, 비밀번호로 조회(로그인)
-    public Long login(String userIdentification, String userPassword){
+    public Long login(String userIdentification, String userPassword) {
         return userMapper.selectByIdentificationAndPassword(userIdentification, userPassword);
     }
 
     //    아이디 갯수 조회(중복검사)
     public int findCountByUserIdentification(String userIdentification) {
-        return userMapper.selectBytIdentification(userIdentification);
+        return userMapper.selectByIdentification(userIdentification);
     }
 
     //    목록
@@ -51,5 +51,9 @@ public class UserDAO {
     //    삭제
     public void deleteById(Long userId) {
         userMapper.delete(userId);
+    }
+
+    public int findCountByUserEmail (String userEmail) {
+        return userMapper.selectByEmail(userEmail);
     }
 }
