@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>짐캐리-아이디찾기</title>
-    <link rel="icon" href="../../static/image/favicon.png">
-    <link rel="stylesheet" href="../../static/css/joinLogin/find-id-result.css">
-    <link rel="stylesheet" href="/static/css/joinLogin/font.css">
-    <link rel="stylesheet" href="/static/css/joinLogin/joinModal.css">
+    <link rel="icon" href="/image/favicon.png">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/joinLogin/find-id-result.css">
+    <link rel="stylesheet" href="/css/joinLogin/font.css">
+    <link rel="stylesheet" href="/css/joinLogin/joinModal.css">
 </head>
 <body style="padding-right: 0px;">
     <div class="findLayout">
         <!-- 헤더 -->
-    <div id="headers"></div>
+    <header th:insert="~{main/header.html :: mainHeader}"></header>
         <div class="resultLayout">
             <div class="resultLayoutform">
                 <div class="result-header">
@@ -42,7 +44,7 @@
             </div>
         </div>
         <!-- footer -->
-    <div id="footers"></div>
+    <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
     </div>
      <!-- 모달 -->
  <div class="modal-container modal-center" style="overflow-y: auto; visibility:hidden;">
@@ -60,11 +62,6 @@
 <!-- 모달 끝 -->
 </body>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#headers").load("../main/header.html");
-        $("#footers").load("../main/footer.html");
-    });
-</script>
-<script src="../../static/js/joinLogin/find-id-result.js"></script>
+<script src="/js/joinLogin/find-id-result.js"></script>
+<script src="/js/main/header.js"></script>
 </html>
