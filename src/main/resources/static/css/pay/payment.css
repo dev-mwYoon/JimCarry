@@ -404,7 +404,7 @@
     color: rgb(255, 255, 255);
     background-color: rgb(95, 0, 128);
     border: 0px none;
-    margin: 40px auto 30px;
+    margin: 17px auto 60px;
     font-weight: 500;
 }
 
@@ -429,6 +429,7 @@
     width: 335px;
     top: 0px;
     position: sticky;
+    padding-top: 8px;
 }
 
 .payment-price-title-wrap {
