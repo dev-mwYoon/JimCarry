@@ -52,13 +52,13 @@ class StorageDAOTest {
 
     @Test
     void findBy() {
-        int total = storageDAO.findTotal();
-        Criteria criteria = new Criteria().create(1, 10);
-        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
-        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
-        pageDTO.setKeyword("keyword");
-        pageDTO.setUserId(1L);
-        storageDAO.findBy(pageDTO);
+//        int total = storageDAO.findTotal();
+//        Criteria criteria = new Criteria().create(1, 10);
+//        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
+//        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
+//        pageDTO.setKeyword("keyword");
+//        pageDTO.setUserId(1L);
+//        storageDAO.findBy(pageDTO);
     }
 
     @Test

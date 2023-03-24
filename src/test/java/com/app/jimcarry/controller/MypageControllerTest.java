@@ -38,7 +38,7 @@ class MypageControllerTest {
         log.info(
                 "........getModelAndView" +
                         mockMvc.perform(MockMvcRequestBuilders.get("/users/mypage/mybox")
-                                .param("page", "2")
+                                .param("page", "1")
                                 .param("amount", "10")
                         ).andReturn().getModelAndView().getModelMap().toString());
     }

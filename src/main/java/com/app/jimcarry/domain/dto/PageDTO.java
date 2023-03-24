@@ -2,13 +2,14 @@ package com.app.jimcarry.domain.dto;
 
 import com.app.jimcarry.domain.vo.Criteria;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 @Component
 @Data
+@Slf4j
 public class PageDTO {
     //    페이지 단위 수
     private int pageCount;
@@ -23,15 +24,16 @@ public class PageDTO {
     private int total;
     //    화면에서 받아온 page, amount를 필드로 구성한 객체
     private Criteria criteria;
-    private List<String> types;
 
-    //    검색조건 필드(조건 추가시 필드 추가)
-    private String keyword;
-    private Long userId;
+    //    검색조건 설정 객체
+    private SearchDTO searchDTO;
 
+//    동적쿼리에서 갯수 조회인지, vo객체 조회인지 검사하기 위한 필드
+    private final boolean IS_SEARCH_DTO = false;
 
-    public PageDTO createPageDTO(Criteria criteria, int total) {
-        return createPageDTO(criteria, total, 10);
+    public PageDTO createPageDTO(Criteria criteria, int total, SearchDTO searchDTO) {
+        this.searchDTO = searchDTO;
+        return createPageDTO(criteria, total, 5);
     }
 
     public PageDTO createPageDTO(Criteria criteria, int total, int pageCount) {
@@ -49,6 +51,9 @@ public class PageDTO {
 //            따라서 realEnd가 0이라면 endPage를 1로 변경해주어야 한다.
             endPage = realEnd == 0 ? 1 : realEnd;
         }
+        log.info("..........realEnd : " + realEnd);
+        log.info("..........endPage : " + endPage);
+        log.info("..........getAmount : " + criteria.getAmount());
         this.prev = startPage > 1;
         this.next = endPage < realEnd;
 
