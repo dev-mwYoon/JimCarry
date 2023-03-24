@@ -12,18 +12,20 @@
         <!-- <header>
             <div class="header-layout">
                 <div class="login-all-menu">
-                    <a href="/market-kurly/joinForm.html" class="sign-up-menu">회원가입</a>
+                    <a href="/user/join" class="sign-up-menu">회원가입</a>
                     <div class="slash"></div>
-                    <a href="/market-kurly/login.html" class="login-menu">로그인</a>
+                    <a href="/user/login" class="login-menu">로그인</a>
                     <div class="slash"></div>
                     <div class="customer-center-layout">
-                        <a class="customer-centertext">고객센터
+                        <a href="/notice/list" class="customer-centertext">고객센터
                         </a>
                     </div>
                 </div>
                 <div class="second-header-layout">
                     <div class="second-header-layout1">
-                        <img class="logo" src="../../static/image/logo.png" alt="마켓컬리 로고">
+                        <a href="/main/">
+                            <img class="logo" src="/image/logo.png" alt="마켓컬리 로고">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -71,17 +73,23 @@
                     </div>
                     <ul class="menus-layout">
                         <li class="menu-layout">
-                            <span class="menu-text">창고등록</span>
+                            <a href="/storage/register">
+                                <span class="menu-text">창고등록</span>
+                            </a>
                         </li>
                         <li class="menu-layout">
-                            <span class="menu-text">공지사항</span>
+                            <a href="/notice/list">
+                                <span class="menu-text">공지사항</span>
+                            </a>
                         </li>
                         <li class="menu-layout">
-                            <span class="menu-text">FAQ</span>
+                            <a href="/notice/faq">
+                                <span class="menu-text">FAQ</span>
+                            </a>
                         </li>
                     </ul>
                     <div class="saetbyeol-notice-layout">
-                        <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/delivery_search/delivery_search" class="user-guide">
+                        <a href="notice/info" class="user-guide">
                             <div class="saetbyeol-notice-box">
                                 <span class="saetbyeol-notice-text">서비스 이용</span>
                                 안내
@@ -99,21 +107,23 @@
         <header id="main-header" th:fragment="mainHeader">
             <div class="header-layout">
                 <div class="login-all-menu">
-                    <a href="/market-kurly/login.html" class="login-menu">
+                    <a href="/users/mypage/mybox" class="login-menu">
                         <span class="welcome-box">웰컴</span>
                         정현진 님
                     </a>
                     <div class="slash"></div>
-                    <a href="/market-kurly/login.html" class="login-menu">로그아웃</a>
+                    <a href="/main/" class="login-menu">로그아웃</a>
                     <div class="slash"></div>
                     <div class="customer-center-layout">
-                        <a class="customer-centertext">고객센터
+                        <a href="/notice/list" class="customer-centertext">고객센터
                         </a>
                     </div>
                 </div>
                 <div class="second-header-layout">
                     <div class="second-header-layout1">
-                        <img class="logo" src="/image/logo.png" alt="마켓컬리 로고">
+                        <a href="/main/">
+                            <img class="logo" src="/image/logo.png" alt="마켓컬리 로고">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -161,17 +171,23 @@
                     </div>
                     <ul class="menus-layout">
                         <li class="menu-layout">
-                            <span class="menu-text">창고등록</span>
+                            <a href="/storage/register">
+                                <span class="menu-text">창고등록</span>
+                            </a>
                         </li>
                         <li class="menu-layout">
-                            <span class="menu-text">공지사항</span>
+                            <a href="/notice/list">
+                                <span class="menu-text">공지사항</span>
+                            </a>
                         </li>
                         <li class="menu-layout">
-                            <span class="menu-text">FAQ</span>
+                            <a href="/notice/faq">
+                                <span class="menu-text">FAQ</span>
+                            </a>
                         </li>
                     </ul>
                     <div class="saetbyeol-notice-layout">
-                        <a href="https://www.kurly.com/shop/event/kurlyEvent.php?htmid=event/delivery_search/delivery_search" class="user-guide">
+                        <a href="/notice/info" class="user-guide">
                             <div class="saetbyeol-notice-box">
                                 <span class="saetbyeol-notice-text">서비스 이용</span>
                                 안내
