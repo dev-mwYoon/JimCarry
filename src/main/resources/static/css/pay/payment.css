@@ -427,10 +427,14 @@
 .payment-price-wrap {
     position: absolute;
     width: 335px;
-    top: 0px;
-    position: sticky;
+    top: 60px;
+   position: sticky;
     padding-top: 8px;
 }
+
+/*.payment-price-box {
+    position: sticky;
+}*/
 
 .payment-price-title-wrap {
     display: flex;
