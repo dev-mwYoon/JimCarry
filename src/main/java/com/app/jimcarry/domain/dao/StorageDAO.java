@@ -31,9 +31,9 @@ public class StorageDAO {
     }
 
     //    회원번호로 조회
-//    public List<StorageVO> selectByUserId(Map<String, O>){
-//        return storageMapper.selectByUserId(userId, );
-//    }
+    public List<StorageVO> selectByUserId(Map<String, String> map){
+        return storageMapper.selectByUserId(map);
+    }
 
     //    목록
 
