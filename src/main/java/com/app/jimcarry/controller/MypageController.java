@@ -2,6 +2,7 @@ package com.app.jimcarry.controller;
 
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
@@ -29,48 +30,58 @@ public class MypageController {
 
     /* ============================== 내 창고 ================================ */
     @GetMapping("mybox")
-    public String myBox(Criteria criteria, @RequestParam Integer page, Model model){
+    public String myBox(Criteria criteria,/* @RequestParam Integer page,*/ Model model) {
 
-        int totalStorageCount = 0;
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 10;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+
+        log.info(criteria.getPage() + "............");
+        log.info(criteria.toString());
+
+        PageDTO pageDTO = null;
+
 //         페이지 번호가 없을 때, 디폴트 1페이지
-        if(criteria.getPage() == 0){
-            criteria.create(1, 10);
-        } else {
-            criteria.create(page, 10);
-        }
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
 
-//        List<String> types = new ArrayList<>(Arrays.asList("userId"));
-//        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, 11);
-//        /* 회원번호로 검색, 추후에 세션으로 변경 */
-//        pageDTO.setUserId(2L);
-//        pageDTO.setTypes(types);
-//
-//        model.addAttribute("storages", storageService.getListBy(pageDTO));
-//        model.addAttribute("pagination", pageDTO);
+        total = storageService.getTotalBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("storages", storageService.getListBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
 
         return "mypage/myBox";
     }
+
     /* ============================== 이용중인 창고 ================================ */
     @GetMapping("using")
-    public String using(){
+    public String using() {
         return "mypage/use-myBox";
     }
 
     /* ============================== 문의 사항 ================================ */
     @GetMapping("qna")
-    public String goQna(){
+    public String goQna() {
         return "mypage/my-qna";
     }
 
     /* ================================ 내 후기 ================================== */
     @GetMapping("review")
-    public String review(){
+    public String review() {
         return "mypage/my-review";
     }
 
     /* ============================== 회원정보 수정 ================================ */
     @GetMapping("update")
-    public String updateUser(Model model){
+    public String updateUser(Model model) {
         /* 나중에 세션으로 수정 */
         UserVO userVO = userService.getUser(2L);
         model.addAttribute(userVO);
@@ -123,7 +134,7 @@ public class MypageController {
 
     /* ================================= 회원탈퇴 ================================= */
     @GetMapping("unregister")
-    public String unregister(){
+    public String unregister() {
         return "mypage/my-withdrawal";
     }
 
@@ -153,13 +164,14 @@ public class MypageController {
     private String encryptPassword(String arg) {
         return new String(Base64.getEncoder().encode(arg.getBytes()));
     }
+
     /**
      * 검색조건 설정 메소드
      *
-     * @param types 검색조건 List
+     * @param types    검색조건 List
      * @param criteria 페이징 정보를 담고 있는 객체, 화면에서 받아온다.
-     * */
-    private Map<String, Object> getSearchMap(List<String> types, Criteria criteria){
+     */
+    private Map<String, Object> getSearchMap(List<String> types, Criteria criteria) {
         Map<String, Object> map = new HashMap<>();
         map.put("types", new ArrayList<>(Arrays.asList("userId")));
         map.put("userId", 1L);

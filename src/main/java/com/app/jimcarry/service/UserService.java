@@ -80,7 +80,7 @@ public class UserService {
         if (!search.containsKey("types")) {
             throw new IllegalArgumentException("types key not found");
         }
-        return userDAO.findBy(search);
+        return /*userDAO.findListBy(pageDTO)*/null;
     }
 
     /**

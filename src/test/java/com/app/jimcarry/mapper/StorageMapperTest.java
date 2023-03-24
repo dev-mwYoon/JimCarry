@@ -73,6 +73,9 @@ public class StorageMapperTest {
 
     @Test
     void totalBy() {
-
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+        storageMapper.totalBy(searchDTO);
     }
 }
