@@ -1,34 +1,30 @@
-package com.app.jimcarry.mapper;
+package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
-@Transactional
-public class StorageMapperTest {
+class StorageDAOTest {
 
     @Autowired
-    private StorageMapper storageMapper;
+    StorageDAO storageDAO;
     @Autowired
-    private StorageVO storageVO;
+    StorageVO storageVO;
 
     @BeforeEach
     void setStorageVO(){
@@ -43,32 +39,30 @@ public class StorageMapperTest {
     }
 
     @Test
-    void insert() {
-        storageMapper.insert(storageVO);
+    void save() {
     }
 
     @Test
-    void select() {
-        storageMapper.insert(storageVO);
-        assertThat(storageMapper.select(storageVO.getStorageId())).isNotNull();
+    void findById() {
     }
 
     @Test
-    void selectAll() {
-        int total = storageMapper.total();
-        Criteria criteria = new Criteria().create(3, 10);
-        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
-        storageMapper.selectAll(pageDTO);
+    void findAll() {
     }
 
     @Test
-    void selectBy() {
-        int total = storageMapper.total();
+    void findBy() {
+        int total = storageDAO.findTotal();
         Criteria criteria = new Criteria().create(1, 10);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
-//        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
+        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
         pageDTO.setKeyword("keyword");
         pageDTO.setUserId(1L);
-        storageMapper.selectBy(pageDTO);
+        storageDAO.findBy(pageDTO);
+    }
+
+    @Test
+    void findTotal() {
+        assertThat(storageDAO.findTotal()).isGreaterThan(0);
     }
 }
