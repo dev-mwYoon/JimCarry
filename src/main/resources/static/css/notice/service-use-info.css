@@ -74,7 +74,7 @@ b, strong {
 .view-header-wrapper {
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 630px;
 }
 
 .view-main .view-event {
@@ -171,14 +171,14 @@ b, strong {
     letter-spacing: -.75px;
     white-space: nowrap;
 }
-.img-wrapper{
-    /*padding-bottom: 100px;*/
+.img-wrapper {
+    padding-bottom: 30px;
     margin: 0 auto;
-    max-width: 650px;
+    max-width: 1000px;
 }
 
-.header-img{
-    padding-bottom: 150px;
+.header-img {
+    padding-bottom: 100px;
     display: flex;
     text-align: center;
     width: 77%;
