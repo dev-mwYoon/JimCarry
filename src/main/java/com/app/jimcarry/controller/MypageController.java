@@ -12,8 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
@@ -27,18 +29,24 @@ public class MypageController {
 
     /* ============================== 내 창고 ================================ */
     @GetMapping("mybox")
-    public String myBox(/*Criteria criteria, Model model*/){
-        // 페이지 번호가 없을 때, 디폴트 1페이지
-//        if(criteria.getPage() == 0){
-//            criteria.create(1, 10);
-//        }
-//
+    public String myBox(Criteria criteria, @RequestParam Integer page, Model model){
+
+        int totalStorageCount = 0;
+//         페이지 번호가 없을 때, 디폴트 1페이지
+        if(criteria.getPage() == 0){
+            criteria.create(1, 10);
+        } else {
+            criteria.create(page, 10);
+        }
+
 //        List<String> types = new ArrayList<>(Arrays.asList("userId"));
+//        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, 11);
+//        /* 회원번호로 검색, 추후에 세션으로 변경 */
+//        pageDTO.setUserId(2L);
+//        pageDTO.setTypes(types);
 //
-//        List<StorageVO> storageList = storageService.getListBy(getSearchMap(types, criteria));
-//        int totalStorageCount = storageList.size();
-//        model.addAttribute("storages", storageList);
-//        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, totalStorageCount));
+//        model.addAttribute("storages", storageService.getListBy(pageDTO));
+//        model.addAttribute("pagination", pageDTO);
 
         return "mypage/myBox";
     }

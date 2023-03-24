@@ -21,6 +21,7 @@
         from tbl_storage
         limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
+    <!-- 검색조건에 맞는 테이블 불러옴(페이징처리) -->
     <select id="selectBy" resultType="storageVO">
         select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail,
         storage_use_date, storage_end_date
@@ -31,24 +32,40 @@
     <select id="total" resultType="int">
         select count(storage_id) from tbl_storage
     </select>
-    <!--  검색조건  -->
+    <!-- 검색조건에 맞는 총 갯수 -->
+    <select id="totalBy" resultType="int">
+        select count(storage_id) from tbl_storage
+        <include refid="searchType"/>
+    </select>
+    <!--  PageDTO인지 SearchDTO인지 판별  -->
+    <!-- not 연산자와 ! 연산자 모두 가능 -->
     <sql id="searchType">
-        <if test="page.types != null">
-            where
-            <trim prefixOverrides="and">
-                <foreach collection="page.types" item="type">
-                    <trim prefix="and">
-                        <choose>
-                            <when test="type == 'userId'.toString()">
-                                user_id = #{page.userId}
-                            </when>
-                            <when test="type == 'keyword'.toString()">
-                                storage_title like concat('%', #{page.keyword}, '%')
-                            </when>
-                        </choose>
-                    </trim>
-                </foreach>
-            </trim>
-        </if>
+        <choose>
+            <when test="not(page.IS_SEARCH_DTO)">
+                <bind name="dto" value="page.searchDTO"/>
+            </when>
+            <otherwise>
+                <bind name="dto" value="page"/>
+            </otherwise>
+        </choose>
+        <include refid="searchContext"/>
+    </sql>
+    <!--  조건에 맞는 테이블 검색조건  -->
+    <sql id="searchContext">
+        where
+        <trim prefixOverrides="and">
+            <foreach collection="dto.types" item="type">
+                <trim prefix="and">
+                    <choose>
+                        <when test="type == 'userId'.toString()">
+                            user_id = #{dto.userId}
+                        </when>
+                        <when test="type == 'keyword'.toString()">
+                            storage_title like concat('%', #{dto.keyword}, '%')
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
     </sql>
 </mapper>

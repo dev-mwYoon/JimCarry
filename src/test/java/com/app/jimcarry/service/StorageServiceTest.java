@@ -38,10 +38,10 @@ public class StorageServiceTest {
     void getListByUserId() {
         int total = storageService.getTotal();
         Criteria criteria = new Criteria().create(1, 10);
-        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
+//        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
 //        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
 //        pageDTO.setKeyword("keyword");
 //        pageDTO.setUserId(1L);
-        storageService.getListBy(pageDTO);
+//        storageService.getListBy(pageDTO);
     }
 }

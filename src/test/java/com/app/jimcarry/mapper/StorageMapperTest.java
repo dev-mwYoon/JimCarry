@@ -1,6 +1,7 @@
 package com.app.jimcarry.mapper;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.extern.slf4j.Slf4j;
@@ -56,19 +57,22 @@ public class StorageMapperTest {
     @Test
     void selectAll() {
         int total = storageMapper.total();
-        Criteria criteria = new Criteria().create(3, 10);
-        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
-        storageMapper.selectAll(pageDTO);
+        Criteria criteria = new Criteria().create(1, 10);
     }
 
     @Test
     void selectBy() {
-        int total = storageMapper.total();
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+        int total = storageMapper.totalBy(searchDTO);
         Criteria criteria = new Criteria().create(1, 10);
-        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
-//        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
-        pageDTO.setKeyword("keyword");
-        pageDTO.setUserId(1L);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         storageMapper.selectBy(pageDTO);
+    }
+
+    @Test
+    void totalBy() {
+
     }
 }

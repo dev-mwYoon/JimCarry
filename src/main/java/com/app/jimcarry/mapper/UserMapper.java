@@ -1,5 +1,6 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -16,7 +17,7 @@ public interface UserMapper {
     public UserVO select(Long userId);
 
     //    조건조회
-    public List<UserVO> selectAllBy(Map<String, Object> search);
+    public List<UserVO> selectAllBy(PageDTO pageDTO);
 
     //    아이디, 비밀번호로 조회(로그인)
     public Long selectByIdentificationAndPassword(String userIdentification, String userPassword);
@@ -27,7 +28,7 @@ public interface UserMapper {
     public int selectByEmail(String userEmail);
 
     //    목록
-    public List<UserVO> selectAll(Criteria criteria);
+    public List<UserVO> selectAll(PageDTO pageDTO);
 
     //    수정
     public void update(UserVO userVO);

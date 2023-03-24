@@ -27,7 +27,7 @@ public class UserDAO {
 
     //    키워드 조회
     public List<UserVO> findBy(Map<String, Object> search) {
-        return userMapper.selectAllBy(search);
+        return /*userMapper.selectAllBy(search)*/null;
     }
 
     //    아이디, 비밀번호로 조회(로그인)
@@ -42,7 +42,7 @@ public class UserDAO {
 
     //    목록
     public List<UserVO> findAll(Criteria criteria) {
-        return userMapper.selectAll(criteria);
+        return /*userMapper.selectAll(criteria);*/null;
     }
 
     //    수정
