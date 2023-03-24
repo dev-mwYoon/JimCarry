@@ -3,7 +3,9 @@ package com.app.jimcarry.controller;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
+import com.app.jimcarry.service.StorageService;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Base64;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/users/mypage/*")
@@ -22,20 +23,41 @@ import java.util.Map;
 public class MypageController {
 
     private final UserService userService;
+    private final StorageService storageService;
 
     /* ============================== 내 창고 ================================ */
     @GetMapping("mybox")
-    public String myBox(Criteria criteria, Model model){
+    public String myBox(/*Criteria criteria, Model model*/){
         // 페이지 번호가 없을 때, 디폴트 1페이지
-        if(criteria.getPage() == 0){
-            criteria.create(1, 10);
-        }
-        int totalMemberCount = userService.getList(criteria).size();
-        model.addAttribute("members", userService.getList(criteria));
-        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, totalMemberCount));
-        model.addAttribute("memberTotal", totalMemberCount);
+//        if(criteria.getPage() == 0){
+//            criteria.create(1, 10);
+//        }
+//
+//        List<String> types = new ArrayList<>(Arrays.asList("userId"));
+//
+//        List<StorageVO> storageList = storageService.getListBy(getSearchMap(types, criteria));
+//        int totalStorageCount = storageList.size();
+//        model.addAttribute("storages", storageList);
+//        model.addAttribute("pagination", new PageDTO().createPageDTO(criteria, totalStorageCount));
 
         return "mypage/myBox";
+    }
+    /* ============================== 이용중인 창고 ================================ */
+    @GetMapping("using")
+    public String using(){
+        return "mypage/use-myBox";
+    }
+
+    /* ============================== 문의 사항 ================================ */
+    @GetMapping("qna")
+    public String goQna(){
+        return "mypage/my-qna";
+    }
+
+    /* ================================ 내 후기 ================================== */
+    @GetMapping("review")
+    public String review(){
+        return "mypage/my-review";
     }
 
     /* ============================== 회원정보 수정 ================================ */
@@ -44,7 +66,7 @@ public class MypageController {
         /* 나중에 세션으로 수정 */
         UserVO userVO = userService.getUser(2L);
         model.addAttribute(userVO);
-        String[] births = userVO.getUserBirth().split("/");
+        String[] births = userVO.getUserBirth().split("-");
         model.addAttribute("birthFirtst", births[0]);
         model.addAttribute("birthMiddle", births[1]);
         model.addAttribute("birthLast", births[2]);
@@ -91,7 +113,6 @@ public class MypageController {
         return userService.checkEmailDuplicate(userEmail);
     }
 
-    /* =========================================================================== */
     /* ================================= 회원탈퇴 ================================= */
     @GetMapping("unregister")
     public String unregister(){
@@ -124,6 +145,20 @@ public class MypageController {
     private String encryptPassword(String arg) {
         return new String(Base64.getEncoder().encode(arg.getBytes()));
     }
+    /**
+     * 검색조건 설정 메소드
+     *
+     * @param types 검색조건 List
+     * @param criteria 페이징 정보를 담고 있는 객체, 화면에서 받아온다.
+     * */
+    private Map<String, Object> getSearchMap(List<String> types, Criteria criteria){
+        Map<String, Object> map = new HashMap<>();
+        map.put("types", new ArrayList<>(Arrays.asList("userId")));
+        map.put("userId", 1L);
+        map.put("startRow", criteria.getStartRow());
+        map.put("amount", criteria.getAmount());
 
+        return map;
+    }
     /* =========================================================================== */
 }

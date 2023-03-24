@@ -1,5 +1,6 @@
 package com.app.jimcarry.domain.dao;
 
+import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.mapper.StorageMapper;
@@ -26,17 +27,14 @@ public class StorageDAO {
     }
 
     //    조회
-    public List<StorageVO> findAll(Criteria criteria){
-        return storageMapper.selectAll(criteria);
+    public List<StorageVO> findAll(PageDTO pageDTO){
+        return storageMapper.selectAll(pageDTO);
     }
 
-    //    회원번호로 조회
-    public List<StorageVO> selectByUserId(Map<String, String> map){
-        return storageMapper.selectByUserId(map);
+    //    검색조건 조회
+    public List<StorageVO> findBy(PageDTO pageDTO){
+        return storageMapper.selectBy(pageDTO);
     }
-
-    //    목록
-
 
     //    수정
 

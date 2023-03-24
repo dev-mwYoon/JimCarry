@@ -1,8 +1,10 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -17,10 +19,13 @@ public interface StorageMapper {
     public StorageVO select(Long storageId);
 
     //    조건조회
-    public List<StorageVO> selectByUserId(Map<String, String> map);
+    public List<StorageVO> selectBy(@Param("page") PageDTO pageDTO);
 
     //    목록 조회
-    public List<StorageVO> selectAll(Criteria criteria);
+    public List<StorageVO> selectAll(@Param("page") PageDTO pageDTO);
+
+    //    전체개수 조회
+    public Integer total();
 
     //    수정
 

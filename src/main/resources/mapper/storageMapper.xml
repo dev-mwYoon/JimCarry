@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.jimcarry.mapper.StorageMapper">
-    <insert id="insert" parameterType="storageVO" useGeneratedKeys="true" keyProperty="storageId">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="storageId">
         insert into tbl_storage
         (user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date)
         values(
@@ -11,20 +11,44 @@
         )
     </insert>
     <!--  조회  -->
-    <select id="select" parameterType="long" resultType="storageVO">
+    <select id="select" resultType="storageVO">
         select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
         from tbl_storage
         where storage_id = #{storageId}
     </select>
-    <select id="selectAll" parameterType="criteria" resultType="storageVO">
+    <select id="selectAll" resultType="storageVO">
         select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
         from tbl_storage
-        limit #{startRow}, #{amount}
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
-    <select id="selectByUserId" parameterType="map" resultType="storageVO">
-        select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
+    <select id="selectBy" resultType="storageVO">
+        select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail,
+        storage_use_date, storage_end_date
         from tbl_storage
-        where user_id = #{userId}
-        limit #{startRow}, #{amount}
+        <include refid="searchType"/>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
+    <select id="total" resultType="int">
+        select count(storage_id) from tbl_storage
+    </select>
+    <!--  검색조건  -->
+    <sql id="searchType">
+        <if test="page.types != null">
+            where
+            <trim prefixOverrides="and">
+                <foreach collection="page.types" item="type">
+                    <trim prefix="and">
+                        <choose>
+                            <when test="type == 'userId'.toString()">
+                                user_id = #{page.userId}
+                            </when>
+                            <when test="type == 'keyword'.toString()">
+                                storage_title like concat('%', #{page.keyword}, '%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
 </mapper>
