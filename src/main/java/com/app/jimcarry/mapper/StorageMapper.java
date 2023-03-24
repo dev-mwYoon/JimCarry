@@ -17,7 +17,7 @@ public interface StorageMapper {
     public StorageVO select(Long storageId);
 
     //    조건조회
-    public List<StorageVO> selectByUserId(Map<String, Object> map);
+    public List<StorageVO> selectByUserId(Map<String, String> map);
 
     //    목록 조회
     public List<StorageVO> selectAll(Criteria criteria);
