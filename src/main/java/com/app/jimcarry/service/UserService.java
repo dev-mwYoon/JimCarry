@@ -3,6 +3,7 @@ package com.app.jimcarry.service;
 import com.app.jimcarry.aspect.annotation.Encryption;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.UserDAO;
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -82,8 +83,8 @@ public class UserService {
      * 전체회원 조회 서비스
      */
     @LogStatus
-    public List<UserVO> getList() {
-        return userDAO.findAll();
+    public List<UserVO> getList(Criteria criteria) {
+        return userDAO.findAll(criteria);
     }
 
     /**

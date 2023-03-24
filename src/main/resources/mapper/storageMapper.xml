@@ -16,9 +16,15 @@
         from tbl_storage
         where storage_id = #{storageId}
     </select>
-    <select id="selectByUserId" resultType="storageVO">
+    <select id="selectAll" parameterType="criteria" resultType="storageVO">
+        select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
+        from tbl_storage
+        limit #{startRow}, #{amount}
+    </select>
+    <select id="selectByUserId" parameterType="map" resultType="storageVO">
         select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
         from tbl_storage
         where user_id = #{userId}
+        limit #{startRow}, #{amount}
     </select>
 </mapper>

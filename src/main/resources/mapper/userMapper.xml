@@ -18,10 +18,11 @@
         <include refid="searchType"/>
         order by user_id desc
     </select>
-    <select id="selectAll" resultType="userVO">
+    <select id="selectAll" parameterType="criteria" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_phone, user_address,
         user_address_detail, user_gender, user_birth
         from tbl_user
+        limit #{startRow}, #{amount}
     </select>
     <select id="selectByIdentificationAndPassword" parameterType="map" resultType="long">
         select user_id from tbl_user

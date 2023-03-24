@@ -22,4 +22,8 @@ public class Criteria {
                 .queryParam("amount", this.amount);
         return builder.toUriString();
     }
+
+    public int getStartRow(){
+        return (this.page -1) * this.amount;
+    }
 }

@@ -1,5 +1,6 @@
 package com.app.jimcarry.service;
 
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -79,8 +80,9 @@ class UserServiceImplTest {
 
     @Test
     void getList() {
+        Criteria criteria = new Criteria().create(1, 10);
         userService.registerUser(userVO);
-        assertThat(userService.getList().size()).isGreaterThan(0);
+        assertThat(userService.getList(criteria).size()).isGreaterThan(0);
     }
 
     @Test

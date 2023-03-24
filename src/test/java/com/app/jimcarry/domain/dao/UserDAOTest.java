@@ -1,5 +1,6 @@
 package com.app.jimcarry.domain.dao;
 
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +48,8 @@ class UserDAOTest {
 
     @Test
     void findAll() {
-        List<UserVO> users = userDAO.findAll();
+        Criteria criteria = new Criteria().create(1, 10);
+        List<UserVO> users = userDAO.findAll(criteria);
 
         if (users.size() == 0) {
             assertThat(users.size()).isEqualTo(0);

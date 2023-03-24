@@ -41,8 +41,8 @@ public class UserDAO {
     }
 
     //    목록
-    public List<UserVO> findAll() {
-        return /*userMapper.selectAll(criteria)*/new ArrayList<UserVO>();
+    public List<UserVO> findAll(Criteria criteria) {
+        return userMapper.selectAll(criteria);
     }
 
     //    수정
