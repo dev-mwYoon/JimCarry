@@ -1,6 +1,7 @@
 package com.app.jimcarry.service;
 
 
+import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -35,12 +36,12 @@ public class StorageServiceTest {
 
     @Test
     void getListByUserId() {
-        Map<String, Object> map = new HashMap<>();
-        Criteria criteria = new Criteria().create(2, 10);
-        map.put("types", new ArrayList<>(Arrays.asList("userId")));
-        map.put("userId", 1L);
-        map.put("startRow", criteria.getStartRow());
-        map.put("amount", criteria.getAmount());
-        storageService.getListBy(map);
+        int total = storageService.getTotal();
+        Criteria criteria = new Criteria().create(1, 10);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
+//        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
+//        pageDTO.setKeyword("keyword");
+//        pageDTO.setUserId(1L);
+        storageService.getListBy(pageDTO);
     }
 }

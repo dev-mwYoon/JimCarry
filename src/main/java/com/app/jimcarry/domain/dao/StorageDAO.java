@@ -17,23 +17,30 @@ public class StorageDAO {
     private final StorageMapper storageMapper;
 
     //    추가
-    public void save(StorageVO storageVO){
+    public void save(StorageVO storageVO) {
         storageMapper.insert(storageVO);
-    };
+    }
+
+    ;
 
     //    조회
-    public StorageVO findById(Long storageId){
+    public StorageVO findById(Long storageId) {
         return storageMapper.select(storageId);
     }
 
     //    조회
-    public List<StorageVO> findAll(PageDTO pageDTO){
+    public List<StorageVO> findAll(PageDTO pageDTO) {
         return storageMapper.selectAll(pageDTO);
     }
 
     //    검색조건 조회
-    public List<StorageVO> findBy(PageDTO pageDTO){
+    public List<StorageVO> findBy(PageDTO pageDTO) {
         return storageMapper.selectBy(pageDTO);
+    }
+
+    //    전체개수 조회
+    public int findTotal() {
+        return storageMapper.total();
     }
 
     //    수정
