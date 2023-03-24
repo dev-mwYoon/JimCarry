@@ -3,6 +3,7 @@ package com.app.jimcarry.service;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,5 +114,10 @@ class UserServiceImplTest {
     void checkEmailDuplicate() {
         userService.registerUser(userVO);
         assertThat(userService.checkEmailDuplicate(userVO.getUserEmail())).isFalse();
+    }
+
+    @Test
+    public void sendSMS() throws CoolsmsException {
+        log.info(userService.sendRandomNumber("010-2287-6873"));
     }
 }

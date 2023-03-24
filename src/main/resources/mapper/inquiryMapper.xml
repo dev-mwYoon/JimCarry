@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.JimCarry.mapper.inquiryMapper">
+    <insert id="insert">
+        insert into tbl_inquiry (inquiry_id, user_id, storage_id, inquiry_title, inquiry_content, inquiry_regist, inquiry_answer)
+        values (#{inquiryId}, #{userId}, #{storageId}, #{inquiryTitle}, #{inquiryContent}, current_timestamp(), #{inquiryAnswer})
+    </insert>
 
+    <select id="select" resultType="InquiryVO">
+        select inquiry_id, user_id, storage_id, inquiry_title, inquiry_content, inquiry_regist from tbl_inquiry
+        where inquiry_id = ${inquiryId}
+    </select>
 </mapper>

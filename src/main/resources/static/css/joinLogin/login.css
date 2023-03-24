@@ -133,6 +133,7 @@ html, button, input, select, textarea {
     color: rgb(95, 0, 128);
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(95, 0, 128);
+    margin-top: 10px;
 }
 .joinButton button:last-of-type {
     margin-top: 10px;

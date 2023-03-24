@@ -186,6 +186,7 @@ $duplicateEmailButton.on('click', function(){
                 if(result) {
                     $modalText.text("사용 가능 합니다.");
                     $($('.duplicateBox')[1]).attr('disabled', true);
+                    $('.emailInput').attr('readonly', true);
                 } else {
                     $modalText.text("사용 불가능 합니다.");
                     $('.emailInput').val('');
@@ -213,13 +214,17 @@ $duplicateIdButton.on('click', function(){
             type: "post",
             data: { userIdentification : valueId },
             success: function(result) {
-                if(result) {
-                    $modalText.text("사용 가능 합니다.");
-                    $($('.duplicateBox')[0]).attr('disabled', true);
-                } else {
-                    $modalText.text("사용 불가능 합니다.");
-                    $('.idInput').val('');
+                if(callback) {
+                    callback(result);
                 }
+                // if(result) {
+                //     $modalText.text("사용 가능 합니다.");
+                //     $($('.duplicateBox')[0]).attr('disabled', true);
+                //     $('.idInput').attr('readonly', true);
+                // } else {
+                //     $modalText.text("사용 불가능 합니다.");
+                //     $('.idInput').val('');
+                // }
             }
         });
     }
@@ -264,14 +269,14 @@ $submitButton.on('click', function(event) {
         });
         return;
     }
-    // if(!($('.buttonBox').text() == '확인')) {
-    //     $modal.css('visibility', 'visible');
-    //     $modalText.text("인증번호를 확인해주세요.");
-    //     $checkButton.on('click',()=>{
-    //         $modal.css('visibility', 'hidden');
-    //     });
-    //     return false;
-    // }
+    if(!($('#duplicateBox').text() == '확인')) {
+        $modal.css('visibility', 'visible');
+        $modalText.text("인증번호를 확인해주세요.");
+        $checkButton.on('click',()=>{
+            $modal.css('visibility', 'hidden');
+        });
+        return;
+    }
 
     if(!($($('.test')[0]).is(':checked')) || !($($('.test')[1]).is(':checked')) || !($($('.test')[3]).is(':checked'))) {
         $modal.css('visibility', 'visible');
@@ -285,16 +290,26 @@ $submitButton.on('click', function(event) {
     joinForm.submit();
 });
 
+var authNumber = null;
+
 $checkNum.on('click', function(){
     if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
-        $modal.css('visibility', 'visible');
-        $modalText.text("인증번호가 전송되었습니다.");
-        $checkWrapper.css("display", "flex");
-        $('#duplicateBox').attr('disabled', false);
-        $checkButton.on('click',()=>{
-            $modal.css('visibility', 'hidden');
+        $.ajax({
+            url: "/user/sendSMS",
+            type: "get",
+            data: { userPhone : $('input[name=userPhone]').val() },
+            success: function(result) {
+                console.log(result);
+                authNumber = result;
+                $modal.css('visibility', 'visible');
+                $modalText.text("인증번호가 전송되었습니다.");
+                $checkWrapper.css("display", "flex");
+                $('#duplicateBox').attr('disabled', false);
+                $checkButton.on('click',()=>{
+                    $modal.css('visibility', 'hidden');
+                });
+            }
         });
-
 
         var display = $(".checknum2");
         // 유효시간 설정
@@ -305,11 +320,23 @@ $checkNum.on('click', function(){
 });
 $duplicateBox = $('#duplicateBox');
 $duplicateBox.on('click', function(){
-    $modal.css('visibility', 'visible');
-    $modalText.text("잘못된 인증 코드 입니다.");
-    $checkButton.on('click',()=>{
-        $modal.css('visibility', 'hidden');
-    });
+    if($('input[name=authCode]').val() == authNumber) {
+        $modal.css('visibility', 'visible');
+        $modalText.text("인증확인이 완료되었습니다.");
+        $('#duplicateBox').attr('disabled', true);
+        $('#checkNum').attr('disabled', true);
+        $('#duplicateBox').text('확인');
+        clearInterval(timer);
+        $checkButton.on('click',()=>{
+            $modal.css('visibility', 'hidden');
+        });
+    } else {
+        $modal.css('visibility', 'visible');
+        $modalText.text("인증번호가 틀렸습니다.");
+        $checkButton.on('click',()=>{
+            $modal.css('visibility', 'hidden');
+        });
+    }
 });
 
 var timer = null;
