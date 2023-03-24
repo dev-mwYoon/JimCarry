@@ -5,7 +5,11 @@
         insert into tbl_inquiry (inquiry_id, user_id, storage_id, inquiry_title, inquiry_content, inquiry_regist, inquiry_answer)
         values (#{inquiryId}, #{userId}, #{storageId}, #{inquiryTitle}, #{inquiryContent}, current_timestamp(), #{inquiryAnswer})
     </insert>
+<<<<<<< HEAD
 
+=======
+z
+>>>>>>> juyeon_back
     <select id="select" resultType="InquiryVO">
         select inquiry_id, user_id, storage_id, inquiry_title, inquiry_content, inquiry_regist from tbl_inquiry
         where inquiry_id = ${inquiryId}
