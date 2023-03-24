@@ -14,13 +14,13 @@ let auto = setInterval(autoSlide, 2000);
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
-imageDiv.forEach((div, i) => div.style.backgroundImage = `url(/static/image/00${i+1}.png)`)
+imageDiv.forEach((div, i) => div.style.backgroundImage = `url(/image/00${i+1}.png)`)
 
 banner.appendChild(lastImageDiv);
-lastImageDiv.style.backgroundImage = `url(/static/image/001.png)`;
+lastImageDiv.style.backgroundImage = `url(/image/001.png)`;
 
 banner.insertBefore(firstImageDiv, document.querySelector("div.banner div"));
-firstImageDiv.style.backgroundImage = `url(/static/image/00${imageDiv.length}.png)`
+firstImageDiv.style.backgroundImage = `url(/image/00${imageDiv.length}.png)`
 
 banner.style.transform = `translate(-1728px)`;
 updateBannerCount();
