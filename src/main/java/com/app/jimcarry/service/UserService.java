@@ -3,6 +3,7 @@ package com.app.jimcarry.service;
 import com.app.jimcarry.aspect.annotation.Encryption;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.UserDAO;
+import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-/**
- * 회원 관련 서비스, <br>
- *
- * @author 강민구
- * @since 2023/03/21
- */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -85,10 +80,12 @@ public class UserService {
 
     /**
      * 전체회원 조회 서비스
+     *
+     * @param pageDTO 화면에서 받은 페이징 정보
      */
     @LogStatus
-    public List<UserVO> getList(Criteria criteria) {
-        return userDAO.findAll(criteria);
+    public List<UserVO> getList(PageDTO pageDTO) {
+        return userDAO.findAll(pageDTO);
     }
 
     /**

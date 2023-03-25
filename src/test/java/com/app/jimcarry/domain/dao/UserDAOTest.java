@@ -1,8 +1,11 @@
 package com.app.jimcarry.domain.dao;
 
+import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,20 +39,40 @@ class UserDAOTest {
 
     @Test
     void save() {
+        userDAO.save(userVO);
     }
 
     @Test
     void findById() {
+        userDAO.save(userVO);
+        userDAO.findById(userVO.getUserId());
     }
 
     @Test
-    void findBy() {
+    void findListBy() {
+        int total = userDAO.findTotal();
+        Criteria criteria = new Criteria().create(1, 10);
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("keyword")));
+        searchDTO.setKeyword("Keyword");
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        userDAO.findListBy(pageDTO);
+    }
+
+    @Test
+    void findTotalBy() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("keyword")));
+        searchDTO.setKeyword("Keyword");
+        userDAO.findTotalBy(searchDTO);
     }
 
     @Test
     void findAll() {
+        int total = userDAO.findTotal();
         Criteria criteria = new Criteria().create(1, 10);
-        List<UserVO> users = userDAO.findAll(criteria);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, new SearchDTO());
+        List<UserVO> users = userDAO.findAll(pageDTO);
 
         if (users.size() == 0) {
             assertThat(users.size()).isEqualTo(0);
@@ -72,20 +95,23 @@ class UserDAOTest {
 
     @Test
     void deleteById() {
-        userDAO.deleteById(1L);
-        assertThatThrownBy(() -> {
-            Optional.ofNullable(userDAO.findById(1L)).get();
-        }).isInstanceOf(NoSuchElementException.class);
+        userDAO.save(userVO);
+        userDAO.deleteById(userVO.getUserId());
+        Assertions.assertThrows(NoSuchElementException.class, () ->
+                Optional.ofNullable(userDAO.findById(userVO.getUserId())).get()
+        );
     }
 
     @Test
     void login() {
-        log.info(String.valueOf(userDAO.login("userServiceDuplicateTest", "MTIzNA==")));
-        assertThat(userDAO.login("userServiceDuplicateTest", "MTIzNA==")).isNotNull();
+        assertThat(userDAO.login("test", "NDMyMQ==")).isNotNull();
     }
 
     @Test
     void findCountByUserIdentification() {
+        userVO.setUserIdentification("findCountByUserIdentification");
+        userDAO.save(userVO);
+        assertThat(userDAO.findCountByUserIdentification("findCountByUserIdentification")).isGreaterThan(0);
     }
 
     @Test

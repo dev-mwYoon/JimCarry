@@ -286,7 +286,6 @@ ul{
 .mypage-list-right-list-container{
     padding-top: 20px;
     position: relative;
-    height: 100%;
 }
 /* 등록한 창고 목록 */
 .use-box-container{
@@ -383,7 +382,7 @@ ul{
     width: 96px
 }
 .right-btn{
-    display: block;
+    display: flex;
     padding: 0px 10px;
     text-align: center;
     overflow: hidden;
@@ -394,6 +393,8 @@ ul{
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(95, 0, 128);
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 .right-btn-text{
     font-size: 12px;

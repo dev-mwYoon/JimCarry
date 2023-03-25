@@ -30,10 +30,10 @@ public class MypageController {
 
     /* ============================== 내 창고 ================================ */
     @GetMapping("mybox")
-    public String myBox(Criteria criteria,/* @RequestParam Integer page,*/ Model model) {
+    public String myBox(Criteria criteria, Model model) {
 
         /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 10;
+        int amount = 3;
         /* 검색된 결과의 총 개수 */
         int total = 0;
 

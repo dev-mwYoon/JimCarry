@@ -1,5 +1,6 @@
 package com.app.jimcarry.service;
 
+import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.StorageDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
@@ -7,6 +8,7 @@ import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,32 +17,39 @@ import java.util.List;
 public class StorageService {
     private final StorageDAO storageDAO;
 
-    //    추가
+    //    추가'
+    @LogStatus
+    @Transactional(rollbackFor = Exception.class)
     public void register(StorageVO storageVO) {
         storageDAO.save(storageVO);
     }
 
     //    조회
+    @LogStatus
     public StorageVO getStorage(Long storageId) {
         return storageDAO.findById(storageId);
     }
 
     //    전체조회
+    @LogStatus
     public List<StorageVO> getList(PageDTO pageDTO) {
         return storageDAO.findAll(pageDTO);
     }
 
     //    검색조건 (Criteria 포함)
+    @LogStatus
     public List<StorageVO> getListBy(PageDTO pageDTO) {
         return storageDAO.findBy(pageDTO);
     }
 
     //    전체개수 조회
+    @LogStatus
     public int getTotal() {
         return storageDAO.findTotal();
     }
 
     //    조건에 맞는 전체개수 조회
+    @LogStatus
     public int getTotalBy(SearchDTO searchDTO) {
         return storageDAO.findTotalBy(searchDTO);
     }
