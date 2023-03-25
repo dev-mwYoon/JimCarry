@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,7 +11,7 @@
     <title></title>
   </head>
   <body>
-    <section class="modal">
+    <section class="modal" th:fragment="enquiry-modal">
       <div class="modal__header">
         <h3 class="modal__title">문의 상세보기</h3>
         <a class="modal-close">
