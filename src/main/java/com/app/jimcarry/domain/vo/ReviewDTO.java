@@ -3,11 +3,9 @@ package com.app.jimcarry.domain.vo;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 @Data
-public class ReviewVO {
+public class ReviewDTO {
     private Long reviewId;
     private Long userId;
     private Long storageId;
@@ -15,4 +13,12 @@ public class ReviewVO {
     private String reviewContext;
     private String reviewWriteDate;
     private String reviewEditDate;
+    private String userIdentification;
+    private String userPassword;
+    private String userEmail;
+    private String userPhone;
+    private String userAddress;
+    private String userAddressDetail;
+    private String userGender;
+    private String userBirth;
 }
