@@ -32,8 +32,8 @@ const createDOM = function (box) {
             </div>
             <div class="use-box-content-right-container">
                 <div class="right-btn-container">
-                    <a href="" type="button" class="right-btn">
-                        <span class="right-btn-text">상세 페이지${box.storageId}</span>
+                    <a href="/storages/detail?storageId=${box.storageId}" type="button" class="right-btn">
+                        <span class="right-btn-text">상세 페이지</span>
                     </a>
                 </div>
             </div>
