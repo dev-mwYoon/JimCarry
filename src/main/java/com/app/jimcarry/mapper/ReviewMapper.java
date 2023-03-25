@@ -1,7 +1,7 @@
 package com.app.jimcarry.mapper;
 
 import com.app.jimcarry.domain.dto.PageDTO;
-import com.app.jimcarry.domain.vo.ReviewDTO;
+import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.vo.ReviewVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,5 +18,5 @@ public interface ReviewMapper {
     public ReviewVO select(Long reviewId);
 
     /* 리뷰 목록 조회*/
-    public List<ReviewDTO> selectAll(@Param("page")PageDTO pageDTO);
+    public List<ReviewDTO> selectAll();
 }
