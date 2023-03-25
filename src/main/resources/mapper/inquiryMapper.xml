@@ -6,13 +6,13 @@
         values (#{userId}, #{inquiryTitle}, #{inquiryContent}, current_timestamp())
     </insert>
     <select id="select" resultType="inquiryVO">
-        select inquiry_id, user_id, inquiry_title, inquiry_content, inquiry_regist from tbl_inquiry
+        select inquiry_id, user_id, inquiry_title, inquiry_content, inquiry_regist, inquiry_answer from tbl_inquiry
         where inquiry_id = ${inquiryId}
     </select>
 
     <!-- 검색조건에 맞는 테이블 불러옴(페이징처리) -->
     <select id="selectBy" resultType="inquiryVO">
-        select inquiry_id, user_id, inquiry_title, inquiry_content, inquiry_regist from tbl_inquiry
+        select inquiry_id, user_id, inquiry_title, inquiry_content, inquiry_regist, inquiry_answer from tbl_inquiry
         <include refid="searchType"/>
         order by inquiry_id
         <if test="page.searchDTO.isDesc">

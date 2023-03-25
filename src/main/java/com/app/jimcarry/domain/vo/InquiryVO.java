@@ -12,6 +12,6 @@ public class InquiryVO {
     private String inquiryTitle;
     private String inquiryContent;
     private String inquiryRegist;
-    private String inquiryAnswer;
+    private Integer inquiryAnswer;
 
 }
