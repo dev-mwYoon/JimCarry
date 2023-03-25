@@ -17,22 +17,6 @@ $loginButton.on('click', ()=>{
         $modal.css("visibility", "visible");
         return;
     }
-
-    // $.ajax({
-    //     url: "/user/login",
-    //     type: "post",
-    //     data: { userIdentification : $userIdentification, userPassword : $userPassword },
-    //     success: function(result) {
-    //         if(result) {
-    //             $modalText.text("사용 가능 합니다.");
-    //             $($('.duplicateBox')[1]).attr('disabled', true);
-    //             $('.emailInput').attr('readonly', true);
-    //         } else {
-    //             $modalText.text("사용 불가능 합니다.");
-    //             $('.emailInput').val('');
-    //         }
-    //     }
-    // });
     loginForm.submit();
 });
 $checkButton.on("click", ()=>{
