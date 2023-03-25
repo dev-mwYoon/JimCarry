@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.jimcarry.mapper.ReviewMapper">
+<mapper namespace="com.app.jimcarry.mapper.ReviewMapper">
     <select id="selectAll" resultType="reviewDTO">
         select review_id, u.user_id, storage_id, review_title, review_context, review_write_date, review_edit_date, user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth
-        from tbl_user u join tbl_review r on r.user_id = u.user_id
+        from tbl_user u join tbl_review r on u.user_id = r.user_id
     </select>
 </mapper>

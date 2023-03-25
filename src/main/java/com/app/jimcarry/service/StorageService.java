@@ -17,7 +17,7 @@ import java.util.List;
 public class StorageService {
     private final StorageDAO storageDAO;
 
-    //    추가'
+    //    추가
     @LogStatus
     @Transactional(rollbackFor = Exception.class)
     public void register(StorageVO storageVO) {
@@ -30,13 +30,21 @@ public class StorageService {
         return storageDAO.findById(storageId);
     }
 
-    //    전체조회
+    /**
+     * 전체조회
+     *
+     * @param pageDTO 화면에서 받아온 페이징처리 정보, Criteria 포함
+     * */
     @LogStatus
     public List<StorageVO> getList(PageDTO pageDTO) {
         return storageDAO.findAll(pageDTO);
     }
 
-    //    검색조건 (Criteria 포함)
+    /**
+     * 검색조건 (Criteria 포함)
+     *
+     * @param pageDTO 화면에서 받아온 페이징처리 정보, Criteria, SearchDTO 포함
+     * */
     @LogStatus
     public List<StorageVO> getListBy(PageDTO pageDTO) {
         return storageDAO.findBy(pageDTO);
@@ -48,7 +56,11 @@ public class StorageService {
         return storageDAO.findTotal();
     }
 
-    //    조건에 맞는 전체개수 조회
+    /**
+     * 조건에 맞는 전체개수 조회
+     *
+     * @param searchDTO Controller 에서 설정한 검색조건
+     * */
     @LogStatus
     public int getTotalBy(SearchDTO searchDTO) {
         return storageDAO.findTotalBy(searchDTO);

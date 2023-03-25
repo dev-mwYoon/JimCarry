@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.JimCarry.mapper.inquiryMapper">
-    <insert id="insert">
-        insert into tbl_inquiry (inquiry_id, user_id, storage_id, inquiry_title, inquiry_content, inquiry_regist, inquiry_answer)
-        values (#{inquiryId}, #{userId}, #{storageId}, #{inquiryTitle}, #{inquiryContent}, current_timestamp(), #{inquiryAnswer})
+<mapper namespace="com.app.jimcarry.mapper.InquiryMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="inquiryId">
+        insert into tbl_inquiry (user_id, inquiry_title, inquiry_content, inquiry_regist)
+        values (#{userId}, #{inquiryTitle}, #{inquiryContent}, current_timestamp())
     </insert>
-    <select id="select" resultType="InquiryVO">
-        select inquiry_id, user_id, storage_id, inquiry_title, inquiry_content, inquiry_regist from tbl_inquiry
+    <select id="select" resultType="inquiryVO">
+        select inquiry_id, user_id, inquiry_title, inquiry_content, inquiry_regist from tbl_inquiry
         where inquiry_id = ${inquiryId}
     </select>
+
+    <!-- 검색조건에 맞는 테이블 불러옴(페이징처리) -->
+    <select id="selectBy" resultType="inquiryVO">
+        select inquiry_id, user_id, inquiry_title, inquiry_content, inquiry_regist from tbl_inquiry
+        <include refid="searchType"/>
+        order by inquiry_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
+    </select>
+
+    <!-- 검색조건에 맞는 총 갯수 -->
+    <select id="totalBy" resultType="int">
+        select count(inquiry_id) from tbl_inquiry
+        <include refid="searchType"/>
+    </select>
+
+    <!--  PageDTO인지 SearchDTO인지 판별  -->
+    <sql id="searchType">
+        <choose>
+            <when test="page.IS_SEARCH_DTO">
+                <bind name="dto" value="page"/>
+            </when>
+            <otherwise>
+                <bind name="dto" value="page.searchDTO"/>
+            </otherwise>
+        </choose>
+        <include refid="searchContext"/>
+    </sql>
+    <!--  조건에 맞는 테이블 검색조건  -->
+    <sql id="searchContext">
+        where
+        <trim prefixOverrides="and">
+            <foreach collection="dto.types" item="type">
+                <trim prefix="and">
+                    <choose>
+                        <when test="type == 'userId'.toString()">
+                            user_id = #{dto.userId}
+                        </when>
+                        <when test="type == 'keyword'.toString()">
+                            enquiry_title like concat('%', #{dto.keyword}, '%')
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    </sql>
 </mapper>

@@ -1,4 +1,4 @@
-package com.app.jimcarry.domain.vo;
+package com.app.jimcarry.domain.dto;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

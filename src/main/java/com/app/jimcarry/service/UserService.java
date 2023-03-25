@@ -63,19 +63,11 @@ public class UserService {
     /**
      * 검색조건을 통한 회원조회 서비스
      *
-     * @param search "types" 키값에 검색 항목을 넣고, <br>
-     *               그 항목대로 키 : 밸류를 넣는다 <br>
-     *               ex) types : new ArrayList<String>(Arrays.asList("userIdentification"))<br>
-     *               map.put("userIdentification", [검색하고자 하는 내용])<br>
-     *               주의  : userMapper.xml 에 types도 등록해야 함
-     * @throws IllegalArgumentException keys 키값이 들어오지 않음
+     *  @param pageDTO 화면에서 받아온 페이징처리 정보, Criteria, SearchDTO 포함
      */
     @LogStatus
-    public List<UserVO> getUserBy(Map<String, Object> search) {
-        if (!search.containsKey("types")) {
-            throw new IllegalArgumentException("types key not found");
-        }
-        return /*userDAO.findListBy(pageDTO)*/null;
+    public List<UserVO> getUserListBy(PageDTO pageDTO) {
+        return userDAO.findListBy(pageDTO);
     }
 
     /**

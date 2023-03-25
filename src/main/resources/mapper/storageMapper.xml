@@ -47,7 +47,6 @@
         <include refid="searchType"/>
     </select>
     <!--  PageDTO인지 SearchDTO인지 판별  -->
-    <!-- not 연산자와 ! 연산자 모두 가능 -->
     <sql id="searchType">
         <choose>
             <when test="page.IS_SEARCH_DTO">
