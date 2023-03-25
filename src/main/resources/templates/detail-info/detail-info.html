@@ -231,7 +231,7 @@
                                                 <div>
                                                     <span class="review-date">2018.03.20</span>
                                                 </div>
-                                                <!-- 
+                                                <!--
                                                 <button class="css-g3a39p e198bwfo1">
                                                     <span class="ico css-xdee1z e198bwfo0"></span>
                                                     <span>도움돼요 39</span>
@@ -242,7 +242,7 @@
                                             </article>
                                         </div>
                                         
-                                        <div class="review-detail-container">
+                                        <!--<div class="review-detail-container">
                                             <div class="review-detail-wrap">
                                                 <div class="review-detail-name-wrap">
                                                     <span class="review-name">김**</span>
@@ -276,9 +276,9 @@
                                                 <img class="review-photo">
                                                 <img class="review-photo">
                                                 <img class="review-photo">
-                                              <!--   <button class="review-img"></button>
+                                              &lt;!&ndash;   <button class="review-img"></button>
                                                 <button class="review-img"></button>
-                                                <button class="review-img"></button> -->
+                                                <button class="review-img"></button> &ndash;&gt;
                                             </div>
 
                                             <footer class="review-register-container">
@@ -286,10 +286,10 @@
                                                     <span class="review-date">2018.03.09</span>
                                                 </div>
 
-                                                <!-- <button class="css-g3a39p e198bwfo1">
+                                                &lt;!&ndash; <button class="css-g3a39p e198bwfo1">
                                                     <span class="ico css-xdee1z e198bwfo0"></span>
                                                     <span>도움돼요 22</span>
-                                                </button> -->
+                                                </button> &ndash;&gt;
                                             </footer>
                                         </div>
                                     </article>
@@ -328,11 +328,11 @@
                                                 <img class="review-photo">
                                                 <img class="review-photo">
                                                 <img class="review-photo">
-                                                <!-- <button class="css-a49fz3 e36z05c2"></button>
+                                                &lt;!&ndash; <button class="css-a49fz3 e36z05c2"></button>
                                                 <button class="css-qem3eo e36z05c2"></button>
                                                 <button class="css-1cnja0m e36z05c2"></button>
                                                 <button class="css-nidmdz e36z05c2"></button>
-                                                <button class="css-rz7hca e36z05c2"></button> -->
+                                                <button class="css-rz7hca e36z05c2"></button> &ndash;&gt;
                                             </div>
 
                                                 <footer class="review-register-container">
@@ -340,10 +340,10 @@
                                                         <span class="review-date">2017.11.09</span>
                                                     </div>
 
-                                               <!--  <button class="css-g3a39p e198bwfo1">
+                                               &lt;!&ndash;  <button class="css-g3a39p e198bwfo1">
                                                     <span class="ico css-xdee1z e198bwfo0"></span>
                                                     <span>도움돼요 10</span>
-                                                </button> -->
+                                                </button> &ndash;&gt;
                                             </footer>
                                         </div>
                                     </article>
@@ -375,10 +375,10 @@
                                                 <div>
                                                     <span class="review-date">2023.03.17</span>
                                                 </div>
-                                                <!-- <button class="css-g3a39p e198bwfo1">
+                                                &lt;!&ndash; <button class="css-g3a39p e198bwfo1">
                                                     <span class="ico css-xdee1z e198bwfo0"></span>
                                                     <span>도움돼요</span>
-                                                </button> -->
+                                                </button> &ndash;&gt;
                                             </footer>
                                         </div>
                                     </article>
@@ -403,17 +403,17 @@
                                             <img class="review-photo">
                                             <img class="review-photo">
                                             <img class="review-photo">
-                                            <!-- <button class="css-1muede3 e36z05c2"></button> -->
+                                            &lt;!&ndash; <button class="css-1muede3 e36z05c2"></button> &ndash;&gt;
                                         </div>
                                         
                                         <footer class="review-register-container">
                                             <div>
                                                 <span class="review-date">2023.03.17</span>
                                             </div>
-                                           <!--  <button class="css-g3a39p e198bwfo1">
+                                           &lt;!&ndash;  <button class="css-g3a39p e198bwfo1">
                                                 <span class="ico css-xdee1z e198bwfo0"></span>
                                                 <span>도움돼요</span>
-                                            </button> -->
+                                            </button> &ndash;&gt;
                                         </footer>
                                     </div>
                                 </article>
@@ -437,21 +437,21 @@
                                         <div class="review-img-container">
                                             <img class="review-photo">
                                             <img class="review-photo">
-                                            <!-- <button class="css-1cnkf63 e36z05c2"></button> -->
+                                            &lt;!&ndash; <button class="css-1cnkf63 e36z05c2"></button> &ndash;&gt;
                                         </div>
 
                                         <footer class="review-register-container">
                                             <div>
                                                 <span class="review-date">2023.03.16</span>
                                             </div>
-                                           <!--  <button class="css-g3a39p e198bwfo1">
+                                           &lt;!&ndash;  <button class="css-g3a39p e198bwfo1">
                                                 <span class="ico css-xdee1z e198bwfo0"></span>
                                                 <span>도움돼요</span>
-                                            </button> -->
+                                            </button> &ndash;&gt;
                                         </footer>
                                     </div>
                                 </article>
-                            </div>
+                            </div>-->
                     </div>
             </section>
                     </div>
@@ -471,8 +471,12 @@
     <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    let boxes = [[${storages}]];
+</script>
 <script src="/js/detail/changeimg.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/detail/count.js"></script>
+<script src="/js/detail/detailInfo.js"></script>
 
 </html>
