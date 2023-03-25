@@ -2,6 +2,7 @@ package com.app.jimcarry.service;
 
 import com.app.jimcarry.domain.dao.StorageDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class StorageService {
         return storageDAO.findById(storageId);
     }
 
-    //    조회
+    //    전체조회
     public List<StorageVO> getList(PageDTO pageDTO) {
         return storageDAO.findAll(pageDTO);
     }
@@ -37,6 +38,11 @@ public class StorageService {
     //    전체개수 조회
     public int getTotal() {
         return storageDAO.findTotal();
+    }
+
+    //    조건에 맞는 전체개수 조회
+    public int getTotalBy(SearchDTO searchDTO) {
+        return storageDAO.findTotalBy(searchDTO);
     }
 
     //    수정

@@ -1,42 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.jimcarry.mapper.UserMapper">
-    <insert id="insert" parameterType="userVO" useGeneratedKeys="true" keyProperty="userId">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
         insert into tbl_user
         (user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth)
         values(#{userIdentification}, #{userPassword}, #{userEmail}, #{userPhone}, #{userAddress}, #{userAddress}, #{userGender}, #{userBirth});
     </insert>
-    <select id="select" parameterType="long" resultType="userVO">
+    <select id="select" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth
         from tbl_user
         where user_id = #{userId}
     </select>
-    <select id="selectAllBy" parameterType="map" resultType="userVO">
+    <select id="selectAllBy" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_phone, user_address,
         user_address_detail, user_gender, user_birth
         from tbl_user
         <include refid="searchType"/>
-        order by user_id desc
+        order by user_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
-    <select id="selectAll" parameterType="criteria" resultType="userVO">
+    <select id="selectAll" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_phone, user_address,
         user_address_detail, user_gender, user_birth
         from tbl_user
-        limit #{startRow}, #{amount}
+        order by user_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
-    <select id="selectByIdentificationAndPassword" parameterType="map" resultType="long">
+    <select id="total" resultType="int">
+        select count(user_id) from tbl_user
+    </select>
+    <select id="totalBy" resultType="int">
+        select count(user_id) from tbl_user
+        <include refid="searchType"/>
+    </select>
+    <select id="selectByIdentificationAndPassword" resultType="long">
         select user_id from tbl_user
         where user_identification = #{userIdentification} and user_password = #{userPassword}
     </select>
-    <select id="selectByIdentification" parameterType="string" resultType="int">
+    <select id="selectByIdentification" resultType="int">
         select count(user_id) from tbl_user
         where user_identification = #{userIdentification}
     </select>
-    <select id="selectByEmail" parameterType="string" resultType="int">
+    <select id="selectByEmail" resultType="int">
         select count(user_id) from tbl_user
         where user_email = #{userEmail}
     </select>
-    <update id="update" parameterType="userVO">
+    <update id="update">
         update tbl_user
         set user_identification=#{userIdentification}, user_password=#{userPassword}, user_email=#{userEmail},
         user_phone=#{userPhone}, user_address=#{userAddress}, user_address_detail=#{userAddressDetail}, user_gender=#{userGender}, user_birth=#{userBirth}
@@ -46,21 +61,35 @@
         delete from tbl_user
         where user_id = #{userId}
     </delete>
-    <!--  검색조건  -->
+    <!--  PageDTO인지 SearchDTO인지 판별  -->
+    <!-- not 연산자와 ! 연산자 모두 가능 -->
     <sql id="searchType">
-        <if test="types != null and keyword != null">
-            where
-            <trim prefixOverrides="or">
-                <foreach collection="types" item="type">
-                    <trim prefix="or">
-                        <choose>
-                            <when test="type == 'userIdentification'.toString()">
-                                user_identification like concat('%', #{keyword}, '%')
-                            </when>
-                        </choose>
-                    </trim>
-                </foreach>
-            </trim>
-        </if>
+        <choose>
+            <when test="page.IS_SEARCH_DTO">
+                <bind name="dto" value="page"/>
+            </when>
+            <otherwise>
+                <bind name="dto" value="page.searchDTO"/>
+            </otherwise>
+        </choose>
+        <include refid="searchContext"/>
+    </sql>
+    <!--  조건에 맞는 테이블 검색조건  -->
+    <sql id="searchContext">
+        where
+        <trim prefixOverrides="and">
+            <foreach collection="dto.types" item="type">
+                <trim prefix="and">
+                    <choose>
+                        <when test="type == 'userId'.toString()">
+                            user_id = #{dto.userId}
+                        </when>
+                        <when test="type == 'keyword'.toString()">
+                            user_identification like concat('%', #{dto.keyword}, '%')
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
     </sql>
 </mapper>

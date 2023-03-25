@@ -1,5 +1,7 @@
 package com.app.jimcarry.domain.dao;
 
+import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.mapper.UserMapper;
@@ -25,9 +27,14 @@ public class UserDAO {
         return userMapper.select(userId);
     }
 
-    //    키워드 조회
-    public List<UserVO> findBy(Map<String, Object> search) {
-        return /*userMapper.selectAllBy(search)*/null;
+    //    조건검색
+    public List<UserVO> findListBy(PageDTO pageDTO) {
+        return userMapper.selectAllBy(pageDTO);
+    }
+
+    //    조건검색 개수조회
+    public int findTotalBy(SearchDTO searchDTO) {
+        return userMapper.totalBy(searchDTO);
     }
 
     //    아이디, 비밀번호로 조회(로그인)
@@ -40,9 +47,19 @@ public class UserDAO {
         return userMapper.selectByIdentification(userIdentification);
     }
 
+    //    이메일 중복검사
+    public int findCountByUserEmail(String userEmail) {
+        return userMapper.selectByEmail(userEmail);
+    }
+
     //    목록
-    public List<UserVO> findAll(Criteria criteria) {
-        return /*userMapper.selectAll(criteria);*/null;
+    public List<UserVO> findAll(PageDTO pageDTO) {
+        return userMapper.selectAll(pageDTO);
+    }
+
+    //    목록 개수 조회
+    public int findTotal() {
+        return userMapper.total();
     }
 
     //    수정
@@ -53,9 +70,5 @@ public class UserDAO {
     //    삭제
     public void deleteById(Long userId) {
         userMapper.delete(userId);
-    }
-
-    public int findCountByUserEmail (String userEmail) {
-        return userMapper.selectByEmail(userEmail);
     }
 }

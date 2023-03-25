@@ -1,6 +1,7 @@
 package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.extern.slf4j.Slf4j;
@@ -52,17 +53,28 @@ class StorageDAOTest {
 
     @Test
     void findBy() {
-//        int total = storageDAO.findTotal();
-//        Criteria criteria = new Criteria().create(1, 10);
-//        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
-//        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
-//        pageDTO.setKeyword("keyword");
-//        pageDTO.setUserId(1L);
-//        storageDAO.findBy(pageDTO);
+        int total = 0;
+        Criteria criteria = new Criteria().create(1, 10);
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+
+        total = storageDAO.findTotalBy(searchDTO);
+
+        storageDAO.findBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
 
     @Test
     void findTotal() {
         assertThat(storageDAO.findTotal()).isGreaterThan(0);
+    }
+
+
+    @Test
+    void findTotalBy() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+        storageDAO.findTotalBy(searchDTO);
     }
 }

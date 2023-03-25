@@ -1,5 +1,7 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -47,17 +49,13 @@ class UserMapperTest {
     @Test
     void insert() {
         /* insert 시 userId 받아오는가 테스트 */
-//        userMapper.insert(userVO);
-//        assertThat(userVO.getUserId()).isNotNull();
-//        log.info(userVO.getUserId().toString());
-        /* ============================== */
+        userMapper.insert(userVO);
+        assertThat(userVO.getUserId()).isNotNull();
+        log.info(userVO.getUserId().toString());
 
         /* insert 정상작동 테스트 */
-//        assertDoesNotThrow(() -> userMapper.insert(userVO));
-//        assertThrows(Exception.class, () -> userMapper.insert(null));
-        /* ============================== */
-
-//        userMapper.insert(userVO);
+        assertDoesNotThrow(() -> userMapper.insert(userVO));
+        assertThrows(Exception.class, () -> userMapper.insert(null));
     }
 
     @Test
@@ -69,23 +67,36 @@ class UserMapperTest {
 
     @Test
     void selectAllBy() {
-        String test = "Test";
-        userMapper.insert(userVO);
+        int total = 0;
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("types", new ArrayList<String>(Arrays
-                .asList("userIdentification")));
-        map.put("userIdentification", test);
+        SearchDTO searchDTO = new SearchDTO();
+        Criteria criteria = new Criteria().create(1, 10);
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("keyword")));
+        searchDTO.setKeyword("Keyword");
+        total = userMapper.totalBy(searchDTO);
 
-//        userMapper.selectAllBy(map).forEach(user -> assertThat(user.getUserIdentification()).contains(test));
+        userMapper.selectAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
 
     @Test
     void selectAll() {
-        Criteria criteria = new Criteria().create(2, 10);
-//        List<UserVO> list = userMapper.selectAll(criteria);
-//        assertThat(list.size()).isGreaterThan(0);
-//        log.info("list : " + list);
+        Criteria criteria = new Criteria().create(1, 10);
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setDesc(true);
+        userMapper.selectAll(new PageDTO().createPageDTO(criteria, userMapper.total(), searchDTO));
+    }
+
+    @Test
+    void totalBy() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("keyword")));
+        searchDTO.setKeyword("Keyword");
+        userMapper.totalBy(searchDTO);
+    }
+
+    @Test
+    void total() {
+        userMapper.total();
     }
 
     @Test
@@ -113,9 +124,9 @@ class UserMapperTest {
 
     @Test
     void selectBytIdentification() {
+        userVO.setUserIdentification("randomTestUnit");
         userMapper.insert(userVO);
-//        assertThat(userMapper.selectBytIdentification(userVO.getUserIdentification())).isGreaterThan(0);
-        assertThat(userMapper.selectByIdentification(userVO.getUserIdentification())).isEqualTo(0);
+        assertThat(userMapper.selectByIdentification(userVO.getUserIdentification())).isEqualTo(1);
     }
 
     @Test

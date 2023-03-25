@@ -1,10 +1,12 @@
 package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.mapper.StorageMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,8 +22,6 @@ public class StorageDAO {
     public void save(StorageVO storageVO) {
         storageMapper.insert(storageVO);
     }
-
-    ;
 
     //    조회
     public StorageVO findById(Long storageId) {
@@ -41,6 +41,11 @@ public class StorageDAO {
     //    전체개수 조회
     public int findTotal() {
         return storageMapper.total();
+    }
+
+    //    검색에 맞는 전체개수 조회
+    public int findTotalBy(SearchDTO searchDTO){
+        return storageMapper.totalBy(searchDTO);
     }
 
     //    수정

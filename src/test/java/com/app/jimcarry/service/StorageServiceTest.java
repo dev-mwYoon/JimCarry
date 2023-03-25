@@ -2,6 +2,7 @@ package com.app.jimcarry.service;
 
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -35,13 +36,27 @@ public class StorageServiceTest {
     }
 
     @Test
-    void getListByUserId() {
-        int total = storageService.getTotal();
+    void getListBy() {
+        int total = 0;
         Criteria criteria = new Criteria().create(1, 10);
-//        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total);
-//        pageDTO.setTypes(new ArrayList<>(Arrays.asList("userId", "keyword")));
-//        pageDTO.setKeyword("keyword");
-//        pageDTO.setUserId(1L);
-//        storageService.getListBy(pageDTO);
+        PageDTO pageDTO = null;
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+
+        total = storageService.getTotalBy(searchDTO);
+        storageService.getListBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
+
+    @Test
+    void getTotal() {
+    }
+
+    @Test
+    void getTotalBy() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+        log.info("getTotalby : " + storageService.getTotalBy(searchDTO));
     }
 }
