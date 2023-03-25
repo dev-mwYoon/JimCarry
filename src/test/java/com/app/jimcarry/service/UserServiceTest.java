@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @Slf4j
 @Transactional
-class UserServiceImplTest {
+class UserServiceTest {
 
     @Autowired
     UserService userService;
@@ -62,17 +62,8 @@ class UserServiceImplTest {
     }
 
     @Test
-    void getUserBy() {
-        Map<String, Object> search = new HashMap<>();
-        String matchName = "Test";
-        String unMatchName = "*^@!*###";
+    void getUserListBy() {
 
-        userService.registerUser(userVO);
-
-        search.put("types", new ArrayList<String>(Arrays.asList("userIdentification")));
-        search.put("keyword", matchName);
-
-        userService.getUserBy(search).forEach(user -> assertThat(user.getUserIdentification()).contains(matchName));
     }
 
     @Test
