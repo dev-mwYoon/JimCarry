@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/mypage/myBox.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/mypage/paging.css">
     <link rel="icon" href="/image/favicon.png">
 </head>
 <body>
@@ -27,56 +28,21 @@
                 </div>
             </div>
             <div class="mypage-list-right-line"></div>
-            <div class="mypage-list-right-list-container">
-                <!-- 등록한 창고 목록추가 -->
-                <div class="use-box-container">
-                    <div class="use-box-date-container">
-                        <span class="use-box-date">2023.03.13 (10시 10분)</span>
-                    </div>
-                    <div class="use-box-content-container">
-                        <div class="use-box-content-left-container">
-                            <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
-                                 class="use-box-content-left-img">
-                            <div class="use-box-content-left-list-container">
-                                <d1 class="left-list-wrapper">
-                                    <dt class="left-list-text">창고규모</dt>
-                                    <dd class="left-list-text-content">[소] 100cm(가로) x 75cm(세로) x 220cm(높이)</dd>
-                                </d1>
-                                <d1 class="left-list-wrapper">
-                                    <dt class="left-list-text">등록기간</dt>
-                                    <dd class="left-list-text-content">2023.03.13 ~ 2023.04.13</dd>
-                                </d1>
-                                <d1 class="left-list-wrapper">
-                                    <dt class="left-list-text">창고금액</dt>
-                                    <dd class="left-list-text-content">166,000원</dd>
-                                </d1>
-                            </div>
-                        </div>
-                        <div class="use-box-content-right-container">
-                            <span class="use-box-content-right-text">사용중</span>
-                            <div class="right-btn-container">
-                                <button type="button" class="right-btn">
-                                    <span class="right-btn-text">1:1 문의</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <!-- 등록한 창고 목록추가 -->
+            <div class="mypage-list-right-list-container"></div>
+            <div th:object="${pagination}">
+                <div class="paging" style="text-align: center">
+                    <a class="changePage" th:href="'mybox?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="changePage" style="color: black" th:href="'mybox?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                    </th:block>
+                    <a class="changePage" th:href="'mybox?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
                 </div>
-                <div th:object="${pagination}">
-                    <div class="paging" style="text-align: center">
-                        <a class="changePage" th:href="'mybox?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
-                        <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                            <a class="changePage" style="color: black" th:href="'mybox?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-                            <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                        </th:block>
-                        <a class="changePage" th:href="'mybox?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
-                    </div>
-                    <form th:action="@{/users/mypage/mybox}" th:object="${criteria}" name="pageForm">
-                        <input type="hidden" th:field="*{page}">
-                        <input type="hidden" th:field="*{amount}">
-                    </form>
-                </div>
-                <!--  -->
+                <form th:action="@{/users/mypage/mybox}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                </form>
             </div>
         </div>
     </div>
@@ -87,16 +53,13 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="/js/main/header.js"></script>
 <script th:inline="javascript">
     let boxes = [[${storages}]];
-    let startPage = [[${pagination.startPage}]]
-    let endPage = [[${pagination.endPage}]]
-    let prev = [[${pagination.prev}]]
-    let next = [[${pagination.next}]]
-    console.log(startPage, endPage);
-    console.log(prev, next);
-    console.log(boxes);
+</script>
+<script src="/js/mypage/components.js"></script>
+<script src="/js/mypage/myBox.js"></script>
+<script src="/js/main/header.js"></script>
+<script th:inline="javascript">
     $(".mypage-list-left-section-name").eq(0).css({
         "background-color": "rgb(250, 250, 250)",
         "color": "rgb(95, 0, 128)"
