@@ -24,8 +24,16 @@ public class ReviewMapperTest {
     ReviewMapper reviewMapper;
 
     @Test
-    public void listTest(){
-        log.info(reviewMapper.selectAll().toString());
+    public void listTest(PageDTO pageDTO){
+        log.info(reviewMapper.selectAll(pageDTO).toString());
+    }
+
+    @Test
+    public void getList(){
+        Criteria criteria = new Criteria().create(1, 10);
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setDesc(true);
+        reviewMapper.selectAll(new PageDTO().createPageDTO(criteria, reviewMapper.total(), searchDTO));
     }
 
 }
