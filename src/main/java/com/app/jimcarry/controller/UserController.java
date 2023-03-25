@@ -6,8 +6,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user/*")
@@ -51,8 +54,15 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public void login(String userIdentification, String userPassword) {
-        userService.login(userIdentification, userPassword);
+    public RedirectView login(String userIdentification, String userPassword, HttpSession session) {
+        Long userId = userService.login(userIdentification, userPassword);
+        log.info(String.valueOf(userId));
+        if(userId == null) {
+            session.setAttribute("userId", userId);
+            return new RedirectView("/user/login?login=fail");
+        }
+
+        return new RedirectView("/main/");
     }
 
     @GetMapping("find-id-phone")
