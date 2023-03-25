@@ -80,20 +80,46 @@ const createDOM = function (qna) {
                                     </svg>
                                 </button>
                             </div>
-                            <div class="change-modal-image-row">
-                                <div class="change-modal-image-wrapper">
-                                    <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
-                                        <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
-                                            <img alt="" aria-hidden="true"
-                                                 src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2772%27%20height=%2772%27/%3e"
-                                                 style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;">
-                                        </span>
-                                        <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
-                                             class="change-modal-image">
-                                    </span>
-                                </div>
-                            </div>
                             <form class="change-modal-form-wrapper">
+                                <div class="termStart">
+                                    <div class="termsLayout">
+                                        <div class="termsTitle">
+                                            <label class="termsLabel">
+                                                문의사진
+                                            </label>
+                                        </div>
+                                        <div class="imageContainer">
+                                            <div class="imageWrapperPadding">
+                                                <div class="imageWrapper">
+                                                    <div id="thumbnail-list" class="imageDiv">
+                                                        <div class="imgButtonWrap">
+                                                            <label for="photo-picker">
+                                                                <div class="imgButton">
+                                                                    <span class="cameraIconImg"></span>
+                                                                </div>
+                                                                <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" multiple="">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="imgTextWrapper">
+                                                        <div class="imgTextDiv">
+                                                            <span></span>
+                                                            30MB 이하의 이미지만 업로드 가능합니다.
+                                                        </div>
+                                                        <div class="imgTextDiv">
+                                                            <span></span>
+                                                            상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
+                                                        </div>
+                                                        <div class="imgTextDiv">
+                                                            <span></span>
+                                                            사진은 최대 8장까지 등록가능합니다.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="change-modal-form-row">
                                     <span class="change-modal-form-label">제목</span>
                                     <div class="change-modal-form-field">
