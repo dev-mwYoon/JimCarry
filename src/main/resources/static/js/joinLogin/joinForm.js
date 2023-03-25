@@ -214,17 +214,14 @@ $duplicateIdButton.on('click', function(){
             type: "post",
             data: { userIdentification : valueId },
             success: function(result) {
-                if(callback) {
-                    callback(result);
+                if(result) {
+                    $modalText.text("사용 가능 합니다.");
+                    $($('.duplicateBox')[0]).attr('disabled', true);
+                    $('.idInput').attr('readonly', true);
+                } else {
+                    $modalText.text("사용 불가능 합니다.");
+                    $('.idInput').val('');
                 }
-                // if(result) {
-                //     $modalText.text("사용 가능 합니다.");
-                //     $($('.duplicateBox')[0]).attr('disabled', true);
-                //     $('.idInput').attr('readonly', true);
-                // } else {
-                //     $modalText.text("사용 불가능 합니다.");
-                //     $('.idInput').val('');
-                // }
             }
         });
     }
