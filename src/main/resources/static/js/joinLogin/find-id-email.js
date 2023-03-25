@@ -6,11 +6,8 @@ const $findEmailInputBox = $('.findEmailInputBox');
 const $errorMsg1 = $('.errorMsg1');
 const $errorMsg2 = $('.errorMsg2');
 
-
-console.log($('.codeButton'));
 $findnameInputBox.on('blur', function(){
     let value = $(this).val();
-    console.log(value);
 
     if(!value){
         $errorMsg1.css('display', 'block');
@@ -18,7 +15,12 @@ $findnameInputBox.on('blur', function(){
     }else{
         $errorMsg1.css('display', 'none');
         $errorMsg1.text("");
+        if($errorMsg2.css('display') == 'none') {
+            $('.codeButton').attr('disabled', false);
+        }
+        return;
     }
+    $('.codeButton').attr('disabled', true);
 });
 
 $findEmailInputBox.on('blur', function(){
@@ -34,13 +36,13 @@ $findEmailInputBox.on('blur', function(){
     }else{
         $errorMsg2.css('display', 'none');
         $errorMsg2.text("");
-        
+        if($errorMsg1.css('display') == 'none') {
+            $('.codeButton').attr('disabled', false);
+        }
+        return;
     }
+    $('.codeButton').attr('disabled', true);
 });
-$('.codeButton').css('background-color', '#5f0080');
-// if($findEmailInputBox.val()){
-//     $('.codeButton').css('background-color', '#5f0080');
-// }
 
 
 //모달

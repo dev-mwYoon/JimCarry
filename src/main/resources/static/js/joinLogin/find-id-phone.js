@@ -18,7 +18,12 @@ $findnameInputBox.on('blur', function(){
     }else{
         $errorMsg1.css('display', 'none');
         $errorMsg1.text("");
+        if($errorMsg2.css('display') == 'none') {
+            $('.codeButton').attr('disabled', false);
+        }
+        return;
     }
+    $('.codeButton').attr('disabled', true);
 });
 $findPhoneInputBox.on('blur', function(){
     let value = $(this).val();
@@ -33,8 +38,12 @@ $findPhoneInputBox.on('blur', function(){
     }else{
         $errorMsg2.css('display', 'none');
         $errorMsg2.text("");
-        
+        if($errorMsg1.css('display') == 'none') {
+            $('.codeButton').attr('disabled', false);
+        }
+        return;
     }
+    $('.codeButton').attr('disabled', true);
 });
 //모달
 const $modal = $('.modal-container');

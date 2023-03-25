@@ -56,7 +56,7 @@ public class UserController {
     @PostMapping("login")
     public RedirectView login(String userIdentification, String userPassword, HttpSession session) {
         Long userId = userService.login(userIdentification, userPassword);
-        log.info(String.valueOf(userId));
+
         if(userId == null) {
             session.setAttribute("userId", userId);
             return new RedirectView("/user/login?login=fail");
