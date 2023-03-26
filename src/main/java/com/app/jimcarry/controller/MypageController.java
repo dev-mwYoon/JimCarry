@@ -4,7 +4,10 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.domain.vo.FileVO;
+import com.app.jimcarry.domain.vo.InquiryFileVO;
 import com.app.jimcarry.domain.vo.UserVO;
+import com.app.jimcarry.service.InquiryFileService;
 import com.app.jimcarry.service.InquiryService;
 import com.app.jimcarry.service.StorageService;
 import com.app.jimcarry.service.UserService;
@@ -12,10 +15,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users/mypage/*")
@@ -26,24 +34,22 @@ public class MypageController {
     private final UserService userService;
     private final StorageService storageService;
     private final InquiryService inquiryService;
+    private final InquiryFileService inquiryFileService;
 
     /* ============================== 내 창고 ================================ */
     @GetMapping("mybox")
     public String myBox(Criteria criteria, Model model) {
 
+//        page, amount
         /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 3;
+        int amount = 5;
         /* 검색된 결과의 총 개수 */
         int total = 0;
+        PageDTO pageDTO = null;
 
         /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
-
-        log.info(criteria.getPage() + "............");
-        log.info(criteria.toString());
-
-        PageDTO pageDTO = null;
 
 //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
@@ -94,6 +100,28 @@ public class MypageController {
         model.addAttribute("pagination", pageDTO);
 
         return "mypage/my-qna";
+    }
+
+    /* ============================== 파일 ================================ */
+
+    @PostMapping("files/upload")
+    @ResponseBody
+    public Map<String, Object> upload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
+        return inquiryFileService.uploadFile(multipartFiles);
+    }
+
+    @GetMapping("files/display")
+    @ResponseBody
+    public byte[] display(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+    }
+
+    /* 문의 파일 */
+    @PostMapping("files/save")
+    public RedirectView saveFile(@RequestBody List<InquiryFileVO> files) {
+        files.forEach(file -> log.info("inquiryId.......... : " + file.getInquiryId()));
+        inquiryFileService.registerFile(files);
+        return new RedirectView("/users/mypage/qna");
     }
 
     /* ================================ 내 후기 ================================== */

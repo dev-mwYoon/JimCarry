@@ -92,6 +92,7 @@ const createDOM = function (qna) {
                                             <div class="imageWrapperPadding">
                                                 <div class="imageWrapper">
                                                     <div id="thumbnail-list" class="imageDiv">
+                                                        <div class="thumbnailWrap"></div>
                                                         <div class="imgButtonWrap">
                                                             <label for="photo-picker">
                                                                 <div class="imgButton">
@@ -176,11 +177,7 @@ const createDOM = function (qna) {
 `
 }
 
-inquiries.forEach((qna, i) => {
-    qnaContainer.append(
-        createDOM(qna)
-    );
-})
+inquiries.forEach((qna, i) => qnaContainer.append(createDOM(qna)));
 
 
 /* 슬라이드 */
@@ -195,7 +192,17 @@ $(document).ready(function () {
 const $btn = $(".modal-btn");
 const $container = $(".change-modal");
 const $close = $(".close-btn");
-const $cancel = $(".change-modal-delete-btn")
+const $cancel = $(".change-modal-delete-btn");
+
+/* file.js에서 사용 */
+/* 현재 페이지에서 몇 번째를 클릭했는가 */
+let inquiryIndex;
+
+/* 썸네일을 담는 div */
+const $thumbnailWrap = $(".thumbnailWrap");
+
+/* 실제 저장할 파일VO들의 배열 */
+let fileVOs = new Array();
 
 const $textareaTitle = $(".change-modal-form-title-input");
 
@@ -210,6 +217,7 @@ const maxLength = 5000;
 $btn.on("click", function () {
     //  현재 클릭한 모달창을 기준으로 텍스트 설정
     let i = $btn.index($(this));
+    inquiryIndex = i;
     let textLength = 0;
     $textareaTitle.eq(i).val(inquiries[i].inquiryTitle);
     $textarea.eq(i).text(inquiries[i].inquiryContent);
@@ -244,6 +252,8 @@ $close.on("click", function () {
 //모달창 취소 닫기
 $cancel.on("click", function () {
     $container.css("display", "none");
+    $thumbnailWrap.empty();
+    fileVOs = new Array();
 });
 
 /* 삭제 모달 */

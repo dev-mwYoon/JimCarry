@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @SpringBootTest
 @Slf4j
+@Transactional
 public class InquiryServiceTest {
 
     @Autowired
@@ -38,7 +40,7 @@ public class InquiryServiceTest {
 
     //    조회
     @Test
-    public void getInquiry(){
+    public void getInquiry() {
 
     }
 
@@ -48,9 +50,9 @@ public class InquiryServiceTest {
 
     //    조건조회
     @Test
-    public void getListBy(){
+    public void getListBy() {
         int total = 0;
-        Criteria criteria = new Criteria().create(1, 10);
+        Criteria criteria = new Criteria().create(2, 10);
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
         total = inquiryService.getTotalBy(searchDTO);
@@ -59,7 +61,7 @@ public class InquiryServiceTest {
 
     //    조건조회 개수
     @Test
-    public void getTotalBy(){
+    public void getTotalBy() {
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
         inquiryService.getTotalBy(searchDTO);
