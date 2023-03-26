@@ -100,7 +100,8 @@ public class MypageController {
     public RedirectView updateQna(InquiryVO inquiryVO, String page) {
         /* 추후 세션으로 변경 */
         inquiryVO.setUserId(2L);
-        inquiryService.updateInquiry(inquiryVO);
+        inquiryService. updateInquiry(inquiryVO);
+        log.info("인쿼리브이오!!!!!" + inquiryVO.toString());
         return new RedirectView("/users/mypage/qna?page=" + page);
     }
 
