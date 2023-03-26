@@ -173,7 +173,7 @@
                   <th class="content__id">회원번호</th>
                   <th>아이디</th>
                   <th>이메일</th>
-                  <th>가입일</th>
+                  <th>생년월일</th>
                   <th>성별</th>
                   <th></th>
                 </tr>
@@ -247,4 +247,9 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="/js/admin/app.js"></script>
   <script src="/js/admin/events.js"></script>
+  <script th:inline="javascript">
+    let users = [[${users}]];
+  </script>
+  <script src="/js/admin/user.js"></script>
+
 </html>
