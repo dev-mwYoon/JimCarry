@@ -15,6 +15,7 @@ public class ReviewDTO {
     private String reviewEditDate;
     private String userIdentification;
     private String userPassword;
+    private String userName;
     private String userEmail;
     private String userPhone;
     private String userAddress;

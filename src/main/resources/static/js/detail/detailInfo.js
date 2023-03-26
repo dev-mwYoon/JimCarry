@@ -6,7 +6,7 @@ const createDOM = function (review) {
     let text = `
     <div class="review-detail-wrap">
         <div class="review-detail-name-wrap">
-            <span class="review-name">${review.userId}</span>
+            <span class="review-name">${review.userName}</span>
         </div>
     </div>
 
