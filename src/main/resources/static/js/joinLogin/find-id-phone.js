@@ -7,7 +7,6 @@ const $verificationError = $('.verificationError');
 const $verificationInput = $('.verification-input');
 const $verifiCheck = $('.verifiCheck');
 
-console.log($('.codeButton'));
 $findnameInputBox.on('blur', function(){
     let value = $(this).val();
     console.log(value);
@@ -41,6 +40,9 @@ $findPhoneInputBox.on('blur', function(){
         if($errorMsg1.css('display') == 'none') {
             $('.codeButton').attr('disabled', false);
         }
+        if (errorCheck) {
+            $(this).val(value.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`));
+        }
         return;
     }
     $('.codeButton').attr('disabled', true);
@@ -52,6 +54,15 @@ const $checkButton = $('.popup-check');
 const $codeButton = $('.codeButton');
 const $verification = $('.verification');
 const $verificationBtn = $('.verification-button');
+
+if(window.location.search) {
+    $modalText.text('존재하지 않는 회원입니다.');
+    $modal.css("visibility", "visible");
+}
+
+$checkButton.on("click", ()=>{
+    $modal.css("visibility", "hidden");
+});
 
 $codeButton.on('click', function(){
     $verification.css("display", "flex");
@@ -120,7 +131,7 @@ $verifiCheckBtn.on('click', function(event){
         $checkButton.on('click',()=>{
             $modal.css('visibility', 'hidden');
             console.log('서브밋')
-            // findIdPhoneForm.submit();
+            findIdPhoneForm.submit();
         });
     } else {
         $modal.css('visibility', 'visible');

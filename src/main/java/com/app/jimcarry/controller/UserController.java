@@ -8,6 +8,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
@@ -71,8 +72,16 @@ public class UserController {
     }
 
     @PostMapping("find-id-phone")
-    public String findIdPhone(String userName, String userPhone) {
-        return "";
+    public RedirectView findIdPhone(String userName, String userPhone, RedirectAttributes redirectAttributes) {
+        String userIdentification = userService.findIdByPhone(userName, userPhone);
+        log.info(userIdentification);
+
+        if(userIdentification == null) {
+            return new RedirectView("/user/find-id-phone?result=fail");
+        }
+        redirectAttributes.addFlashAttribute("userIdentification", userIdentification);
+
+        return new RedirectView("/user/find-id-result");
     }
 
     @GetMapping("find-id-result")
