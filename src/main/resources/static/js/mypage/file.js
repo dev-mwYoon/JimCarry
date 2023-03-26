@@ -1,74 +1,90 @@
-/* 파일 썸네일 */
+/* ===================================================================================== */
+/* ===================================================================================== */
 
-/* 파일인풋 */
-const file = document.querySelector('input[type=file]');
-const imgButton = document.querySelector(".imgButton");
-console.log(imgButton);
+globalThis.uuids;
+FileList.prototype.forEach = Array.prototype.forEach;
 
-function handleFiles(files) {
-    /* 썸네일 담을 div의 부모 */
-    const thumbnailList = document.getElementById("thumbnail-list");
-
-    for (let i = 0; i < files.length; i++) {
-
-        /* 8개 이미지 추가되면 버튼 없애기 */
-        if ($(".imageThumbnail").length > 7) {
-            $(".imgButtonWrap").hide();
-        }
-
-        /* 파일절대경로얻기 */
-        const file = files[i];
-        const reader = new FileReader();
-        /* reader가 onload 할때 */
-        reader.onload = function(event) {
-            /* 썸네일 담을 div와 그 자식의 span 선언 */
-            const thumbnail = document.createElement("div");
-            const thumbnailSpan = document.createElement("span");
+/* 저장할 파일들의 Array */
 
 
-            let result = event.target.result;
-
-            /* 썸네일 담을 div와 그 자식의 span에 썸네일 css와 x버튼 css 추가*/
-            thumbnail.classList.add("imageThumbnail");
-            thumbnailSpan.classList.add("closeImgButton");
-
-            /* 썸네일 담을 div에 절대경로 넣어주기 */
-            thumbnail.style.backgroundImage = `url('${result}')`;
-
-            /* 썸네일 담을 div와 그 자식의 span 추가해주기 */
-            thumbnailList.prepend(thumbnail);
-            thumbnail.appendChild(thumbnailSpan);
-
-            /* x버튼 선언 */
-            const closeButton = document.querySelector(".closeImgButton");
-
-            /* x버튼 누를 시 x버튼과 backgroundImage 지워주기 */
-            closeButton.addEventListener('click', function (e) {
-                e.preventDefault();
-                file.value = "";
-                this.style.display = 'none';
-                thumbnail.style.backgroundImage = `url('')`;
-                thumbnail.remove(thumbnail);
-                $(".imgButtonWrap").show();
-            });
-
-            /* 파일 개수가 8개 이상이면 버튼숨기기 */
-            if($(".imageThumbnail").length > 7 ){
-                $(".imgButtonWrap").hide();
-                return;
-            }
-
-        };
-        /* result 속성(attribute)에 담기 */
-        reader.readAsDataURL(file);
+const $photoPicker = $("#photo-picker");
+const uploadAjaxConfig = (data) => {
+    return {
+        url: "/users/mypage/files/upload",
+        method: "POST",
+        data: data,
+        contentType: false,
+        processData: false
     }
-
 }
 
-/* 버튼을 감싸고있는 label객체 들고오기 */
-const fileInput = document.getElementById("photo-picker");
+const doAjax = function (config, callback) {
+    let isContentType = true;
+    let isProcesData = true;
 
-/* 버튼을 감싸고있는 label객체 클릭하면 위에 function handleFiles 실행 */
-fileInput.addEventListener("change", function(event) {
-    handleFiles(event.target.files);
+    /* contentType과 processData의 false 값이 제대로 들어가게끔 조건문 설정 */
+    if (!config.contentType) {
+        isContentType = config.contentType === false ? true : false;
+    }
+    if (!config.processData) {
+        isProcesData = config.processData === false ? true : false;
+    }
+
+    $.ajax({
+        url: config.url,
+        data: config.data,
+        method: config.method,
+        processData: isProcesData ? config.processData : true,
+        contentType: isContentType ? config.contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        success: function (result) {
+            //전송에 성공하면 실행될 코드
+            callback(result)
+        },
+        error: function () {
+            console.log(config.data);
+        }
+    });
+}
+
+$photoPicker.on("change", function () {
+    let $files = $(this)[0].files;
+    let formData = new FormData();
+
+    $files.forEach(file => formData.append("file", file));
+
+    doAjax(uploadAjaxConfig(formData), (result) => {
+        console.log(result)
+        globalThis.uuids = result.uuids;
+        $thumbnailWrap.eq(inquiryIndex).empty();
+        result.paths.forEach((path, i) => {
+            if ($files[i].type.startsWith("image")) {
+                $thumbnailWrap.append(`<!--<a href="/files/download">--><img class="imageThumbnail" src="/users/mypage/files/display?fileName=${result.paths[i]}"><!--</a>-->`);
+            } else $thumbnailWrap.append(`<!--<a>--><img style="width: 100px"/><!--</a>-->`);
+        });
+    });
+});
+
+$(".change-modal-ok-btn").on("click", function () {
+    const $files = $photoPicker[0].files;
+
+    $files.forEach((file, i) => {
+        let fileVO = new Object();
+        fileVO.fileOrgName = file.name;
+        fileVO.fileUuid = globalThis.uuids[i];
+        fileVO.fileType = file.type.startsWith("image");
+        fileVO.inquiryId = inquiries[inquiryIndex].inquiryId
+        fileVOs.push(fileVO);
+    });
+
+    let config = {
+        url: "/users/mypage/files/save",
+        method: "POST",
+        data: JSON.stringify(fileVOs),
+        contentType: "application/json; charset=utf-8",
+    }
+
+    doAjax(config, (result) => {
+        console.log(fileVOs);
+        alert("전송 성공!");
+    });
 });

@@ -48,6 +48,10 @@ public class InquiryMapperTest {
         inquiryMapper.select(inquiryVO.getInquiryId());
     }
 
+    //    전체조회
+    void selectAll() {
+    }
+
     //    조건조회
     @Test
     public void selectBy() {
@@ -61,7 +65,7 @@ public class InquiryMapperTest {
 
     //    조건조회 개수
     @Test
-    public void totalBy(){
+    public void totalBy() {
 
     }
     // 전체조회

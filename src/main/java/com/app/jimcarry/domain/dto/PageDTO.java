@@ -33,6 +33,7 @@ public class PageDTO {
 
     public PageDTO createPageDTO(Criteria criteria, int total, SearchDTO searchDTO) {
         this.searchDTO = searchDTO;
+//        pageCount : 밑에 버튼 갯수
         return createPageDTO(criteria, total, 5);
     }
 
@@ -51,9 +52,6 @@ public class PageDTO {
 //            따라서 realEnd가 0이라면 endPage를 1로 변경해주어야 한다.
             endPage = realEnd == 0 ? 1 : realEnd;
         }
-        log.info("..........realEnd : " + realEnd);
-        log.info("..........endPage : " + endPage);
-        log.info("..........getAmount : " + criteria.getAmount());
         this.prev = startPage > 1;
         this.next = endPage < realEnd;
 

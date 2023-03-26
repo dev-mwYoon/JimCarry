@@ -597,7 +597,7 @@ ul {
 
 /* 수정 모달 */
 .change-modal {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: transparent;
     position: fixed;
     z-index: 1300;
     inset: 0px;
@@ -614,7 +614,7 @@ ul {
     -webkit-box-pack: center;
     justify-content: center;
     inset: 0px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     -webkit-tap-highlight-color: transparent;
     z-index: -1;
 }
@@ -647,6 +647,24 @@ ul {
     flex-direction: column;
     max-height: calc(100% - 64px);
     max-width: 600px;
+}
+
+.change-modal-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.change-modal-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.change-modal-wrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+}
+
+.change-modal-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .change-modal-title-row {
@@ -722,19 +740,10 @@ ul {
     color: rgb(153, 153, 153);
 }
 
-.imageDiv > div {
-    height: 72px;
-    width: 72px;
-}
-
-imageDiv > span {
-    font-size: 20px;
-}
-
 .imgButton{
     cursor:pointer;
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 6px;
 }
@@ -755,28 +764,30 @@ imageDiv > span {
 .cameraIconImg{
     margin: 20px;
     display: inline-block;
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 2.5rem;
+    height: 2.5rem;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxwYXRoIGQ9Ik0wIDBoMzB2MzBIMHoiLz4KICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Ljc3OSA2LjExMSkiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjMiPgogICAgICAgICAgICA8cGF0aCBkPSJNMTEuNzkyIDBjLjM5OSAwIC43MTcuMDU2Ljk1NS4xNy4xNzkuMDg0LjM0Ni4xOTkuNTAzLjM0NGwuMTUzLjE1NS42MzEuNzAzYy4xMjIuMTMuMjM0LjIzMy4zMzcuMzFhLjk1Ljk1IDAgMCAwIC4zNC4xNmMuMTI1LjAzMS4yOTIuMDQ3LjUwMy4wNDdsMi45MDYtLjAwM2MxLjI4NCAwIDIuMzI0IDEuMDYyIDIuMzI0IDIuMzd2MTEuMTUxYzAgMS4zMS0xLjA0IDIuMzctMi4zMjQgMi4zN0gyLjMyNGMtMS4yODMgMC0yLjMyNC0xLjA2LTIuMzI0LTIuMzdWNC4yNTdjMC0xLjMxIDEuMDQtMi4zNyAyLjMyNC0yLjM3aDIuOTgzYy4yNDUtLjAwOS40MzItLjA0NS41NTktLjEwOC4xMS0uMDU1LjIzLS4xNDUuMzYtLjI3bC4xMzQtLjEzNy42MzEtLjcwM2MuMi0uMjIuNDE4LS4zODcuNjU3LS41LjE5LS4wOS40MzItLjE0NC43MjUtLjE2Mkw4LjYwMyAwaDMuMTg5eiIvPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMC4xNDIiIGN5PSI5LjUyOSIgcj0iMy41NTYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
 }
 
+.thumbnailWrap{
+    display: flex;
+    gap: 6px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .imageThumbnail{
-    background-position: center;
-    height: 72px;
-    width: 72px;
-    display: inline-flex;
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
 }
 
 .imgTextDiv {
-    display: flex;
-    flex-direction: row;
-    margin-top: 7px;
+    margin: 3px 0;
 }
 
 /* ============================================ */
