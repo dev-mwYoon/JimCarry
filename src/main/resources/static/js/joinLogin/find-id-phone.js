@@ -87,6 +87,9 @@ $verificationInput.on('blur', function(){
     if(!value){
         $verificationError.css("display", "block")
         $verificationError.text("인증번호를 입력해주세요.");
+    }else if(value.length < 6){
+        $verificationError.css("display", "block")
+        $verificationError.text("6자리를 입력해주세요.");
     }else{
         $verificationError.css("display", "none")
     }
@@ -104,6 +107,7 @@ var authNumber = null;
 
 $('.send-sms').on('click', function(){
     $verifiCheckBtn.attr('disabled', false);
+    clearInterval(timer);
 
     $.ajax({
         url: "/user/sendSMS",

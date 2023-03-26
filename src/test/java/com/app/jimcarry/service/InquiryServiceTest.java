@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SpringBootTest
 @Slf4j
@@ -38,6 +38,12 @@ public class InquiryServiceTest {
     //    추가
     @Test
     public void register() {
+        //에러가 발생하지 않으면 True
+        assertDoesNotThrow(() -> {
+          /*  log.info(inquiryService.register(inquiryVO));*/
+            inquiryService.register(inquiryVO);
+        });
+
     }
 
     //    조회
