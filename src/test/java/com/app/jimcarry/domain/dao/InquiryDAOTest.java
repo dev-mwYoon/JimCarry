@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @Slf4j
 @Transactional
@@ -70,5 +72,13 @@ public class InquiryDAOTest {
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
         inquiryDAO.findTotalBy(searchDTO);
+    }
+
+    @Test
+    void testSetInquiryVO() {
+        inquiryDAO.save(inquiryVO);
+        inquiryVO.setInquiryTitle("updated");
+        inquiryDAO.setInquiryVO(inquiryVO);
+        assertThat(inquiryDAO.findById(inquiryVO.getInquiryId()).getInquiryTitle()).isEqualTo("updated");
     }
 }

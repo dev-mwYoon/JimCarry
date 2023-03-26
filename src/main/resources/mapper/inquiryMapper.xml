@@ -27,6 +27,13 @@
         <include refid="searchType"/>
     </select>
 
+    <!-- 문의사항 업데이트 -->
+    <update id="update">
+        update jimcarry.tbl_inquiry
+        set inquiry_title=#{inquiryTitle}, inquiry_content=#{inquiryContent}, inquiry_answer=#{inquiryAnswer}
+        where inquiry_id=#{inquiryId};
+    </update>
+
     <!--  PageDTO인지 SearchDTO인지 판별  -->
     <sql id="searchType">
         <choose>

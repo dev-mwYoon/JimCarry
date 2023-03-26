@@ -41,6 +41,9 @@ public class InquiryDAO {
     }
 
     //    수정
+    public void setInquiryVO(InquiryVO inquiryVO){
+        inquiryMapper.update(inquiryVO);
+    }
 
 //    삭제
 }

@@ -83,6 +83,7 @@ public class InquiryFileService implements FileService {
     @Transactional(rollbackFor = Exception.class)
     @LogStatus
     public void registerFile(List<InquiryFileVO> files) {
+        inquiryFileDAO.deleteById(files.get(0).getInquiryId());
         files.forEach(file -> {
             file.setFilePath(getPath());
             inquiryFileDAO.save(file);
