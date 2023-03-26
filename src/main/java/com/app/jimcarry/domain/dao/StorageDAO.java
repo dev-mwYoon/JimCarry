@@ -2,6 +2,7 @@ package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.mapper.StorageMapper;
@@ -32,6 +33,7 @@ public class StorageDAO {
     public List<StorageVO> findAll(PageDTO pageDTO) {
         return storageMapper.selectAll(pageDTO);
     }
+    public List<StorageDTO> findStorageAll(PageDTO pageDTO) {return storageMapper.selectStorageAll(pageDTO);}
 
     //    검색조건 조회
     public List<StorageVO> findBy(PageDTO pageDTO) {

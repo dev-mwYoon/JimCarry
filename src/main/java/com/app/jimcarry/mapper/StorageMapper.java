@@ -2,6 +2,7 @@ package com.app.jimcarry.mapper;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,6 +25,7 @@ public interface StorageMapper {
 
     //    목록 조회
     public List<StorageVO> selectAll(@Param("page") PageDTO pageDTO);
+    public List<StorageDTO> selectStorageAll(PageDTO pageDTO);
 
     //    전체개수 조회
     public Integer total();
