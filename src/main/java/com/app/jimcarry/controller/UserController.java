@@ -59,10 +59,10 @@ public class UserController {
         Long userId = userService.login(userIdentification, userPassword);
 
         if(userId == null) {
-            session.setAttribute("userId", userId);
             return new RedirectView("/user/login?login=fail");
         }
 
+        session.setAttribute("userId", userId);
         return new RedirectView("/main/");
     }
 
@@ -123,5 +123,11 @@ public class UserController {
     @GetMapping("find-password-emailsend")
     public String findPasswordEmailSend() {
         return "/joinLogin/find-password-emailsend";
+    }
+
+    @GetMapping("logout")
+    public RedirectView logout(HttpSession session) {
+        session.invalidate();
+        return new RedirectView("/main/");
     }
 }
