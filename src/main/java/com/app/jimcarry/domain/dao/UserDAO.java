@@ -68,4 +68,9 @@ public class UserDAO {
     public void deleteById(Long userId) {
         userMapper.delete(userId);
     }
+
+    //    이름, 핸드폰 번호로 아이디 찾기
+    public String findByNameAndPhone(String userName, String userPhone) {
+        return userMapper.selectByNameAndPhone(userName, userPhone);
+    }
 }

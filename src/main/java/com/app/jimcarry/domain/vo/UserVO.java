@@ -9,6 +9,7 @@ public class UserVO {
     private Long userId;
     private String userIdentification;
     private String userPassword;
+    private String userName;
     private String userEmail;
     private String userPhone;
     private String userAddress;
