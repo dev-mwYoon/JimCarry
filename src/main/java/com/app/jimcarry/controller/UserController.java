@@ -70,6 +70,16 @@ public class UserController {
         return "/joinLogin/find-id-phone";
     }
 
+    @PostMapping("find-id-phone")
+    public String findIdPhone(String userName, String userPhone) {
+        return "";
+    }
+
+    @GetMapping("find-id-result")
+    public String findIdResult() {
+        return "/joinLogin/find-id-result";
+    }
+
     @GetMapping("find-id-email")
     public String findIdEmail() {
         return "/joinLogin/find-id-email";

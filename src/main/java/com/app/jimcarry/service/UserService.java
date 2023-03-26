@@ -166,4 +166,8 @@ public class UserService {
 
         return numStr;
     }
+
+    public String findIdByPhone(String userName, String userPhone) {
+        return userDAO.findByNameAndPhone(userName, userPhone);
+    }
 }
