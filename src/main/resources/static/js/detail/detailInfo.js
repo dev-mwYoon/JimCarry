@@ -1,12 +1,12 @@
 /*목록이 추가될 div 부모*/
-const reviewContainer = $(".review-detail-container");
+const reviewContainer = $(".review-container");
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
 const createDOM = function (review) {
     let text = `
     <div class="review-detail-wrap">
         <div class="review-detail-name-wrap">
-            <span class="review-name">${review.userName}</span>
+            <span class="review-name">${review.userId}</span>
         </div>
     </div>
 
