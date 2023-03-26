@@ -33,7 +33,9 @@ class UserDAOTest {
         userVO.setUserPhone("01012341234");
         userVO.setUserAddress("서울시 강남구 역삼동");
         userVO.setUserAddressDetail("경리단길 123");
-        userVO.setUserGender(null); // 선택안함
+        userVO.setUserName("테스트");
+        /*userVO.setUserGender(null);*/ // 선택안함
+//        userVO.setUserGender("선택 안함"); // 선택안함
         userVO.setUserBirth("1900-01-01");
     }
 
