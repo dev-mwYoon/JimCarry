@@ -9,6 +9,9 @@ body, button, input, select, textarea {
     box-sizing: border-box;
     margin: 0;
 }
+button {
+    cursor: pointer;
+}
 .resultLayout {
     min-width: 1050px;
     padding: 50px 0px;
