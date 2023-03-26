@@ -17,7 +17,7 @@ public interface ReviewMapper {
     /* 리뷰 조회 */
     public ReviewVO select(Long reviewId);
 
-    /* 리뷰 목록 조회*/
+    /* 리뷰 전체 목록 조회*/
     public List<ReviewDTO> selectAll(PageDTO pageDTO);
 
     /* 리뷰 목록 개수 조회*/

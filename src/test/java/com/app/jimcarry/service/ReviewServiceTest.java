@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @SpringBootTest
 @Slf4j
 public class ReviewServiceTest {
@@ -23,5 +26,14 @@ public class ReviewServiceTest {
     PageDTO pageDTO;
 
     /*리뷰목록조회*/
+    @Test
+    void getList() {
+        int total = 0;
+        Criteria criteria = new Criteria().create(1, 10);
+        PageDTO pageDTO = null;
+        SearchDTO searchDTO = new SearchDTO();
 
+        total = reviewService.getTotal();
+        reviewService.getList(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
 }
