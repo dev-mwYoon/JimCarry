@@ -1,5 +1,6 @@
 package com.app.jimcarry.service;
 
+import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.ReviewDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.ReviewDTO;
@@ -17,5 +18,11 @@ public class ReviewService {
     /* 리뷰 전체 목록 조회*/
     public List<ReviewDTO> getList(PageDTO pageDTO){
         return reviewDAO.findAll(pageDTO);
+    }
+
+    /*전체개수 조회*/
+    @LogStatus
+    public int getTotal() {
+        return reviewDAO.findTotal();
     }
 }
