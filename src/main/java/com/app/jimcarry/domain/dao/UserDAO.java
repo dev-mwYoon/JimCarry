@@ -73,4 +73,7 @@ public class UserDAO {
     public String findByNameAndPhone(String userName, String userPhone) {
         return userMapper.selectByNameAndPhone(userName, userPhone);
     }
+    public int findUserTotal(){
+        return userMapper.selectTotalUser();
+    }
 }

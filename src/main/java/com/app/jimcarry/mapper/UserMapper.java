@@ -45,4 +45,7 @@ public interface UserMapper {
 
     //    이름, 핸드폰 번호로 아이디 찾기
     public String selectByNameAndPhone(String userName, String userPhone);
+
+    // 총 회원수
+    public int selectTotalUser();
 }

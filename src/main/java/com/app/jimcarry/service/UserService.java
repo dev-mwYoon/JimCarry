@@ -171,5 +171,8 @@ public class UserService {
     public String findIdByPhone(String userName, String userPhone) {
         return userDAO.findByNameAndPhone(userName, userPhone);
     }
+    public int findTotalUser(){
+        return userDAO.findUserTotal();
+    }
 
 }

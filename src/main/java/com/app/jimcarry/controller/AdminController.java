@@ -54,13 +54,13 @@ public class AdminController {
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("users", userService.getList(pageDTO));
+        model.addAttribute("totalUser",userService.findTotalUser());
         model.addAttribute("pagination", pageDTO);
 
 
         return "/admin/user";
     }
-//
-//
+
 //    /*-----------문의사항----------*/
     @GetMapping("enquiry")
         public String inquiry(Criteria criteria, Model model) {
