@@ -291,6 +291,8 @@ var authNumber = null;
 
 $checkNum.on('click', function(){
     if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
+        clearInterval(timer);
+
         $.ajax({
             url: "/user/sendSMS",
             type: "get",
@@ -329,7 +331,7 @@ $duplicateBox.on('click', function(){
         });
     } else {
         $modal.css('visibility', 'visible');
-        $modalText.text("인증번호가 틀렸습니다.");
+        $modalText.text("인증번호가 일치하지 않습니다.");
         $checkButton.on('click',()=>{
             $modal.css('visibility', 'hidden');
         });
