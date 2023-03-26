@@ -37,7 +37,7 @@ $photoPicker.on("change", function () {
     doAjax(uploadAjaxConfig(formData), (result) => {
         console.log(result)
         globalThis.uuids = result.uuids;
-        $thumbnailWrap.eq(inquiryIndex).empty();
+        $thumbnailWrap.empty();
         result.paths.forEach((path, i) => {
             if ($files[i].type.startsWith("image")) {
                 $thumbnailWrap.append(`<!--<a href="/files/download">--><img class="imageThumbnail" src="/users/mypage/files/display?fileName=${result.paths[i]}"><!--</a>-->`);
@@ -76,7 +76,7 @@ let $fileAjax = () => {
 $(".change-modal-ok-btn").on("click", function () {
     $fileAjax();
 
-    console.log($textarea.val());
+    console.log($textarea.eq(inquiryIndex).val());
 
     $("input[name='inquiryTitle']").val($textareaTitle.val());
     $("input[name='inquiryContent']").val($textarea.val());

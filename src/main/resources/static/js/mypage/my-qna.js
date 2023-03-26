@@ -66,15 +66,22 @@ const createDOM = function (qna) {
                                      style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;">
                             </span>
                     </div>
-                    <p class="qna-slide-content-text">${qna.inquiryTitle}</p>
+                    <p class="qna-slide-content-text">${qna.inquiryContent}</p>
                 </div>
             </div>
             <div class="qna-slide-actions">
-                ${qna.inquiryAnswer == 0 ?
-        '<button class="qna-slide-actions-btn modal-btn" id="update-btn">수정</button><button class="qna-slide-actions-btn" id="delete-btn">삭제</button>' : '<div></div>'}
+                ${qna.inquiryAnswer == 0 ? '<button class="qna-slide-actions-btn modal-btn" id="update-btn">수정</button><button class="qna-slide-actions-btn" id="delete-btn">삭제</button>' : '<div></div>'}
             </div>
-            <!-- 수정 모달 -->
-            <div class="change-modal" id="modal">
+        </div>
+    </div>
+</li>
+`
+}
+
+inquiries.forEach((qna, i) => qnaContainer.append(createDOM(qna)));
+$(".qna-list-main-container").append(
+    `
+        <div class="change-modal" id="modal">
                 <div class="change-modal-root"></div>
                 <div class="change-modal-container">
                     <div class="change-modal-wrapper">
@@ -195,22 +202,14 @@ const createDOM = function (qna) {
                         <div class="delete-modal-content-wrapper">
                             <div class="delete-modal-content-text">작성된 문의를 삭제하시겠습니까?</div>
                             <div class="delete-modal-content-btn">
-                                <button class="cancel-btn" id="close">취소</button>
-                                <button class="check-btn">확인</button>
+                                <button class="cancel-btn" id="close">취소</button><button class="check-btn">확인</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--  -->
-        </div>
-    </div>
-</li>
-`
-}
-
-inquiries.forEach((qna, i) => qnaContainer.append(createDOM(qna)));
-
+    `
+);
 
 /* 슬라이드 */
 $(document).ready(function () {
@@ -260,6 +259,33 @@ $btn.on("click", function () {
     let i = $btn.index($(this));
     inquiryIndex = i;
 
+    /* 글자수 세팅 */
+    let textLength = 0;
+    $textareaTitle.val(inquiries[i].inquiryTitle);
+    $textarea.val(inquiries[i].inquiryContent);
+
+    textLength = $textarea.val().length;
+
+    /* 처음 문의내용에 따라 몇자인지 세팅 */
+    $counter.text(`${textLength}자 / ${maxLength}자`);
+
+    //  열기
+    $container.css("display", "block");
+
+    // 텍스트 입력이 일어날 때마다 글자수를 세고, 글자수를 표시합니다.
+    $textarea.on('input', () => {
+        textLength = $textarea.val().length;
+
+        // 최대 글자수를 초과하면 입력을 막습니다.
+        if (textLength > maxLength) {
+            let max = $textarea.val();
+            $textarea.val(max.slice(0, maxLength));
+            textLength = $textarea.val().length;
+        }
+
+        $counter.text(`${textLength}자 / ${maxLength}자`);
+    });
+
     /* 썸네일 내용 및 파일 배열 비우기 */
     $thumbnailWrap.empty();
     fileVOs = new Array();
@@ -273,34 +299,6 @@ $btn.on("click", function () {
                 `
             );
         })
-    });
-
-
-    /* 글자수 세팅 */
-    let textLength = 0;
-    $textareaTitle.eq(i).val(inquiries[i].inquiryTitle);
-    $textarea.eq(i).text(inquiries[i].inquiryContent);
-
-    textLength = $textarea.eq(i).val().length;
-
-    /* 처음 문의내용에 따라 몇자인지 세팅 */
-    $counter.eq(i).text(`${textLength}자 / ${maxLength}자`);
-
-    //  열기
-    $container.css("display", "block");
-
-    // 텍스트 입력이 일어날 때마다 글자수를 세고, 글자수를 표시합니다.
-    $textarea.eq(i).on('input', () => {
-        textLength = $textarea.eq(i).val().length;
-
-        // 최대 글자수를 초과하면 입력을 막습니다.
-        if (textLength > maxLength) {
-            let max = $textarea.eq(i).val();
-            $textarea.eq(i).val(max.slice(0, maxLength));
-            textLength = $textarea.eq(i).val().length;
-        }
-
-        $counter.eq(i).text(`${textLength}자 / ${maxLength}자`);
     });
 });
 
@@ -330,5 +328,3 @@ $span.on("click", function () {
 });
 
 const $qnaForm = $(".change-modal-form-wrapper");
-
-
