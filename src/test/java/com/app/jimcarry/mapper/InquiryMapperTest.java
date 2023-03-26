@@ -1,6 +1,7 @@
 package com.app.jimcarry.mapper;
 
 
+import com.app.jimcarry.domain.dto.InquiryDTO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
@@ -24,6 +25,8 @@ public class InquiryMapperTest {
     private InquiryMapper inquiryMapper;
     @Autowired
     private InquiryVO inquiryVO;
+    @Autowired
+    private InquiryDTO inquiryDTO;
 
     @BeforeEach
     void setInsertVO() {
@@ -61,6 +64,11 @@ public class InquiryMapperTest {
     public void totalBy(){
 
     }
+    // 전체조회
+//    @Test
+//    public void getListTest(){
+//        log.info(inquiryMapper.selectAll().toString());
+//    }
 
 //    수정
 //    삭제
