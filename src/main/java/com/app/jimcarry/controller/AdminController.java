@@ -4,10 +4,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
-import com.app.jimcarry.service.InquiryService;
-import com.app.jimcarry.service.ReviewService;
-import com.app.jimcarry.service.StorageService;
-import com.app.jimcarry.service.UserService;
+import com.app.jimcarry.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,6 +27,7 @@ public class AdminController {
     private final StorageService storageService;
     private final ReviewService reviewService;
     private final InquiryService inquiryService;
+    private final NoticeService noticeService;
 
     /*-----------회원관리----------*/
     @GetMapping("user")
@@ -61,9 +59,9 @@ public class AdminController {
 
         return "/admin/user";
     }
-
-
-    /*-----------문의사항----------*/
+//
+//
+//    /*-----------문의사항----------*/
     @GetMapping("enquiry")
         public String inquiry(Criteria criteria, Model model) {
 
@@ -87,10 +85,26 @@ public class AdminController {
         model.addAttribute("pagination", pageDTO);
             return "/admin/enquiry";
     }
-
-    /*-----------공지사항----------*/
+//
+//    /*-----------공지사항----------*/
     @GetMapping("notice")
-    public String notice() {
+    public String notice(Criteria criteria, Model model) {
+        int amount = 5;
+        int total = 0;
+
+        SearchDTO searchDTO = new SearchDTO();
+
+        PageDTO pageDTO = null;
+
+        if(criteria.getPage() == 0){
+            criteria.create(1, amount);
+        }else criteria.create(criteria.getPage(), amount);
+
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("notices", noticeService.getList(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+
         return "/admin/notice";
     }
     /*-----------결제관리----------*/
@@ -146,7 +160,7 @@ public class AdminController {
 //        total = storageService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-//        model.addAttribute("storages", storageService.getListBy(pageDTO));
+        model.addAttribute("storages", storageService.getStorageList(pageDTO));
         model.addAttribute("pagination", pageDTO);
 
         return "/admin/storage";

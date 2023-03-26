@@ -4,6 +4,7 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.StorageDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,11 @@ public class StorageService {
         return storageDAO.findAll(pageDTO);
     }
 
+    /* Storage DTO 전체 조회*/
+    @LogStatus
+    public List<StorageDTO> getStorageList(PageDTO pageDTO) {
+        return storageDAO.findStorageAll(pageDTO);
+    }
     /**
      * 검색조건 (Criteria 포함)
      *
@@ -70,5 +76,6 @@ public class StorageService {
 
     //    삭제
 
-//
+    //    DTO 창고 전체 조회
+
 }
