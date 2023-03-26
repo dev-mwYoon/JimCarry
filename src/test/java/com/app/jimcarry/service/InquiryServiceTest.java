@@ -76,6 +76,13 @@ public class InquiryServiceTest {
     }
 
     //    수정
+    @Test
+    void updateInquiry() {
+        inquiryService.register(inquiryVO);
+        inquiryVO.setInquiryTitle("updated");
+        inquiryService.updateInquiry(inquiryVO);
+        assertThat(inquiryService.getInquiry(inquiryVO.getInquiryId()).getInquiryTitle()).isEqualTo("updated");
+    }
 
 //    삭제
 }
