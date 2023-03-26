@@ -7,12 +7,12 @@
         values(#{userIdentification}, #{userPassword}, #{userName}, #{userEmail}, #{userPhone}, #{userAddress}, #{userAddress}, #{userGender}, #{userBirth});
     </insert>
     <select id="select" resultType="userVO">
-        select user_id, user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
         from tbl_user
         where user_id = #{userId}
     </select>
     <select id="selectAllBy" resultType="userVO">
-        select user_id, user_identification, user_password, user_email, user_phone, user_address,
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address,
         user_address_detail, user_gender, user_birth
         from tbl_user
         <include refid="searchType"/>
@@ -23,7 +23,7 @@
         limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
     <select id="selectAll" resultType="userVO">
-        select user_id, user_identification, user_password, user_email, user_phone, user_address,
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address,
         user_address_detail, user_gender, user_birth
         from tbl_user
         order by user_id
@@ -53,7 +53,7 @@
     </select>
     <update id="update">
         update tbl_user
-        set user_identification=#{userIdentification}, user_password=#{userPassword}, user_email=#{userEmail},
+        set user_identification=#{userIdentification}, user_password=#{userPassword}, user_email=#{userEmail}, user_name=#{userName},
         user_phone=#{userPhone}, user_address=#{userAddress}, user_address_detail=#{userAddressDetail}, user_gender=#{userGender}, user_birth=#{userBirth}
         where user_id= #{userId};
     </update>
