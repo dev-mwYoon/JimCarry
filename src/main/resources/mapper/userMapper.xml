@@ -92,7 +92,7 @@
             </foreach>
         </trim>
     </sql>
-<!--  이름, 핸드폰 번호로 아이디 찾기  -->
+    <!--  이름, 핸드폰 번호로 아이디 찾기  -->
     <select id="selectByNameAndPhone" resultType="string">
         select user_identification from tbl_user
         where user_name = #{userName} and user_phone = #{userPhone}
