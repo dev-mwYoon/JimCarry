@@ -28,6 +28,7 @@ public interface InquiryMapper {
     //    조건조회 개수
     public int totalBy(@Param("page") SearchDTO searchDTO);
 
-//    수정
+    //    수정
+    public void update(InquiryVO inquiryVO);
 //    삭제
 }

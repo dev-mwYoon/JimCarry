@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class InquiryVO {
     private Long inquiryId;
     private Long userId;
-    private Long storageId;
     private String inquiryTitle;
     private String inquiryContent;
     private String inquiryRegist;

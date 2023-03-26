@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @Slf4j
 @Transactional
@@ -68,12 +70,12 @@ public class InquiryMapperTest {
     public void totalBy() {
 
     }
-    // 전체조회
-//    @Test
-//    public void getListTest(){
-//        log.info(inquiryMapper.selectAll().toString());
-//    }
 
-//    수정
-//    삭제
+    @Test
+    void update() {
+        inquiryMapper.insert(inquiryVO);
+        inquiryVO.setInquiryTitle("updated");
+        inquiryMapper.update(inquiryVO);
+        assertThat(inquiryMapper.select(inquiryVO.getInquiryId()).getInquiryTitle()).isEqualTo("updated");
+    }
 }

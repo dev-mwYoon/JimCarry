@@ -3,10 +3,7 @@ package com.app.jimcarry.controller;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.vo.Criteria;
-import com.app.jimcarry.domain.vo.FileVO;
-import com.app.jimcarry.domain.vo.InquiryFileVO;
-import com.app.jimcarry.domain.vo.UserVO;
+import com.app.jimcarry.domain.vo.*;
 import com.app.jimcarry.service.InquiryFileService;
 import com.app.jimcarry.service.InquiryService;
 import com.app.jimcarry.service.StorageService;
@@ -83,9 +80,6 @@ public class MypageController {
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
 
-        log.info(criteria.getPage() + "............");
-        log.info(criteria.toString());
-
         PageDTO pageDTO = null;
 
 //         페이지 번호가 없을 때, 디폴트 1페이지
@@ -102,6 +96,15 @@ public class MypageController {
         return "mypage/my-qna";
     }
 
+    @PostMapping("qna/update")
+    public RedirectView updateQna(InquiryVO inquiryVO, String page) {
+        /* 추후 세션으로 변경 */
+        inquiryVO.setUserId(2L);
+        inquiryService. updateInquiry(inquiryVO);
+        log.info("인쿼리브이오!!!!!" + inquiryVO.toString());
+        return new RedirectView("/users/mypage/qna?page=" + page);
+    }
+
     /* ============================== 파일 ================================ */
 
     @PostMapping("files/upload")
@@ -116,12 +119,19 @@ public class MypageController {
         return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 
+    @GetMapping("files/thumbnail/{id}")
+    @ResponseBody
+    public List<InquiryFileVO> display(@PathVariable Long id){
+        return inquiryFileService.getList(id);
+    }
+
     /* 문의 파일 */
     @PostMapping("files/save")
-    public RedirectView saveFile(@RequestBody List<InquiryFileVO> files) {
+    @ResponseBody
+    public void saveFile(@RequestBody List<InquiryFileVO> files, String page, String prev) {
+
         files.forEach(file -> log.info("inquiryId.......... : " + file.getInquiryId()));
         inquiryFileService.registerFile(files);
-        return new RedirectView("/users/mypage/qna");
     }
 
     /* ================================ 내 후기 ================================== */

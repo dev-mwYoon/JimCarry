@@ -1,3 +1,30 @@
+const doAjax = function (config, callback) {
+    let isContentType = true;
+    let isProcesData = true;
+
+    /* contentType과 processData의 false 값이 제대로 들어가게끔 조건문 설정 */
+    if (!config.contentType) {
+        isContentType = config.contentType === false ? true : false;
+    }
+    if (!config.processData) {
+        isProcesData = config.processData === false ? true : false;
+    }
+
+    $.ajax({
+        url: config.url,
+        data: config.data,
+        method: config.method,
+        processData: isProcesData ? config.processData : true,
+        contentType: isContentType ? config.contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        success: function (result) {
+            callback(result)
+        },
+        error: function () {
+            console.log(config.data);
+        }
+    });
+}
+
 const qnaContainer = $(".qna-list-main-container");
 const createDOM = function (qna) {
     return `
@@ -17,7 +44,7 @@ const createDOM = function (qna) {
         </div>
         <div class="qna-list-main-date">${qna.inquiryRegist.split(" ")[0]}</div>
         <div class="qna-state-container">
-            <span>${qna.inquiryAnswer}</span>
+            ${qna.inquiryAnswer == 0 ? '<span style="color: red">답변대기</span>' : '<span style="color: green">답변완료</span>'}
         </div>
     </button>
     <!-- 슬라이드 효과 (수정, 삭제) -->
@@ -39,15 +66,22 @@ const createDOM = function (qna) {
                                      style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;">
                             </span>
                     </div>
-                    <p class="qna-slide-content-text">${qna.inquiryTitle}</p>
+                    <p class="qna-slide-content-text">${qna.inquiryContent}</p>
                 </div>
             </div>
             <div class="qna-slide-actions">
-                <button class="qna-slide-actions-btn modal-btn" id="update-btn">수정</button>
-                <button class="qna-slide-actions-btn" id="delete-btn">삭제</button>
+                ${qna.inquiryAnswer == 0 ? '<button class="qna-slide-actions-btn modal-btn" id="update-btn">수정</button><button class="qna-slide-actions-btn" id="delete-btn">삭제</button>' : '<div></div>'}
             </div>
-            <!-- 수정 모달 -->
-            <div class="change-modal" id="modal">
+        </div>
+    </div>
+</li>
+`
+}
+
+inquiries.forEach((qna, i) => qnaContainer.append(createDOM(qna)));
+$(".qna-list-main-container").append(
+    `
+        <div class="change-modal" id="modal">
                 <div class="change-modal-root"></div>
                 <div class="change-modal-container">
                     <div class="change-modal-wrapper">
@@ -80,7 +114,7 @@ const createDOM = function (qna) {
                                     </svg>
                                 </button>
                             </div>
-                            <form class="change-modal-form-wrapper">
+                            <form action = "/users/mypage/qna/update" method="post" class="change-modal-form-wrapper">
                                 <div class="termStart">
                                     <div class="termsLayout">
                                         <div class="termsTitle">
@@ -143,12 +177,17 @@ const createDOM = function (qna) {
                                         </div>
                                     </div>
                                 </div>
+                                <input type="text" name="inquiryTitle" style="display: none">
+                                <input type="text" name="inquiryContent" style="display: none">
+                                <input type="text" name="inquiryId" style="display: none">
+                                <input type="text" name="inquiryAnswer" style="display: none">
+                                <input type="text" name="page" style="display: none">
                             </form>
                             <div class="change-modal-actions-row">
                                 <button type="button" class="change-modal-delete-btn">
                                     <span class="change-modal-btn">취소</span>
                                 </button>
-                                <button type="button" class="change-modal-ok-btn">
+                                <button type="submit" class="change-modal-ok-btn">
                                     <span class="change-modal-btn">등록</span>
                                 </button>
                             </div>
@@ -163,22 +202,14 @@ const createDOM = function (qna) {
                         <div class="delete-modal-content-wrapper">
                             <div class="delete-modal-content-text">작성된 문의를 삭제하시겠습니까?</div>
                             <div class="delete-modal-content-btn">
-                                <button class="cancel-btn" id="close">취소</button>
-                                <button class="check-btn">확인</button>
+                                <button class="cancel-btn" id="close">취소</button><button class="check-btn">확인</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--  -->
-        </div>
-    </div>
-</li>
-`
-}
-
-inquiries.forEach((qna, i) => qnaContainer.append(createDOM(qna)));
-
+    `
+);
 
 /* 슬라이드 */
 $(document).ready(function () {
@@ -213,34 +244,61 @@ const $counter = $('.change-modal-form-field-content span:first-child');
 // 최대 글자수를 정합니다.
 const maxLength = 5000;
 
+const thumbnailAjaxConfig = (i) => {
+    return {
+        url: `/users/mypage/files/thumbnail/${inquiries[i].inquiryId}`,
+        method: "GET",
+        data: "",
+        contentType: "application/json; charset=utf-8",
+    }
+}
+
 //모달창 열기
 $btn.on("click", function () {
     //  현재 클릭한 모달창을 기준으로 텍스트 설정
     let i = $btn.index($(this));
     inquiryIndex = i;
+
+    /* 글자수 세팅 */
     let textLength = 0;
-    $textareaTitle.eq(i).val(inquiries[i].inquiryTitle);
-    $textarea.eq(i).text(inquiries[i].inquiryContent);
+    $textareaTitle.val(inquiries[i].inquiryTitle);
+    $textarea.val(inquiries[i].inquiryContent);
 
-    textLength = $textarea.eq(i).val().length;
+    textLength = $textarea.val().length;
 
-    $counter.eq(i).text(`${textLength}자 / ${maxLength}자`);
+    /* 처음 문의내용에 따라 몇자인지 세팅 */
+    $counter.text(`${textLength}자 / ${maxLength}자`);
 
     //  열기
     $container.css("display", "block");
 
     // 텍스트 입력이 일어날 때마다 글자수를 세고, 글자수를 표시합니다.
-    $textarea.eq(i).on('input', () => {
-        textLength = $textarea.eq(i).val().length;
+    $textarea.on('input', () => {
+        textLength = $textarea.val().length;
 
         // 최대 글자수를 초과하면 입력을 막습니다.
         if (textLength > maxLength) {
-            let max = $textarea.eq(i).val();
-            $textarea.eq(i).val(max.slice(0, maxLength));
-            textLength = $textarea.eq(i).val().length;
+            let max = $textarea.val();
+            $textarea.val(max.slice(0, maxLength));
+            textLength = $textarea.val().length;
         }
 
-        $counter.eq(i).text(`${textLength}자 / ${maxLength}자`);
+        $counter.text(`${textLength}자 / ${maxLength}자`);
+    });
+
+    /* 썸네일 내용 및 파일 배열 비우기 */
+    $thumbnailWrap.empty();
+    fileVOs = new Array();
+
+    doAjax(thumbnailAjaxConfig(i), (result) => {
+        result.forEach((file) => {
+            $thumbnailWrap.append(
+                `
+                <img class="imageThumbnail" 
+                src="/users/mypage/files/display?fileName=${file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName}">
+                `
+            );
+        })
     });
 });
 
@@ -252,8 +310,6 @@ $close.on("click", function () {
 //모달창 취소 닫기
 $cancel.on("click", function () {
     $container.css("display", "none");
-    $thumbnailWrap.empty();
-    fileVOs = new Array();
 });
 
 /* 삭제 모달 */
@@ -272,8 +328,3 @@ $span.on("click", function () {
 });
 
 const $qnaForm = $(".change-modal-form-wrapper");
-
-/* 문의사항 등록 */
-$qnaForm.on("submit", function () {
-
-})

@@ -3,6 +3,7 @@
 
 globalThis.uuids;
 FileList.prototype.forEach = Array.prototype.forEach;
+let prevFileList;
 
 /* 저장할 파일들의 Array */
 
@@ -18,44 +19,25 @@ const uploadAjaxConfig = (data) => {
     }
 }
 
-const doAjax = function (config, callback) {
-    let isContentType = true;
-    let isProcesData = true;
-
-    /* contentType과 processData의 false 값이 제대로 들어가게끔 조건문 설정 */
-    if (!config.contentType) {
-        isContentType = config.contentType === false ? true : false;
-    }
-    if (!config.processData) {
-        isProcesData = config.processData === false ? true : false;
-    }
-
-    $.ajax({
-        url: config.url,
-        data: config.data,
-        method: config.method,
-        processData: isProcesData ? config.processData : true,
-        contentType: isContentType ? config.contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-        success: function (result) {
-            //전송에 성공하면 실행될 코드
-            callback(result)
-        },
-        error: function () {
-            console.log(config.data);
-        }
-    });
-}
-
 $photoPicker.on("change", function () {
     let $files = $(this)[0].files;
     let formData = new FormData();
 
+    if($files.length > 8){
+        alert("등록할 수 있는 파일의 최대 갯수는 8개 입니다.");
+        /* 파일 input 초기화 */
+        $photoPicker[0].files = prevFileList;
+        console.log($photoPicker[0].files);
+        return;
+    }
+
+    prevFileList = $files;
     $files.forEach(file => formData.append("file", file));
 
     doAjax(uploadAjaxConfig(formData), (result) => {
         console.log(result)
         globalThis.uuids = result.uuids;
-        $thumbnailWrap.eq(inquiryIndex).empty();
+        $thumbnailWrap.empty();
         result.paths.forEach((path, i) => {
             if ($files[i].type.startsWith("image")) {
                 $thumbnailWrap.append(`<!--<a href="/files/download">--><img class="imageThumbnail" src="/users/mypage/files/display?fileName=${result.paths[i]}"><!--</a>-->`);
@@ -64,27 +46,43 @@ $photoPicker.on("change", function () {
     });
 });
 
-$(".change-modal-ok-btn").on("click", function () {
+let $fileAjax = () => {
     const $files = $photoPicker[0].files;
+
+    if($files.length === 0){
+        return;
+    }
+
+    fileVOs = new Array();
 
     $files.forEach((file, i) => {
         let fileVO = new Object();
         fileVO.fileOrgName = file.name;
         fileVO.fileUuid = globalThis.uuids[i];
-        fileVO.fileType = file.type.startsWith("image");
         fileVO.inquiryId = inquiries[inquiryIndex].inquiryId
         fileVOs.push(fileVO);
     });
 
     let config = {
-        url: "/users/mypage/files/save",
+        url: `/users/mypage/files/save`,
         method: "POST",
         data: JSON.stringify(fileVOs),
         contentType: "application/json; charset=utf-8",
     }
 
-    doAjax(config, (result) => {
-        console.log(fileVOs);
-        alert("전송 성공!");
-    });
+    doAjax(config, (result) => {});
+}
+
+$(".change-modal-ok-btn").on("click", function () {
+    $fileAjax();
+
+    console.log($textarea.eq(inquiryIndex).val());
+
+    $("input[name='inquiryTitle']").val($textareaTitle.val());
+    $("input[name='inquiryContent']").val($textarea.val());
+    $("input[name='inquiryId']").val(inquiries[inquiryIndex].inquiryId);
+    $("input[name='inquiryAnswer']").val(inquiries[inquiryIndex].inquiryAnswer);
+    $("input[name='page']").val($page);
+
+    $(".change-modal-form-wrapper").submit();
 });

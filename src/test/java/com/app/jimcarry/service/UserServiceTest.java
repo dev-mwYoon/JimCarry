@@ -35,7 +35,7 @@ class UserServiceTest {
         userVO.setUserAddress("서울시 강남구 역삼동");
         userVO.setUserAddressDetail("경리단길 123");
         userVO.setUserName("테스트");
-        userVO.setUserGender("남"); // 선택안함
+//        userVO.setUserGender("남"); // 선택안함
 //        userVO.setUserGender("선택 안함"); // 선택안함
         userVO.setUserBirth("1900-01-01");
     }

@@ -59,10 +59,10 @@ public class UserController {
         Long userId = userService.login(userIdentification, userPassword);
 
         if(userId == null) {
-            session.setAttribute("userId", userId);
             return new RedirectView("/user/login?login=fail");
         }
 
+        session.setAttribute("userId", userId);
         return new RedirectView("/main/");
     }
 
@@ -99,8 +99,35 @@ public class UserController {
         return "/joinLogin/find-password-phone";
     }
 
+    @PostMapping("find-password-phone")
+    public RedirectView findPasswordPhone(String userIdentification, RedirectAttributes redirectAttributes) {
+
+        if(userService.checkIdentificationDuplicate(userIdentification)) {
+            return new RedirectView("/user/find-password-phone?result=fail");
+        }
+        redirectAttributes.addFlashAttribute("userIdentification", userIdentification);
+
+        return new RedirectView("/user/changePassword");
+    }
+
     @GetMapping("find-password-email")
     public String findPasswordEmail() {
         return "/joinLogin/find-password-email";
+    }
+
+    @GetMapping("changePassword")
+    public String changePassword() {
+        return "/joinLogin/changePassword";
+    }
+
+    @GetMapping("find-password-emailsend")
+    public String findPasswordEmailSend() {
+        return "/joinLogin/find-password-emailsend";
+    }
+
+    @GetMapping("logout")
+    public RedirectView logout(HttpSession session) {
+        session.invalidate();
+        return new RedirectView("/main/");
     }
 }

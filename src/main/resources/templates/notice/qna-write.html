@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="qna-write-content">
-                <form action="">
+                <form th:action="@{/notice/write}" method="post" >
                     <div class="qna-original-input-layout">
                         <div class="qna-write-content-title-div">
                             <label for="inquiry-subject">
@@ -57,7 +57,7 @@
                             <div class="write-content-input-outter-div">
                                 <div class="write-content-input-inner-div">
                                     <input type="text" id="inquiry-subject" class="write-content-input-tag"
-                                           name="subject" placeholder="제목을 입력해주세요">
+                                           name="inquiryTitle" placeholder="제목을 입력해주세요">
                                 </div>
                                 <div class="errorDiv">
                                     <p class="errorMessage"></p>
@@ -76,7 +76,7 @@
                                 <div class="write-content-contents-outter-div">
                                     <div class="write-content-contents-inner-div">
                                         <textarea id="inquiry-contents" class="write-content-contents-textarea"
-                                                  name="contents" inputmode="text" cols="30" rows="10"
+                                                  name="inquiryContent" inputmode="text" cols="30" rows="10"
                                                   style="resize: none;" maxlength="5000"
                                                   placeholder="전화번호, 이메일, 주소, 계좌번호 등의 상세 개인정보가 문의 내용에 저장되지 않도록 주의해 주시기 바랍니다."></textarea>
                                         <!-- <div class="contents-textarea-placeholder">
@@ -162,7 +162,7 @@
                                         <div class="phone-number-input-outter-div">
                                             <div class="phone-number-input-inner-div">
                                                 <input type="text" id="inquiryAllowsNotificationCheck" disabled=""
-                                                class="phone-number-input" value="010-1234-****"/>
+                                                class="phone-number-input" name="userPhone" th:value="${userPhone}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
                         </div>
                     </div>
                     <div class="submit-button-layout">
-                        <input type="submit" class="submit-button" value="등록" disabled=""></input>
+                        <input type="submit" class="submit-button" value="등록"></input>
                     </div>
                 </form>
             </div>

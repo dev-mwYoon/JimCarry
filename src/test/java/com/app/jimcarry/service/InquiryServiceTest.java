@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 @SpringBootTest
 @Slf4j
 @Transactional
@@ -36,6 +38,12 @@ public class InquiryServiceTest {
     //    추가
     @Test
     public void register() {
+        //에러가 발생하지 않으면 True
+        assertDoesNotThrow(() -> {
+          /*  log.info(inquiryService.register(inquiryVO));*/
+            inquiryService.register(inquiryVO);
+        });
+
     }
 
     //    조회
@@ -68,6 +76,13 @@ public class InquiryServiceTest {
     }
 
     //    수정
+    @Test
+    void updateInquiry() {
+        inquiryService.register(inquiryVO);
+        inquiryVO.setInquiryTitle("updated");
+        inquiryService.updateInquiry(inquiryVO);
+        assertThat(inquiryService.getInquiry(inquiryVO.getInquiryId()).getInquiryTitle()).isEqualTo("updated");
+    }
 
 //    삭제
 }

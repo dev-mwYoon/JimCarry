@@ -56,7 +56,19 @@ public class InquiryService {
         return inquiryDAO.findTotalBy(searchDTO);
     }
 
+
+    /**
+     * @param inquiryVO 화면에서 받은 문의 제목과 내용을 담고있다.
+     * @exception IllegalArgumentException 회원번호가 없는 경우
+     * */
     //    수정
+    public void updateInquiry(InquiryVO inquiryVO){
+        if (inquiryVO.getUserId() == null){
+            throw new IllegalArgumentException("문의VO에 회원번호가 없음.");
+        }
+
+        inquiryDAO.setInquiryVO(inquiryVO);
+    }
 
 //    삭제
 }

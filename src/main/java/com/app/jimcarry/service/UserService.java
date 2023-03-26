@@ -139,7 +139,7 @@ public class UserService {
         return userDAO.findCountByUserEmail(userEmail) == 0;
     }
 
-
+//      랜덤 숫자 뽑아서 문자 메세지 전송
     public String sendRandomNumber(String userPhone) throws CoolsmsException {
 //        String api_key = "NCSW9JM1RREOSKPR";
 //        String api_secret = "CWPWKNOLA3D0FD94JOY4W6Q2SBYXVSOK";
@@ -167,7 +167,9 @@ public class UserService {
         return numStr;
     }
 
+//    이름, 전화번호로 아이디 찾기
     public String findIdByPhone(String userName, String userPhone) {
         return userDAO.findByNameAndPhone(userName, userPhone);
     }
+
 }
