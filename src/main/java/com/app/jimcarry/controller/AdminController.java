@@ -68,17 +68,14 @@ public class AdminController {
         public String inquiry(Criteria criteria, Model model) {
 
         int amount = 5;
-        /* 검색된 결과의 총 개수 */
         int total = 0;
 
-        /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO();
 //        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
 //        searchDTO.setUserId(2L);
 
         PageDTO pageDTO = null;
 
-//         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
@@ -104,19 +101,15 @@ public class AdminController {
     /*-----------리뷰관리----------*/
     @GetMapping("review")
     public String review(Criteria criteria, Model model) {
-        /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 5;
-        /* 검색된 결과의 총 개수 */
         int total = 0;
 
-        /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO();
 //        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
 //        searchDTO.setUserId(2L);
 
         PageDTO pageDTO = null;
 
-//         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
@@ -134,12 +127,9 @@ public class AdminController {
     @GetMapping("storage")
     public String storage(Criteria criteria, Model model) {
 
-        /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 5;
-        /* 검색된 결과의 총 개수 */
         int total = 0;
 
-        /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO();
 //        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
 //        searchDTO.setUserId(2L);
@@ -149,7 +139,6 @@ public class AdminController {
 
         PageDTO pageDTO = null;
 
-//         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
