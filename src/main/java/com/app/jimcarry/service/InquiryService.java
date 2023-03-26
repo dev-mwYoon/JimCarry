@@ -2,6 +2,7 @@ package com.app.jimcarry.service;
 
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.InquiryDAO;
+import com.app.jimcarry.domain.dto.InquiryDTO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.InquiryVO;
@@ -32,8 +33,10 @@ public class InquiryService {
     }
 
     //    전체조회
+    @LogStatus
+    public List<InquiryDTO> getList(PageDTO pageDTO){ return inquiryDAO.findAll(pageDTO);}
 
-//    전체조회 개수
+    //    전체조회 개수
 
     //    조건조회
     /**

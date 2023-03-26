@@ -1,5 +1,6 @@
 package com.app.jimcarry.domain.dao;
 
+import com.app.jimcarry.domain.dto.InquiryDTO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.InquiryVO;
@@ -26,7 +27,7 @@ public class InquiryDAO {
     }
 
     //    전체조회
-
+    public List<InquiryDTO> findAll(PageDTO pageDTO){ return inquiryMapper.selectAll(pageDTO);}
 //    전체조회 개수
 
     //    조건조회

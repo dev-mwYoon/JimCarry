@@ -1,5 +1,6 @@
 /*리뷰 목록 불러오기*/
 const reviewTableContainer = $(".table");
+
 const createDOM = function(reviews){
     let text = `
         <tr class="table__content">
@@ -26,4 +27,5 @@ reviews.forEach((reviews, i) => {
     reviewTableContainer.append(
         createDOM(reviews)
     );
+
 });
