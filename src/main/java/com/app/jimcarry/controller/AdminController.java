@@ -4,6 +4,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
+import com.app.jimcarry.service.InquiryService;
 import com.app.jimcarry.service.ReviewService;
 import com.app.jimcarry.service.StorageService;
 import com.app.jimcarry.service.UserService;
@@ -28,6 +29,7 @@ public class AdminController {
     private final UserService userService;
     private final StorageService storageService;
     private final ReviewService reviewService;
+    private final InquiryService inquiryService;
 
     /*-----------회원관리----------*/
     @GetMapping("user")
@@ -63,7 +65,29 @@ public class AdminController {
 
     /*-----------문의사항----------*/
     @GetMapping("enquiry")
-        public String enquiry() {
+        public String inquiry(Criteria criteria, Model model) {
+
+        int amount = 5;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO();
+//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
+//        searchDTO.setUserId(2L);
+
+        PageDTO pageDTO = null;
+
+//         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+//        total = reviewService.getTotalBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("inquiries", inquiryService.getList(pageDTO));
+        model.addAttribute("pagination", pageDTO);
             return "/admin/enquiry";
     }
 

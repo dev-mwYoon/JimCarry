@@ -1,5 +1,6 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.dto.InquiryDTO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.InquiryVO;
@@ -16,9 +17,10 @@ public interface InquiryMapper {
     //    조회
     public InquiryVO select(Long inquiryId);
 
-//    전체조회
+    //    전체조회
+    public List<InquiryDTO> selectAll(PageDTO pageDTO);
 
-//    전체조회 개수
+    //    전체조회 개수
 
     //    조건조회
     public List<InquiryVO> selectBy(@Param("page") PageDTO pageDTO);
