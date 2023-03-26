@@ -39,12 +39,12 @@ public class StorageController {
         return new RedirectView("/detail-info/detail-info");
     }*/
 
-    @GetMapping("detail")
+    /*@GetMapping("detail")
     public String detail() {
         return "/detail-info/detail-info";
-    }
+    }*/
 
-    @GetMapping("review")
+    @GetMapping("detail")
     public String myBox(Criteria criteria, Model model) {
 
         /* 한 페이지에 보여줄 게시글 개수 */
