@@ -28,12 +28,12 @@
                 <button class="authenticationPhoneButton" onclick="javascript:location.href='/user/find-id-phone'">휴대폰 인증</button>
                 <button class="authenticationEmailButton" onclick="javascript:location.href='/user/find-id-email'">이메일 인증</button>
             </div>
-            <form class="findInputLayout">
+            <form th:action="@{/user/find-id-phone}" class="findInputLayout" name="findIdPhoneForm">
                 <div class="findInputDiv">
                     <div class="findLabelLayout">
                         <label class="findNameLabel" for="name">이름</label>
                         <div class="findnameInputLabel">
-                            <input class="findnameInputBox" data-testid="input-box" id="name" name="name"
+                            <input class="findnameInputBox" data-testid="input-box" id="name" name="userName"
                                    placeholder="이름을 입력해 주세요" type="text" value="">
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="findLabelLayout">
                         <label class="findpPhoneNum" for="phone">휴대폰 번호</label>
                         <div class="findPhoneInputLabel" height="46">
-                            <input class="findPhoneInputBox" data-testid="input-box" id="phone" name="phone"
+                            <input class="findPhoneInputBox" data-testid="input-box" id="phone" name="userPhone"
                                    placeholder="휴대폰 번호를 입력해 주세요" type="tel" height="46" value="">
                         </div>
                     </div>
@@ -54,10 +54,10 @@
                         <div class="verificationLayout">
                             <label for="verification-number" class="verification-number">인증번호</label>
                             <div class="verification-box" height="46">
-                                <input type="tel" id="verification-number" height="46" name="verificationNumber" class="verification-input" placeholder="인증번호 7자리" maxlength="7">
+                                <input type="tel" id="verification-number" height="46" name="verificationNumber" class="verification-input" placeholder="인증번호 6자리" maxlength="7">
                             </div>
                         </div>
-                        <button class="verification-button" type="button" width="88" height="48" radius="4">
+                        <button class="verification-button send-sms" type="button" width="88" height="48" radius="4">
                             <span class="resend">재발송</span>
                         </button>
                         <p class="verification-timer">00:00</p>
@@ -65,7 +65,7 @@
                     <p class="verificationError" style="display:none;"></p>
                 </div>
                 <div class="codeLayout">
-                    <button class="codeButton" type="button" radius="4" disabled>
+                    <button class="codeButton send-sms" type="button" radius="4" disabled>
                         <span class="buttonBox"> 인증번호 받기</span>
                     </button>
                 </div>
