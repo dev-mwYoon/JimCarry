@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/detail/datail.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/mypage/paging.css">
     <link rel="icon" href="/image/favicon.png">
     
 </head>
@@ -452,8 +453,22 @@
                                     </div>
                                 </article>
                             </div>-->
-                    </div>
-            </section>
+                                <div th:object="${pagination}">
+                                    <div class="paging" style="text-align: center">
+                                        <a class="changePage" th:href="'mybox?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                                        <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                                            <a class="changePage" style="color: black" th:href="'mybox?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                                            <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                                        </th:block>
+                                        <a class="changePage" th:href="'mybox?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                                    </div>
+                                    <form th:action="@{/users/mypage/mybox}" th:object="${criteria}" name="pageForm">
+                                        <input type="hidden" th:field="*{page}">
+                                        <input type="hidden" th:field="*{amount}">
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
@@ -472,7 +487,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
-    let boxes = [[${storages}]];
+    let reviews = [[${reviews}]];
 </script>
 <script src="/js/detail/changeimg.js"></script>
 <script src="/js/main/header.js"></script>

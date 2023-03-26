@@ -30,10 +30,10 @@ public class ReviewMapperTest {
 
     @Test
     public void getList(){
-        Criteria criteria = new Criteria().create(1, 10);
-        SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setDesc(true);
-        reviewMapper.selectAll(new PageDTO().createPageDTO(criteria, reviewMapper.total(), searchDTO));
+            Criteria criteria = new Criteria().create(1, 10);
+            SearchDTO searchDTO = new SearchDTO();
+            searchDTO.setDesc(true);
+            reviewMapper.selectAll(new PageDTO().createPageDTO(criteria, reviewMapper.total(), searchDTO));
     }
 
 }
