@@ -4,6 +4,7 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.ReviewDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.ReviewDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +36,14 @@ public class ReviewService {
     public int getTotalById(Long storageId){
         return reviewDAO.getTotalById(storageId);
     };
+
+    /* 리뷰 조건조회 */
+    public List<ReviewDTO> getListBy(PageDTO pageDTO){
+        return reviewDAO.findAllBy(pageDTO);
+    }
+
+    /* 리뷰 조건조회 개수 */
+    public int getTotalBy(SearchDTO searchDTO){
+        return reviewDAO.getTotalBy(searchDTO);
+    }
 }

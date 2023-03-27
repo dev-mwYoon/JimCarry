@@ -71,10 +71,6 @@ public class ReviewMapperTest {
     }
 
     @Test
-    void select() {
-    }
-
-    @Test
     void total() {
     }
 

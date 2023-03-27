@@ -26,6 +26,7 @@ public interface ReviewMapper {
 
     /* 한 창고의 리뷰 개수 조회*/
     public int totalById(Long storageId);
+
     /* 리뷰 조건조회 */
     public List<ReviewDTO> selectAllBy(@Param("page") PageDTO pageDTO);
 
