@@ -84,6 +84,10 @@
         select u.user_id, user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name,
         storage_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
         from tbl_user u join tbl_storage s on u.user_id = s.user_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
 
     <!-- 창고DTO 조건조회 -->
