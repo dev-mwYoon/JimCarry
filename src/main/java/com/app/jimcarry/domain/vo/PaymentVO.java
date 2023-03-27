@@ -10,5 +10,7 @@ public class PaymentVO {
     private Long userId;
     private Long storageId;
     private String paymentDate;
+    private Integer paymentAmount;
+
 }
 

@@ -19,4 +19,5 @@ public class PaymentDTO {
     private Long payId;
     private Long storageId;
     private String paymentDate;
+    private int paymentAmount;
 }
