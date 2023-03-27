@@ -3,6 +3,7 @@ package com.app.jimcarry.service;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -10,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootTest
 @Slf4j
@@ -58,6 +56,13 @@ public class StorageServiceTest {
         searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
         log.info("getTotalby : " + storageService.getTotalBy(searchDTO));
+    }
+
+
+    //    검색에 맞는 DTO 창고 조회
+    @Test
+    public void getStorageListBy(){
+        storageService.getStorageBy(8L);
     }
 
 }

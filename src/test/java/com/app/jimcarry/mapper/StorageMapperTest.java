@@ -81,12 +81,6 @@ public class StorageMapperTest {
     //    storageDTO 조회
     @Test
     public void selectAllBy() {
-        SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("storageId")));
-        searchDTO.setStorageId(8L);
-        int total = storageMapper.totalBy(searchDTO);
-        Criteria criteria = new Criteria().create(1, 10);
-        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
-        storageMapper.selectAllBy(pageDTO);
+        storageMapper.selectAllBy(8L);
     }
 }

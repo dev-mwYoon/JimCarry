@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/detail/datail.css">
     <link rel="stylesheet" href="/css/main/footer.css">
-    <link rel="stylesheet" href="/css/mypage/paging.css">
     <link rel="icon" href="/image/favicon.png">
 
 </head>
@@ -25,7 +24,7 @@
             <section class="content-container">
                 <div class="content-wrap">
                     <div class="content-title">
-                        <h1 class="" <!--th:text="${storages.storageTitle}"-->></h1>
+                        <h1 class="" >강남구</h1>
                         <!--                     <button class="shell-btn"></button> -->
                     </div>
                 </div>
@@ -40,7 +39,7 @@
                         <dt class="detail-date-name">창고가능기간</dt>
                         <dd class="detail-date-box">
                             <p class="detail-date-use">6개월</p>
-                            <p class="detail-date" <!--th:text="${storages.storageUseDate} + '~' + ${storages.storageEndDate}"-->></p>
+                            <p class="detail-date">2023.03.20~2023.09.20</p>
                         </dd>
                     </dl>
 
@@ -48,7 +47,7 @@
                     <dl class="detail-info-container">
                         <dt class="detail-info-name">소유자</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.userName}"-->></p>
+                            <p class="detail-info-kim">김주연</p>
                         </dd>
                     </dl>
 
@@ -56,22 +55,22 @@
                     <dl class="detail-date-wrap">
                         <dt class="detail-info-name">창고주소</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.storageAddress}"-->></p>
-                            <p class="detail-info-address" <!--th:text="${storages.storageAddressDetail}"-->></p>
+                            <p class="detail-info-kim">서울특별시</p>
+                            <p class="detail-info-address">강남구 언주로56길</p>
                         </dd>
                     </dl>
 
                     <dl class="detail-date-wrap">
                         <dt class="detail-info-name">창고사이즈</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.storageSize}"-->></p>
+                            <p class="detail-info-kim">중</p>
                         </dd>
                     </dl>
 
                     <dl class="detail-date-wrap">
                         <dt class="detail-info-name">소유자연락처</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.userPhone}"-->>핸드폰번호</p>
+                            <p class="detail-info-kim">??</p>
                         </dd>
                     </dl>
                 </div>
@@ -134,7 +133,7 @@
             <li class="review-detail-t" id="review-a">
                 <a class="review-detail-a" href="#moveReview">
                     <span id="review-c" class="name">후기</span>
-                    <span id="review-c" class="count" <!--th:text="${total}"-->></span>
+                    <span id="review-c" class="count">1</span>
                 </a>
             </li>
         </ul>
@@ -181,25 +180,280 @@
                     <div class="review-count-container">
 
                         <!-- 후기 총 건수 -->
-                        <span class="review-count-total" <!--th:text="'총' + ${total} + '개'"-->></span>
+                        <span class="review-count-total">총 68,918개</span>
                     </div>
 
-                <!--DB조회로 후기 담기-->
-            </section>
-            <!--<div th:object="${pagination}">
-                <div class="paging" style="text-align: center">
-                    <a class="changePage" th:href="'detail?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
-                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                        <a class="changePage" style="color: black" th:href="'detail?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-                        <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                    </th:block>
-                    <a class="changePage" th:href="'detail?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                    <div class="review-detail-container">
+                        <div class="review-detail-wrap">
+                            <div class="review-detail-name-wrap">
+                                <span class="review-name">이**</span>
+                            </div>
+                        </div>
+
+                        <article class="review-content-wrap">
+                            <div>
+                                <div class="review-title-wrap">
+                                    <h3 class="review-title">[일상味소] 다짐육 200g (냉장)</h3>
+                                </div>
+                                <p class="review-context">처음 소고기미음 시작할땐 한우1등급 안심만 먹이다가
+                                    하나도아닌 둘이라 (쌍디에요) 비용이 후덜덜..
+                                    그래서 안심에서 우둔살로 바꾸고 양늘면서 그마저도 부담이라
+                                    결국 컬리 2등급다짐육으로 왔네요ㅜㅜ
+                                    나중에 알고보니 소고기는 1등급보단 2등급이 지방이적어
+                                    아기들한텐 더좋다고 하더라구요~
+                                    다행이 저희아가들은 저렴한 고기라도 잘먹어줘서
+                                    오히려 부담없이 고기 팍팍넣어 만들어주고있어요^^;;
+                                    처음 두팩사고 요번엔 4팩샀는데
+                                    점점 먹는양이 확 늘어서 이것도 2주정도밖에 안갈듯하지만
+                                    그래도 저렴하게 살수있어서 부담이 많이줄었어요
+                                    컬리에서도 인기상품인지 품절이 잘떠서 기다렸다 샀네요ㅋㅋ
+                                    50그램 저울달면서 큐브에 소분하면서 넣다보니까
+                                    한팩당 200그램 살짝넘어요 (3~6그램정도 더되네요)
+                                    샛별배송지역이 아니라 택배로 오다보니
+                                    그나마 저희동네는 롯데택배가 점심전 오전에 오는데도
+                                    이제 날이 풀려서그런가 많이 녹아서 오네요ㅠㅠ
+                                    저녁에오는 택배사였음 못시키겠어요
+                                    이제 더워지면 어떡해야하나 벌써부터 걱정이..</p>
+
+                                <!-- 리뷰사진 -->
+                                <div class="review-img-container">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <!--  <button class="review-img"></button>
+                                     <button class="review-img"></button>
+                                     <button class="review-img"></button> -->
+                                </div>
+
+
+                                <footer class="review-register-container">
+                                    <div>
+                                        <span class="review-date">2018.03.20</span>
+                                    </div>
+                                    <!--
+                                    <button class="css-g3a39p e198bwfo1">
+                                        <span class="ico css-xdee1z e198bwfo0"></span>
+                                        <span>도움돼요 39</span>
+                                    </button> -->
+                                </footer>
+                            </div>
+
+                        </article>
+                    </div>
+
+                    <div class="review-detail-container">
+                        <div class="review-detail-wrap">
+                            <div class="review-detail-name-wrap">
+                                <span class="review-name">김**</span>
+                            </div>
+                        </div>
+
+                        <article class="review-content-wrap">
+                            <div>
+                                <div class="review-title-wrap">
+                                    <h3 class="review-title">[일상味소] 다짐육 200g (냉장)</h3>
+                                </div>
+                                <p class="review-context">요즘 계속 깔끔하게 토마토만 넣고 소스 만들어서 먹다가 토마토 끝나기 전에 한번 만들어야겠다 해서 다짐육 사봤어요^^ 사실 친환경을 주로 먹는데 육류는 가격이 좀 부담이라 한번 사봤는데 너무 만족스러웠어요. 레시피 올려봅니다!
+
+                                    1. 우선 토마토를 준비해주시는데요, 저는 늘 컬리의 무농약토마토 2팩을 기준으로 합니다. 잘 씻은 토마토에 칼집을 내고 끓는물에 살짝 데쳐 건져둡니다.
+                                    2. 토마토 데친 물을 버린 냄비를 적당히 달구고 다짐육을 넣어 센불에 빠르게 익혀줍니다. 원래 돼지고기도 넣어야 한다는데 저는 아직 한번도 안해봤어요. 소고기만 넣으면 퍽퍽하다고 하더라구요. 다음엔 돼지고기도 사서 넣어보려구요^^
+                                    3. 고기가 익고 물기가 사라져갈때즈음 미리 준비해둔 양파와 마늘을 넣어줍니다. 양파는 한개, 마늘은 한주먹정도 하시면 되고 둘다 잘게 다져주세요.
+                                    4. 양파마늘도 어느정도 익었다 싶으면 아까 데쳐둔 토마토의 껍질을 재빠르게 벗겨 대충 잘라주고 냄비에 모두 넣습니다.
+                                    5. 계속 끓이다보면 토마토 알갱이가 거의 흐물흐물해지고 물이 많이 생겨요. 그래서 사실 원래 안에있는 씨를 다 빼고 해야하는데 너무 아까워서 다 넣습니다! 대신 뚜껑을 열고 중간불정도로 줄여준 다음 계속계속 끓입니다.
+                                    저는 이번엔 시간이 없어서 금방 먹었지만 몇시간이고 계속 끓여주면 물이 졸아들면서 맛있어져요.
+                                    6. 이번에는 처음 사본 치킨스톡을 넣어봤는데요, 세개나 넣었는데도 이렇다할 변화가 없더라구요. 굳이 넣지 않으셔도 될것같아요. 그리고 월계수잎을 넣어야하는데 못사서 그냥 했습니다.
+                                    대신 여기에 소금 설탕 치즈 등으로 간을 해주세요. 소금은 좀 넉넉하게 넣으셔야해요! 그리고 치즈는 전에 컬리에서 사둔 고다치즈 슬라이스 2장이랑 파마산 좀 갈아서 넣었어요^^
+                                    7. 그리고 계속 젓다보면 졸아들면서 맛있어져요. 옆에서 물을 넉넉히 넣은 냄비에 소금도 넉넉히 넣어주고 좋아하는 면을 삶습니다. 개인적으로 저는 토마토소스와 리가토니가 가장 잘 어울리는 것 같네요^^
+                                    8. 면이 다 익으면 소스에 넣어서 섞었다가 드셔도 되고, 접시에 익은 면을 덜고 그 위에 소스를 뿌리셔도 돼요.
+                                    9. 그리고 좋아하는 치즈를 뿌려 드시면 됩니다^^
+
+                                    컬리에서 처음 사보는 다짐육인데 볶을때 잡내도 하나안나고 신선해서 너무 좋았어요. 자주 애용해야겠습니다^^
+                                    집에서 직접 토마토소스 만들어드셔보세요 추천합니다 ㅎㅎ</p>
+
+                                <div class="review-img-container">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <!--   <button class="review-img"></button>
+                                      <button class="review-img"></button>
+                                      <button class="review-img"></button> -->
+                                </div>
+
+                                <footer class="review-register-container">
+                                    <div>
+                                        <span class="review-date">2018.03.09</span>
+                                    </div>
+
+                                    <!-- <button class="css-g3a39p e198bwfo1">
+                                        <span class="ico css-xdee1z e198bwfo0"></span>
+                                        <span>도움돼요 22</span>
+                                    </button> -->
+                                </footer>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="review-detail-container">
+                        <div class="review-detail-wrap">
+                            <div class="review-detail-name-wrap">
+                                <span class="review-name">장**</span>
+                            </div>
+                        </div>
+
+                        <article class="review-content-wrap">
+                            <div>
+                                <div class="review-title-wrap">
+                                    <h3 class="review-title">[일상味소] 다짐육 200g (냉장)</h3>
+                                </div>
+                                <p class="review-context">180일 아가 엄마예요.
+                                    정성담은 엄마표 이유식 해주려고 굳게굳게 마음먹고(친구들이 다 뜯어말렸거든요.ㅎ) 좋은 재료부터 고르다보니 전부 컬리!!
+                                    달수네 고구마, 미니호박밤, 무농약 채소들, 다진 채소들, 무항생제 고기까지...
+                                    컬리는 정말 이유식 만드는 저에게 꼭 필요한 존재예요.
+                                    게다가 샛별배송까지...정말 ?오!^^b
+                                    조금씩 구하기 어려운 비타민 같은 채소도 소포장으로 무려 배달까지 해주니 세상 편안!!
+                                    재료는 한번에 손질해서 1회분씩 소분했다가 그때그때 3~4회분씩 만들어 먹여요.
+                                    오늘 메뉴는 소고기배미음이랑 고구마비타민미음이예요.
+                                    이미 소분된 재료에 오늘 새벽 배송된 신선한 배를 싹싹 갈아 만든 소고기배미음!!
+                                    아기가 보자마자 눈이 띠용!♥.♥
+                                    이유식 잘먹는 아가라 만들면서도 신이 납니다.
+                                    쪼꼬만 입을 참새처럼 벌리고 잘 받아먹어요.ㅎㅎ
+                                    컬리 재료들 덕에 편하게 이것저것 편식 없는 아기로키울 수 있어서 고맙고 좋아요.
+                                    앞으로도 쭉~!! 이유식 지나 식판식에도 함께 할게요~!!</p>
+
+                                <div class="review-img-container">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <!-- <button class="css-a49fz3 e36z05c2"></button>
+                                    <button class="css-qem3eo e36z05c2"></button>
+                                    <button class="css-1cnja0m e36z05c2"></button>
+                                    <button class="css-nidmdz e36z05c2"></button>
+                                    <button class="css-rz7hca e36z05c2"></button> -->
+                                </div>
+
+                                <footer class="review-register-container">
+                                    <div>
+                                        <span class="review-date">2017.11.09</span>
+                                    </div>
+
+                                    <!--  <button class="css-g3a39p e198bwfo1">
+                                         <span class="ico css-xdee1z e198bwfo0"></span>
+                                         <span>도움돼요 10</span>
+                                     </button> -->
+                                </footer>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="review-detail-container">
+                        <div class="review-detail-wrap">
+                            <div class="review-detail-name-wrap">
+                                <span class="review-name">이**</span>
+                            </div>
+                        </div>
+
+                        <article class="review-content-wrap">
+                            <div>
+                                <div class="review-title-wrap">
+                                    <h3 class="review-title">[일상味소] 다짐육 200g (냉장)</h3>
+                                </div>
+
+                                <p class="review-context">일상미소 다짐육 맛이 괜찮아  자주구매</p>
+
+                                <div class="review-img-container">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                </div>
+
+                                <footer class="review-register-container">
+                                    <div>
+                                        <span class="review-date">2023.03.17</span>
+                                    </div>
+                                    <!-- <button class="css-g3a39p e198bwfo1">
+                                        <span class="ico css-xdee1z e198bwfo0"></span>
+                                        <span>도움돼요</span>
+                                    </button> -->
+                                </footer>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="review-detail-container">
+                        <div class="review-detail-wrap">
+                            <div class="review-detail-name-wrap">
+                                <span class="review-name">h**</span>
+                            </div>
+                        </div>
+
+                        <article class="review-content-wrap">
+                            <div>
+                                <div class="review-title-wrap">
+                                    <h3 class="review-title">[일상味소] 다짐육 200g (냉장)</h3>
+                                </div>
+                                <p class="review-context">다짐육 신선하고좋아요</p>
+
+                                <div class="review-img-container">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <!-- <button class="css-1muede3 e36z05c2"></button> -->
+                                </div>
+
+                                <footer class="review-register-container">
+                                    <div>
+                                        <span class="review-date">2023.03.17</span>
+                                    </div>
+                                    <!--  <button class="css-g3a39p e198bwfo1">
+                                         <span class="ico css-xdee1z e198bwfo0"></span>
+                                         <span>도움돼요</span>
+                                     </button> -->
+                                </footer>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="review-detail-container">
+                        <div class="review-detail-wrap">
+                            <div class="review-detail-name-wrap">
+                                <span class="review-name">라**</span>
+                            </div>
+                        </div>
+
+                        <article class="review-content-wrap">
+                            <div>
+                                <div class="review-title-wrap">
+                                    <h3 class="review-title">[일상味소] 다짐육 200g (냉장)</h3>
+                                </div>
+
+                                <p class="review-context">매번 주문하는 제품이에요</p>
+
+                                <div class="review-img-container">
+                                    <img class="review-photo">
+                                    <img class="review-photo">
+                                    <!-- <button class="css-1cnkf63 e36z05c2"></button> -->
+                                </div>
+
+                                <footer class="review-register-container">
+                                    <div>
+                                        <span class="review-date">2023.03.16</span>
+                                    </div>
+                                    <!--  <button class="css-g3a39p e198bwfo1">
+                                         <span class="ico css-xdee1z e198bwfo0"></span>
+                                         <span>도움돼요</span>
+                                     </button> -->
+                                </footer>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-                <form th:action="@{/storages/detail}" th:object="${criteria}" name="pageForm">
-                    <input type="hidden" th:field="*{page}">
-                    <input type="hidden" th:field="*{amount}">
-                </form>
-            </div>-->
+            </section>
         </div>
     </div>
 
@@ -217,10 +471,10 @@
     <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!--<script th:inline="javascript">
-    let reviews = [[${reviews}]];
-    let storages = [[${storages}]];
-</script>-->
+<script th:inline="javascript">
+    /*    let reviews = [[${reviews}]];*/
+/*        let storages = [[${storages}]];*/
+</script>
 <script src="/js/detail/changeimg.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/detail/count.js"></script>
