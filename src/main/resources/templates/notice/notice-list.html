@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/css/notice/notice-list.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/mypage/paging.css" />
+
 </head>
 <body>
 
@@ -53,6 +55,20 @@
                     <div class="notice-list-table-title-write">작성일</div>
                 </div>
                 <ul class="notice-list-content-ul">
+
+                    <!--<li >
+                        <a href="#">
+                            <div class="notice-list-table-content-div">
+                                <div class="notice-list-table-content-number"></div>
+                                <div class="notice-list-table-content-title"></div>
+                                <div class="notice-list-table-content-writer"></div>
+                                <div class="notice-list-table-content-date"></div>
+                            </div>
+                        </a>
+                    </li>
+
+
+
                     <li>
                         <a href="#">
                             <div class="notice-list-table-content-div">
@@ -62,22 +78,28 @@
                                 <div class="notice-list-table-content-date">2000-08-10</div>
                             </div>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="notice-list-table-content-div">
-                                <div class="notice-list-table-content-number">공지</div>
-                                <div class="notice-list-table-content-title">제목1</div>
-                                <div class="notice-list-table-content-writer">작성자1</div>
-                                <div class="notice-list-table-content-date">2000-08-10</div>
-                            </div>
-                        </a>
-                    </li>
+                    </li>-->
                 </ul>
-                <div class="button-div">
+
+                <div th:object="${pagination}">
+                    <div class="paging" style="text-align: center">
+                        <a class="changePage" th:href="'list?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                        <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                            <a class="changePage" style="color: black" th:href="'list?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                            <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                        </th:block>
+                        <a class="changePage" th:href="'list?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                    </div>
+                    <form th:action="@{/notice/list}" th:object="${criteria}" name="pageForm">
+                        <input type="hidden" th:field="*{page}">
+                        <input type="hidden" th:field="*{amount}">
+                    </form>
+                </div>
+
+               <!-- <div class="button-div">
                         <button disabled class="button-prev"></button>
                         <button class="button-next"></button>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
@@ -85,5 +107,12 @@
 <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/main/header.js"></script>
+<script th:inline="javascript">
+    let notices = [[${notices}]];
+    let $page = [[${pagination.criteria.page}]];
+</script>
+<script src="/js/notice/notice.js"></script>
+
 </html>

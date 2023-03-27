@@ -9,8 +9,8 @@ public class NoticeVO {
     private Long noticeId;
     private String noticeTitle;
     private String noticeContent;
+    private String noticeWriter;
     private String noticeRegist;
     private String noticeUpdate;
-    private String noticeDelete;
 
 }
