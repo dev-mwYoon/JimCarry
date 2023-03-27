@@ -7,13 +7,17 @@ import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.ReviewVO;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
 
 @SpringBootTest
 @Slf4j
-//@Transactional
+@Transactional
 public class ReviewMapperTest {
     @Autowired
     PageDTO pageDTO;
@@ -27,9 +31,17 @@ public class ReviewMapperTest {
     @Autowired
     ReviewMapper reviewMapper;
 
+    @BeforeEach
+    void setReviewVO(){
+        reviewVO.setUserId(2L);
+        reviewVO.setStorageId(1L);
+        reviewVO.setReviewTitle("리뷰매퍼테스트");
+        reviewVO.setReviewContext("리뷰매퍼테스내용");
+    }
+
     /* 리뷰 추가 */
     @Test
-    public void insert(){
+    public void insert() {
         ReviewVO reviewVO = new ReviewVO();
         reviewVO.setUserId(6L);
         reviewVO.setStorageId(8L);
@@ -40,11 +52,11 @@ public class ReviewMapperTest {
 
     /*리뷰 전체 목록 조회*/
     @Test
-    public void getList(){
-            Criteria criteria = new Criteria().create(1, 10);
-            SearchDTO searchDTO = new SearchDTO();
-            searchDTO.setDesc(true);
-            reviewMapper.selectAll(new PageDTO().createPageDTO(criteria, reviewMapper.total(), searchDTO));
+    public void getList() {
+        Criteria criteria = new Criteria().create(1, 10);
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setDesc(true);
+        reviewMapper.selectAll(new PageDTO().createPageDTO(criteria, reviewMapper.total(), searchDTO));
     }
 
     /* 리뷰 조회*/
@@ -58,4 +70,32 @@ public class ReviewMapperTest {
         reviewMapper.totalById(8L);
     }
 
+    @Test
+    void select() {
+    }
+
+    @Test
+    void total() {
+    }
+
+    @Test
+    void selectAllBy() {
+        int total = 0;
+        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
+        Criteria criteria = new Criteria().create(1, 5);
+        searchDTO.setUserId(2L);
+        total = reviewMapper.totalBy(searchDTO);
+        reviewMapper.selectAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
+
+    @Test
+    void totalBy() {
+        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
+        searchDTO.setUserId(2L);
+        reviewMapper.totalBy(searchDTO);
+    }
+
+    @Test
+    void update() {
+    }
 }
