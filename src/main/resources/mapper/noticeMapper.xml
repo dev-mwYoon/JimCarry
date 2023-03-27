@@ -3,7 +3,7 @@
 <mapper namespace="com.app.jimcarry.mapper.NoticeMapper">
     <!--전체 공지사항 목록 조회-->
     <select id="selectAll" resultType="noticeVO">
-        select notice_id, notice_title, notice_content, notice_regist, notice_update
+        select notice_id, notice_title, notice_content, notice_writer, notice_regist, notice_update
         from tbl_notice
     </select>
 
