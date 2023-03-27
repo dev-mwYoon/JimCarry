@@ -316,21 +316,32 @@ $checkNum.on('click', function(){
     if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
         clearInterval(timer);
 
-        $.ajax({
-            url: "/user/send-sms",
-            type: "get",
-            data: { userPhone : $('input[name=userPhone]').val() },
-            success: function(result) {
-                console.log(result);
-                authNumber = result;
-                $modal.css('visibility', 'visible');
-                $modalText.text("인증번호가 전송되었습니다.");
-                $checkWrapper.css("display", "flex");
-                $('#duplicateBox').attr('disabled', false);
-                $checkButton.on('click',()=>{
-                    $modal.css('visibility', 'hidden');
-                });
-            }
+        // $.ajax({
+        //     url: "/user/send-sms",
+        //     type: "get",
+        //     data: { userPhone : $('input[name=userPhone]').val() },
+        //     success: function(result) {
+        //         console.log(result);
+        //         authNumber = result;
+        //         $modal.css('visibility', 'visible');
+        //         $modalText.text("인증번호가 전송되었습니다.");
+        //         $checkWrapper.css("display", "flex");
+        //         $('#duplicateBox').attr('disabled', false);
+        //         $checkButton.on('click',()=>{
+        //             $modal.css('visibility', 'hidden');
+        //         });
+        //     }
+        // });
+        joinService.sendSMS(function(result) {
+            console.log(result);
+            authNumber = result;
+            $modal.css('visibility', 'visible');
+            $modalText.text("인증번호가 전송되었습니다.");
+            $checkWrapper.css("display", "flex");
+            $('#duplicateBox').attr('disabled', false);
+            $checkButton.on('click',()=>{
+                $modal.css('visibility', 'hidden');
+            });
         });
 
         var display = $(".checknum2");
@@ -413,5 +424,18 @@ const joinService = (function() {
             }
         });
     }
-    return { checkIdentification : checkIdentification, checkEmail : checkEmail };
+
+    function sendSMS(callback) {
+        $.ajax({
+            url: "/user/send-sms",
+            type: "get",
+            data: { userPhone : $('input[name=userPhone]').val() },
+            success: function(result) {
+                if(callback) {
+                    callback(result);
+                }
+            }
+        });
+    }
+    return { checkIdentification : checkIdentification, checkEmail : checkEmail, sendSMS : sendSMS };
 })();
