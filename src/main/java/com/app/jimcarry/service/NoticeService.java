@@ -19,8 +19,8 @@ public class NoticeService {
         return noticeDAO.findAll(pageDTO);
     }
 
-    /*공지사항 갯수*/
-    public int getTotal() {
-        return noticeDAO.count();
-    }
+    /*공지사항 전체 개수*/
+    public int getTotal(){return noticeDAO.findTotal();}
+
 }
+

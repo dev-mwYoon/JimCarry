@@ -27,6 +27,11 @@
         <include refid="searchType"/>
     </select>
 
+    <!-- 문의 총 수-->
+    <select id="total" resultType="int">
+        select count(inquiry_id) from tbl_inquiry
+    </select>
+
     <!-- 문의사항 업데이트 -->
     <update id="update">
         update jimcarry.tbl_inquiry
@@ -70,6 +75,11 @@
         user_address_detail, user_gender, user_birth, inquiry_id, storage_id, inquiry_title,
         inquiry_content, inquiry_regist, inquiry_answer, user_name
         from tbl_user u join tbl_inquiry i on u.user_id = i.user_id
+        order by user_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
     <!-- 삭제 -->
     <delete id="delete">
