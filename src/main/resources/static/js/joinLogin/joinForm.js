@@ -179,7 +179,7 @@ $duplicateEmailButton.on('click', function(){
         $modalText.text("이메일 형식을 확인해주세요.")
     }else{
         $.ajax({
-            url: "/user/checkEmailDuplicate",
+            url: "/user/emails-duplicate",
             type: "post",
             data: { userEmail : valueEmail },
             success: function(result) {
@@ -210,7 +210,7 @@ $duplicateIdButton.on('click', function(){
         $modalText.text("영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.");
     }else{
         $.ajax({
-            url: "/user/checkIdentificationDuplicate",
+            url: "/user/identifications-duplicate",
             type: "post",
             data: { userIdentification : valueId },
             success: function(result) {
@@ -294,7 +294,7 @@ $checkNum.on('click', function(){
         clearInterval(timer);
 
         $.ajax({
-            url: "/user/sendSMS",
+            url: "/user/send-sms",
             type: "get",
             data: { userPhone : $('input[name=userPhone]').val() },
             success: function(result) {

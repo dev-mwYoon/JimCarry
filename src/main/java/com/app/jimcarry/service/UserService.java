@@ -168,8 +168,16 @@ public class UserService {
     }
 
 //    이름, 전화번호로 아이디 찾기
-    public String findIdByPhone(String userName, String userPhone) {
+    public UserVO findIdByPhone(String userName, String userPhone) {
         return userDAO.findByNameAndPhone(userName, userPhone);
+    }
+
+//    비밀번호 변경
+    @LogStatus
+    @Encryption /* 회원 비밀번호 암호화 Aspect */
+    @Transactional(rollbackFor = Exception.class)
+    public void updateUserPassword(String userIdentification, String userPassword) {
+        userDAO.setPasswordByIdentification(userIdentification, userPassword);
     }
 
 }

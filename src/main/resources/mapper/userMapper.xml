@@ -93,8 +93,15 @@
         </trim>
     </sql>
     <!--  이름, 핸드폰 번호로 아이디 찾기  -->
-    <select id="selectByNameAndPhone" resultType="string">
-        select user_identification from tbl_user
+    <select id="selectByNameAndPhone" resultType="userVO">
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
+        from tbl_user
         where user_name = #{userName} and user_phone = #{userPhone}
     </select>
+    <!--  비밀번호 변경  -->
+    <update id="updatePasswordByIdentification">
+        update tbl_user
+        set user_password = #{userPassword}
+        where user_identification = #{userIdentification}
+    </update>
 </mapper>

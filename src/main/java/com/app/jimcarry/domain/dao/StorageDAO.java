@@ -53,4 +53,9 @@ public class StorageDAO {
     //    수정
 
     //    삭제
+
+    //    storagesDTO 조회
+    public StorageDTO findDTObyId(Long storageId) {
+        return storageMapper.selectStorageDTO(storageId);
+    }
 }

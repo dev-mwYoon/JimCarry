@@ -109,4 +109,9 @@ class UserServiceTest {
     public void sendSMS() throws CoolsmsException {
         log.info(userService.sendRandomNumber("010-2287-6873"));
     }
+
+    @Test
+    public void updateUserPassword() {
+        userService.updateUserPassword("1234", "4321");
+    }
 }
