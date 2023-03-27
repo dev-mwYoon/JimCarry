@@ -42,13 +42,11 @@ public class NoticeController {
         log.info(String.valueOf(httpSession.getAttribute("userId" )));
         inquiryVO.setUserId((Long)httpSession.getAttribute("userId" ));
 
-
-
         inquiryService.register(inquiryVO);
         /*userService.login;*/
 
-
-        return new RedirectView ("notice/list");
+        /*문의 등록후 이동페이지*/
+        return new RedirectView ("/notice/list");
 
     }
 
