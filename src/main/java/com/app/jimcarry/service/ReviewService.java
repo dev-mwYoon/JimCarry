@@ -25,4 +25,14 @@ public class ReviewService {
     public int getTotal() {
         return reviewDAO.findTotal();
     }
+
+    /* 한 창고의 리뷰 조회 */
+    public List<ReviewDTO> getListByStorageId(Long storageId){
+        return reviewDAO.findByStorageId(storageId);
+    }
+
+    /* 한 창고의 리뷰 개수 조회*/
+    public int getTotalById(Long storageId){
+        return reviewDAO.getTotalById(storageId);
+    };
 }

@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 
@@ -23,37 +25,15 @@ public class SearchController {
     private final ReviewService reviewService;
     private final StorageService storageService;
 
-    @GetMapping("detail")
-    public String searchDetail(Criteria criteria, Model model) {
+    /* 창고 상세 목록 */
+    @GetMapping("detail/{storageId}")
+    public String searchDetail(Model model,@PathVariable Long storageId) {
+        int total = reviewService.getTotalById(storageId);
 
-        /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 3;
-        /* 검색된 결과의 총 개수 */
-        int total = 0;
-
-        /* 추후에 setUserId 세션으로 변경 */
-        SearchDTO searchDTO = new SearchDTO();
-        /*searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);*/
-
-        /*log.info(criteria.getPage() + "............");
-        log.info(criteria.toString());*/
-
-        PageDTO pageDTO = null;
-
-//         페이지 번호가 없을 때, 디폴트 1페이지
-        if (criteria.getPage() == 0) {
-            criteria.create(1, amount);
-        } else criteria.create(criteria.getPage(), amount);
-
-        total = reviewService.getTotal();
-
-        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-        model.addAttribute("reviews", reviewService.getList(pageDTO));
+        model.addAttribute("reviews", reviewService.getListByStorageId(storageId));
         /* url 파라미터로 스토리지아이디 받기*/
-        model.addAttribute("storages", storageService.getStorageDTO(8L));
-        model.addAttribute("pagination", pageDTO);
+        model.addAttribute("storages", storageService.getStorageDTO(storageId));
 
         return "/detail-info/detail-info";
     }

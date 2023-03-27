@@ -36,4 +36,16 @@ public class ReviewServiceTest {
         total = reviewService.getTotal();
         reviewService.getList(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
+
+    /* 한 창고의 리뷰 조회 */
+    @Test
+    public void getListByStorageId(){
+        reviewService.getListByStorageId(8L);
+    }
+
+    /* 한 창고의 리뷰 개수 조회*/
+    @Test
+    public void getTotalByStorageId(){
+        reviewService.getTotalById(8L);
+    }
 }
