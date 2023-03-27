@@ -68,7 +68,7 @@ public class AdminController {
     @GetMapping("enquiry")
         public String enquiry(Criteria criteria, Model model) {
 
-        int amount = 3;
+        int amount = 5;
         int total = 0;
 
         SearchDTO searchDTO = new SearchDTO();
@@ -133,7 +133,7 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        total = reviewService.getTotalBy(searchDTO);
+        total = reviewService.getTotal();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("getTotal", reviewService.getTotal());
@@ -154,8 +154,6 @@ public class AdminController {
 //        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
 //        searchDTO.setUserId(2L);
 
-//        log.info(criteria.getPage() + "............");
-//        log.info(criteria.toString());
 
         PageDTO pageDTO = null;
 
@@ -163,7 +161,7 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        total = storageService.getTotalBy(searchDTO);
+        total =  storageService.getTotal();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("getTotal", storageService.getTotal());
