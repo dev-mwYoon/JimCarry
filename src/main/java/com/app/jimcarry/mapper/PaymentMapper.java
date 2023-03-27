@@ -1,22 +1,21 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
-import com.app.jimcarry.domain.vo.StorageVO;
-import com.app.jimcarry.domain.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PaymentMapper {
 
 //    //    결제조회
-//    public PaymentVO select(Long payId);
+//    public PaymentDTO select(Long payId);
 //
 //    //    회원조회
-//    public UserVO select(Long userId);
+//    public PaymentDTO select(Long userId);
 //
 //    //    창고조회
-//    public StorageVO select(Long storageId);
+//    public PaymentDTO select(Long storageId);
 
     //    결제 날짜 조회
-    public UserVO select(String paymentDate);
+    public PaymentDTO select(String paymentDate);
 }
