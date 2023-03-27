@@ -61,11 +61,11 @@ const $checkBt = $('.checkButton');
 
 $checkButton.on('click', ()=>{
     $modal.css('visibility', 'hidden');
+    passwordForm.submit();
 });
-$checkBt.on('click', function(){
-    
+$checkBt.on('click', function(event){
+    event.preventDefault();
     $modal.css('visibility', 'visible');
-    
 });
 
 
