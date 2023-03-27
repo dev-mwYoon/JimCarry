@@ -44,7 +44,6 @@ $findEmailInputBox.on('blur', function(){
     $('.codeButton').attr('disabled', true);
 });
 
-
 //모달
 const $modal = $('.modal-container');
 const $modalText = $('.popup-content');
@@ -52,9 +51,18 @@ const $checkButton = $('.popup-check');
 
 const $codeButton = $('.codeButton');
 
-$codeButton.on('click', ()=>{
+// $codeButton.on('click', ()=>{
+//     $modal.css("visibility", "visible");
+// });
+// $checkButton.on("click", ()=>{
+//     $modal.css("visibility", "hidden");
+// });
+
+if(window.location.search) {
+    $modalText.text('존재하지 않는 회원입니다.');
     $modal.css("visibility", "visible");
-});
+}
+
 $checkButton.on("click", ()=>{
     $modal.css("visibility", "hidden");
 });

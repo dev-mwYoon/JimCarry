@@ -7,8 +7,6 @@ const $findEmailInputBox = $('.findEmailInputBox');
 const $errorMsg1 = $('.errorMsg1');
 const $errorMsg2 = $('.errorMsg2');
 
-
-console.log($('.codeButton'));
 $findIdInputBox.on('blur', function(){
     let value = $(this).val();
     let errorCheck = idRegex.test(value);
@@ -52,7 +50,6 @@ $findEmailInputBox.on('blur', function(){
     $('.codeButton').attr('disabled', true);
 });
 
-
 //모달
 const $modal = $('.modal-container');
 const $modalText = $('.popup-content');
@@ -60,9 +57,18 @@ const $checkButton = $('.popup-check');
 
 const $codeButton = $('.codeButton');
 
-$codeButton.on('click', ()=>{
+// $codeButton.on('click', ()=>{
+//     $modal.css("visibility", "visible");
+// });
+// $checkButton.on("click", ()=>{
+//     $modal.css("visibility", "hidden");
+// });
+
+if(window.location.search) {
+    $modalText.text('존재하지 않는 회원입니다.');
     $modal.css("visibility", "visible");
-});
+}
+
 $checkButton.on("click", ()=>{
     $modal.css("visibility", "hidden");
 });

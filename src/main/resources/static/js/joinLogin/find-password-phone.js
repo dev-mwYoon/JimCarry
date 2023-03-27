@@ -113,7 +113,7 @@ $('.send-sms').on('click', function(){
     clearInterval(timer);
 
     $.ajax({
-        url: "/user/sendSMS",
+        url: "/user/send-sms",
         type: "get",
         data: { userPhone : $('input[name=userPhone]').val() },
         success: function(result) {

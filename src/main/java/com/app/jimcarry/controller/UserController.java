@@ -1,10 +1,12 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.domain.vo.MailTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +27,13 @@ public class UserController {
         return "/joinLogin/joinForm";
     }
 
-    @PostMapping("checkIdentificationDuplicate")
+    @PostMapping("identifications-duplicate")
     @ResponseBody
     public boolean checkIdentificationDuplicate(String userIdentification) {
         return userService.checkIdentificationDuplicate(userIdentification);
     }
 
-    @PostMapping("checkEmailDuplicate")
+    @PostMapping("emails-duplicate")
     @ResponseBody
     public boolean checkEmailDuplicate(String userEmail) {
         return userService.checkEmailDuplicate(userEmail);
@@ -43,7 +45,7 @@ public class UserController {
         return new RedirectView("/user/login");
     }
 
-    @GetMapping("sendSMS")
+    @GetMapping("send-sms")
     @ResponseBody
     public String sendSMS(String userPhone) throws CoolsmsException {
         return userService.sendRandomNumber(userPhone);
@@ -72,14 +74,13 @@ public class UserController {
     }
 
     @PostMapping("find-id-phone")
-    public RedirectView findIdPhone(String userName, String userPhone, RedirectAttributes redirectAttributes) {
-        String userIdentification = userService.findIdByPhone(userName, userPhone);
-        log.info(userIdentification);
+    public RedirectView findIdPhone(String userIdentification, String userName, String userPhone, RedirectAttributes redirectAttributes) {
+        UserVO userVO = userService.findIdByPhone(userIdentification, userName, userPhone);
 
-        if(userIdentification == null) {
+        if(userVO == null) {
             return new RedirectView("/user/find-id-phone?result=fail");
         }
-        redirectAttributes.addFlashAttribute("userIdentification", userIdentification);
+        redirectAttributes.addFlashAttribute("userIdentification", userVO.getUserIdentification());
 
         return new RedirectView("/user/find-id-result");
     }
@@ -94,15 +95,25 @@ public class UserController {
         return "/joinLogin/find-id-email";
     }
 
+    @PostMapping("find-id-email")
+    public RedirectView findIdEmail(String userIdentification, String userName, String userEmail, RedirectAttributes redirectAttributes) {
+        UserVO userVO = userService.findIdByEmail(userIdentification, userName, userEmail);
+
+        if(userVO == null) {
+            return new RedirectView("/user/find-id-email?result=fail");
+        }
+        redirectAttributes.addFlashAttribute("userIdentification", userVO.getUserIdentification());
+        return new RedirectView("/user/find-id-result");
+    }
+
     @GetMapping("find-password-phone")
     public String findPasswordPhone() {
         return "/joinLogin/find-password-phone";
     }
 
     @PostMapping("find-password-phone")
-    public RedirectView findPasswordPhone(String userIdentification, RedirectAttributes redirectAttributes) {
-
-        if(userService.checkIdentificationDuplicate(userIdentification)) {
+    public RedirectView findPasswordPhone(String userIdentification, String userName, String userPhone, RedirectAttributes redirectAttributes) {
+        if(userService.findIdByPhone(userIdentification, userName, userPhone) == null) {
             return new RedirectView("/user/find-password-phone?result=fail");
         }
         redirectAttributes.addFlashAttribute("userIdentification", userIdentification);
@@ -120,9 +131,32 @@ public class UserController {
         return "/joinLogin/changePassword";
     }
 
+    @PostMapping("changePassword")
+    public RedirectView changePassword(String userIdentification, String userPassword) {
+        userService.updateUserPassword(userIdentification, userPassword);
+        return new RedirectView("/user/login");
+    }
+
     @GetMapping("find-password-emailsend")
     public String findPasswordEmailSend() {
         return "/joinLogin/find-password-emailsend";
+    }
+
+    @PostMapping("find-password-email")
+    public RedirectView findPasswordEmail(String userIdentification, String userName, String userEmail, RedirectAttributes redirectAttributes) {
+
+        if(userService.findIdByEmail(userIdentification, userName, userEmail) == null) {
+            return new RedirectView("/user/find-password-email?result=fail");
+        }
+
+        MailTO mailTO = new MailTO();
+        mailTO.setAddress(userEmail);
+        mailTO.setTitle("새 비밀번호 설정 링크입니다.");
+        mailTO.setMessage("링크: http://localhost:10000/user/changePassword?userIdentification=" + userIdentification);
+        userService.sendMail(mailTO);
+
+        redirectAttributes.addFlashAttribute("userEmail", userEmail);
+        return new RedirectView("/user/find-password-emailsend");
     }
 
     @GetMapping("logout")

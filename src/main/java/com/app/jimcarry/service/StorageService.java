@@ -72,9 +72,12 @@ public class StorageService {
 
     //    삭제
 
-    /* Storage DTO 전체 조회*/
-    @LogStatus
-    public List<StorageDTO> getStorageList(PageDTO pageDTO) {
-        return storageDAO.findStorageAll(pageDTO);
+
+    //    DTO 창고 전체 조회
+
+//    DTO 창고 조회
+    public StorageDTO getStorageDTO(Long storageId){
+        return storageDAO.findDTObyId(storageId);
     }
+
 }

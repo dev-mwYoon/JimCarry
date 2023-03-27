@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("storages/search/*")
 @RequiredArgsConstructor
@@ -45,10 +47,12 @@ public class SearchController {
         } else criteria.create(criteria.getPage(), amount);
 
         total = reviewService.getTotal();
+
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("reviews", reviewService.getList(pageDTO));
-        model.addAttribute("storages", storageService.getStorage(8L));
+        /* url 파라미터로 스토리지아이디 받기*/
+        model.addAttribute("storages", storageService.getStorageDTO(8L));
         model.addAttribute("pagination", pageDTO);
 
         return "/detail-info/detail-info";

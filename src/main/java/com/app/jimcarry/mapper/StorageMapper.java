@@ -36,4 +36,7 @@ public interface StorageMapper {
     //    수정
 
     //    삭제
+
+//    storagesDTO 조회
+    public StorageDTO selectStorageDTO(Long storageId);
 }

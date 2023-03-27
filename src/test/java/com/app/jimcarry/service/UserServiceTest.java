@@ -1,6 +1,7 @@
 package com.app.jimcarry.service;
 
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.domain.vo.MailTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -108,5 +109,24 @@ class UserServiceTest {
     @Test
     public void sendSMS() throws CoolsmsException {
         log.info(userService.sendRandomNumber("010-2287-6873"));
+    }
+
+    @Test
+    public void updateUserPassword() {
+        userService.updateUserPassword("1234", "4321");
+    }
+
+    @Test
+    public void findIdByEmail() {
+        assertThat(userService.findIdByEmail("tonky1234", null, "tonky0810@naver.com")).isNull();
+    }
+
+    @Test
+    public void sendMail() {
+        MailTO mailTO = new MailTO();
+        mailTO.setAddress("tonky0810@naver.com");
+        mailTO.setTitle("새 비밀번호 링크입니다.");
+        mailTO.setMessage("http://localhost:10000/user/changePassword?userIdentification=tonky0810");
+        userService.sendMail(mailTO);
     }
 }

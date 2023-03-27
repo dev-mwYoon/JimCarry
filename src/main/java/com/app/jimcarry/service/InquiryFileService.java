@@ -25,6 +25,7 @@ public class InquiryFileService implements FileService {
 
     //    등록
     @Override
+    @LogStatus
     @Transactional(rollbackFor = Exception.class)
     public void register(FileVO inquiryFileVO) {
         inquiryFileDAO.save((InquiryFileVO) inquiryFileVO);
@@ -38,13 +39,14 @@ public class InquiryFileService implements FileService {
 
     //    삭제
     @Override
+    @LogStatus
     @Transactional(rollbackFor = Exception.class)
     public void remove(Long id) {
     }
 
     //    파일 업로드
-    @Transactional(rollbackFor = Exception.class)
     @LogStatus
+    @Transactional(rollbackFor = Exception.class)
     public Map<String, Object> uploadFile(List<MultipartFile> multipartFiles) throws IOException {
         Map<String, Object> map = new HashMap<>();
 
