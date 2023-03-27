@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>창고등록</title>
+    <link rel="icon" href="/image/favicon.png">
+    <link rel="stylesheet" href="/css/storageRegister/storageRegister.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+</head>
 <body>
-
 <header th:insert="~{main/header.html :: mainHeader}"></header>
-
 <div class="warehouseRegisterLayout">
     <div class="warehouseRegister">창고등록</div>
-    <div class="formWrapper">
+    <form class="formWrapper">
         <div class="formStartLine">
             <span class="RequiredInput">*</span>
             필수입력사항
         </div>
         <div class="formstart">
+            <form th:action="@{/storages/storageRegister}" method="post">
+
             <!-- ----------------창고이름------------------ -->
             <div class="wrapper">
                 <div class="title">
-                    <form th:action="" method="post">
-                        <div class="flexLayout">
-                            <div class="paddingBottom">
-                                <div class="inputBox">
-                                    <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageName"
-                                           required autocomplete="none">
-                                </div>
+                    <label class="label">
+                        창고이름
+                </div>
+                <div class="flexLayout">
+                        <div class="paddingBottom">
+                            <div class="inputBox">
+                                <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageName"
+                                       required autocomplete="none" value>
                             </div>
                         </div>
-                        <div class="checkBoxLimitWidth"></div>
                 </div>
-                <label class="label">
-                        창고이름
+                <div class="checkBoxLimitWidth"></div>
             </div>
             <!-- ----------------소유주------------------ -->
             <div class="wrapper">
@@ -35,12 +44,11 @@
                     <label class="label">
                         소유주<span class ="RequiredInput">*</span></label>
                 </div>
-
                 <div class="flexLayout">
                     <div class="paddingBottom">
                         <div class="inputBox">
                             <input class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="userName"
-                                   required autocomplete="none">
+                                   required autocomplete="none" value>
                         </div>
                     </div>
                     <div class="errorDiv">
@@ -54,7 +62,6 @@
                 <div class="title">
                     <label class="label">휴대폰<span class ="RequiredInput">*</span></label>
                 </div>
-
                 <div class="flexLayout">
                     <div class="inputBox">
                         <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone"
@@ -141,11 +148,10 @@
                         창고 주소<span class ="RequiredInput">*</span>
                     </label>
                 </div>
-
                 <div class="flexLayout">
                     <div class="addressWrapper">
                         <div class="addressInputLayout">
-                            <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="userAddress" required autocomplete="none" value="" readonly>
+                            <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="" readonly>
                         </div>
                         <div class="errorDiv">
                             <p class="errorMessage"></p>
@@ -153,7 +159,7 @@
                     </div>
                     <div class="addressDetailWrapper">
                         <div class="addressInputLayout">
-                            <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="userAddressDetail" required autocomplete="none">
+                            <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="addressDetail" required autocomplete="none">
                         </div>
                         <div class="errorDiv">
                             <p class="errorMessage"></p>
@@ -210,16 +216,14 @@
                 </div>
             </div>
         </div>
+    </form>
         <div class="submitLayout">
             <button class="submitButton" type="submit" width="240" height="56" radius="3">
                 <span class="buttonBox">등록하기</span>
             </button>
         </div>
-    </form>
     </div>
 </div>
-
-
 <!-- 로그인 확인 모달 -->
 <div class="modalContainer" style="overflow-y: auto;">
     <div class="popup" style="display:flex;">
@@ -245,21 +249,9 @@
         <div></div>
     </div>
 </div>
-
 <!-- 푸터 -->
 <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
-
 </body>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>창고등록</title>
-    <link rel="icon" href="/image/favicon.png">
-    <link rel="stylesheet" href="/css/storageRegister/storageRegister.css">
-    <link rel="stylesheet" href="/css/main/header.css">
-    <link rel="stylesheet" href="/css/main/footer.css">
-</head>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/storageRegister/storageRegister.js"></script>
