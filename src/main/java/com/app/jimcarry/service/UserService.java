@@ -172,4 +172,12 @@ public class UserService {
         return userDAO.findByNameAndPhone(userName, userPhone);
     }
 
+//    비밀번호 변경
+    @LogStatus
+    @Encryption /* 회원 비밀번호 암호화 Aspect */
+    @Transactional(rollbackFor = Exception.class)
+    public void updateUserPassword(String userIdentification, String userPassword) {
+        userDAO.setPasswordByIdentification(userIdentification, userPassword);
+    }
+
 }

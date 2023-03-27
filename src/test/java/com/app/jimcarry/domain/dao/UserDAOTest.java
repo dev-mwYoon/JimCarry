@@ -121,4 +121,9 @@ class UserDAOTest {
         userDAO.save(userVO);
         assertThat(userDAO.findCountByUserEmail(userVO.getUserEmail())).isGreaterThan(0);
     }
+
+    @Test
+    public void setPasswordByIdentification() {
+        userDAO.setPasswordByIdentification("1234", "4321");
+    }
 }

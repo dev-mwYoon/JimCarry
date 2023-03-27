@@ -131,4 +131,14 @@ class UserMapperTest {
         userMapper.insert(userVO);
         assertThat(userMapper.selectByEmail(userVO.getUserEmail())).isGreaterThan(0);
     }
+
+    @Test
+    public void selectByNameAndPhone() {
+        userMapper.selectByNameAndPhone("정현진", "010-2287-6873");
+    }
+
+    @Test
+    public void updatePasswordByIdentification() {
+        userMapper.updatePasswordByIdentification("1234", "1234");
+    }
 }

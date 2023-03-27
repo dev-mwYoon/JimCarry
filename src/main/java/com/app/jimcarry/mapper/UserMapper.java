@@ -43,6 +43,9 @@ public interface UserMapper {
     //    삭제
     public void delete(Long userId);
 
-    //    이름, 핸드폰 번호로 아이디 찾기
+    //    이름, 핸드폰 번호로 검색
     public UserVO selectByNameAndPhone(String userName, String userPhone);
+
+    //    비밀번호 변경
+    public void updatePasswordByIdentification(String userIdentification, String userPassword);
 }
