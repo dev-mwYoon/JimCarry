@@ -51,4 +51,5 @@ public interface UserMapper {
 
     //    비밀번호 변경
     public void updatePasswordByIdentification(String userIdentification, String userPassword);
+
 }

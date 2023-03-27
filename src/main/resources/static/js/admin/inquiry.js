@@ -18,7 +18,7 @@ const createDOM = function(inquiries){
               상세보기
             </button>
           </td>
-    </tr>`
+         </tr>`
 
     return text;
 

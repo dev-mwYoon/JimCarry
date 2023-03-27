@@ -41,11 +41,7 @@ public class StorageService {
         return storageDAO.findAll(pageDTO);
     }
 
-    /* Storage DTO 전체 조회*/
-    @LogStatus
-    public List<StorageDTO> getStorageList(PageDTO pageDTO) {
-        return storageDAO.findStorageAll(pageDTO);
-    }
+
     /**
      * 검색조건 (Criteria 포함)
      *
@@ -75,6 +71,7 @@ public class StorageService {
     //    수정
 
     //    삭제
+
 
     //    DTO 창고 전체 조회
 

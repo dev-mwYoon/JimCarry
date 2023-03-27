@@ -122,4 +122,8 @@
             and user_identification = #{userIdentification}
         </if>
     </select>
+    <!-- 총 인원 수 구하기-->
+    <select id="selectTotalUser" resultType="int">
+        select count(user_id) from tbl_user
+    </select>
 </mapper>

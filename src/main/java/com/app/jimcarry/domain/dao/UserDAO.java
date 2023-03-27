@@ -83,4 +83,7 @@ public class UserDAO {
     public void setPasswordByIdentification(String userIdentification, String userPassword) {
         userMapper.updatePasswordByIdentification(userIdentification, userPassword);
     }
+    public int findUserTotal(){
+        return userMapper.selectTotalUser();
+    }
 }
