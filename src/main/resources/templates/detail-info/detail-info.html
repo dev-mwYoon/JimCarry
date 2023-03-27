@@ -24,7 +24,7 @@
             <section class="content-container">
                 <div class="content-wrap">
                     <div class="content-title">
-                        <h1 class="" th:text="${storages.storageTitle}">[서울시 강남구]</h1>
+                        <h1 class="" >강남구</h1>
                         <!--                     <button class="shell-btn"></button> -->
                     </div>
                 </div>
@@ -471,8 +471,13 @@
     <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    /*    let reviews = [[${reviews}]];*/
+/*        let storages = [[${storages}]];*/
+</script>
 <script src="/js/detail/changeimg.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/detail/count.js"></script>
+<script src="/js/detail/detailInfo.js"></script>
 
 </html>

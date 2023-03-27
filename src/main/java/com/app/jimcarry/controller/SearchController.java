@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -43,11 +42,16 @@ public class SearchController {
         return "/detail-info/detail-info";
     }*/
 
-    @GetMapping("detail/{storageId}")
+    /*@GetMapping("detail/{storageId}")
     public String searchDetail(Model model,@PathVariable Long storageId){
 
         model.addAttribute("storages", storageService.getStorageBy(storageId));
 
+        return "detail-info/detail-info";
+    }*/
+
+    @GetMapping("detail")
+    public String searchDetail(){
         return "detail-info/detail-info";
     }
 }
