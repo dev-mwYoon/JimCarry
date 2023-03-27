@@ -73,4 +73,9 @@ public class UserDAO {
     public UserVO findByNameAndPhone(String userName, String userPhone) {
         return userMapper.selectByNameAndPhone(userName, userPhone);
     }
+
+    //    비밀번호 변경
+    public void setPasswordByIdentification(String userIdentification, String userPassword) {
+        userMapper.updatePasswordByIdentification(userIdentification, userPassword);
+    }
 }

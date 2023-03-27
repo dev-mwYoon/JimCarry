@@ -120,6 +120,12 @@ public class UserController {
         return "/joinLogin/changePassword";
     }
 
+    @PostMapping("changePassword")
+    public RedirectView changePassword(String userIdentification, String userPassword) {
+        userService.updateUserPassword(userIdentification, userPassword);
+        return new RedirectView("/user/login");
+    }
+
     @GetMapping("find-password-emailsend")
     public String findPasswordEmailSend() {
         return "/joinLogin/find-password-emailsend";
