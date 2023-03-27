@@ -59,4 +59,10 @@ public class StorageServiceTest {
         searchDTO.setUserId(2L);
         log.info("getTotalby : " + storageService.getTotalBy(searchDTO));
     }
+
+    @Test
+    void getStorageDTO() {
+        log.info(storageService.getStorageDTO(8L).toString());
+    }
+
 }
