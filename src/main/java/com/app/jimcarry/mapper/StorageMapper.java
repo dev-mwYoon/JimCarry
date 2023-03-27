@@ -37,6 +37,6 @@ public interface StorageMapper {
 
     //    삭제
 
-//    storagesDTO 조회
-    public StorageDTO selectStorageDTO(Long storageId);
+//    storageDTO 조회
+    public List<StorageDTO> selectAllBy(@Param("page") PageDTO pageDTO);
 }

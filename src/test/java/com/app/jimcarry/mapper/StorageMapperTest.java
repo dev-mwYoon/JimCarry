@@ -2,9 +2,11 @@ package com.app.jimcarry.mapper;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,10 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -77,5 +76,17 @@ public class StorageMapperTest {
         searchDTO.setTypes(new ArrayList<String>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
         storageMapper.totalBy(searchDTO);
+    }
+
+    //    storageDTO 조회
+    @Test
+    public void selectAllBy() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("storageId")));
+        searchDTO.setStorageId(8L);
+        int total = storageMapper.totalBy(searchDTO);
+        Criteria criteria = new Criteria().create(1, 10);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        storageMapper.selectAllBy(pageDTO);
     }
 }
