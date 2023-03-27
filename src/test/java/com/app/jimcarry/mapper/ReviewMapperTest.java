@@ -11,12 +11,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
 @SpringBootTest
 @Slf4j
-//@Transactional
+@Transactional
 public class ReviewMapperTest {
     @Autowired
     PageDTO pageDTO;
@@ -63,10 +64,6 @@ public class ReviewMapperTest {
     }
 
     @Test
-    void selectAll() {
-    }
-
-    @Test
     void total() {
     }
 
@@ -82,7 +79,9 @@ public class ReviewMapperTest {
 
     @Test
     void totalBy() {
-
+        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
+        searchDTO.setUserId(2L);
+        reviewMapper.totalBy(searchDTO);
     }
 
     @Test
