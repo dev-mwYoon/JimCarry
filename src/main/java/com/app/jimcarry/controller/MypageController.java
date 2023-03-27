@@ -101,7 +101,12 @@ public class MypageController {
         /* 추후 세션으로 변경 */
         inquiryVO.setUserId(2L);
         inquiryService. updateInquiry(inquiryVO);
-        log.info("인쿼리브이오!!!!!" + inquiryVO.toString());
+        return new RedirectView("/users/mypage/qna?page=" + page);
+    }
+
+    @PostMapping("qna/delete")
+    public RedirectView deleteQna(Long inquiryId, String page){
+        inquiryService.removeInquiry(inquiryId);
         return new RedirectView("/users/mypage/qna?page=" + page);
     }
 
@@ -125,7 +130,6 @@ public class MypageController {
         return inquiryFileService.getList(id);
     }
 
-    /* 문의 파일 */
     @PostMapping("files/save")
     @ResponseBody
     public void saveFile(@RequestBody List<InquiryFileVO> files, String page, String prev) {

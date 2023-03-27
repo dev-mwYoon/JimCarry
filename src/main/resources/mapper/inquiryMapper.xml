@@ -71,4 +71,9 @@
         inquiry_content, inquiry_regist, inquiry_answer, user_name
         from tbl_user u join tbl_inquiry i on u.user_id = i.user_id
     </select>
+    <!-- 삭제 -->
+    <delete id="delete">
+        delete from tbl_inquiry
+        where inquiry_id = #{inquiryId}
+    </delete>
 </mapper>
