@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/admin/content.css" />
     <link rel="stylesheet" href="/css/admin/status.css" />
     <link rel="stylesheet" href="/css/admin/enquiry-modal.css" />
+    <link rel="stylesheet" href="/css/admin/paging.css" />
   </head>
   <body>
     <section class="main">
@@ -113,7 +114,7 @@
                     <div class="status-item-name">총 문의 개수</div>
                   </div>
                   <div class="status-item-count">
-                    <a href="" th:text="${getTotal}"></a>
+                    <a href="" th:text="${total}"></a>
                   </div>
                 </li>
                 <div class="clock">
@@ -198,10 +199,19 @@
                 </tr>
               </table>
               <!-- default.css > pagenation -->
-              <div class="pagenation">
-                <a href="javascript:void(0)">1</a>
-                <a href="javascript:void(0)">2</a>
-                <a href="javascript:void(0)">3</a>
+              <div th:object="${pagination}">
+                <div class="paging" style="text-align: center">
+                  <a class="changePage" th:href="'enquiry?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                  <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                    <a class="changePage" style="color: black" th:href="'enquiry?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                    <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                  </th:block>
+                  <a class="changePage" th:href="'enquiry?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                </div>
+                <form th:action="@{/admin/enquiry}" th:object="${criteria}" name="pageForm">
+                  <input type="hidden" th:field="*{page}">
+                  <input type="hidden" th:field="*{amount}">
+                </form>
               </div>
             </div>
           </div>
@@ -225,15 +235,16 @@
         </div>
       </div>
       <section class="modal-stage" style="display: none">
-        <section th:insert="~{admin/modals/enquiry-modal.html :: enquiry-modal}"></section>
+<!--        <section th:insert="~{admin/modals/enquiry-modal.html :: enquiry-modal}"></section>-->
       </section>
     </section>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="/js/admin/app.js"></script>
-  <script src="/js/admin/events.js"></script>
   <script th:inline = "javascript">
     let inquiries = [[${inquiries}]];
+    let $page = [[${pagination.criteria.page}]];
   </script>
+  <script src="/js/admin/app.js"></script>
+  <script src="/js/admin/events.js"></script>
   <script src="/js/admin/inquiry.js"></script>
 </html>

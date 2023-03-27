@@ -30,7 +30,7 @@ public class InquiryDAO {
     public List<InquiryDTO> findAll(PageDTO pageDTO){ return inquiryMapper.selectAll(pageDTO);}
 
     //    전체조회 개수
-    //    public int findTotalBy(){ return inquiryMapper.totalBy();}
+    public int findTotal(){ return inquiryMapper.total();}
 
     //    조건조회
     public List<InquiryVO> findListBy(PageDTO pageDTO){

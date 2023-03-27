@@ -58,7 +58,7 @@ public class AdminController {
         model.addAttribute("pagination", pageDTO);
 
         // 전체 user 수
-        model.addAttribute("totalUser",userService.findTotalUser());
+//        model.addAttribute("totalUser",userService.findTotalUser());
 
 
         return "/admin/user";
@@ -66,9 +66,9 @@ public class AdminController {
 
 //    /*-----------문의사항----------*/
     @GetMapping("enquiry")
-        public String inquiry(Criteria criteria, Model model) {
+        public String enquiry(Criteria criteria, Model model) {
 
-        int amount = 5;
+        int amount = 3;
         int total = 0;
 
         SearchDTO searchDTO = new SearchDTO();
@@ -81,13 +81,13 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        total = reviewService.getTotalBy(searchDTO);
+        total = inquiryService.getTotal();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
 //        model.addAttribute("getTotal", inquiryService.getTotalBy());
         model.addAttribute("inquiries", inquiryService.getList(pageDTO));
         model.addAttribute("pagination", pageDTO);
-            return "/admin/enquiry";
+        return "/admin/enquiry";
     }
 //
 //    /*-----------공지사항----------*/
@@ -104,6 +104,7 @@ public class AdminController {
             criteria.create(1, amount);
         }else criteria.create(criteria.getPage(), amount);
 
+        total= noticeService.getTotal();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("notices", noticeService.getList(pageDTO));

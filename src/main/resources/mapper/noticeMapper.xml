@@ -5,6 +5,11 @@
     <select id="selectAll" resultType="noticeVO">
         select notice_id, notice_title, notice_content, notice_regist, notice_update
         from tbl_notice
+        order by notice_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
 
     <select id="total" resultType="int">

@@ -17,4 +17,7 @@ public class NoticeDAO {
     public List<NoticeVO> findAll(PageDTO pageDTO){
         return noticeMapper.selectAll(pageDTO);
     }
+
+    /* 공지사사항 전체 개수 조회*/
+    public int findTotal(){return noticeMapper.total();}
 }

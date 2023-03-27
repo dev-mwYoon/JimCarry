@@ -40,8 +40,8 @@ public class InquiryService {
     }
 
     //    전체조회 개수
-//    @LogStatus
-    //    public int getTotalBy(){ return inquiryDAO.findTotalBy();}
+    @LogStatus
+    public int getTotal(){ return inquiryDAO.findTotal();}
 
     //    조건조회
 

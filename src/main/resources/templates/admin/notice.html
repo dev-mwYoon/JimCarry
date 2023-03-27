@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/admin/content.css" />
     <link rel="stylesheet" href="/css/admin/status.css" />
     <link rel="stylesheet" href="/css/admin/notice-modal.css" />
+    <link rel="stylesheet" href="/css/admin/paging.css" />
     <!-- 웹에디터 API -->
     <link
       href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
@@ -114,10 +115,10 @@
                         </div>
                       </div>
                     </div>
-                    <div class="status-item-name">총 문의 개수</div>
+                    <div class="status-item-name">총 공지 개수</div>
                   </div>
                   <div class="status-item-count">
-                    <a href="">0</a>
+                    <a href="" th:text="${total}">0</a>
                   </div>
                 </li>
                 <div class="clock">
@@ -204,10 +205,19 @@
 
               </table>
               <!-- default.css > pagenation -->
-              <div class="pagenation">
-                <a href="javascript:void(0)">1</a>
-                <a href="javascript:void(0)">2</a>
-                <a href="javascript:void(0)">3</a>
+              <div th:object="${pagination}">
+                <div class="paging" style="text-align: center">
+                  <a class="changePage" th:href="'notice?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                  <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                    <a class="changePage" style="color: black" th:href="'notice?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                    <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                  </th:block>
+                  <a class="changePage" th:href="'notice?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                </div>
+                <form th:action="@{/admin/notice}" th:object="${criteria}" name="pageForm">
+                  <input type="hidden" th:field="*{page}">
+                  <input type="hidden" th:field="*{amount}">
+                </form>
               </div>
             </div>
           </div>
@@ -241,6 +251,7 @@
   <script src="/js/admin/events.js"></script>
   <script th:inline="javascript">
     let notices = [[${notices}]];
+    let $page = [[${pagination.criteria.page}]];
   </script>
   <script src="/js/admin/notice.js"></script>
 

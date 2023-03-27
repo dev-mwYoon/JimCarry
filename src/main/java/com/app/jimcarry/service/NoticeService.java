@@ -18,4 +18,8 @@ public class NoticeService {
     public List<NoticeVO> getList(PageDTO pageDTO){
         return noticeDAO.findAll(pageDTO);
     }
+
+    /*공지사항 전체 개수*/
+    public int getTotal(){return noticeDAO.findTotal();}
 }
+
