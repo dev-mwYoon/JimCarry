@@ -144,7 +144,6 @@ public class UserController {
 
     @PostMapping("find-password-email")
     public RedirectView findPasswordEmail(String userIdentification, String userName, String userEmail, RedirectAttributes redirectAttributes) {
-
         if(userService.findIdByEmail(userIdentification, userName, userEmail) == null) {
             return new RedirectView("/user/find-password-email?result=fail");
         }

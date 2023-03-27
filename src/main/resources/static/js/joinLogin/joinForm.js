@@ -1,3 +1,5 @@
+//  ----------------------------------퍼블리싱----------------------------------
+
 
 /* 사이즈 라디오 버튼 클릭했을때 */
 function clickRadio() {
@@ -159,6 +161,7 @@ $checks.on('click', function(){
     }
 });
 
+//  --------------------------------------------------------------------
 
 
 //모달
@@ -178,21 +181,31 @@ $duplicateEmailButton.on('click', function(){
     }else if(!errorCheck){
         $modalText.text("이메일 형식을 확인해주세요.")
     }else{
-        $.ajax({
-            url: "/user/emails-duplicate",
-            type: "post",
-            data: { userEmail : valueEmail },
-            success: function(result) {
-                if(result) {
-                    $modalText.text("사용 가능 합니다.");
-                    $($('.duplicateBox')[1]).attr('disabled', true);
-                    $('.emailInput').attr('readonly', true);
-                } else {
-                    $modalText.text("사용 불가능 합니다.");
-                    $('.emailInput').val('');
-                }
+        // $.ajax({
+        //     url: "/user/emails-duplicate",
+        //     type: "post",
+        //     data: { userEmail : valueEmail },
+        //     success: function(result) {
+        //         if(result) {
+        //             $modalText.text("사용 가능 합니다.");
+        //             $($('.duplicateBox')[1]).attr('disabled', true);
+        //             $('.emailInput').attr('readonly', true);
+        //         } else {
+        //             $modalText.text("사용 불가능 합니다.");
+        //             $('.emailInput').val('');
+        //         }
+        //     }
+        // });
+        joinService.checkEmail(valueEmail, function(result) {
+            if(result) {
+                $modalText.text("사용 가능 합니다.");
+                $($('.duplicateBox')[1]).attr('disabled', true);
+                $('.emailInput').attr('readonly', true);
+            } else {
+                $modalText.text("사용 불가능 합니다.");
+                $('.emailInput').val('');
             }
-        });
+        })
     }
     
     $checkButton.on('click',()=>{
@@ -209,19 +222,29 @@ $duplicateIdButton.on('click', function(){
     }else if(!errorCheck){
         $modalText.text("영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.");
     }else{
-        $.ajax({
-            url: "/user/identifications-duplicate",
-            type: "post",
-            data: { userIdentification : valueId },
-            success: function(result) {
-                if(result) {
-                    $modalText.text("사용 가능 합니다.");
-                    $($('.duplicateBox')[0]).attr('disabled', true);
-                    $('.idInput').attr('readonly', true);
-                } else {
-                    $modalText.text("사용 불가능 합니다.");
-                    $('.idInput').val('');
-                }
+        // $.ajax({
+        //     url: "/user/identifications-duplicate",
+        //     type: "post",
+        //     data: { userIdentification : valueId },
+        //     success: function(result) {
+        //         if(result) {
+        //             $modalText.text("사용 가능 합니다.");
+        //             $($('.duplicateBox')[0]).attr('disabled', true);
+        //             $('.idInput').attr('readonly', true);
+        //         } else {
+        //             $modalText.text("사용 불가능 합니다.");
+        //             $('.idInput').val('');
+        //         }
+        //     }
+        // });
+        joinService.checkIdentification(valueId, function(result) {
+            if(result) {
+                $modalText.text("사용 가능 합니다.");
+                $($('.duplicateBox')[0]).attr('disabled', true);
+                $('.idInput').attr('readonly', true);
+            } else {
+                $modalText.text("사용 불가능 합니다.");
+                $('.idInput').val('');
             }
         });
     }
@@ -360,3 +383,35 @@ function startTimer(count, display) {
         }
     }, 1000);
 }
+
+
+
+//  ----------------------------------ajax----------------------------------
+const joinService = (function() {
+    function checkIdentification(userIdentification, callback) {
+        $.ajax({
+            url: "/user/identifications-duplicate",
+            type: "post",
+            data: { userIdentification : userIdentification },
+            success: function(result) {
+                if(callback) {
+                    callback(result);
+                }
+            }
+        });
+    }
+
+    function checkEmail(userEmail, callback) {
+        $.ajax({
+            url: "/user/emails-duplicate",
+            type: "post",
+            data: { userEmail : userEmail },
+            success: function(result) {
+                if(callback) {
+                    callback(result);
+                }
+            }
+        });
+    }
+    return { checkIdentification : checkIdentification, checkEmail : checkEmail };
+})();
