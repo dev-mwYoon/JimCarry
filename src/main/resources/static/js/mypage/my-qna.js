@@ -69,8 +69,9 @@ const createDOM = function (qna) {
                     <p class="qna-slide-content-text">${qna.inquiryContent}</p>
                 </div>
             </div>
-            <div class="qna-slide-actions">
-                ${qna.inquiryAnswer == 0 ? '<button class="qna-slide-actions-btn modal-btn" id="update-btn">수정</button><button class="qna-slide-actions-btn" id="delete-btn">삭제</button>' : '<div></div>'}
+            <div class="qna-slide-actions" style="display: ${qna.inquiryAnswer == 0 ? 'flex' : 'none'}">
+                <button class="qna-slide-actions-btn modal-btn" id="update-btn">수정</button>
+                <button class="qna-slide-actions-btn delete-btn" id="delete-btn">삭제</button>
             </div>
         </div>
     </div>
@@ -195,19 +196,27 @@ $(".qna-list-main-container").append(
                     </div>
                 </div>
             </div>
-            <!-- 삭제 모달 -->
-            <div class="delete-modal-container" id="delete-modal" style="display: none;">
-                <div class="delete-modal-wrapper">
-                    <div class="delete-modal-content-container">
-                        <div class="delete-modal-content-wrapper">
-                            <div class="delete-modal-content-text">작성된 문의를 삭제하시겠습니까?</div>
-                            <div class="delete-modal-content-btn">
-                                <button class="cancel-btn" id="close">취소</button><button class="check-btn">확인</button>
-                            </div>
-                        </div>
-                    </div>
+    `
+);
+
+$(".qna-list-main-container").append(
+    `
+    <!-- 삭제 모달 -->
+    <div class="delete-modal-container" id="delete-modal" style="display: none;">
+        <div class="delete-modal-wrapper">
+            <div class="delete-modal-content-container">
+                <div class="delete-modal-content-wrapper">
+                    <div class="delete-modal-content-text">작성된 문의를 삭제하시겠습니까?</div>
+                    <form action="/users/mypage/qna/delete" method="post" name="deleteForm" class="delete-modal-content-btn">
+                        <button type="button" class="cancel-btn" id="close">취소</button>
+                        <button type="submit" class="check-btn">확인</button>
+                        <input type="text" name="page" style="display: none" value="${$page}">
+                        <input type="text" name="inquiryId" style="display: none">
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
     `
 );
 
@@ -313,12 +322,14 @@ $cancel.on("click", function () {
 });
 
 /* 삭제 모달 */
-const $modal = $("#delete-btn");
+const $modal = $(".delete-btn");
 const $openBtn = $("#delete-modal");
 const $span = $("#close");
 
 // 모달창 열기
 $modal.on("click", function () {
+    let i = $modal.index($(this));
+    inquiryIndex = i;
     $openBtn.css("display", "block");
 });
 
@@ -327,4 +338,7 @@ $span.on("click", function () {
     $openBtn.css("display", "none");
 });
 
-const $qnaForm = $(".change-modal-form-wrapper");
+/* 문의삭제 */
+$("form[name='deleteForm']").on("submit", function (e) {
+    $("input[name='inquiryId']").val(inquiries[inquiryIndex].inquiryId);
+});

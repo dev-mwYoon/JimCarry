@@ -46,4 +46,7 @@ public class InquiryDAO {
     }
 
 //    삭제
+    public void deleteById(Long inquiryId){
+        inquiryMapper.delete(inquiryId);
+    }
 }
