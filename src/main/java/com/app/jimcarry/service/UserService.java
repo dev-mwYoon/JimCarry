@@ -5,11 +5,15 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.UserDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.domain.vo.MailTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -168,8 +172,13 @@ public class UserService {
     }
 
 //    이름, 전화번호로 아이디 찾기
-    public UserVO findIdByPhone(String userName, String userPhone) {
-        return userDAO.findByNameAndPhone(userName, userPhone);
+    public UserVO findIdByPhone(String userIdentification, String userName, String userPhone) {
+        return userDAO.findByPhoneAndNameOrIdentification(userIdentification, userName, userPhone);
+    }
+
+    //    이름, 이메일로 찾기
+    public UserVO findIdByEmail(String userIdentification, String userName, String userEmail) {
+        return userDAO.findByEmailAndNameOrIdentification(userIdentification, userName, userEmail);
     }
 
 //    비밀번호 변경
@@ -178,6 +187,21 @@ public class UserService {
     @Transactional(rollbackFor = Exception.class)
     public void updateUserPassword(String userIdentification, String userPassword) {
         userDAO.setPasswordByIdentification(userIdentification, userPassword);
+    }
+
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public void sendMail(MailTO mail) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(mail.getAddress());
+        message.setFrom("disappointed123419@gmail.com");
+//        from 값을 설정하지 않으면 application.yml의 username값이 설정됩니다.
+        message.setSubject(mail.getTitle());
+        message.setText(mail.getMessage());
+
+        mailSender.send(message);
     }
 
 }
