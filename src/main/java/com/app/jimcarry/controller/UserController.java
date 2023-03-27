@@ -5,6 +5,7 @@ import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +26,13 @@ public class UserController {
         return "/joinLogin/joinForm";
     }
 
-    @PostMapping("checkIdentificationDuplicate")
+    @PostMapping("identifications-duplicate")
     @ResponseBody
     public boolean checkIdentificationDuplicate(String userIdentification) {
         return userService.checkIdentificationDuplicate(userIdentification);
     }
 
-    @PostMapping("checkEmailDuplicate")
+    @PostMapping("emails-duplicate")
     @ResponseBody
     public boolean checkEmailDuplicate(String userEmail) {
         return userService.checkEmailDuplicate(userEmail);
@@ -43,7 +44,7 @@ public class UserController {
         return new RedirectView("/user/login");
     }
 
-    @GetMapping("sendSMS")
+    @GetMapping("send-sms")
     @ResponseBody
     public String sendSMS(String userPhone) throws CoolsmsException {
         return userService.sendRandomNumber(userPhone);
@@ -73,13 +74,12 @@ public class UserController {
 
     @PostMapping("find-id-phone")
     public RedirectView findIdPhone(String userName, String userPhone, RedirectAttributes redirectAttributes) {
-        String userIdentification = userService.findIdByPhone(userName, userPhone);
-        log.info(userIdentification);
+        UserVO userVO = userService.findIdByPhone(userName, userPhone);
 
-        if(userIdentification == null) {
+        if(userVO.getUserIdentification() == null) {
             return new RedirectView("/user/find-id-phone?result=fail");
         }
-        redirectAttributes.addFlashAttribute("userIdentification", userIdentification);
+        redirectAttributes.addFlashAttribute("userIdentification", userVO.getUserIdentification());
 
         return new RedirectView("/user/find-id-result");
     }
