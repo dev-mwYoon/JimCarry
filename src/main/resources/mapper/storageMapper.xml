@@ -83,4 +83,11 @@
         from tbl_user u join tbl_storage s on u.user_id = s.user_id
     </select>
 
+    <!--storageDTO 조회-->
+    <select id="selectStorageDTO" resultType="storageDTO">
+        select storage_id, u.user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date,
+        user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from tbl_user u join tbl_storage s on u.user_id  = s.user_id
+        where storage_id = #{storageId}
+    </select>
 </mapper>

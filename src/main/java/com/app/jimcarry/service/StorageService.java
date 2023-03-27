@@ -78,4 +78,9 @@ public class StorageService {
 
     //    DTO 창고 전체 조회
 
+//    DTO 창고 조회
+    public StorageDTO getStorageDTO(Long storageId){
+        return storageDAO.findDTObyId(storageId);
+    }
+
 }
