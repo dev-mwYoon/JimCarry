@@ -79,9 +79,14 @@ public class StorageService {
     public List<StorageDTO> getStorageList(PageDTO pageDTO) {
         return storageDAO.findStorageAll(pageDTO);
     }
-//    DTO 창고 조회
-/*    public StorageDTO getStorageDTO(Long storageId){
-        return storageDAO.findDTObyId(storageId);
-    }*/
 
+    //    검색에 맞는 전체개수 조회
+    public int getTotalDTOBy(SearchDTO searchDTO){
+        return storageDAO.findTotalBy(searchDTO);
+    }
+
+    //    검색에 맞는 DTO 창고 조회
+    public List<StorageDTO> getStorageBy(Long storageId){
+        return storageDAO.findStorageDTOBy(storageId);
+    }
 }

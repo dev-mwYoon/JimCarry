@@ -31,12 +31,12 @@ public interface StorageMapper {
     public Integer total();
 
     //    검색에 맞는 전체개수 조회
-    public Integer totalBy(@Param("page")SearchDTO searchDTO);
+    public Integer totalBy(SearchDTO searchDTO);
 
     //    수정
 
     //    삭제
 
 //    storageDTO 조회
-    public List<StorageDTO> selectAllBy(@Param("page") PageDTO pageDTO);
+    public List<StorageDTO> selectAllBy(Long storageId);
 }
