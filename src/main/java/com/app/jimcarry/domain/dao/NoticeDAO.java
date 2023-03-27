@@ -17,4 +17,9 @@ public class NoticeDAO {
     public List<NoticeVO> findAll(PageDTO pageDTO){
         return noticeMapper.selectAll(pageDTO);
     }
+
+    /* 공지사항 전체 갯수*/
+    public int count() {
+        return noticeMapper.total();
+    }
 }
