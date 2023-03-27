@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/admin/content.css" />
     <link rel="stylesheet" href="/css/admin/status.css" />
     <link rel="stylesheet" href="/css/admin/user-modal.css" />
-    <link rel="stylesheet" href="/css/mypage/paging.css" />
+    <link rel="stylesheet" href="/css/admin/paging.css" />
   </head>
   <body>
     <section class="main">
@@ -147,44 +147,28 @@
                   <th></th>
                 </tr>
 
-                <tr class="table__header">
-                  <th class="content_check">
-                    <label class="check-label">
-                      <input type="checkbox" id="checkAll" />
-                    </label>
-                  </th>
-                  <th class="content__id">회원번호</th>
-                  <th>아이디</th>
-                  <th>이메일</th>
-                  <th>생년월일</th>
-                  <th>성별</th>
-                  <th></th>
-                <td>
-                  <button class="content__detail__btn button__type_2 button__color__green">
-                    상세보기
-                  </button>
-                </td>
-                </tr>
+<!--                <tr class="table__header">-->
+<!--                  <th class="content_check">-->
+<!--                    <label class="check-label">-->
+<!--                      <input type="checkbox" id="checkAll" />-->
+<!--                    </label>-->
+<!--                  </th>-->
+<!--                  <th class="content__id">회원번호</th>-->
+<!--                  <th>아이디</th>-->
+<!--                  <th>이메일</th>-->
+<!--                  <th>생년월일</th>-->
+<!--                  <th>성별</th>-->
+<!--                  <th></th>-->
+<!--                <td>-->
+<!--                  <button class="content__detail__btn button__type_2 button__color__green">-->
+<!--                    상세보기-->
+<!--                  </button>-->
+<!--                </td>-->
+<!--                </tr>-->
                <!-- 전체 목록이 들어가는 부분 -->
 
               </table>
               <!-- default.css > pagenation -->
-<!--              <div class="pagenation" th:object="${pagination}">-->
-<!--                <a class="changePage" th:href="'user?page' + *{startPage-1}" th:if="${prev}"><code><</code></a>-->
-<!--                <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}"></th:block>-->
-<!--                <a class="changePage" style="color: black" th:href="'user?page=' + ${page}"-->
-<!--                   th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>-->
-<!--                <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>-->
-<!--                </th:block>-->
-<!--                <a class="changePage" th:href="'user?page=' + ${pagination.endPage + 1}" th:if="*{next}"-->
-<!--                   style="color: black"><code>></code></a>-->
-<!--                <form th:action="@{/admin/user}" th:object="${criteria}" name="pageForm">-->
-<!--                  <input type="hidden" th:field="*{page}">-->
-<!--                  <input type="hidden" th:field="*{amount}">-->
-<!--                </form>-->
-<!--&lt;!&ndash;                <a href="javascript:void(0)">2</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a href="javascript:void(0)">3</a>&ndash;&gt;-->
-<!--              </div>-->
               <div th:object="${pagination}">
                 <div class="paging" style="text-align: center">
                   <a class="changePage" th:href="'user?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
@@ -221,8 +205,70 @@
         </div>
       </div>
       <section class="modal-stage" style="display: none">
+
 <!--        <section th:insert="~{admin/modals/user-modal.html :: user-modal}"></section>-->
-      </section>
+      <!--상세보기 모달-->
+<!--        <section class="modal">-->
+<!--          <div class="modal__header">-->
+<!--            <h3 class="modal__title">회원 상세보기</h3>-->
+<!--            <a class="modal-close">-->
+<!--              <svg xmlns="http://www.w3.org/2000/svg" data-name="Capa 1" id="Capa_1" viewBox="0 0 20 19.84">-->
+<!--                <path-->
+<!--                        d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z" />-->
+<!--              </svg>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <form action="">-->
+<!--            <main class="modal__main">-->
+<!--              <div class="modal__profile__top">-->
+<!--                <h4>수정가능</h4>-->
+<!--                <div class="user__profile">-->
+<!--                  <h5>아이디</h5>-->
+<!--                  <div class="user__profile__input">-->
+<!--                    <input type="text" name="" value="example1234" />-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="user__profile">-->
+<!--                  <h5>이메일</h5>-->
+<!--                  <div class="user__profile__input">-->
+<!--                    <input type="text" name="" value="example@gmail.com" />-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="user__profile">-->
+<!--                  <h5>전화번호</h5>-->
+<!--                  <div class="user__profile__input">-->
+<!--                    <input type="text" name="" value="01012341234" />-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="modal__profile__bottom">-->
+<!--                <h4>수정 불가능</h4>-->
+<!--                <div class="user__profile">-->
+<!--                  <h5>이름</h5>-->
+<!--                  <div class="user__profile__input">-->
+<!--                    <input type="text" name="" value="홍길동" readonly="true" />-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="user__profile">-->
+<!--                  <h5>가입일</h5>-->
+<!--                  <div class="user__profile__input">-->
+<!--                    <input type="text" name="" value="2023-01-01" readonly="true" />-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="user__profile">-->
+<!--                  <h5>성별</h5>-->
+<!--                  <div class="user__profile__input">-->
+<!--                    <input type="text" name="" value="성별" readonly="true" />-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="user__profile__button">-->
+<!--                <button class="button__type_2 button__color__green">수정완료</button>-->
+<!--              </div>-->
+<!--            </main>-->
+<!--          </form>-->
+<!--        </section>-->
+<!--      </section>-->
     </section>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
