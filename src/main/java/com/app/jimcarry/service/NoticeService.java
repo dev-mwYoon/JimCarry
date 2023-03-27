@@ -21,5 +21,6 @@ public class NoticeService {
 
     /*공지사항 전체 개수*/
     public int getTotal(){return noticeDAO.findTotal();}
+
 }
 
