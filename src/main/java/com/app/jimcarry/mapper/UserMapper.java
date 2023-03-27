@@ -44,7 +44,10 @@ public interface UserMapper {
     public void delete(Long userId);
 
     //    이름, 핸드폰 번호로 검색
-    public UserVO selectByNameAndPhone(String userName, String userPhone);
+    public UserVO selectByPhoneAndNameOrIdentification(String userIdentification, String userName, String userPhone);
+
+    //    이름, 이메일로 찾기
+    public UserVO selectByEmailAndNameOrIdentification(String userIdentification, String userName, String userEmail);
 
     //    비밀번호 변경
     public void updatePasswordByIdentification(String userIdentification, String userPassword);
