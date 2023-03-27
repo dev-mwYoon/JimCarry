@@ -98,10 +98,4 @@
         from tbl_user
         where user_name = #{userName} and user_phone = #{userPhone}
     </select>
-    <!--  비밀번호 변경  -->
-    <update id="updatePasswordByIdentification">
-        update tbl_user
-        set user_password = #{userPassword}
-        where user_identification = #{userIdentification}
-    </update>
 </mapper>
