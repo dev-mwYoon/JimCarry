@@ -28,4 +28,14 @@ public class ReviewDAO {
     public int findTotal() {
         return reviewMapper.total();
     }
+
+    /* 한 창고의 리뷰 조회 */
+    public List<ReviewDTO> findByStorageId(Long storageId) {
+        return reviewMapper.selectByStorageId(storageId);
+    };
+
+    /* 한 창고의 리뷰 개수 조회*/
+    public int getTotalById(Long storageId){
+        return reviewMapper.totalById(storageId);
+    };
 }

@@ -18,4 +18,18 @@
     <select id="total" resultType="int">
         select count(review_id) from tbl_review
     </select>
+
+    <!--리뷰 조회-->
+    <select id="selectByStorageId" resultType="reviewDTO">
+        select review_id, u.user_id, storage_id, review_title, review_context, review_write_date, review_edit_date, user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from tbl_user u join tbl_review r on u.user_id = r.user_id
+        where storage_id = #{storageId}
+    </select>
+
+    <!--한 창고의 리뷰 개수 조회-->
+    <select id="totalById" resultType="int">
+        select count(review_id)
+        from jimcarry.tbl_review
+        where storage_id = #{storageId}
+    </select>
 </mapper>

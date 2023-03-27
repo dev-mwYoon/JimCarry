@@ -134,7 +134,7 @@
             <li class="review-detail-t" id="review-a">
                 <a class="review-detail-a" href="#moveReview">
                     <span id="review-c" class="name">후기</span>
-                    <span id="review-c" class="count">1</span>
+                    <span id="review-c" class="count" th:text="${total}"></span>
                 </a>
             </li>
         </ul>
@@ -186,7 +186,7 @@
 
                 <!--DB조회로 후기 담기-->
             </section>
-            <div th:object="${pagination}">
+            <!--<div th:object="${pagination}">
                 <div class="paging" style="text-align: center">
                     <a class="changePage" th:href="'detail?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
                     <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
@@ -199,7 +199,7 @@
                     <input type="hidden" th:field="*{page}">
                     <input type="hidden" th:field="*{amount}">
                 </form>
-            </div>
+            </div>-->
         </div>
     </div>
 

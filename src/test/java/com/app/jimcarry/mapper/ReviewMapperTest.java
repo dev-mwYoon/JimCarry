@@ -47,4 +47,15 @@ public class ReviewMapperTest {
             reviewMapper.selectAll(new PageDTO().createPageDTO(criteria, reviewMapper.total(), searchDTO));
     }
 
+    /* 리뷰 조회*/
+    @Test
+    public void select(){
+        reviewMapper.selectByStorageId(8L);
+    }
+
+    @Test
+    public void totalByStorageId(){
+        reviewMapper.totalById(8L);
+    }
+
 }
