@@ -77,4 +77,10 @@ class StorageDAOTest {
         searchDTO.setUserId(2L);
         storageDAO.findTotalBy(searchDTO);
     }
+
+    /*storage DTO 조회*/
+    @Test
+    public void findStorageAll() {
+        storageDAO.findStorageDTOBy(8L);
+    }
 }

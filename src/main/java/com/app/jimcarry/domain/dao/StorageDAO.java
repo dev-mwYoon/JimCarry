@@ -49,13 +49,12 @@ public class StorageDAO {
     public int findTotalBy(SearchDTO searchDTO){
         return storageMapper.totalBy(searchDTO);
     }
-
     //    수정
 
     //    삭제
 
     //    storagesDTO 조회
-    /*public StorageDTO findDTObyId(Long storageId) {
-        return storageMapper.selectStorageDTO(storageId);
-    }*/
+    public List<StorageDTO> findStorageDTOBy(Long storageId) {
+        return storageMapper.selectAllBy(storageId);
+    }
 }

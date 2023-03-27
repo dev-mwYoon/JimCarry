@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/mypage/paging.css">
     <link rel="icon" href="/image/favicon.png">
-
 </head>
 <body>
 <header th:insert="~{main/header.html :: mainHeader}"></header>
@@ -25,7 +24,7 @@
             <section class="content-container">
                 <div class="content-wrap">
                     <div class="content-title">
-                        <h1 class="" <!--th:text="${storages.storageTitle}"-->></h1>
+                        <h1 th:text="${storages.storageTitle}"></h1>
                         <!--                     <button class="shell-btn"></button> -->
                     </div>
                 </div>
@@ -40,7 +39,7 @@
                         <dt class="detail-date-name">창고가능기간</dt>
                         <dd class="detail-date-box">
                             <p class="detail-date-use">6개월</p>
-                            <p class="detail-date" <!--th:text="${storages.storageUseDate} + '~' + ${storages.storageEndDate}"-->></p>
+                            <p class="detail-date" th:text="${storages.storageUseDate} + '~' + ${storages.storageEndDate}"></p>
                         </dd>
                     </dl>
 
@@ -48,7 +47,7 @@
                     <dl class="detail-info-container">
                         <dt class="detail-info-name">소유자</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.userName}"-->></p>
+                            <p class="detail-info-kim" th:text="${storages.userName}"></p>
                         </dd>
                     </dl>
 
@@ -56,22 +55,22 @@
                     <dl class="detail-date-wrap">
                         <dt class="detail-info-name">창고주소</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.storageAddress}"-->></p>
-                            <p class="detail-info-address" <!--th:text="${storages.storageAddressDetail}"-->></p>
+                            <p class="detail-info-kim" th:text="${storages.storageAddress}"></p>
+                            <p class="detail-info-address" th:text="${storages.storageAddressDetail}"></p>
                         </dd>
                     </dl>
 
                     <dl class="detail-date-wrap">
                         <dt class="detail-info-name">창고사이즈</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.storageSize}"-->></p>
+                            <p class="detail-info-kim" th:text="${storages.storageSize}"></p>
                         </dd>
                     </dl>
 
                     <dl class="detail-date-wrap">
                         <dt class="detail-info-name">소유자연락처</dt>
                         <dd class="detail-info-wrap">
-                            <p class="detail-info-kim" <!--th:text="${storages.userPhone}"-->>핸드폰번호</p>
+                            <p class="detail-info-kim" th:text="${storages.userPhone}">핸드폰번호</p>
                         </dd>
                     </dl>
                 </div>
@@ -134,7 +133,7 @@
             <li class="review-detail-t" id="review-a">
                 <a class="review-detail-a" href="#moveReview">
                     <span id="review-c" class="name">후기</span>
-                    <span id="review-c" class="count" <!--th:text="${total}"-->></span>
+                    <span id="review-c" class="count">1</span>
                 </a>
             </li>
         </ul>
@@ -184,7 +183,7 @@
                         <span class="review-count-total" <!--th:text="'총' + ${total} + '개'"-->></span>
                     </div>
 
-                <!--DB조회로 후기 담기-->
+                    <!--DB조회로 후기 담기-->
             </section>
             <!--<div th:object="${pagination}">
                 <div class="paging" style="text-align: center">
@@ -202,7 +201,7 @@
             </div>-->
         </div>
     </div>
-
+</div>
     <!-- 위로가기 -->
 
 
@@ -217,13 +216,13 @@
     <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!--<script th:inline="javascript">
-    let reviews = [[${reviews}]];
-    let storages = [[${storages}]];
-</script>-->
+<script th:inline="javascript">
+/*    let reviews = [[${reviews}]];*/
+/*    let storages = [[${storages}]];*/
+</script>
 <script src="/js/detail/changeimg.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/detail/count.js"></script>
-<script src="/js/detail/detailInfo.js"></script>
+<!--<script src="/js/detail/detailInfo.js"></script>-->
 
 </html>
