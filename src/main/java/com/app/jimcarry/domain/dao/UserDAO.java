@@ -70,8 +70,13 @@ public class UserDAO {
     }
 
     //    이름, 핸드폰 번호로 아이디 찾기
-    public UserVO findByNameAndPhone(String userName, String userPhone) {
-        return userMapper.selectByNameAndPhone(userName, userPhone);
+    public UserVO findByPhoneAndNameOrIdentification(String userIdentification, String userName, String userPhone) {
+        return userMapper.selectByPhoneAndNameOrIdentification(userIdentification, userName, userPhone);
+    }
+
+    //    이름, 이메일로 찾기
+    public UserVO findByEmailAndNameOrIdentification(String userIdentification, String userName, String userEmail) {
+        return userMapper.selectByEmailAndNameOrIdentification(userIdentification, userName, userEmail);
     }
 
     //    비밀번호 변경

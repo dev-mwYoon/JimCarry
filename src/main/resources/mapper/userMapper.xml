@@ -93,9 +93,33 @@
         </trim>
     </sql>
     <!--  이름, 핸드폰 번호로 아이디 찾기  -->
-    <select id="selectByNameAndPhone" resultType="userVO">
+    <select id="selectByPhoneAndNameOrIdentification" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
         from tbl_user
-        where user_name = #{userName} and user_phone = #{userPhone}
+        where user_phone = #{userPhone}
+        <if test="userName != null">
+            and user_name = #{userName}
+        </if>
+        <if test="userIdentification != null">
+            and user_identification = #{userIdentification}
+        </if>
+    </select>
+    <!--  비밀번호 변경  -->
+    <update id="updatePasswordByIdentification">
+        update tbl_user
+        set user_password = #{userPassword}
+        where user_identification = #{userIdentification}
+    </update>
+    <!--  이름, 이메일로 찾기  -->
+    <select id="selectByEmailAndNameOrIdentification" resultType="userVO">
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
+        from tbl_user
+        where user_email = #{userEmail}
+        <if test="userName != null">
+            and user_name = #{userName}
+        </if>
+        <if test="userIdentification != null">
+            and user_identification = #{userIdentification}
+        </if>
     </select>
 </mapper>
