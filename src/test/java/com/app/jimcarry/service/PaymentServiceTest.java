@@ -1,8 +1,7 @@
-package com.app.jimcarry.mapper;
+package com.app.jimcarry.service;
 
-import com.app.jimcarry.domain.vo.PaymentVO;
-import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,9 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Slf4j
 @Transactional
-public class PaymentMapperTest {
+public class PaymentServiceTest {
     @Autowired
-    PaymentMapper paymentMapper;
-    @Autowired
-    PaymentVO paymentVO;
+    private PaymentService paymentService;
+
+    @Test
+    void register() {
+    }
+
+    @Test
+    void getPayment() {
+    }
+
+    @Test
+    void getList() {
+    }
 }
