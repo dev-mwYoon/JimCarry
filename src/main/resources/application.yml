@@ -22,3 +22,15 @@ spring:
       max-request-size: 40MB
       max-file-size: 40MB
       file-size-threshold: 100MB
+
+  mail :
+    host : smtp.gmail.com
+    port : 587
+    username : 'disappointed123419@gmail.com'
+    password : 'tltyyhxcrlxrmwpb'
+    properties :
+      mail :
+        smtp :
+          auth : true
+          starttls :
+            enable : true

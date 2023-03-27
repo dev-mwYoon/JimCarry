@@ -134,7 +134,13 @@ class UserMapperTest {
 
     @Test
     public void selectByNameAndPhone() {
-        userMapper.selectByNameAndPhone("정현진", "010-2287-6873");
+        userMapper.selectByPhoneAndNameOrIdentification("tonky0810", null, "010-2287-6873");
+    }
+
+    @Test
+    public void selectByEmailAndNameOrIdentification() {
+        assertThat(userMapper.selectByEmailAndNameOrIdentification(null, "정현진", "tonky0810@naver.com")
+        .getUserId()).isEqualTo(1);
     }
 
     @Test
