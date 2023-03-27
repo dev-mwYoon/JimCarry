@@ -44,5 +44,5 @@ public interface UserMapper {
     public void delete(Long userId);
 
     //    이름, 핸드폰 번호로 아이디 찾기
-    public String selectByNameAndPhone(String userName, String userPhone);
+    public UserVO selectByNameAndPhone(String userName, String userPhone);
 }

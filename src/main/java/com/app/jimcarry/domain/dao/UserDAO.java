@@ -70,7 +70,7 @@ public class UserDAO {
     }
 
     //    이름, 핸드폰 번호로 아이디 찾기
-    public String findByNameAndPhone(String userName, String userPhone) {
+    public UserVO findByNameAndPhone(String userName, String userPhone) {
         return userMapper.selectByNameAndPhone(userName, userPhone);
     }
 }
