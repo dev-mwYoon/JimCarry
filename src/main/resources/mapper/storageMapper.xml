@@ -68,6 +68,9 @@
                         <when test="type == 'userId'.toString()">
                             user_id = #{dto.userId}
                         </when>
+                        <when test="type == 'storageId'.toString()">
+                            storage_id = #{dto.storageId}
+                        </when>
                         <when test="type == 'keyword'.toString()">
                             storage_title like concat('%', #{dto.keyword}, '%')
                         </when>
@@ -83,11 +86,25 @@
         from tbl_user u join tbl_storage s on u.user_id = s.user_id
     </select>
 
-    <!--storageDTO 조회-->
-    <select id="selectStorageDTO" resultType="storageDTO">
+    <!-- 창고DTO 조건조회 -->
+    <select id="selectAllBy" resultType="storageDTO">
         select storage_id, u.user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date,
-        user_identification, user_password, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
-        from tbl_user u join tbl_storage s on u.user_id  = s.user_id
-        where storage_id = #{storageId}
+        user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from
+        (
+        select user_id, user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from tbl_user
+        ) u
+        join
+        (
+        select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
+        from tbl_storage
+        <include refid="searchType"/>
+        ) r on u.user_id = r.user_id
+        order by storage_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
 </mapper>

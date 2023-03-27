@@ -90,7 +90,7 @@ function updateBannerCount() {
     bannerCount.innerHTML = `${count} / ${imageDiv.length}`;
 }
 
-
+/*신규, 후기*/
 const $prev = $('.prev-button');
 const $next = $('.next-button');
 let countcount = 0;
@@ -99,44 +99,12 @@ let nowPage = 1;
 let nowPage1 = 1;
 
 $prev.css('display', 'none');
-
-// const fourBanner = document.querySelector('.four-static-banner-inner-div');
-
-// $prev.click(function(){
-//     // fourBanner.style.transition = "transform 0.3s";
-//     // fourBanner.style.transform = `translate(${-1065 * --countcount}px)`;
-//     nowPage--;
-//     if(nowPage == 1) {
-//         $prev.css('display', 'none');
-//     } else {
-//         $next.css('display', 'inline-block');
-//     }
-// });
-
-
-// $next.click(function(){
-//     // fourBanner.style.transition = "transform 0.3s";
-//     // fourBanner.style.transform = `translate(${-1065 * ++countcount}px)`;
-//     // nowPage++;
-//     if(nowPage == 4) {
-//         $next.css('display', 'none');
-//     } else {
-//         $prev.css('display', 'inline-block');
-//     }
-// });
-
 $prev.click(function(){
     let fourBanner = $(this).parent().children().children();
     fourBanner.css('transition', 'transform 0.3s');
     fourBanner.css('transform', `translate(${-1065 * (this == $prev[0] ? --countcount1 : --countcount)}px)`);
-    // countcount--;
-    // fourBanner.css('transform', `translate(${-1065 * countcount}px)`);
-    // fourBanner.style.transition = "transform 0.3s";
-    // fourBanner.style.transform = `translate(${-1065 * --countcount}px)`;
-    // nowPage--;
     if((this == $prev[0] ? --nowPage1 : --nowPage) == 1) {
         $(this).css('display', 'none');
-    } else {
         $(this).next().css('display', 'inline-block');
     }
 });
@@ -145,14 +113,8 @@ $next.click(function(){
     let fourBanner = $(this).parent().children().children();
     fourBanner.css('transition', 'transform 0.3s');
     fourBanner.css('transform', `translate(${-1065 * (this == $next[0] ? ++countcount1 : ++countcount)}px)`);
-    // countcount++;
-    // fourBanner.css('transform', `translate(${-1065 * countcount}px)`);
-    // fourBanner.style.transition = "transform 0.3s";
-    // fourBanner.style.transform = `translate(${-1065 * ++countcount}px)`;
-    // nowPage++;
-    if((this == $next[0] ? ++nowPage1 : ++nowPage) == 4) {
+    if((this == $next[0] ? ++nowPage1 : ++nowPage) == 2) {
         $(this).css('display', 'none');
-    } else {
         $(this).prev().css('display', 'inline-block');
     }
 });

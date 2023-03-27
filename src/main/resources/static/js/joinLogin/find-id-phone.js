@@ -109,14 +109,18 @@ $('.send-sms').on('click', function(){
     $verifiCheckBtn.attr('disabled', false);
     clearInterval(timer);
 
-    $.ajax({
-        url: "/user/send-sms",
-        type: "get",
-        data: { userPhone : $('input[name=userPhone]').val() },
-        success: function(result) {
-            console.log(result);
-            authNumber = result;
-        }
+    // $.ajax({
+    //     url: "/user/send-sms",
+    //     type: "get",
+    //     data: { userPhone : $('input[name=userPhone]').val() },
+    //     success: function(result) {
+    //         console.log(result);
+    //         authNumber = result;
+    //     }
+    // });
+    joinService.sendSMS(function(result) {
+        console.log(result);
+        authNumber = result;
     });
 
     var display = $(".verification-timer");
@@ -134,7 +138,6 @@ $verifiCheckBtn.on('click', function(event){
         clearInterval(timer);
         $checkButton.on('click',()=>{
             $modal.css('visibility', 'hidden');
-            console.log('서브밋')
             findIdPhoneForm.submit();
         });
     } else {

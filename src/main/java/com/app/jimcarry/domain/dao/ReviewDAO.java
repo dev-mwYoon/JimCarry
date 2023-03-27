@@ -2,9 +2,11 @@ package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.ReviewDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -38,4 +40,14 @@ public class ReviewDAO {
     public int getTotalById(Long storageId){
         return reviewMapper.totalById(storageId);
     };
+
+    /* 리뷰 조건조회 */
+    public List<ReviewDTO> findAllBy(PageDTO pageDTO){
+        return reviewMapper.selectAllBy(pageDTO);
+    }
+
+    /* 리뷰 조건조회 개수 */
+    public int getTotalBy(SearchDTO searchDTO){
+        return reviewMapper.totalBy(searchDTO);
+    }
 }

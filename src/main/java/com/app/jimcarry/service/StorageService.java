@@ -80,8 +80,8 @@ public class StorageService {
         return storageDAO.findStorageAll(pageDTO);
     }
 //    DTO 창고 조회
-    public StorageDTO getStorageDTO(Long storageId){
+/*    public StorageDTO getStorageDTO(Long storageId){
         return storageDAO.findDTObyId(storageId);
-    }
+    }*/
 
 }

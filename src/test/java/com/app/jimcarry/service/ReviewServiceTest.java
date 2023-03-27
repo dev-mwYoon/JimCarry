@@ -39,13 +39,32 @@ public class ReviewServiceTest {
 
     /* 한 창고의 리뷰 조회 */
     @Test
-    public void getListByStorageId(){
+    public void getListByStorageId() {
         reviewService.getListByStorageId(8L);
     }
 
     /* 한 창고의 리뷰 개수 조회*/
     @Test
-    public void getTotalByStorageId(){
+    public void getTotalByStorageId() {
         reviewService.getTotalById(8L);
+    }
+
+    /* 리뷰 조건조회 */
+    @Test
+    public void getListBy() {
+        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
+        searchDTO.setUserId(2L);
+        Criteria criteria = new Criteria().create(1, 5);
+        int total = reviewService.getTotalBy(searchDTO);
+
+        reviewService.getListBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
+
+    /* 리뷰 조건조회 개수 */
+    @Test
+    public void getTotalBy() {
+        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
+        searchDTO.setUserId(2L);
+        reviewService.getTotalBy(searchDTO);
     }
 }

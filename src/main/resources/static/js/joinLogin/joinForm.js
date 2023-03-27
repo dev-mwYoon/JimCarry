@@ -316,21 +316,32 @@ $checkNum.on('click', function(){
     if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
         clearInterval(timer);
 
-        $.ajax({
-            url: "/user/send-sms",
-            type: "get",
-            data: { userPhone : $('input[name=userPhone]').val() },
-            success: function(result) {
-                console.log(result);
-                authNumber = result;
-                $modal.css('visibility', 'visible');
-                $modalText.text("인증번호가 전송되었습니다.");
-                $checkWrapper.css("display", "flex");
-                $('#duplicateBox').attr('disabled', false);
-                $checkButton.on('click',()=>{
-                    $modal.css('visibility', 'hidden');
-                });
-            }
+        // $.ajax({
+        //     url: "/user/send-sms",
+        //     type: "get",
+        //     data: { userPhone : $('input[name=userPhone]').val() },
+        //     success: function(result) {
+        //         console.log(result);
+        //         authNumber = result;
+        //         $modal.css('visibility', 'visible');
+        //         $modalText.text("인증번호가 전송되었습니다.");
+        //         $checkWrapper.css("display", "flex");
+        //         $('#duplicateBox').attr('disabled', false);
+        //         $checkButton.on('click',()=>{
+        //             $modal.css('visibility', 'hidden');
+        //         });
+        //     }
+        // });
+        joinService.sendSMS(function(result) {
+            console.log(result);
+            authNumber = result;
+            $modal.css('visibility', 'visible');
+            $modalText.text("인증번호가 전송되었습니다.");
+            $checkWrapper.css("display", "flex");
+            $('#duplicateBox').attr('disabled', false);
+            $checkButton.on('click',()=>{
+                $modal.css('visibility', 'hidden');
+            });
         });
 
         var display = $(".checknum2");
@@ -387,31 +398,44 @@ function startTimer(count, display) {
 
 
 //  ----------------------------------ajax----------------------------------
-const joinService = (function() {
-    function checkIdentification(userIdentification, callback) {
-        $.ajax({
-            url: "/user/identifications-duplicate",
-            type: "post",
-            data: { userIdentification : userIdentification },
-            success: function(result) {
-                if(callback) {
-                    callback(result);
-                }
-            }
-        });
-    }
-
-    function checkEmail(userEmail, callback) {
-        $.ajax({
-            url: "/user/emails-duplicate",
-            type: "post",
-            data: { userEmail : userEmail },
-            success: function(result) {
-                if(callback) {
-                    callback(result);
-                }
-            }
-        });
-    }
-    return { checkIdentification : checkIdentification, checkEmail : checkEmail };
-})();
+// const joinService = (function() {
+//     function checkIdentification(userIdentification, callback) {
+//         $.ajax({
+//             url: "/user/identifications-duplicate",
+//             type: "post",
+//             data: { userIdentification : userIdentification },
+//             success: function(result) {
+//                 if(callback) {
+//                     callback(result);
+//                 }
+//             }
+//         });
+//     }
+//
+//     function checkEmail(userEmail, callback) {
+//         $.ajax({
+//             url: "/user/emails-duplicate",
+//             type: "post",
+//             data: { userEmail : userEmail },
+//             success: function(result) {
+//                 if(callback) {
+//                     callback(result);
+//                 }
+//             }
+//         });
+//     }
+//
+//     // function sendSMS(callback) {
+//     //     $.ajax({
+//     //         url: "/user/send-sms",
+//     //         type: "get",
+//     //         data: { userPhone : $('input[name=userPhone]').val() },
+//     //         success: function(result) {
+//     //             if(callback) {
+//     //                 callback(result);
+//     //             }
+//     //         }
+//     //     });
+//     // }
+//     return { checkIdentification : checkIdentification, checkEmail : checkEmail, sendSMS : sendSMS };
+// })();
