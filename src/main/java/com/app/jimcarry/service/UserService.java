@@ -168,7 +168,7 @@ public class UserService {
     }
 
 //    이름, 전화번호로 아이디 찾기
-    public String findIdByPhone(String userName, String userPhone) {
+    public UserVO findIdByPhone(String userName, String userPhone) {
         return userDAO.findByNameAndPhone(userName, userPhone);
     }
 
