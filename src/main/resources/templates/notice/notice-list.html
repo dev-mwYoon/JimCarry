@@ -83,14 +83,14 @@
 
                 <div th:object="${pagination}">
                     <div class="paging" style="text-align: center">
-                        <a class="changePage" th:href="'user?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                        <a class="changePage" th:href="'list?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
                         <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                            <a class="changePage" style="color: black" th:href="'user?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                            <a class="changePage" style="color: black" th:href="'list?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
                             <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
                         </th:block>
-                        <a class="changePage" th:href="'user?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                        <a class="changePage" th:href="'list?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
                     </div>
-                    <form th:action="@{/users/mypage/user}" th:object="${criteria}" name="pageForm">
+                    <form th:action="@{/notice/list}" th:object="${criteria}" name="pageForm">
                         <input type="hidden" th:field="*{page}">
                         <input type="hidden" th:field="*{amount}">
                     </form>
