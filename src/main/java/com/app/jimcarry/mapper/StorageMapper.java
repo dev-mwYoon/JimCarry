@@ -25,7 +25,7 @@ public interface StorageMapper {
 
     //    목록 조회
     public List<StorageVO> selectAll(@Param("page") PageDTO pageDTO);
-    public List<StorageDTO> selectStorageAll(PageDTO pageDTO);
+    public List<StorageDTO> selectStorageAll(@Param("page") PageDTO pageDTO);
 
     //    전체개수 조회
     public Integer total();

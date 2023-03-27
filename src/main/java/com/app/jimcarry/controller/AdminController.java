@@ -34,7 +34,7 @@ public class AdminController {
     public String user(Criteria criteria, Model model) {
 
         /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 5;
+        int amount = 3;
         /* 검색된 결과의 총 개수 */
         int total = 0;
 
@@ -50,12 +50,15 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        total = reviewService.getTotalBy(searchDTO);
+//        total = userService.findTotalBy(searchDTO);
+        total= userService.findTotalUser();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("users", userService.getList(pageDTO));
-        model.addAttribute("totalUser",userService.findTotalUser());
         model.addAttribute("pagination", pageDTO);
+
+        // 전체 user 수
+        model.addAttribute("totalUser",userService.findTotalUser());
 
 
         return "/admin/user";
@@ -81,6 +84,7 @@ public class AdminController {
 //        total = reviewService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
+//        model.addAttribute("getTotal", inquiryService.getTotalBy());
         model.addAttribute("inquiries", inquiryService.getList(pageDTO));
         model.addAttribute("pagination", pageDTO);
             return "/admin/enquiry";
@@ -131,6 +135,7 @@ public class AdminController {
 //        total = reviewService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
+        model.addAttribute("getTotal", reviewService.getTotal());
         model.addAttribute("reviews", reviewService.getList(pageDTO));
         model.addAttribute("pagination", pageDTO);
 
@@ -160,6 +165,7 @@ public class AdminController {
 //        total = storageService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
+        model.addAttribute("getTotal", storageService.getTotal());
         model.addAttribute("storages", storageService.getStorageList(pageDTO));
         model.addAttribute("pagination", pageDTO);
 

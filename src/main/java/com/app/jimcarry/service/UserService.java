@@ -4,6 +4,7 @@ import com.app.jimcarry.aspect.annotation.Encryption;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.UserDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -174,5 +175,6 @@ public class UserService {
     public int findTotalUser(){
         return userDAO.findUserTotal();
     }
+    public int findTotalBy(SearchDTO searchDTO){ return userDAO.findTotalBy(searchDTO);}
 
 }

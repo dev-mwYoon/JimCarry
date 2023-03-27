@@ -15,7 +15,9 @@ const createDOM = function(box){
         <td>${box.storageAddress} ${box.storageAddressDetail}</td>
         <td>${box.storageUseDate} ~ ${box.storageEndDate}</td>
         <td>${box.storageSize}</td>
-        <td> <button class="content__detail__btn button__type_2 button__color__green"> 상세보기 </button> </td>
+        <td> 
+            <button class="content__detail__btn button__type_2 button__color__green"> 상세보기 </button> 
+        </td>
         </tr>
         `
     return text;
