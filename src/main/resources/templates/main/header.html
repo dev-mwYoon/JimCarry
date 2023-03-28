@@ -8,13 +8,17 @@
 </head>
 <body>
     <div id="fullscreen">
-        <!-- 비로그인시 -->
         <header id="main-header" th:fragment="mainHeader">
             <div class="header-layout">
                 <div class="login-all-menu">
-                    <a href="/user/join" class="sign-up-menu">회원가입</a>
+                    <a th:if="${session.userId == null}" href="/user/join" class="sign-up-menu">회원가입</a>
+                    <a th:if="${session.userId != null}" href="/users/mypage/mybox" class="login-menu">
+                        <span class="welcome-box">웰컴</span>
+                        정현진 님
+                    </a>
                     <div class="slash"></div>
-                    <a href="/user/login" class="login-menu">로그인</a>
+                    <a th:if="${session.userId == null}" href="/user/login" class="login-menu">로그인</a>
+                    <a th:if="${session.userId != null}" href="/user/logout" class="login-menu">로그아웃</a>
                     <div class="slash"></div>
                     <div class="customer-center-layout">
                         <a href="/notice/list" class="customer-centertext">고객센터
@@ -102,103 +106,6 @@
             </div>
             <div class="hidden"></div>
         </header>
-
-
-
-        <!-- 로그인 시 -->
-<!--        <header id="main-header" th:fragment="mainHeader">-->
-<!--            <div class="header-layout">-->
-<!--                <div class="login-all-menu">-->
-<!--                    <a href="/users/mypage/mybox" class="login-menu">-->
-<!--                        <span class="welcome-box">웰컴</span>-->
-<!--                        정현진 님-->
-<!--                    </a>-->
-<!--                    <div class="slash"></div>-->
-<!--                    <a href="/main/" class="login-menu">로그아웃</a>-->
-<!--                    <div class="slash"></div>-->
-<!--                    <div class="customer-center-layout">-->
-<!--                        <a href="/notice/list" class="customer-centertext">고객센터-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="second-header-layout">-->
-<!--                    <div class="second-header-layout1">-->
-<!--                        <a href="/main/">-->
-<!--                            <img class="logo" src="/image/logo.png" alt="마켓컬리 로고">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div id="header" class="menu-fix">-->
-<!--                <div class="menu">-->
-<!--                    <div class="header-dropbox">-->
-<!--                        <div class="category-layout">-->
-<!--                            <span class="category-img"></span>-->
-<!--                            <span class="category-text">지역별</span>-->
-<!--                        </div>-->
-<!--                        <div class="header-dropbox-div">-->
-<!--                            <ul class="header-dropbox-ul">-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>서울특별시</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>경기도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>강원도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>충청북도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>충청남도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>경상북도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>경상남도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>전라북도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>전라남도</span>-->
-<!--                                </li>-->
-<!--                                <li class="header-dropbox-li">-->
-<!--                                    <span>제주도</span>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <ul class="menus-layout">-->
-<!--                        <li class="menu-layout">-->
-<!--                            <a href="/storages/register">-->
-<!--                                <span class="menu-text">창고등록</span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li class="menu-layout">-->
-<!--                            <a href="/notice/list">-->
-<!--                                <span class="menu-text">공지사항</span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li class="menu-layout">-->
-<!--                            <a href="/notice/faq">-->
-<!--                                <span class="menu-text">FAQ</span>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                    <div class="saetbyeol-notice-layout">-->
-<!--                        <a href="/notice/info" class="user-guide">-->
-<!--                            <div class="saetbyeol-notice-box">-->
-<!--                                <span class="saetbyeol-notice-text">서비스 이용</span>-->
-<!--                                안내-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </header>-->
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
