@@ -8,4 +8,12 @@ import org.springframework.stereotype.Component;
 public class ReviewFileVO extends FileVO{
     private Long reviewId;
 
+    public ReviewFileVO create(FileVO fileVO, Long id){
+        super.setFilePath(fileVO.getFilePath());
+        super.setFileOrgName(fileVO.getFileOrgName());
+        super.setFileUuid(fileVO.getFileUuid());
+        this.reviewId = id;
+
+        return this;
+    }
 }

@@ -23,12 +23,16 @@ public class InquiryFileService implements FileService {
 
     private final InquiryFileDAO inquiryFileDAO;
 
-    //    등록
-    @Override
-    @LogStatus
+    //    추가
     @Transactional(rollbackFor = Exception.class)
-    public void register(FileVO inquiryFileVO) {
-        inquiryFileDAO.save((InquiryFileVO) inquiryFileVO);
+    @LogStatus
+    public void registerFile(List<FileVO> files, Long inquiryId) {
+        inquiryFileDAO.deleteById(inquiryId);
+        files.stream().map(file -> new InquiryFileVO().create(file, inquiryId))
+                .forEach(file -> {
+                    file.setFilePath(getPath());
+                    inquiryFileDAO.save(file);
+                });
     }
 
     //    조회
@@ -79,17 +83,6 @@ public class InquiryFileService implements FileService {
         map.put("uuids", uuids);
         map.put("paths", filePaths);
         return map;
-    }
-
-    //    추가
-    @Transactional(rollbackFor = Exception.class)
-    @LogStatus
-    public void registerFile(List<InquiryFileVO> files) {
-        inquiryFileDAO.deleteById(files.get(0).getInquiryId());
-        files.forEach(file -> {
-            file.setFilePath(getPath());
-            inquiryFileDAO.save(file);
-        });
     }
 
     //    현재 날짜 경로 구하기
