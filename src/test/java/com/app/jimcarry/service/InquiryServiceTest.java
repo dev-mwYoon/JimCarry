@@ -31,19 +31,17 @@ public class InquiryServiceTest {
 
     @BeforeEach
     void setInsertVO() {
-        inquiryVO.setUserId(2L);
+        inquiryVO.setUserId(1L);
         inquiryVO.setInquiryTitle("inquiryMapperTest");
         inquiryVO.setInquiryContent("inquiryMapperTest");
+       /* inquiryVO.setInquiryRegist(current_stamp); */
     }
 
     //    추가
     @Test
     public void register() {
-        //에러가 발생하지 않으면 True
-        assertDoesNotThrow(() -> {
-          /*  log.info(inquiryService.register(inquiryVO));*/
             inquiryService.register(inquiryVO);
-        });
+
 
     }
 

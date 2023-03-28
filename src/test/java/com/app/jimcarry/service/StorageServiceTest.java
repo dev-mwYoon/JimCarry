@@ -5,12 +5,16 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @SpringBootTest
@@ -20,9 +24,25 @@ public class StorageServiceTest {
 
     @Autowired
     private StorageService storageService;
+    @Autowired
+    StorageVO storageVO;
+
+    @BeforeEach
+    void setStorageVO(){
+        storageVO.setUserId(1L);
+        storageVO.setStorageName("그래요");
+        storageVO.setStoragePhone("01022223333");
+        storageVO.setStorageTitle("storageMapperTest");
+        storageVO.setStorageSize("특대");
+        storageVO.setStoragePrice(30000);
+        storageVO.setStorageAddress("서울시 강남구 역삼동");
+        storageVO.setStorageAddressDetail("상세주소");
+        storageVO.setStorageUseDate(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
+        storageVO.setStorageEndDate("2099/12/31");
+    }
 
     @Test
-    void register() {
+    void register() {storageService.register(storageVO);
     }
 
     @Test

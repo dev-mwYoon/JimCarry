@@ -32,7 +32,7 @@ public class InquiryMapperTest {
 
     @BeforeEach
     void setInsertVO() {
-        inquiryVO.setUserId(2L);
+        inquiryVO.setUserId(1L);
         inquiryVO.setInquiryTitle("inquiryMapperTest");
         inquiryVO.setInquiryContent("inquiryMapperTest");
     }
