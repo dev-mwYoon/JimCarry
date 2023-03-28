@@ -1,6 +1,7 @@
 package com.app.jimcarry.mapper;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.PaymentVO;
@@ -22,6 +23,9 @@ public class PaymentMapperTest {
     PaymentMapper paymentMapper;
     @Autowired
     PaymentVO paymentVO;
+    @Autowired
+    PaymentDTO paymentDTO;
+
     @BeforeEach
     void setPaymentVO(){
         paymentVO.setUserId(2L);
@@ -46,5 +50,13 @@ public class PaymentMapperTest {
         SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
         searchDTO.setUserId(2L);
         paymentMapper.totalBy(searchDTO);
+    }
+
+    @Test
+    void selectAllPayment(){
+        Criteria criteria = new Criteria().create(1, 5);
+        SearchDTO searchDTO = new SearchDTO();
+        int total = 5;
+        paymentMapper.selectAllPayment(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
 }
