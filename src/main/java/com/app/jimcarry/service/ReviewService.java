@@ -5,16 +5,21 @@ import com.app.jimcarry.domain.dao.ReviewDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.vo.ReviewVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
 
     private final ReviewDAO reviewDAO;
+
+    /* 리뷰 조회 */
+    public ReviewVO getReview(Long reviewId) { return reviewDAO.findById(reviewId); }
 
     /* 리뷰 전체 목록 조회*/
     public List<ReviewDTO> getList(PageDTO pageDTO){
@@ -45,5 +50,11 @@ public class ReviewService {
     /* 리뷰 조건조회 개수 */
     public int getTotalBy(SearchDTO searchDTO){
         return reviewDAO.getTotalBy(searchDTO);
+    }
+
+    /* 리뷰 업데이트 */
+    public void updateReview(ReviewVO reviewVO) {
+        Optional.ofNullable(reviewDAO.findById(reviewVO.getReviewId()));
+        reviewDAO.setReviewVO(reviewVO);
     }
 }

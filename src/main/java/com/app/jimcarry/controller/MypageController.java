@@ -180,7 +180,7 @@ public class MypageController {
     public RedirectView updateReview(ReviewVO reviewVO, String page) {
         /* 추후 세션으로 변경 */
         reviewVO.setUserId(2L);
-//        reviewService.(reviewVO);
+        reviewService.updateReview(reviewVO);
         return new RedirectView("/users/mypage/review?page=" + page);
     }
 
