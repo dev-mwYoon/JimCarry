@@ -48,13 +48,17 @@ public class StorageController {
     /* 전체 창고 목록 검색 */
     @GetMapping("search")
     public String searchAll() {
+        
         return "/main/search-page";
     }
 
     /* 헤더의 지역별을 눌렀을 때 지역별 창고 목록 검색 */
-    /*@GetMapping("search")
-    public RedirectView searchBy(StorageVO storageVO,RedirectAttributes redirectAttributes) {
-        *//**//*
+    @GetMapping("search-local")
+    public String localSearch() {
+        return "/storages/search-page";
+    }
+    /*public RedirectView searchBy(StorageVO storageVO,RedirectAttributes redirectAttributes) {
+
         redirectAttributes.addAttribute("storageAddress", storageVO.getStorageAddress());
         return new RedirectView("/main/search-page");
     }*/

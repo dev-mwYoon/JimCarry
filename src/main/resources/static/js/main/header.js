@@ -15,7 +15,7 @@ $(window).scroll(function(){
 
 const $localName = $(".header-dropbox-li span").val();
 
-function ajax(){
+/*function ajax(){
 
     $.ajax({
         url: "/storages/search/local",
@@ -28,4 +28,14 @@ function ajax(){
             alert("에러");
         }
     });
-}
+}*/
+
+$(function() {
+    $('.header-dropbox-ul a').click(function(event) {
+        event.preventDefault();
+
+        let param = $(this).attr("href");
+        location.href = "/storages/search?storageAddress=" + param;
+    });
+});
+
