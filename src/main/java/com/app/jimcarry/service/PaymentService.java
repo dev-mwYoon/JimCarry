@@ -7,6 +7,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
+import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -69,4 +70,9 @@ public class PaymentService {
 
     // 총 개수
     public int getTotal(){return paymentDAO.findTotal();}
+
+    // 유저 조회
+    public UserVO getUser(Long userId){
+        return paymentDAO.findUserInfo(userId);
+    }
 }

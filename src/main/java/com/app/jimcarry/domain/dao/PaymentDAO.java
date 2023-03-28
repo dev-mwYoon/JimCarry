@@ -4,11 +4,13 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
+import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.mapper.PaymentMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -52,4 +54,9 @@ public class PaymentDAO {
 
     // 총 개수
     public int findTotal(){ return paymentMapper.total();}
+
+    // 유저 조회
+    public UserVO findUserInfo(Long userId){
+        return paymentMapper.selectUser(userId);
+    }
 }
