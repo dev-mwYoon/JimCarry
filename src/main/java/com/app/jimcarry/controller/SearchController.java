@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.lang.reflect.Array;
@@ -30,6 +31,33 @@ public class SearchController {
 
     private final ReviewService reviewService;
     private final StorageService storageService;
+
+    /* 헤더의 지역별을 눌렀을 때 지역별 창고 목록 검색 */
+    @GetMapping("")
+    public String searchAll(@RequestParam("storageAddress") String storageAddress, Model model, Criteria criteria) {
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 3;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress(storageAddress);
+
+        //         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = storageService.getTotalDTOBy(searchDTO);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("storageAddress", storageAddress);
+        model.addAttribute("total", total);
+        model.addAttribute("storages", storageService.getStorageDTOBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+
+        return "/main/search-page";
+    }
 
     @GetMapping("detail/{storageId}")
     public String searchDetail(@PathVariable("storageId") Long storageId, Model model, Criteria criteria){
@@ -57,8 +85,8 @@ public class SearchController {
         return "/detail-info/detail-info";
     }
 
-    /*@GetMapping("detail")
+    @GetMapping("detail")
     public String searchDetail(){
         return "detail-info/detail-info";
-    }*/
+    }
 }
