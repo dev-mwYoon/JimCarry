@@ -14,6 +14,12 @@
         limit #{page.criteria.startRow}, ${page.criteria.amount}
     </select>
 
+    <!-- 유저 정보조회 -->
+    <select id="selectUser" resultType="UserVO">
+        select user_name, user_phone, user_email from tbl_user
+        where user_id = #{user_id}
+    </select>
+
     <select id="selectAllPayment" resultType="paymentDTO">
         select pu.user_id, user_identification, user_password, user_email, user_phone, user_address, user_address_detail,
         user_gender, user_birth, user_name, pay_id, s.storage_id, payment_date, payment_amount, storage_title, storage_size, storage_price,
@@ -94,4 +100,6 @@
             </foreach>
         </trim>
     </sql>
+
+
 </mapper>

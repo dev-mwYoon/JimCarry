@@ -34,10 +34,10 @@
                             </span>
                         </div>
 
-                        <div class="sharebox-payment-container">
+                        <div class="sharebox-payment-container" th:object="${order}">
                             <span class="sharbox-photo"></span>
                             <span class="sharebox-size-wrap">
-                                <span class="sharebox-size">[이비에] KF94 새부리형 마스크 베이지 대형 10매</span>
+                                <span class="sharebox-size" th:text="*{userName}">[이비에] KF94 새부리형 마스크 베이지 대형 10매</span>
                             </span>
                             <span class="sharebox-count-month">1개월</span>
                             <span class="sharbox-price-wrap">
@@ -57,24 +57,24 @@
                         
                         <div id="carry-order-info" class="order-info">
                              <div class="order-box"> 
-                                <div class="order-info-box">
+                                <div class="order-info-box" th:object="${user}">
                                     <div class="order-wrap">
                                         <span class="order-name">예약자</span>
                                         <div class="name-wrap">
-                                            <div class="name">문은서</div>
+                                            <div class="name" th:text="*{userName}"></div>
                                         </div>
                                     </div>
                                     
                                     <div class="order-wrap">
                                         <span class="info-title">휴대폰</span>
                                         <div class="name-wrap">
-                                            <div class="phone-num">010-2967-0403</div>
+                                            <div class="phone-num" th:text="*{userPhone}"></div>
                                         </div>
                                     </div>
                                     <div class="order-wrap">
                                         <span class="info-title">이메일</span>
-                                        <div class="name-wrap">
-                                            dawn43@naver.com
+                                        <div class="name-wrap" th:text="*{userEmail}">
+
                                             <div class="email-wrap">
                                                 <p class="email-content">
                                                     정보 변경은 마이페이지  개인정보 수정 메뉴에서 가능합니다.</p>
