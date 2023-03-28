@@ -59,7 +59,7 @@ let $fileAjax = () => {
         let fileVO = new Object();
         fileVO.fileOrgName = file.name;
         fileVO.fileUuid = globalThis.uuids[i];
-        fileVO.inquiryId = inquiries[inquiryIndex].inquiryId
+        fileVO.inquiryId = inquiries[contentIndex].inquiryId
         fileVOs.push(fileVO);
     });
 
@@ -76,12 +76,12 @@ let $fileAjax = () => {
 $(".change-modal-ok-btn").on("click", function () {
     $fileAjax();
 
-    console.log($textarea.eq(inquiryIndex).val());
+    console.log($textarea.eq(contentIndex).val());
 
     $("input[name='inquiryTitle']").val($textareaTitle.val());
     $("input[name='inquiryContent']").val($textarea.val());
-    $("input[name='inquiryId']").val(inquiries[inquiryIndex].inquiryId);
-    $("input[name='inquiryAnswer']").val(inquiries[inquiryIndex].inquiryAnswer);
+    $("input[name='inquiryId']").val(inquiries[contentIndex].inquiryId);
+    $("input[name='inquiryAnswer']").val(inquiries[contentIndex].inquiryAnswer);
     $("input[name='page']").val($page);
 
     $(".change-modal-form-wrapper").submit();

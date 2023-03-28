@@ -2,6 +2,7 @@ package com.app.jimcarry.mapper;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,4 +25,10 @@ public interface PaymentMapper {
 
     //    삭제
     public void delete(Long payId);
+
+    // 조건조회
+    public List<PaymentVO> selectAllBy(@Param("page") PageDTO pageDTO);
+
+    // 조건조회 개수
+    public int totalBy(@Param("page") SearchDTO searchDTO);
 }

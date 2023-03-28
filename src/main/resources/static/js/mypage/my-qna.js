@@ -236,7 +236,7 @@ const $cancel = $(".change-modal-delete-btn");
 
 /* file.js에서 사용 */
 /* 현재 페이지에서 몇 번째를 클릭했는가 */
-let inquiryIndex;
+let contentIndex;
 
 /* 썸네일을 담는 div */
 const $thumbnailWrap = $(".thumbnailWrap");
@@ -266,7 +266,7 @@ const thumbnailAjaxConfig = (i) => {
 $btn.on("click", function () {
     //  현재 클릭한 모달창을 기준으로 텍스트 설정
     let i = $btn.index($(this));
-    inquiryIndex = i;
+    contentIndex = i;
 
     /* 글자수 세팅 */
     let textLength = 0;
@@ -329,7 +329,7 @@ const $span = $("#close");
 // 모달창 열기
 $modal.on("click", function () {
     let i = $modal.index($(this));
-    inquiryIndex = i;
+    contentIndex = i;
     $openBtn.css("display", "block");
 });
 
@@ -340,5 +340,5 @@ $span.on("click", function () {
 
 /* 문의삭제 */
 $("form[name='deleteForm']").on("submit", function (e) {
-    $("input[name='inquiryId']").val(inquiries[inquiryIndex].inquiryId);
+    $("input[name='inquiryId']").val(inquiries[contentIndex].inquiryId);
 });
