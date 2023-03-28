@@ -5,6 +5,7 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.PaymentDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,14 +45,25 @@ public class PaymentService {
     //    수정
     @Encryption
     @LogStatus
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void updatePayment(PaymentVO paymentVO) {paymentDAO.setPaymentVO(paymentVO);}
 
 
     //    삭제
     @LogStatus
+    @Transactional(rollbackFor = Exception.class)
     public void removePayment(Long payId) {
         Optional.ofNullable(paymentDAO.findById(payId)).orElseThrow();
         paymentDAO.deleteById(payId);
+    }
+
+    // 조건조회
+    public List<PaymentVO> getListBy(PageDTO pageDTO){
+        return paymentDAO.findAllBy(pageDTO);
+    }
+
+    // 조건조회 개수
+    public int geTotalBy(SearchDTO searchDTO) {
+        return paymentDAO.findTotalBy(searchDTO);
     }
 }

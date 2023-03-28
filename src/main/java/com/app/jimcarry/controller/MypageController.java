@@ -30,6 +30,7 @@ public class MypageController {
     private final InquiryService inquiryService;
     private final InquiryFileService inquiryFileService;
     private final ReviewService reviewService;
+    private final PaymentService paymentService;
 
     /* ============================== 내 창고 ================================ */
     @GetMapping("mybox")
@@ -158,6 +159,7 @@ public class MypageController {
         total = reviewService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
+        model.addAttribute("payments", paymentService.getListBy(pageDTO));
         model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
 

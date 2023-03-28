@@ -2,9 +2,11 @@ package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
 import com.app.jimcarry.mapper.PaymentMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,5 +38,15 @@ public class PaymentDAO {
     //    삭제
     public void deleteById(Long payId) {
         paymentMapper.delete(payId);
+    }
+
+    // 조건조회
+    public List<PaymentVO> findAllBy(PageDTO pageDTO){
+        return paymentMapper.selectAllBy(pageDTO);
+    }
+
+    // 조건조회 개수
+    public int findTotalBy(SearchDTO searchDTO) {
+        return paymentMapper.totalBy(searchDTO);
     }
 }

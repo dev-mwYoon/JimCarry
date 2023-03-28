@@ -1,4 +1,4 @@
-reviews.forEach((review, i) => {
+payments.forEach((payment, i) => {
     $(".review-content-list-container").append(
         `
             <div class="review-content-list">
@@ -8,8 +8,8 @@ reviews.forEach((review, i) => {
                              class="review-content-list-img">
                     </a>
                     <p>
-                        <a href="#" class="review-content-name">[소] 100cm(가로) x 75cm(세로) x 220cm(높이)</a>
-                        <span>2023.03.15 주문완료</span>
+                        <a href="#" class="review-content-name">${reviews[i].reviewTitle}</a>
+                        <span>${payment.paymentDate} 주문완료</span>
                     </p>
                 </div>  
                 <button class="review-content-btn modal-btn">후기작성</button>
