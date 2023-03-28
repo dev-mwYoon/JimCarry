@@ -8,6 +8,7 @@ import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.ReviewVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,6 @@ public class ReviewService {
     }
 
     /*전체개수 조회*/
-    @LogStatus
     public int getTotal() {
         return reviewDAO.findTotal();
     }
@@ -56,5 +56,11 @@ public class ReviewService {
     public void updateReview(ReviewVO reviewVO) {
         Optional.ofNullable(reviewDAO.findById(reviewVO.getReviewId()));
         reviewDAO.setReviewVO(reviewVO);
+    }
+
+    /* 리뷰 저장 */
+    @Transactional(rollbackFor = Exception.class)
+    public void registerReview(ReviewVO reviewVO){
+        reviewDAO.save(reviewVO);
     }
 }
