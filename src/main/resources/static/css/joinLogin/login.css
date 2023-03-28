@@ -141,6 +141,9 @@ html, button, input, select, textarea {
 .sns {
     display: flex;
 }
+.sns-img {
+    cursor: pointer;
+}
 .kakao-img {
     background-color: rgb(252, 232, 77);
     width: 30px;
