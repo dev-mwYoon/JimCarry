@@ -83,4 +83,18 @@ class StorageDAOTest {
     public void findStorageAll() {
         storageDAO.findStorageDTOBy(8L);
     }
+
+    /*storage DTO 조건조회*/
+    @Test
+    void findByAddress() {
+        int total = 0;
+        Criteria criteria = new Criteria().create(1, 10);
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress("서울");
+
+        total = storageDAO.findTotalBy(searchDTO);
+
+        storageDAO.findStorageDTOListBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
 }

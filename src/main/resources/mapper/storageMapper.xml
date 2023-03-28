@@ -74,6 +74,9 @@
                         <when test="type == 'keyword'.toString()">
                             storage_title like concat('%', #{dto.keyword}, '%')
                         </when>
+                        <when test="type == 'storageAddress'.toString()">
+                            storage_address like concat('%', #{dto.storageAddress}, '%')
+                        </when>
                     </choose>
                 </trim>
             </foreach>
@@ -90,7 +93,7 @@
         limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
 
-    <!-- 창고DTO 조건조회 -->
+    <!-- 창고DTO 조회 -->
     <select id="selectAllBy" resultType="storageDTO">
         select storage_id, u.user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date,
         user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
@@ -110,5 +113,26 @@
         <if test="page.searchDTO.isDesc">
             desc
         </if>-->
+    </select>
+
+    <!-- 창고DTO 조건조회 -->
+    <select id="selectDTOAllBy" resultType="storageDTO">
+        select storage_id, u.user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date,
+        user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from
+        (
+        select user_id, user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from tbl_user
+        ) u
+        join
+        (
+        select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
+        from tbl_storage
+        <include refid="searchType"/>
+        ) r on u.user_id = r.user_id
+        order by storage_id desc
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
     </select>
 </mapper>

@@ -57,4 +57,9 @@ public class StorageDAO {
     public List<StorageDTO> findStorageDTOBy(Long storageId) {
         return storageMapper.selectAllBy(storageId);
     }
+
+    //    storagesDTO 조건조회
+    public List<StorageDTO> findStorageDTOListBy(PageDTO pageDTO) {
+        return storageMapper.selectDTOAllBy(pageDTO);
+    }
 }
