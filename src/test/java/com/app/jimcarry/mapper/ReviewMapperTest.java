@@ -77,9 +77,9 @@ public class ReviewMapperTest {
     @Test
     void selectAllBy() {
         int total = 0;
-        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
+        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("storageId"));
         Criteria criteria = new Criteria().create(1, 5);
-        searchDTO.setUserId(2L);
+        searchDTO.setStorageId(8L);
         total = reviewMapper.totalBy(searchDTO);
         reviewMapper.selectAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }

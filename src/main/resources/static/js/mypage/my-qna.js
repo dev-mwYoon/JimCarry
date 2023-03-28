@@ -315,3 +315,17 @@ $span.on("click", function () {
 $("form[name='deleteForm']").on("submit", function (e) {
     $("input[name='inquiryId']").val(inquiries[contentIndex].inquiryId);
 });
+
+$(".change-modal-ok-btn").on("click", function () {
+    $fileAjax(inquiries[contentIndex].inquiryId, "inquiry");
+
+    console.log($textarea.eq(contentIndex).val());
+
+    $("input[name='inquiryTitle']").val($textareaTitle.val());
+    $("input[name='inquiryContent']").val($textarea.val());
+    $("input[name='inquiryId']").val(inquiries[contentIndex].inquiryId);
+    $("input[name='inquiryAnswer']").val(inquiries[contentIndex].inquiryAnswer);
+    $("input[name='page']").val($page);
+
+    $(".change-modal-form-wrapper").submit();
+});

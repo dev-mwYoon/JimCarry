@@ -28,6 +28,7 @@ public class AdminController {
     private final ReviewService reviewService;
     private final InquiryService inquiryService;
     private final NoticeService noticeService;
+    private final PaymentService paymentService;
 
     /*-----------회원관리----------*/
     @GetMapping("user")
@@ -114,7 +115,28 @@ public class AdminController {
     }
     /*-----------결제관리----------*/
     @GetMapping("payment")
-    public String payment() {
+
+    public String payment(Criteria criteria, Model model) {
+        int amount = 5;
+        int total = 0;
+
+        SearchDTO searchDTO = new SearchDTO();
+//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
+//        searchDTO.setUserId(2L);
+
+        PageDTO pageDTO = null;
+
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = paymentService.getTotal();
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+//        model.addAttribute("getTotal", paymentService.getTotal());
+        model.addAttribute("payments", paymentService.getList(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+
         return "/admin/payment";
     }
     /*-----------리뷰관리----------*/

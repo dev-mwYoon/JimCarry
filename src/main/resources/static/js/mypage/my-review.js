@@ -69,8 +69,7 @@ $(".review-content-wrpper").append(
                                                  class="change-modal-image">
                                         </span>
                                 </div>
-                                <p class="change-modal-image-title-text">[소] 100cm(가로) x
-                                    75cm(세로) x 220cm(높이)</p>
+                                <p class="change-modal-image-title-text"></p>
                             </div>
                         </div>
                         <div class="review-modal-main-container">
@@ -83,8 +82,14 @@ $(".review-content-wrpper").append(
                                 솔직하게 얘기해주세요
                             </p>
                         </div>
-                        <form>
+                        <form action="/users/mypage/review/update" method="post" class="change-modal-form-wrapper">
                             <div class="review-modal-content-container">
+                                <div class="review-modal-content-wrapper">
+                                    <label class="review-modal-content-name">제목</label>
+                                    <div class="review-modal-form-title">
+                                        <input type="text" placeholder="제목을 입력해주세요." class="review-modal-form-title-input">
+                                    </div>
+                                </div>
                                 <div class="review-modal-content-wrapper">
                                     <label class="review-modal-content-name">내용</label>
                                     <div style="width: 100%;">
@@ -156,11 +161,15 @@ $(".review-content-wrpper").append(
                                 <button type="button" class="change-modal-delete-btn">
                                     취소
                                 </button>
-                                <button type="submit" class="change-modal-ok-btn"
-                                        value="등록" disabled="" style="cursor: pointer;">
+                                <button type="button" class="change-modal-ok-btn"
+                                        value="등록">
                                     등록
                                 </button>
                             </div>
+                            <input type="text" name="reviewTitle" style="display: none">
+                            <input type="text" name="reviewContext" style="display: none">
+                            <input type="text" name="reviewId" style="display: none">
+                            <input type="text" name="page" style="display: none">
                         </form>
                     </div>
                 </div>
@@ -191,7 +200,7 @@ const $thumbnailWrap = $(".thumbnailWrap");
 /* 실제 저장할 파일VO들의 배열 */
 let fileVOs = new Array();
 
-const $textareaTitle = $(".change-modal-form-title-input");
+const $textareaTitle = $(".review-modal-form-title-input");
 
 // 글자수 세기, 제한
 const $textarea = $('.review-modal-content-inputBox');
@@ -218,6 +227,7 @@ $btn.on("click", function () {
     // 글자수세기, 제한  <작성가능 후기>
     let textLength = 0;
     $reviewTitle.text(reviews[i].reviewTitle);
+    $textareaTitle.val(reviews[i].reviewTitle)
     $textarea.val(reviews[i].reviewContext);
 
     textLength = $textarea.val().length;
@@ -240,13 +250,6 @@ $btn.on("click", function () {
         }
 
         $counter.text(`${textLength}자 / ${maxLength}자`);
-
-        // 글자수가 10자 이상인 경우 배경색을 바꾸기
-        if (textLength >= 10) {
-            $('.change-modal-ok-btn').css('background-color', '#5f0080');
-        } else {
-            $('.change-modal-ok-btn').css('background-color', '#ddd');
-        }
     });
 
     /* 썸네일 내용 및 파일 배열 비우기 */
@@ -273,4 +276,17 @@ $close.on("click", function () {
 //모달창 취소 닫기
 $cancel.on("click", function () {
     $container.css("display", "none");
+});
+
+$(".change-modal-ok-btn").on("click", function () {
+    $fileAjax(reviews[contentIndex].reviewId, "review");
+
+    console.log($textarea.eq(contentIndex).val());
+
+    $("input[name='reviewTitle']").val($textareaTitle.val());
+    $("input[name='reviewContext']").val($textarea.val());
+    $("input[name='reviewId']").val(reviews[contentIndex].reviewId);
+    $("input[name='page']").val($page);
+
+    $(".change-modal-form-wrapper").submit();
 });

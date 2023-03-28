@@ -8,6 +8,12 @@
         values(#{userId}, #{storageId}, #{reviewTitle}, #{reviewContext})
     </insert>
 
+    <select id="select" resultType="reviewVO">
+        select review_id, user_id, storage_id, review_title, review_context, review_write_date, review_edit_date
+        from tbl_review
+        where review_id = #{reviewId}
+    </select>
+
     <!--리뷰 목록 전체 조회-->
     <select id="selectAll" resultType="reviewDTO">
         select review_id, u.user_id, storage_id, review_title, review_context, review_write_date, review_edit_date,
@@ -34,7 +40,7 @@
     <!--한 창고의 리뷰 개수 조회-->
     <select id="totalById" resultType="int">
         select count(review_id)
-        from jimcarry.tbl_review
+        from tbl_review
         where storage_id = #{storageId}
     </select>
     <!-- 리뷰 조건조회 -->
@@ -67,9 +73,9 @@
 
     <!-- 리뷰 수정 -->
     <update id="update">
-        update jimcarry.tbl_review
+        update tbl_review
         set review_title=#{reviewTitle}, review_context=#{reviewContext}, review_edit_date=CURRENT_TIMESTAMP
-        where review_id=#{reviewId};
+        where review_id=#{reviewId}
     </update>
 
     <!--  PageDTO인지 SearchDTO인지 판별  -->
@@ -96,6 +102,9 @@
                         </when>
                         <when test="type == 'keyword'.toString()">
                             review_title like concat('%', #{dto.keyword}, '%')
+                        </when>
+                        <when test="type == 'storageId'.toString()">
+                            storage_id = #{dto.storageId}
                         </when>
                     </choose>
                 </trim>

@@ -1,12 +1,12 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.service.ReviewService;
 import com.app.jimcarry.service.StorageService;
-import edu.emory.mathcs.backport.java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -27,25 +28,31 @@ import java.util.List;
 @Slf4j
 public class SearchController {
 
+    private final ReviewService reviewService;
     private final StorageService storageService;
 
-    /* 창고 상세 목록 */
-    /*@GetMapping("detail/{storageId}")
-    public String searchDetail(Model model,@PathVariable Long storageId) {
-        int total = reviewService.getTotalById(storageId);
-
-        model.addAttribute("total", total);
-        model.addAttribute("reviews", reviewService.getListByStorageId(storageId));
-        *//* url 파라미터로 스토리지아이디 받기*//*
-        model.addAttribute("storages", storageService.getStorageDTO(storageId));
-
-        return "/detail-info/detail-info";
-    }*/
-
     @GetMapping("detail/{storageId}")
-    public String searchDetail(@PathVariable("storageId") Long storageId, Model model){
+    public String searchDetail(@PathVariable("storageId") Long storageId, Model model, Criteria criteria){
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 3;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
 
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageId")));
+        searchDTO.setStorageId(storageId);
+
+        //         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = reviewService.getTotalBy(searchDTO);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
+        model.addAttribute("pagination", pageDTO);
 
         return "/detail-info/detail-info";
     }

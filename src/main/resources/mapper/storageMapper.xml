@@ -3,10 +3,10 @@
 <mapper namespace="com.app.jimcarry.mapper.StorageMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="storageId">
         insert into tbl_storage
-        (user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date)
+        (user_id, storage_name, storage_phone, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date)
         values(
-        #{userId}, #{storageTitle}, #{storageSize},
-        #{storagePrice}, #{storageAddress}, #{storageAddressDetail},
+        #{userId}, #{storageName}, #{storagePhone}, #{storageTitle}, #{storageSize}, #{storagePrice},
+         #{storageAddress}, #{storageAddressDetail},
         #{storageUseDate}, #{storageEndDate}
         )
     </insert>

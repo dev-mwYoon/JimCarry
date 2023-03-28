@@ -31,7 +31,7 @@ public interface StorageMapper {
     public Integer total();
 
     //    검색에 맞는 전체개수 조회
-    public Integer totalBy(SearchDTO searchDTO);
+    public Integer totalBy(@Param("page") SearchDTO searchDTO);
 
     //    수정
 

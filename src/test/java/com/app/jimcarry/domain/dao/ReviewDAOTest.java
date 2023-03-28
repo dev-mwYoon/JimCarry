@@ -49,8 +49,10 @@ public class ReviewDAOTest {
     /* 리뷰 조건조회 */
     @Test
     public void findAllBy() {
-        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
-        searchDTO.setUserId(2L);
+        /*SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));*/
+        SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("storageId"));
+        /*searchDTO.setUserId(2L);*/
+        searchDTO.setStorageId(8L);
         Criteria criteria = new Criteria().create(1, 5);
         int total = reviewDAO.getTotalBy(searchDTO);
 

@@ -9,13 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public interface FileService<T extends FileVO> {
-
-    //    등록
-    void register(T fileVO);
+public interface FileService {
 
     //    파일 전체 조회
-    List<T> getList(Long inquiryId);
+    <T> List<T> getList(Long inquiryId);
 
     //    삭제
     void remove(Long id);
