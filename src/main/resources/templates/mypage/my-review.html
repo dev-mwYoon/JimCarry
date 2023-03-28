@@ -96,6 +96,7 @@
 <script th:inline="javascript">
     let reviews = [[${reviews}]];
     let payments = [[${payments}]];
+    let $page = [[${pagination.criteria.page}]];
     console.log(reviews);
     console.log(payments);
     $(".mypage-list-left-section-name").eq(3).css({

@@ -1,8 +1,7 @@
-package com.app.jimcarry.mapper;
-
+package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.vo.ReviewFileVO;
-import lombok.extern.slf4j.Slf4j;
+import com.app.jimcarry.mapper.ReviewFileMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +12,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
-@Slf4j
 @Transactional
-public class ReviewFileMapperTest {
+class ReviewFileDAOTest {
+
     @Autowired
-    ReviewFileMapper reviewFileMapper;
+    ReviewFileDAO reviewFileDAO;
     @Autowired
     ReviewFileVO reviewFileVO;
     @BeforeEach
@@ -28,21 +29,20 @@ public class ReviewFileMapperTest {
         reviewFileVO.setFilePath(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")));
         reviewFileVO.setFileUuid(UUID.randomUUID().toString());
     }
-
     @Test
-    void insert() {
-        reviewFileMapper.insert(reviewFileVO);
+    void save() {
+        reviewFileDAO.save(reviewFileVO);
     }
 
     @Test
-    void selectAll() {
-        reviewFileMapper.insert(reviewFileVO);
-        reviewFileMapper.selectAll(1L);
+    void findAll() {
+        reviewFileDAO.save(reviewFileVO);
+        reviewFileDAO.findAll(2L);
     }
 
     @Test
-    void delete() {
-        reviewFileMapper.insert(reviewFileVO);
-        reviewFileMapper.delete(reviewFileVO.getFileId());
+    void deleteById() {
+        reviewFileDAO.save(reviewFileVO);
+        reviewFileDAO.deleteById(reviewFileVO.getFileId());
     }
 }
