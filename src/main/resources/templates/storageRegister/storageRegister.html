@@ -14,214 +14,214 @@
 <header th:insert="~{main/header.html :: mainHeader}"></header>
 <div class="warehouseRegisterLayout">
     <div class="warehouseRegister">창고등록</div>
-    <form class="formWrapper">
+    <div class="formWrapper">
         <div class="formStartLine">
             <span class="RequiredInput">*</span>
             필수입력사항
         </div>
         <div class="formstart">
-            <form th:action="@{/storages/storageRegister}" method="post">
-
             <!-- ----------------창고이름------------------ -->
-            <div class="wrapper">
-                <div class="title">
-                    <label class="label">
-                        창고이름
-                </div>
-                <div class="flexLayout">
-                        <div class="paddingBottom">
-                            <div class="inputBox">
-                                <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageName"
-                                       required autocomplete="none" value>
+            <form th:action="@{/storages/storageRegister}" method="post">
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">
+                                창고이름
+                        </div>
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageName"
+                                           required autocomplete="none" value="">
+                                </div>
                             </div>
                         </div>
-                </div>
-                <div class="checkBoxLimitWidth"></div>
-            </div>
-            <!-- ----------------소유주------------------ -->
-            <div class="wrapper">
-                <div class="title">
-                    <label class="label">
-                        소유주<span class ="RequiredInput">*</span></label>
-                </div>
-                <div class="flexLayout">
-                    <div class="paddingBottom">
-                        <div class="inputBox">
-                            <input class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="userName"
-                                   required autocomplete="none" value>
+                        <div class="checkBoxLimitWidth"></div>
+                    </div>
+                    <!-- ----------------소유주------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">
+                                소유주<span class ="RequiredInput">*</span></label>
                         </div>
+                        <div class="flexLayout">
+                            <div class="paddingBottom">
+                                <div class="inputBox">
+                                    <input class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="userName"
+                                           required autocomplete="none" value>
+                                </div>
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
+                        </div>
+                        <div class="checkBoxLimitWidth"></div>
                     </div>
-                    <div class="errorDiv">
-                        <p class="errorMessage"></p>
+                    <!-- ----------------휴대폰------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">휴대폰<span class ="RequiredInput">*</span></label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="inputBox">
+                                <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone"
+                                       required autocomplete="none">
+                            </div>
+                            <div class="errorDiv">
+                                <p class="errorMessage"></p>
+                            </div>
+                        </div>
+                        <div class="checkBoxLimitWidth"></div>
                     </div>
-                </div>
-                <div class="checkBoxLimitWidth"></div>
-            </div>
-            <!-- ----------------휴대폰------------------ -->
-            <div class="wrapper">
-                <div class="title">
-                    <label class="label">휴대폰<span class ="RequiredInput">*</span></label>
-                </div>
-                <div class="flexLayout">
-                    <div class="inputBox">
-                        <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone"
-                               required autocomplete="none">
-                    </div>
-                    <div class="errorDiv">
-                        <p class="errorMessage"></p>
-                    </div>
-                </div>
-                <div class="checkBoxLimitWidth"></div>
-            </div>
-            <!-- ----------------창고사이즈------------------ -->
-            <div class="wrapper">
-                <div class="title">
-                    <label class="label">창고 사이즈<span class ="RequiredInput">*</span>
-                    </label>
-                </div>
-                <div class="flexLayout">
-                    <form class="radioLayout">
-                        <label class="sizeSelect" for="sizeSmall">
-                            <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="size" type="radio" value="SMALL" onclick="clickRadio()">
-                            <span id = "sizeSmallSpan" class="checkBox">
-                                        <div id="sizeSmallDiv" class="checkBox2"></div>
-                                    </span>
-                            <span class="radioText">소</span>
-                        </label>
-                        <label class="sizeSelect" for="sizeMiddle">
-                            <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="size" type="radio" value="MIDDLE" onclick="clickRadio()">
-                            <span id="sizeMiddleSpan" class="checkBox">
-                                        <div id="sizeMiddleDiv" class="checkBox2"></div>
-                                    </span>
-                            <span class="radioText">중</span>
-                        </label>
-                        <label class="sizeSelect" for="sizeBig">
-                            <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
-                            <span class="checkBox">
-                                        <div class="checkBox2"></div>
-                                    </span>
-                            <span class="radioText">대</span>
-                        </label>
-                        <label class="sizeSelect" for="sizeBBig">
-                            <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
-                            <span class="checkBox">
-                                        <div class="checkBox2"></div>
-                                    </span>
-                            <span class="radioText">특대</span>
-                        </label>
-                    </form>
-                    <span class="explainText"> 사이즈는 공지사항을 참고하시기 바랍니다.</span>
-                </div>
-                <div class="checkBoxLimitWidth"></div>
-            </div>
-            <!-- ----------------창고이용가능기간------------------ -->
-            <div class="wrapper">
-                <div class="title">
-                    <label class="label">창고이용가능기간<span class ="RequiredInput">*</span>
-                    </label>
-                </div>
-                <div class="periodOfUseFlexLayout">
-                    <div class="periodOfUse">
-                        <div class="periodOfUseInputLayout">
-                            <form>
-                                <input class="useDateInput" type="date">
+                    <!-- ----------------창고사이즈------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">창고 사이즈<span class ="RequiredInput">*</span>
+                            </label>
+                        </div>
+                        <div class="flexLayout">
+                            <form class="radioLayout">
+                                <label class="sizeSelect" for="sizeSmall">
+                                    <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="size" type="radio" value="SMALL" onclick="clickRadio()">
+                                    <span id = "sizeSmallSpan" class="checkBox">
+                                                <div id="sizeSmallDiv" class="checkBox2"></div>
+                                            </span>
+                                    <span class="radioText">소</span>
+                                </label>
+                                <label class="sizeSelect" for="sizeMiddle">
+                                    <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="size" type="radio" value="MIDDLE" onclick="clickRadio()">
+                                    <span id="sizeMiddleSpan" class="checkBox">
+                                                <div id="sizeMiddleDiv" class="checkBox2"></div>
+                                            </span>
+                                    <span class="radioText">중</span>
+                                </label>
+                                <label class="sizeSelect" for="sizeBig">
+                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
+                                    <span class="checkBox">
+                                                <div class="checkBox2"></div>
+                                            </span>
+                                    <span class="radioText">대</span>
+                                </label>
+                                <label class="sizeSelect" for="sizeBBig">
+                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
+                                    <span class="checkBox">
+                                                <div class="checkBox2"></div>
+                                            </span>
+                                    <span class="radioText">특대</span>
+                                </label>
                             </form>
+                            <span class="explainText"> 사이즈는 공지사항을 참고하시기 바랍니다.</span>
                         </div>
+                        <div class="checkBoxLimitWidth"></div>
                     </div>
-                    <div class="wave">~</div>
-                    <div class="periodOfUse">
-                        <div class="periodOfUseInputLayout">
-                            <form>
-                                <input class="useDateInput" type="date">
-                            </form>
-                            <!-- <span class="periodOfUseInputText">2023.03.10</span>
-                            <span class="calendarSVG"></span> -->
+                    <!-- ----------------창고이용가능기간------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">창고이용가능기간<span class ="RequiredInput">*</span>
+                            </label>
+                        </div>
+                        <div class="periodOfUseFlexLayout">
+                            <div class="periodOfUse">
+                                <div class="periodOfUseInputLayout">
+                                    <form>
+                                        <input class="useDateInput" type="date">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="wave">~</div>
+                            <div class="periodOfUse">
+                                <div class="periodOfUseInputLayout">
+                                    <form>
+                                        <input class="useDateInput" type="date">
+                                    </form>
+                                    <!-- <span class="periodOfUseInputText">2023.03.10</span>
+                                    <span class="calendarSVG"></span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkBoxLimitWidth"></div>
+                    </div>
+                    <!-- ----------------창고주소------------------ -->
+                    <div class="wrapper">
+                        <div class="title">
+                            <label class="label">
+                                창고 주소<span class ="RequiredInput">*</span>
+                            </label>
+                        </div>
+                        <div class="flexLayout">
+                            <div class="addressWrapper">
+                                <div class="addressInputLayout">
+                                    <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="" readonly>
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
+                                </div>
+                            </div>
+                            <div class="addressDetailWrapper">
+                                <div class="addressInputLayout">
+                                    <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="addressDetail" required autocomplete="none">
+                                </div>
+                                <div class="errorDiv">
+                                    <p class="errorMessage"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkBoxLimitWidth">
+                            <button class="searchAddressBt" type="button" height="44" radius="4"  onclick="sample6_execDaumPostcode()">
+                                    <span class="addressImgClass">
+                                        <img class="addressImg" src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg" >주소 검색
+                                    </span>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="checkBoxLimitWidth"></div>
-            </div>
-            <!-- ----------------창고주소------------------ -->
-            <div class="wrapper">
-                <div class="title">
-                    <label class="label">
-                        창고 주소<span class ="RequiredInput">*</span>
-                    </label>
-                </div>
-                <div class="flexLayout">
-                    <div class="addressWrapper">
-                        <div class="addressInputLayout">
-                            <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="" readonly>
+                <!-- 창고사진등록 -->
+                <div class="termsLine"></div>
+                <div class="termStart">
+                    <div class="termsLayout">
+                        <div class="termsTitle">
+                            <label class="termsLabel">
+                                창고사진등록<span class="RequiredInput">*</span>
+                            </label>
                         </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
+                        <div class="imageContainer">
+                            <div class="imageWrapperPadding">
+                                <div class="imageWrapper">
+                                    <div id="thumbnail-list" class="imageDiv">
+                                        <div class="imgButtonWrap">
+                                            <label for="photo-picker">
+                                                <div class="imgButton" >
+                                                    <span class="cameraIconImg"></span>
+                                                </div>
+                                                <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" multiple/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="imgTextWrapper">
+                                        <div class="imgTextDiv">
+                                            <span></span>
+                                            30MB 이하의 이미지만 업로드 가능합니다.
+                                        </div>
+                                        <div class="imgTextDiv">
+                                            <span></span>
+                                            상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
+                                        </div>
+                                        <div class="imgTextDiv">
+                                            <span></span>
+                                            사진은 최대 8장까지 등록가능합니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="addressDetailWrapper">
-                        <div class="addressInputLayout">
-                            <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="addressDetail" required autocomplete="none">
-                        </div>
-                        <div class="errorDiv">
-                            <p class="errorMessage"></p>
-                        </div>
-                    </div>
                 </div>
-                <div class="checkBoxLimitWidth">
-                    <button class="searchAddressBt" type="button" height="44" radius="4"  onclick="sample6_execDaumPostcode()">
-                            <span class="addressImgClass">
-                                <img class="addressImg" src="https://res.kurly.com/pc/service/cart/2007/ico_search.svg" >주소 검색
-                            </span>
+
+                <div class="submitLayout">
+                    <button class="submitButton" type="submit" width="240" height="56" radius="3">
+                        <span class="buttonBox">등록하기</span>
                     </button>
                 </div>
-            </div>
-        </div>
-        <!-- 창고사진등록 -->
-        <div class="termsLine"></div>
-        <div class="termStart">
-            <div class="termsLayout">
-                <div class="termsTitle">
-                    <label class="termsLabel">
-                        창고사진등록<span class="RequiredInput">*</span>
-                    </label>
-                </div>
-                <div class="imageContainer">
-                    <div class="imageWrapperPadding">
-                        <div class="imageWrapper">
-                            <div id="thumbnail-list" class="imageDiv">
-                                <div class="imgButtonWrap">
-                                    <label for="photo-picker">
-                                        <div class="imgButton" >
-                                            <span class="cameraIconImg"></span>
-                                        </div>
-                                        <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" multiple/>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="imgTextWrapper">
-                                <div class="imgTextDiv">
-                                    <span></span>
-                                    30MB 이하의 이미지만 업로드 가능합니다.
-                                </div>
-                                <div class="imgTextDiv">
-                                    <span></span>
-                                    상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
-                                </div>
-                                <div class="imgTextDiv">
-                                    <span></span>
-                                    사진은 최대 8장까지 등록가능합니다.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="submitLayout">
-                <button class="submitButton" type="submit" width="240" height="56" radius="3">
-                    <span class="buttonBox">등록하기</span>
-                </button>
-            </div>
-        </form>
+            </form>
     </div>
 </div>
 <!-- 로그인 확인 모달 -->

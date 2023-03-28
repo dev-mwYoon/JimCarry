@@ -17,6 +17,8 @@ public class StorageDTO {
     private String userGender;
     private String userBirth;
     private Long storageId;
+    private String storageName;
+    private String storagePhone;
     private String storageTitle;
     private String storageSize;
     private Integer storagePrice;
