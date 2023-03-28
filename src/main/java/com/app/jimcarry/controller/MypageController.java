@@ -99,12 +99,12 @@ public class MypageController {
     public RedirectView updateQna(InquiryVO inquiryVO, String page) {
         /* 추후 세션으로 변경 */
         inquiryVO.setUserId(2L);
-        inquiryService. updateInquiry(inquiryVO);
+        inquiryService.updateInquiry(inquiryVO);
         return new RedirectView("/users/mypage/qna?page=" + page);
     }
 
     @PostMapping("qna/delete")
-    public RedirectView deleteQna(Long inquiryId, String page){
+    public RedirectView deleteQna(Long inquiryId, String page) {
         inquiryService.removeInquiry(inquiryId);
         return new RedirectView("/users/mypage/qna?page=" + page);
     }
@@ -123,17 +123,27 @@ public class MypageController {
         return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 
+    /**
+     * @param table 파일 종류를 받아서 제너릭의 타입을 결정하는 변수
+     * */
     @GetMapping("files/thumbnail/{id}")
     @ResponseBody
-    public List<InquiryFileVO> display(@PathVariable Long id){
-        return inquiryFileService.getList(id);
+    /* T : 제너릭 타입으로, 들어오는 타입으로 바뀜 */
+    public <T> List<T> display(@PathVariable Long id, String table) {
+        if(table == null){
+            return new ArrayList<>();
+        }
+        /* table 분기처리 */
+        if(table.equals("inquiry")) return (List<T>) inquiryFileService.getList(id);
+        else if(table.equals("review")) return (List<T>) inquiryFileService.getList(id);
+
+        return new ArrayList<>();
     }
 
     @PostMapping("files/save")
     @ResponseBody
     public void saveFile(@RequestBody List<InquiryFileVO> files, String page, String prev) {
 
-        files.forEach(file -> log.info("inquiryId.......... : " + file.getInquiryId()));
         inquiryFileService.registerFile(files);
     }
 

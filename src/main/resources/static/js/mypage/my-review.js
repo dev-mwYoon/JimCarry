@@ -8,7 +8,7 @@ payments.forEach((payment, i) => {
                              class="review-content-list-img">
                     </a>
                     <p>
-                        <a href="#" class="review-content-name">${reviews[i].reviewTitle}</a>
+                        <a href="javascript:void(0)" class="review-content-name">${reviews[i].reviewTitle}</a>
                         <span>${payment.paymentDate} 주문완료</span>
                     </p>
                 </div>  
@@ -175,6 +175,16 @@ $(".review-content-wrpper").append(
 /* 현재 페이지에서 몇 번째를 클릭했는가 */
 let contentIndex;
 
+/* 썸네일 불러오기 */
+const thumbnailAjaxConfig = (i) => {
+    return {
+        url: `/users/mypage/files/thumbnail/${reviews[i].reviewId}`,
+        method: "GET",
+        data: {table : "review"},
+        contentType: "application/json; charset=utf-8",
+    }
+}
+
 /* 썸네일을 담는 div */
 const $thumbnailWrap = $(".thumbnailWrap");
 
@@ -195,6 +205,7 @@ const $btn = $(".modal-btn");
 const $container = $(".change-modal");
 const $close = $(".close-btn");
 const $cancel = $(".change-modal-delete-btn");
+let $reviewTitle = $(".change-modal-image-title-text");
 
 //모달창 열기
 $btn.on("click", function () {
@@ -206,7 +217,7 @@ $btn.on("click", function () {
     /* 글자수 세팅 */
     // 글자수세기, 제한  <작성가능 후기>
     let textLength = 0;
-    $textareaTitle.val(reviews[i].reviewTitle);
+    $reviewTitle.text(reviews[i].reviewTitle);
     $textarea.val(reviews[i].reviewContext);
 
     textLength = $textarea.val().length;
@@ -242,16 +253,16 @@ $btn.on("click", function () {
     $thumbnailWrap.empty();
     fileVOs = new Array();
 
-    // doAjax(thumbnailAjaxConfig(i), (result) => {
-    //     result.forEach((file) => {
-    //         $thumbnailWrap.append(
-    //             `
-    //             <img class="imageThumbnail"
-    //             src="/users/mypage/files/display?fileName=${file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName}">
-    //             `
-    //         );
-    //     })
-    // });
+    doAjax(thumbnailAjaxConfig(i), (result) => {
+        result.forEach((file) => {
+            $thumbnailWrap.append(
+                `
+                <img class="imageThumbnail"
+                src="/users/mypage/files/display?fileName=${file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName}">
+                `
+            );
+        })
+    });
 });
 
 //모달창 닫기

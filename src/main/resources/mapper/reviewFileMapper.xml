@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.jimcarry.mapper.ReviewFileMapper">
-
+    <!-- 추가 -->
+    <insert id="insert">
+        insert into tbl_inquiry_file
+        (inquiry_id, inquiry_file_path, inquiry_org_name, inquiry_file_uuid)
+        values(#{inquiryId}, #{filePath}, #{fileOrgName}, #{fileUuid})
+    </insert>
+    <select id="selectAll" resultType="inquiryFileVO">
+        select inquiry_file_id as file_id , inquiry_id, inquiry_file_path as file_path, inquiry_org_name as file_org_name, inquiry_file_uuid as file_uuid
+        from tbl_inquiry_file
+        where inquiry_id = #{inquiryId}
+    </select>
+    <delete id="delete">
+        delete from tbl_inquiry_file
+        where inquiry_id = #{inquiryId}
+    </delete>
 </mapper>
