@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PayController {
 
     /*결제페이지*/
-    @GetMapping("/")
+    @GetMapping("")
     public String pay() { return "/pay/payment";}
 }
