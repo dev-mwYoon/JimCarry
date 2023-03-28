@@ -11,7 +11,7 @@ function sample6_execDaumPostcode() {
 /* 사이즈 라디오 버튼 클릭했을때 */
 function clickRadio() {
     /* size의 모든값 조회 */
-    const $sizes = $('input[name=size]');
+    const $sizes = $('input[name=storageSize]');
 
     const $count = $sizes.length;
 
