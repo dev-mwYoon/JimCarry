@@ -9,11 +9,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,10 +62,10 @@ public class AdminController {
     }
 //  삭제
     @PostMapping("user/delete")
-    public RedirectView removeUser(String[] userIds){
-        log.info(userIds.toString());
+    @ResponseBody
+    public boolean removeUser(String[] userIds){
         Arrays.asList(userIds).stream().forEach(data -> userService.removeUser(Long.valueOf(data)));
-        return new RedirectView("/admin/user");
+        return true;
     }
 
 //    /*-----------문의사항----------*/
