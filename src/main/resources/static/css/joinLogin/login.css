@@ -88,7 +88,7 @@ html, button, input, select, textarea {
 .idPwFindLayout {
     display: flex;
     -webkit-box-pack: end;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 10px;
     font-size: 13px;
 }
@@ -137,4 +137,19 @@ html, button, input, select, textarea {
 }
 .joinButton button:last-of-type {
     margin-top: 10px;
+}
+.sns {
+    display: flex;
+}
+.kakao-img {
+    background-color: rgb(252, 232, 77);
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+}
+.naver-img {
+    background-color: #19ce60;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
 }
