@@ -73,11 +73,22 @@ public class StorageServiceTest {
     @Test
     void getTotalBy() {
         SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageId")));
+        /*searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));*/
+        searchDTO.setStorageId(8L);
+        /*searchDTO.setUserId(2L);*/
         log.info("getTotalby : " + storageService.getTotalBy(searchDTO));
     }
 
+
+    /*DTO 창고 조건개수*/
+    @Test
+    public void getTotalDTOBy() {
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageId")));
+        searchDTO.setStorageId(8L);
+        log.info("getTotalby : " + storageService.getTotalDTOBy(searchDTO));
+    }
 
     //    검색에 맞는 DTO 창고 조회
     @Test
