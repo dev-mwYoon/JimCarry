@@ -12,3 +12,20 @@ $(window).scroll(function(){
         $('.menu-fix').attr('class', 'menu-fix-change');
     }
 });
+
+const $localName = $(".header-dropbox-li span").val();
+
+function ajax(){
+
+    $.ajax({
+        url: "/storages/search/local",
+        data: "localName=" + $localName,
+        type: "POST",
+        success : function(data){
+            alert("성공");
+        },
+        error : function(){
+            alert("에러");
+        }
+    });
+}
