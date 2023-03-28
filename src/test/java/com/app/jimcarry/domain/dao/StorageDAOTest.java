@@ -30,6 +30,8 @@ class StorageDAOTest {
     @BeforeEach
     void setStorageVO(){
         storageVO.setUserId(1L);
+        storageVO.setStorageName("그래요");
+        storageVO.setStoragePhone("01022223333");
         storageVO.setStorageTitle("storageMapperTest");
         storageVO.setStorageSize("특대");
         storageVO.setStoragePrice(30000);
@@ -40,7 +42,7 @@ class StorageDAOTest {
     }
 
     @Test
-    void save() {
+    void save() {storageDAO.save(storageVO);
     }
 
     @Test

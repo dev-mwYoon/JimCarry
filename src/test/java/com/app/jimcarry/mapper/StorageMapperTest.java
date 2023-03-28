@@ -34,6 +34,8 @@ public class StorageMapperTest {
     void setStorageVO(){
         storageVO.setUserId(1L);
         storageVO.setStorageTitle("storageMapperTest");
+        storageVO.setStorageName("그래요");
+        storageVO.setStoragePhone("01022223333");
         storageVO.setStorageSize("특대");
         storageVO.setStoragePrice(30000);
         storageVO.setStorageAddress("서울시 강남구 역삼동");

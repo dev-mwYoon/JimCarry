@@ -35,7 +35,7 @@ public class InquiryDAOTest {
 
     @BeforeEach
     void setInquiryVO() {
-        inquiryVO.setUserId(2L);
+        inquiryVO.setUserId(1L);
         inquiryVO.setInquiryTitle("inquiryDAOTest");
         inquiryVO.setInquiryContent("inquiryDAOTest");
     }
