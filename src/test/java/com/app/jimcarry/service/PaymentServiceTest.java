@@ -1,5 +1,6 @@
-package com.app.jimcarry.domain.dao;
+package com.app.jimcarry.service;
 
+import com.app.jimcarry.domain.dao.PaymentDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
@@ -16,10 +17,9 @@ import java.util.Arrays;
 @SpringBootTest
 @Slf4j
 @Transactional
-public class PaymentDAOTest {
-
+public class PaymentServiceTest {
     @Autowired
-    PaymentDAO paymentDAO;
+    private PaymentService paymentService;
     @Autowired
     PaymentVO paymentVO;
 
@@ -31,21 +31,33 @@ public class PaymentDAOTest {
     }
 
     @Test
-    void findListBy() {
-        paymentDAO.save(paymentVO);
+    void register() {
+    }
+
+    @Test
+    void getPayment() {
+    }
+
+    @Test
+    void getList() {
+    }
+
+    @Test
+    void getListBy() {
+        paymentService.register(paymentVO);
 
         Criteria criteria = new Criteria().create(1, 5);
         SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
         searchDTO.setUserId(2L);
-        int total = paymentDAO.findTotalBy(searchDTO);
-        paymentDAO.findAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+        int total = paymentService.geTotalBy(searchDTO);
+        paymentService.getListBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
 
     @Test
-    void findTotalBy() {
-        paymentDAO.save(paymentVO);
+    void geTotalBy() {
+        paymentService.register(paymentVO);
         SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
         searchDTO.setUserId(2L);
-        paymentDAO.findTotalBy(searchDTO);
+        paymentService.geTotalBy(searchDTO);
     }
 }

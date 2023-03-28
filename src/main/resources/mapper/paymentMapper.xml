@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.jimcarry.mapper.PaymentMapper">
+    <!-- 추가 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="payId">
+        insert into tbl_payment
+        (user_id, storage_id, payment_amount)
+        values(#{userId}, #{storageId}, #{paymentAmount})
+    </insert>
+    <!-- 전체조회 -->
+    <select id="selectAll" resultType="paymentVO">
+        select pay_id, user_id, storage_id, payment_date, payment_amount
+        select tbl_payment
+        limit #{page.criteria.startRow}, ${page.criteria.amount}
+    </select>
+    <!-- 조회 -->
+    <select id="select" resultType="paymentVO">
+        select pay_id, user_id, storage_id, payment_date, payment_amount
+        from tbl_payment
+        where pay_id = #{paymentId}
+    </select>
+    <!-- 수정 -->
+    <update id="update">
+        update tbl_payment
+        set user_id=#{userId}, storage_id=#{storageId}, payment_date=#{paymentDate}
+        where pay_id= #{payId}
+    </update>
+    <!-- 삭제 -->
+    <delete id="delete" parameterType="long">
+        delete from tbl_payment
+        where pay_id = #{payId}
+    </delete>
+    <select id="selectAllBy" resultType="paymentVO">
+        select pay_id, user_id, storage_id, payment_date, payment_amount
+        from tbl_payment
+        <include refid="searchType"/>
+        order by pay_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
+    </select>
 
+    <!-- 검색조건에 맞는 총 갯수 -->
+    <select id="totalBy" resultType="int">
+        select count(pay_id) from tbl_payment
+        <include refid="searchType"/>
+    </select>
+
+    <!--  PageDTO인지 SearchDTO인지 판별  -->
+    <sql id="searchType">
+        <choose>
+            <when test="page.IS_SEARCH_DTO">
+                <bind name="dto" value="page"/>
+            </when>
+            <otherwise>
+                <bind name="dto" value="page.searchDTO"/>
+            </otherwise>
+        </choose>
+        <include refid="searchContext"/>
+    </sql>
+    <!--  조건에 맞는 테이블 검색조건  -->
+    <sql id="searchContext">
+        where
+        <trim prefixOverrides="and">
+            <foreach collection="dto.types" item="type">
+                <trim prefix="and">
+                    <choose>
+                        <when test="type == 'userId'.toString()">
+                            user_id = #{dto.userId}
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    </sql>
 </mapper>

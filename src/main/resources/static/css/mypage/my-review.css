@@ -1,35 +1,73 @@
-@font-face{font-family:Noto Sans;font-style:normal;font-weight:300;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format("0woff"),url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format("truetype")}
-@font-face{font-family:Noto Sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format("truetype")}
-@font-face{font-family:Noto Sans;font-style:normal;font-weight:500;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format("truetype")}
-@font-face{font-family:Noto Sans;font-style:normal;font-weight:700;font-display:swap;src:url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format("woff2"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format("woff"),url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format("truetype")}html{line-height:1.15; line-height:1.15;-webkit-tap-highlight-color:transparent}
+@font-face {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format("woff2"), url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format("0woff"), url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format("truetype")
+}
+
+@font-face {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format("woff2"), url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format("woff"), url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format("truetype")
+}
+
+@font-face {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format("woff2"), url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format("woff"), url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format("truetype")
+}
+
+@font-face {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format("woff2"), url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format("woff"), url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format("truetype")
+}
+
+html {
+    line-height: 1.15;
+    line-height: 1.15;
+    -webkit-tap-highlight-color: transparent
+}
 
 
-body{
+body {
     font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
     font-size: 14px;
     color: #333;
 }
-ul{
+
+ul {
     list-style-type: none;
 }
-.mypage{
+
+.mypage {
     position: relative;
     min-width: 1050px;
 }
-.mypage-section{
+
+.mypage-section {
     width: 100%;
     padding: 50px 0px;
     margin-bottom: -20px;
     background-color: rgb(247, 247, 247);
 }
-.mypage-section-list{
+
+.mypage-section-list {
     /* display: grid; */
     grid-template-columns: 372px auto;
     width: 1050px;
     margin: 0px auto;
     /* gap: 4px; */
 }
-.mypage-section-list-left{
+
+.mypage-section-list-left {
     padding: 30px 30px 20px;
     grid-row: 1 / 3;
     display: flex;
@@ -39,11 +77,13 @@ ul{
     background: rgb(255, 255, 255);
     width: 30%;
 }
-.mypage-section-list-left-container{
+
+.mypage-section-list-left-container {
     display: flex;
     margin-top: -5px;
 }
-.mypage-section-list-left-type{
+
+.mypage-section-list-left-type {
     min-width: 40px;
     height: 20px;
     display: flex;
@@ -61,7 +101,8 @@ ul{
     background-color: rgb(255, 255, 255);
     margin-top: -7px;
 }
-.mypage-section-list-left-name-container{
+
+.mypage-section-list-left-name-container {
     display: flex;
     flex-direction: column;
     -webkit-box-pack: center;
@@ -71,7 +112,8 @@ ul{
     margin-left: 13px;
     margin-top: -20px;
 }
-.mypage-section-list-left-name{
+
+.mypage-section-list-left-name {
     display: block;
     overflow: hidden;
     font-weight: 500;
@@ -81,11 +123,13 @@ ul{
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.mypage-section-list-left-btn-container{
+
+.mypage-section-list-left-btn-container {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
 }
+
 .mypage-section-list-left-btn {
     width: 50%;
     display: flex;
@@ -100,31 +144,35 @@ ul{
     justify-content: center;
     align-items: center;
 }
-.mypage-section-list-right-benner{
+
+.mypage-section-list-right-benner {
     display: block;
     width: 725px;
     overflow: hidden;
     margin-left: 325px;
     margin-top: -215px;
 }
-.mypage-section-list-right-benner-img{
+
+.mypage-section-list-right-benner-img {
     width: 725px;
     height: 215px;
     object-fit: cover;
 }
 
-.mypage-section-list-benner{
+.mypage-section-list-benner {
     display: block;
     width: 1050px;
     overflow: hidden;
     margin: 20px auto 0px;
 }
-.mypage-section-list-benner-img{
+
+.mypage-section-list-benner-img {
     width: 100%;
     height: 60px;
     object-fit: cover;
 }
-.mypage-list{
+
+.mypage-list {
     display: flex;
     width: 1050px;
     padding: 50px 0px 80px;
@@ -133,8 +181,9 @@ ul{
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
+
 /* 내창고, 이용중인 창고 */
-.status-list-item{
+.status-list-item {
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -142,17 +191,20 @@ ul{
     color: #303441;
     margin-bottom: 3px;
 }
-.status-item-wrapper{
+
+.status-item-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .status-item-name {
     display: flex;
     font-weight: 400;
     font-size: 15px;
     margin-left: 5px
 }
+
 .status-item-count {
     margin-top: 4px;
     text-align: right;
@@ -162,10 +214,12 @@ ul{
     cursor: default;
     margin-right: 5px;
 }
-.mypage-list-left-container{
+
+.mypage-list-left-container {
     width: 200px;
 }
-.mypage-list-left-name{
+
+.mypage-list-left-name {
     height: 75px;
     padding: 5px 0px 35px 1px;
     font-weight: 500;
@@ -174,11 +228,13 @@ ul{
     color: rgb(51, 51, 51);
     letter-spacing: -1px;
 }
-.mypage-list-left-section{
+
+.mypage-list-left-section {
     border: 1px solid rgb(242, 242, 242);
     padding: 0;
 }
-.mypage-list-left-section-name1{
+
+.mypage-list-left-section-name1 {
     background-color: rgb(250, 250, 250);
     color: rgb(95, 0, 128);
     font-weight: 500;
@@ -194,7 +250,8 @@ ul{
     letter-spacing: -0.3px;
     font-size: 14px;
 }
-.mypage-list-right-line{
+
+.mypage-list-right-line {
     display: flex;
     flex-direction: row;
     width: 95%;
@@ -203,7 +260,8 @@ ul{
     border-bottom: 1px solid rgb(51, 51, 51);
     margin-left: 7px;
 }
-.mypage-list-left-section-name{
+
+.mypage-list-left-section-name {
     cursor: pointer;
     border-bottom: 1px solid rgb(242, 242, 242);
     padding: 14px 20px 16px;
@@ -216,7 +274,8 @@ ul{
     letter-spacing: -0.3px;
     font-size: 14px;
 }
-.mypage-list-left-section-arrow{
+
+.mypage-list-left-section-arrow {
     display: inline-block;
     width: 6px;
     height: 11px;
@@ -224,7 +283,8 @@ ul{
     background-size: cover;
     background-position: center center;
 }
-.mypage-list-left-section-help{
+
+.mypage-list-left-section-help {
     width: 100%;
     height: 60px;
     padding: 0px 10px;
@@ -238,16 +298,19 @@ ul{
     background-color: rgb(250, 250, 250);
     line-height: 20px;
 }
-.mypage-list-left-section-help-text{
+
+.mypage-list-left-section-help-text {
     display: flex;
     flex-direction: column;
     color: rgb(51, 51, 51);
 }
+
 /* 오른쪽 */
-.mypage-list-right{
+.mypage-list-right {
     width: 820px;
 }
-.mypage-list-right-name-container{
+
+.mypage-list-right-name-container {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -257,44 +320,50 @@ ul{
     border-bottom: 1px solid rgb(51, 51, 51);
     padding-top: 20px;
 }
-.mypage-list-right-name-wrapper{
+
+.mypage-list-right-name-wrapper {
     display: flex;
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
 }
-.mypage-list-right-name{
+
+.mypage-list-right-name {
     font-weight: 500;
     font-size: 24px;
     color: rgb(51, 51, 51);
     letter-spacing: -0.5px;
     line-height: 6px;
 }
+
 /* 오른쪽 */
-.mypage-review-container{
+.mypage-review-container {
     position: relative;
     width: 100%;
     height: 100%;
 }
-.review-title-container{
+
+.review-title-container {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
     height: 60px;
     background-color: rgb(250, 250, 250);
 }
-.review-title-left-btn{
-    border-bottom-width: 0px;
+
+.review-title {
     background-color: rgb(255, 255, 255);
     color: rgb(95, 0, 128);
     flex: 1 1 0%;
     border: 1px solid rgb(244, 244, 244);
     font-weight: 500;
     font-size: 16px;
-    line-height: 21px;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.review-title-right-btn{
+
+.review-title-right-btn {
     flex: 1 1 0%;
     border: 1px solid rgb(244, 244, 244);
     font-weight: 500;
@@ -302,40 +371,47 @@ ul{
     line-height: 21px;
     cursor: pointer;
 }
-.review-content-container{
+
+.review-content-container {
     width: 100%;
 }
+
 /* 작성 가능 후기 내용창*/
-.review-content-wrpper{
+.review-content-wrpper {
     width: 100%;
     height: 100%;
 }
-.review-content-text{
+
+.review-content-text {
     padding: 22px 0px 40px 3px;
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
     color: rgb(102, 102, 102);
 }
-.review-text{
+
+.review-text {
     padding-left: 0px;
     font-weight: 500;
     color: rgb(102, 102, 102);
 }
-.review-text-list{
+
+.review-text-list {
     position: relative;
     padding-left: 11px;
     font-weight: 400;
     color: rgb(153, 153, 153);
 }
-.review-content-list-container{
+
+.review-content-list-container {
     position: relative;
     width: 100%;
-    min-height: 600px;
     border-top: 1px solid rgb(51, 51, 51);
     margin-top: 30px;
+    margin-bottom: 14px;
 }
-.review-content-list-count{
+
+.review-content-list-count {
     position: absolute;
     top: -38px;
     left: 0px;
@@ -343,30 +419,38 @@ ul{
     font-weight: 500;
     line-height: 17px;
 }
-.review-content-line{
+
+.review-content-line {
     width: 100%;
     height: 1px;
 }
-.review-content-list{
-    display: grid;
-    grid-template-columns: 72px 400px 1fr 96px;
-    -webkit-box-align: center;
+
+.review-content-list {
+    display: flex;
     align-items: center;
-    column-gap: 20px;
     width: 100%;
     padding: 20px 20px 19px;
     border-bottom: 1px solid rgb(244, 244, 244);
     font-size: 14px;
     line-height: 19px;
     color: rgb(153, 153, 153);
+    justify-content: space-between;
 }
-.review-content-list-img{
+
+.review-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.review-content-list-img {
     width: 72px;
     height: 72px;
     border-radius: 6px;
     object-fit: cover;
 }
-.review-content-name{
+
+.review-content-name {
     height: 21px;
     margin: -1px 0px 2px;
     font-size: 16px;
@@ -382,14 +466,16 @@ ul{
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
-.review-content-date{
+
+.review-content-date {
     display: flex;
     flex-direction: column;
     -webkit-box-align: end;
     align-items: end;
     color: rgb(102, 102, 102);
 }
-.review-content-btn{
+
+.review-content-btn {
     width: 96px;
     height: 36px;
     border-radius: 3px;
@@ -403,14 +489,15 @@ ul{
 }
 
 /* 작성한 후기 내용창*/
-.ok-review-content-list-container{
+.ok-review-content-list-container {
     position: relative;
     width: 100%;
     min-height: 600px;
     border-top: 1px solid rgb(51, 51, 51);
     margin-top: 69px;
 }
-.ok-review-content-container{
+
+.ok-review-content-container {
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
@@ -420,7 +507,8 @@ ul{
     padding: 20px 30px 20px 20px;
     border-bottom: 1px solid rgb(244, 244, 244);
 }
-.ok-review-content-btn{
+
+.ok-review-content-btn {
     width: 96px;
     height: 36px;
     border-radius: 3px;
@@ -431,18 +519,21 @@ ul{
     text-align: center;
     cursor: pointer;
 }
-.ok-review-content-title-container{
+
+.ok-review-content-title-container {
     display: flex;
     -webkit-box-align: center;
     gap: 20px;
     align-items: flex-start;
     flex-direction: column;
 }
-.ok-review-content-wrapper{
+
+.ok-review-content-wrapper {
     display: flex;
     flex-direction: column;
 }
-.ok-review-content-name{
+
+.ok-review-content-name {
     max-width: 400px;
     padding-top: 1px;
     font-weight: 500;
@@ -455,7 +546,8 @@ ul{
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
-.ok-review-content-date{
+
+.ok-review-content-date {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -464,13 +556,15 @@ ul{
     align-items: center;
     margin-top: -10px;
 }
-.ok-review-content-date-text{
+
+.ok-review-content-date-text {
     margin-left: 0px;
     font-size: 14px;
     line-height: 19px;
     color: rgb(153, 153, 153);
 }
-.ok-review-text-container{
+
+.ok-review-text-container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -479,7 +573,8 @@ ul{
     font-weight: 400;
     line-height: 21px;
 }
-.ok-review-text{
+
+.ok-review-text {
     height: auto;
     font-size: 14px;
     font-weight: 400;
@@ -492,14 +587,16 @@ ul{
     word-break: break-all;
     white-space: pre-line;
 }
+
 /* 수정 모달 */
-.change-modal{
+.change-modal {
     position: fixed;
     z-index: 1300;
     inset: 0px;
     display: none;
 }
-.change-modal-root{
+
+.change-modal-root {
     opacity: 1;
     transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     position: fixed;
@@ -513,7 +610,8 @@ ul{
     -webkit-tap-highlight-color: transparent;
     z-index: -1;
 }
-.change-modal-container{
+
+.change-modal-container {
     opacity: 1;
     transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     height: 100%;
@@ -524,7 +622,8 @@ ul{
     -webkit-box-align: center;
     align-items: center;
 }
-.change-modal-wrapper{
+
+.change-modal-wrapper {
     padding: 30px;
     min-width: 800px;
     min-height: 690px;
@@ -538,11 +637,30 @@ ul{
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    /* max-height: calc(100% - 64px); */
+    max-height: calc(100% - 64px);
     max-width: 600px;
     padding-bottom: 0px;
 }
-.change-modal-title-row{
+
+.change-modal-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.change-modal-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.change-modal-wrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+}
+
+.change-modal-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.change-modal-title-row {
     display: flex;
     flex-direction: row;
     -webkit-box-align: center;
@@ -552,7 +670,8 @@ ul{
     padding-bottom: 10px;
     border-bottom: 1px solid rgb(244, 244, 244);
 }
-.change-modal-image-row{
+
+.change-modal-image-row {
     padding: 10px 0px;
     display: flex;
     flex-direction: row;
@@ -562,10 +681,12 @@ ul{
     justify-content: flex-start;
     border-bottom: 1px solid rgb(244, 244, 244);
 }
-.change-modal-form-wrapper{
+
+.change-modal-form-wrapper {
     padding: 15px 0px 15px 10px;
 }
-.change-modal-actions-row{
+
+.change-modal-actions-row {
     position: sticky;
     bottom: 0px;
     left: 0px;
@@ -580,7 +701,8 @@ ul{
     border-top: 1px solid rgb(244, 244, 244);
     background-color: rgb(255, 255, 255);
 }
-.change-modal-title-text{
+
+.change-modal-title-text {
     margin: 0px;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     flex: 0 0 auto;
@@ -591,11 +713,13 @@ ul{
     letter-spacing: -0.5px;
     color: rgb(51, 51, 51);
 }
-.change-modal-image-wrapper{
+
+.change-modal-image-wrapper {
     border-radius: 4px;
     overflow: hidden;
 }
-.change-modal-image-title-text{
+
+.change-modal-image-title-text {
     padding-left: 20px;
     display: -webkit-box;
     overflow: hidden;
@@ -611,7 +735,8 @@ ul{
     word-break: keep-all;
     overflow-wrap: break-word;
 }
-.change-modal-image{
+
+.change-modal-image {
     position: absolute;
     inset: 0px;
     box-sizing: border-box;
@@ -627,7 +752,8 @@ ul{
     max-height: 100%;
     object-fit: cover;
 }
-.change-modal-form-row{
+
+.change-modal-form-row {
     display: flex;
     flex-direction: row;
     -webkit-box-align: center;
@@ -636,7 +762,8 @@ ul{
     justify-content: flex-start;
     margin-bottom: 16px;
 }
-.change-modal-form-label{
+
+.change-modal-form-label {
     flex-basis: 100px;
     padding-left: 10px;
     font-size: 14px;
@@ -644,14 +771,17 @@ ul{
     font-weight: 700;
     color: rgb(51, 51, 51);
 }
-.change-modal-form-field{
+
+.change-modal-form-field {
     flex: 1 1 0%;
 }
-.change-modal-form-title{
+
+.change-modal-form-title {
     position: relative;
     height: 48px;
 }
-.change-modal-form-title-input{
+
+.change-modal-form-title-input {
     width: 100%;
     height: 46px;
     padding: 0px 11px 1px 15px;
@@ -664,7 +794,8 @@ ul{
     outline: none;
     box-sizing: border-box;
 }
-.change-modal-form-field-container{
+
+.change-modal-form-field-container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -673,7 +804,8 @@ ul{
     border: 1px solid rgb(221, 221, 221);
     border-radius: 4px;
 }
-.change-modal-form-field-text{
+
+.change-modal-form-field-text {
     display: block;
     width: 100%;
     height: 100%;
@@ -689,12 +821,14 @@ ul{
     resize: none;
     border: none;
 }
-.change-modal-form-field-content{
+
+.change-modal-form-field-content {
     padding: 0px 16px 16px;
     font-size: 12px;
     text-align: right;
 }
-.change-modal-delete-btn{
+
+.change-modal-delete-btn {
     width: 160px;
     height: 56px;
     padding: 0px 10px;
@@ -709,7 +843,8 @@ ul{
     color: rgb(0, 0, 0);
     cursor: pointer;
 }
-.change-modal-ok-btn{
+
+.change-modal-ok-btn {
     cursor: pointer;
     background-color: rgb(221, 221, 221);
     width: 160px;
@@ -723,12 +858,14 @@ ul{
     font-weight: 500;
     color: rgb(255, 255, 255);
 }
-.change-modal-btn{
+
+.change-modal-btn {
     display: inline-block;
     font-size: 16px;
     font-weight: 500;
 }
-.review-modal-container{
+
+.review-modal-container {
     flex: 1 1 auto;
     overflow-y: auto;
     position: relative;
@@ -738,7 +875,8 @@ ul{
     line-height: 19px;
     color: rgb(153, 153, 153);
 }
-.review-modal-title-container{
+
+.review-modal-title-container {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -747,18 +885,22 @@ ul{
     padding-bottom: 0px;
     border-bottom: 1px solid rgb(244, 244, 244);
 }
-.review-modal-main-container{
+
+.review-modal-main-container {
     padding: 20px;
     border-bottom: 1px solid rgb(244, 244, 244);
+    margin-bottom: 12px;
 }
-.review-modal-main-text{
+
+.review-modal-main-text {
     font-weight: 600;
     font-size: 20px;
     line-height: 30px;
     text-align: center;
     color: rgb(51, 51, 51);
 }
-.review-modal-text{
+
+.review-modal-text {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
@@ -767,25 +909,34 @@ ul{
     white-space: pre-line;
     margin-top: 0px;
 }
-.review-modal-content-container{
+
+.review-modal-content-container {
     position: relative;
     min-height: 240px;
     overflow: hidden;
 }
-.review-modal-content-wrapper{
+
+.review-modal-content-wrapper:nth-child(1) {
+    display: flex;
+    gap: 36px;
+    padding-top: 16px;
+}
+
+.review-modal-content-wrapper {
     display: flex;
     gap: 30px;
     padding-top: 16px;
 }
-.review-modal-content-name{
+
+.review-modal-content-name {
     position: relative;
     flex-shrink: 0;
     width: 70px;
-    padding-top: 12px;
     line-height: 19px;
     color: rgb(51, 51, 51);
 }
-.review-modal-content-inputBox-container{
+
+.review-modal-content-inputBox-container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -794,7 +945,8 @@ ul{
     border: 1px solid rgb(221, 221, 221);
     border-radius: 4px;
 }
-.review-modal-content-inputBox{
+
+.review-modal-content-inputBox {
     display: block;
     width: 100%;
     height: 100%;
@@ -811,7 +963,8 @@ ul{
     font-size: 14px;
     font-weight: 400;
 }
-.review-modal-content-inputBox-inner{
+
+.review-modal-content-inputBox-inner {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -819,19 +972,22 @@ ul{
     height: 100%;
     padding: 15px 15px 32px;
 }
-.review-modal-content-inputBox-inner-text{
+
+.review-modal-content-inputBox-inner-text {
     font-size: 14px;
     font-weight: 400;
     line-height: 19px;
     color: rgb(204, 204, 204);
     cursor: pointer;
 }
-.review-modal-content-inputBox-number-container{
+
+.review-modal-content-inputBox-number-container {
     padding: 0px 16px 16px;
     font-size: 12px;
     text-align: right;
 }
-.review-modal-content-number{
+
+.review-modal-content-number {
     position: absolute;
     top: 35px;
     left: 0px;
@@ -840,48 +996,10 @@ ul{
     line-height: 13px;
     color: rgb(204, 204, 204);
 }
-.photo-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-    width: 100%;
-}
-.photo-wrapper{
-    position: relative;
-    border: 1px solid rgb(221, 221, 221);
-    overflow: hidden;
-    border-radius: 6px;
-    aspect-ratio: 1 / 1;
-    width: 72px;
-    height: 72px;
-}
-.photo-btn{
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-.photo-modal{
-    position: absolute;
-    inset: 0px;
-    width: 30px;
-    height: 30px;
-    margin: auto;
-}
-.review-modal-photo-text{
-    padding-left: 6px;
-    font-weight: 400;
-    font-size: 14px;
-    color: rgb(153, 153, 153);
-    line-height: 21px;
-}
-.review-modal-photo-text-list{
-    line-height: 22px;
-    list-style-type: "·";
-    list-style-position: outside;
-    padding-inline-start: 3px;
-}
+
+
 /* 작성한 후기 */
-.review-title-left-btn2{
+.review-title-left-btn2 {
     flex: 1 1 0%;
     border: 1px solid rgb(244, 244, 244);
     font-weight: 500;
@@ -889,7 +1007,8 @@ ul{
     line-height: 21px;
     cursor: pointer;
 }
-.review-title-right-btn2{
+
+.review-title-right-btn2 {
     border-bottom-width: 0px;
     background-color: rgb(255, 255, 255);
     color: rgb(95, 0, 128);
@@ -900,55 +1019,119 @@ ul{
     line-height: 21px;
     cursor: pointer;
 }
-.review-modal-photo-text2{
-    padding-left: 6px;
-    font-weight: 400;
-    font-size: 14px;
-    color: rgb(153, 153, 153);
-    line-height: 21px;
-}
-.review-modal-photo-text-list2{
-    line-height: 22px;
-    list-style-type: "·";
-    list-style-position: outside;
-    padding-inline-start: 3px;
-}
-.review-none-btn{
+
+/* 수정모달 이미지 등록 */
+.termsLayout {
     display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    gap: 10px;
-    padding-top: 2px;
-}
-/* 포토 이미지 */
-.imgButtonWrap{
-    height: 72px;
-    width: 72px;
-}
-.imgButton{
-    cursor:pointer;
     width: 100%;
-    height: 100%;
+    gap: 30px;
+}
+
+.termsTitle {
+    flex-basis: 100px;
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 700;
+    color: rgb(51, 51, 51);
+}
+
+.termsLabel {
+    font-weight: 500;
+    color: rgb(51, 51, 51);
+    line-height: 20px;
+}
+
+.imageContainer {
+    flex: 1;
+}
+
+.imageWrapperPadding > div {
+    padding: 3px 0px 0px;
+}
+
+.imageWrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0px;
+}
+
+.imageDiv {
+    display: flex;
+    gap: 6px;
+    font-size: 20px !important;
+    flex-wrap: nowrap;
+}
+
+.imgTextWrapper {
+    margin: 11px 0px 7px 6px;
+    line-height: 16px;
+    font-size: 13px;
+    color: rgb(153, 153, 153);
+}
+
+.review-modal-photo-text{
+    margin-left: 6px;
+    font-size: 13px;
+}
+
+.imgButton {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 6px;
-  }
-  .cameraIconImg{
+}
+
+.imageFileInput {
+    display: none;
+}
+
+.closeImgButton {
+    position: absolute;
+    top: 0.375rem;
+    right: 0.375rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuNSIgY3g9IjkiIGN5PSI5IiByPSI5Ii8+CiAgICAgICAgPGcgc3Ryb2tlPSIjRkZGIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS13aWR0aD0iMS41Ij4KICAgICAgICAgICAgPHBhdGggZD0iTTEyLjI1OSAxMi4xMzUgNS43NjggNS42NDRNNS43NjIgMTIuMTMzbDYuNDk3LTYuNDk3Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K) 0px 0px no-repeat;
+}
+
+.cameraIconImg {
     margin: 20px;
     display: inline-block;
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 2.5rem;
+    height: 2.5rem;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxwYXRoIGQ9Ik0wIDBoMzB2MzBIMHoiLz4KICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Ljc3OSA2LjExMSkiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjMiPgogICAgICAgICAgICA8cGF0aCBkPSJNMTEuNzkyIDBjLjM5OSAwIC43MTcuMDU2Ljk1NS4xNy4xNzkuMDg0LjM0Ni4xOTkuNTAzLjM0NGwuMTUzLjE1NS42MzEuNzAzYy4xMjIuMTMuMjM0LjIzMy4zMzcuMzFhLjk1Ljk1IDAgMCAwIC4zNC4xNmMuMTI1LjAzMS4yOTIuMDQ3LjUwMy4wNDdsMi45MDYtLjAwM2MxLjI4NCAwIDIuMzI0IDEuMDYyIDIuMzI0IDIuMzd2MTEuMTUxYzAgMS4zMS0xLjA0IDIuMzctMi4zMjQgMi4zN0gyLjMyNGMtMS4yODMgMC0yLjMyNC0xLjA2LTIuMzI0LTIuMzdWNC4yNTdjMC0xLjMxIDEuMDQtMi4zNyAyLjMyNC0yLjM3aDIuOTgzYy4yNDUtLjAwOS40MzItLjA0NS41NTktLjEwOC4xMS0uMDU1LjIzLS4xNDUuMzYtLjI3bC4xMzQtLjEzNy42MzEtLjcwM2MuMi0uMjIuNDE4LS4zODcuNjU3LS41LjE5LS4wOS40MzItLjE0NC43MjUtLjE2Mkw4LjYwMyAwaDMuMTg5eiIvPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMC4xNDIiIGN5PSI5LjUyOSIgcj0iMy41NTYiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-  }
-  .imageFileInput{
-    display: none;
-  }
-  /* 선택사진제한 모달 */
-  .modalContainer {
+}
+
+.thumbnailWrap {
+    display: inline-flex;
+    gap: 6px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.imgButtonWrap {
+    display: inline-flex;
+}
+
+.imageThumbnail {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+}
+
+.imgTextDiv {
+    margin: 3px 0;
+}
+
+/* ============================================ */
+
+/* 선택사진제한 모달 */
+.modalContainer {
     padding: 0 24px;
     align-items: center;
     display: none;
@@ -965,78 +1148,78 @@ ul{
     overflow-x: hidden;
     transition: background-color .1s;
     -webkit-overflow-scrolling: touch;
-  }
-  
-  .popup {
-      display: none;
-      position: relative;
-      box-sizing: border-box;
-      flex-direction: column;
-      justify-content: center;
-      width: 32em;
-      max-width: 360px;
-      padding: 0;
-      border: none;
-      border-radius: 12px;
-      background: #fff;
-      font-family: inherit;
-      font-size: 1rem;
-  }
-  
-  .modalHeader {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 1.8em;
-  }
-  
-  .progressStep{
-      flex-wrap: wrap;
-      align-items: center;
-      max-width: 100%;
-      margin: 0 0 1.25em;
-      padding: 0;
-      background: inherit;
-      font-weight: 600;
-  }
-  
-  .modalIcon {
-      position: relative;
-      box-sizing: content-box;
-      justify-content: center;
-      width: 5em;
-      height: 5em;
-      margin: 1.25em auto 1.875em;
-      border: 0.25em solid transparent;
-      border-radius: 50%;
-      border-color: #000;
-      font-family: inherit;
-      line-height: 5em;
-      cursor: default;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-  }
-  
-  .modalContent {
-      z-index: 1;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      color: #545454;
-      font-size: 1.125em;
-      font-weight: 400;
-      line-height: normal;
-      text-align: center;
-      word-wrap: break-word;
-  }
-  
-  .modalContentContainer{
+}
+
+.popup {
+    display: none;
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 360px;
     padding: 0;
-  }
-  
-  .modalContentInput{
+    border: none;
+    border-radius: 12px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.modalHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.8em;
+}
+
+.progressStep {
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 0 1.25em;
+    padding: 0;
+    background: inherit;
+    font-weight: 600;
+}
+
+.modalIcon {
+    position: relative;
+    box-sizing: content-box;
+    justify-content: center;
+    width: 5em;
+    height: 5em;
+    margin: 1.25em auto 1.875em;
+    border: 0.25em solid transparent;
+    border-radius: 50%;
+    border-color: #000;
+    font-family: inherit;
+    line-height: 5em;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.modalContent {
+    z-index: 1;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-size: 1.125em;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.modalContentContainer {
+    padding: 0;
+}
+
+.modalContentInput {
     padding: 40px 30px;
     font-size: 16px;
     font-weight: 500;
@@ -1046,9 +1229,9 @@ ul{
     margin-top: 0px;
     white-space: pre-line;
     letter-spacing: -0.5px;
-  }
-  
-  .modalFooterInput {
+}
+
+.modalFooterInput {
     height: 56px;
     border-top: 1px solid rgb(247, 247, 247);
     border-bottom-left-radius: 6px;
@@ -1058,10 +1241,10 @@ ul{
     padding: 0px;
     margin-top: 0px;
     justify-content: space-around;
-  }
-  
-  .modalCheckButton {
-    cursor:pointer;
+}
+
+.modalCheckButton {
+    cursor: pointer;
     width: auto;
     height: 100%;
     border: none;
@@ -1070,13 +1253,14 @@ ul{
     font-weight: 600;
     color: rgb(95, 0, 128);
     background: transparent;
-  }
-  
-  .showModal{
+}
+
+.showModal {
     display: flex;
-    background: rgba(0,0,0,.4);
-  }
-  .amend-use-agree-checkBox-wrapper{
+    background: rgba(0, 0, 0, .4);
+}
+
+.amend-use-agree-checkBox-wrapper {
     position: relative;
     display: flex;
     -webkit-box-align: center;

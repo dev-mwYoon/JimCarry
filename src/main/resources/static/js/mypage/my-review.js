@@ -1,214 +1,265 @@
-/* 후기작성 모달 */    
-const btn = document.querySelector(".modal-btn");
-const container = document.querySelector(".change-modal");
-const close = document.querySelector(".close-btn");
-const cancel = document.querySelector(".change-modal-delete-btn");
-    
+payments.forEach((payment, i) => {
+    $(".review-content-list-container").append(
+        `
+            <div class="review-content-list">
+                <div class="review-content">
+                    <a href="#" style="text-decoration: none;">
+                        <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
+                             class="review-content-list-img">
+                    </a>
+                    <p>
+                        <a href="#" class="review-content-name">${reviews[i].reviewTitle}</a>
+                        <span>${payment.paymentDate} 주문완료</span>
+                    </p>
+                </div>  
+                <button class="review-content-btn modal-btn">후기작성</button>
+            </div>
+            <div class="review-content-line"></div>
+        `
+    )
+});
+
+$(".review-content-wrpper").append(
+    `
+    <div class="change-modal" id="modal">
+    <div class="change-modal-root"></div>
+    <div class="change-modal-container">
+        <div class="change-modal-wrapper">
+            <div>
+                <div class="change-modal-title-row">
+                    <h4 class="change-modal-title-text">후기 작성</h4>
+                    <!-- x버튼 -->
+                    <button type="button" class="close-btn" style="cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                             viewBox="0 0 32 32">
+                            <g fill="none" fill-rule="evenodd">
+                                <g>
+                                    <g>
+                                        <g>
+                                            <path fill="#fff" fill-opacity="0"
+                                                  d="M0 0H32V32H0z"
+                                                  transform="translate(-884 -270) translate(500 240) translate(384 30)"></path>
+                                            <g stroke="#999" stroke-linecap="round">
+                                                <path d="M20 20L0 0M0 20L20 0"
+                                                      transform="translate(-884 -270) translate(500 240) translate(384 30) translate(6 6)"></path>
+                                            </g>
+                                            <g fill="#999">
+                                                <path d="M.784.089l.07.057L10.5 9.793 20.146.146c.196-.195.512-.195.708 0 .173.174.192.443.057.638l-.057.07-9.647 9.646 9.647 9.646c.195.196.195.512 0 .708-.174.173-.443.192-.638.057l-.07-.057-9.646-9.647-9.646 9.647c-.196.195-.512.195-.708 0-.173-.174-.192-.443-.057-.638l.057-.07L9.793 10.5.146.854C-.049.658-.049.342.146.146.32-.027.59-.046.784.09z"
+                                                      transform="translate(-884 -270) translate(500 240) translate(384 30) translate(5.5 5.5)"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+                <div class="review-modal-container">
+                    <div>
+                        <div class="review-modal-title-container">
+                            <div class="change-modal-image-row">
+                                <div class="change-modal-image-wrapper">
+                                        <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
+                                            <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+                                                <img alt="" aria-hidden="true"
+                                                     src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2772%27%20height=%2772%27/%3e"
+                                                     style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;">
+                                            </span>
+                                            <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
+                                                 class="change-modal-image">
+                                        </span>
+                                </div>
+                                <p class="change-modal-image-title-text">[소] 100cm(가로) x
+                                    75cm(세로) x 220cm(높이)</p>
+                            </div>
+                        </div>
+                        <div class="review-modal-main-container">
+                            <h2 class="review-modal-main-text">후기는 이렇게 작성해 보세요</h2>
+                            <p class="review-modal-text">
+                                창고의 <span
+                                    style="color: rgb(168, 100, 216);">크기, 사용감, 거리</span>등을
+                                설명해주세요
+                                <strong style="font-weight: 500;">좋았던 점, 아쉬웠던 점</strong>도
+                                솔직하게 얘기해주세요
+                            </p>
+                        </div>
+                        <form>
+                            <div class="review-modal-content-container">
+                                <div class="review-modal-content-wrapper">
+                                    <label class="review-modal-content-name">내용</label>
+                                    <div style="width: 100%;">
+                                        <div class="review-modal-content-inputBox-container">
+                                            <textarea inputmode="text" maxlength="5000"
+                                                      placeholder="창고 특성에 맞는 후기를 작성해주세요. 예) 창고 크기, 실제 창고 사진, 창고의 청결도 등 (최소 10자 이상)"
+                                                      class="review-modal-content-inputBox"></textarea>
+                                            <span class="review-modal-content-inputBox-number-container">
+                                                    <span>
+                                                        <span style="color: rgb(153, 153, 153);">0</span>
+                                                        <span style="color: rgb(153, 153, 153);">/ 5000</span>
+                                                    </span>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-modal-content-wrapper">
+                                    <div class="termsLayout">
+                                        <label class="review-modal-content-name">리뷰사진</label>
+                                        <div class="imageContainer">
+                                            <div class="imageWrapperPadding">
+                                                <div class="imageWrapper">
+                                                    <div id="thumbnail-list" class="imageDiv">
+                                                        <div class="thumbnailWrap"></div>
+                                                        <div class="imgButtonWrap">
+                                                            <label for="photo-picker">
+                                                                <div class="imgButton">
+                                                                    <span class="cameraIconImg"></span>
+                                                                </div>
+                                                                <input class="imageFileInput" id="photo-picker" type="file" accept="image/jpg, image/jpeg, image/png, image/bmp" multiple="">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="imgTextWrapper">
+                                                        <div class="imgTextDiv">
+                                                            <span></span>
+                                                            30MB 이하의 이미지만 업로드 가능합니다.
+                                                        </div>
+                                                        <div class="imgTextDiv">
+                                                            <span></span>
+                                                            상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.
+                                                        </div>
+                                                        <div class="imgTextDiv">
+                                                            <span></span>
+                                                            사진은 최대 8장까지 등록가능합니다.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-modal-content-wrapper">
+                                    <label class="review-modal-content-name"></label>
+                                    <ul class="review-modal-photo-text">
+                                        <li class="review-modal-photo-text-list">창고와
+                                            무관하거나 반복되는 동일 단어/문장을 사용하여 후기로 볼 수 없는 글, 판매자와
+                                            고객의 후기 이용을 방해한다고 판단되는 경우, 창고를 구분할 수 없는 전체
+                                            사진, 화면캡쳐, 음란 및 부적절하거나 불법적인 내용은 통보없이 삭제될 수
+                                            있습니다.
+                                        </li>
+                                        <li class="review-modal-photo-text-list">전화번호,
+                                            이메일, 주소, 계좌번호 등 개인정보가 노출되지 않도록 주의해주세요.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="change-modal-actions-row">
+                                <button type="button" class="change-modal-delete-btn">
+                                    취소
+                                </button>
+                                <button type="submit" class="change-modal-ok-btn"
+                                        value="등록" disabled="" style="cursor: pointer;">
+                                    등록
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+`
+);
+
+/* file.js에서 사용 */
+/* 현재 페이지에서 몇 번째를 클릭했는가 */
+let contentIndex;
+
+/* 썸네일을 담는 div */
+const $thumbnailWrap = $(".thumbnailWrap");
+
+/* 실제 저장할 파일VO들의 배열 */
+let fileVOs = new Array();
+
+const $textareaTitle = $(".change-modal-form-title-input");
+
+// 글자수 세기, 제한
+const $textarea = $('.review-modal-content-inputBox');
+const $counter = $('.review-modal-content-inputBox-number-container span:first-child');
+
+// 최대 글자수를 정합니다.
+const maxLength = 5000;
+
+/* 후기작성 모달 */
+const $btn = $(".modal-btn");
+const $container = $(".change-modal");
+const $close = $(".close-btn");
+const $cancel = $(".change-modal-delete-btn");
+
 //모달창 열기
-btn.addEventListener("click", function(){
-    container.style.display="block";
+$btn.on("click", function () {
+    $container.css("display", "block");
+    //  현재 클릭한 모달창을 기준으로 텍스트 설정
+    let i = $btn.index($(this));
+    contentIndex = i;
+
+    /* 글자수 세팅 */
+    // 글자수세기, 제한  <작성가능 후기>
+    let textLength = 0;
+    $textareaTitle.val(reviews[i].reviewTitle);
+    $textarea.val(reviews[i].reviewContext);
+
+    textLength = $textarea.val().length;
+
+    /* 처음 문의내용에 따라 몇자인지 세팅 */
+    $counter.text(`${textLength}자 / ${maxLength}자`);
+
+    //  열기
+    $container.css("display", "block");
+
+    // 텍스트 입력이 일어날 때마다 글자수를 세고, 글자수를 표시합니다.
+    $textarea.on('input', () => {
+        textLength = $textarea.val().length;
+
+        // 최대 글자수를 초과하면 입력을 막습니다.
+        if (textLength > maxLength) {
+            let max = $textarea.val();
+            $textarea.val(max.slice(0, maxLength));
+            textLength = $textarea.val().length;
+        }
+
+        $counter.text(`${textLength}자 / ${maxLength}자`);
+
+        // 글자수가 10자 이상인 경우 배경색을 바꾸기
+        if (textLength >= 10) {
+            $('.change-modal-ok-btn').css('background-color', '#5f0080');
+        } else {
+            $('.change-modal-ok-btn').css('background-color', '#ddd');
+        }
+    });
+
+    /* 썸네일 내용 및 파일 배열 비우기 */
+    $thumbnailWrap.empty();
+    fileVOs = new Array();
+
+    // doAjax(thumbnailAjaxConfig(i), (result) => {
+    //     result.forEach((file) => {
+    //         $thumbnailWrap.append(
+    //             `
+    //             <img class="imageThumbnail"
+    //             src="/users/mypage/files/display?fileName=${file.filePath + "/t_" + file.fileUuid + "_" + file.fileOrgName}">
+    //             `
+    //         );
+    //     })
+    // });
 });
 
 //모달창 닫기
-close.addEventListener("click", function(){
-    container.style.display="none";
+$close.on("click", function () {
+    $container.css("display", "none");
 });
 
 //모달창 취소 닫기
-cancel.addEventListener("click", function(){
-  container.style.display="none";
-});
-
-
-
-/* 후기수정 모달 */
-var modal = document.getElementById("myModal");
-var openbtn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
-var xbtn = document.getElementById("delete-btn");
-
-
-// 모달창 열기
-openbtn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// 모달창 x버튼 닫기
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// 모달창 취소버튼 닫기
-xbtn.onclick = function() {
-  modal.style.display = "none";
-}
-
-
-
-/* 파일 썸네일 */
-/* 파일인풋 */
-const file = document.querySelector('input[type=file]');
-const imgButton = document.querySelector(".imgButton");
-
-function handleFiles(files) {
-    const thumbnailList = document.getElementById("thumbnail-list");
-
-    for (let i = 0; i < files.length; i++) {
-
-        /* 8개 이미지 추가되면 버튼 없애기 */
-        if ($(".imageThumbnail").length > 7) {
-            $(".imgButtonWrap").hide();
-        }
-
-        /* 파일절대경로얻기 */  
-        const file = files[i];
-        const reader = new FileReader();
-        /* reader가 onload 할때 */
-        reader.onload = function(event) {
-            const thumbnail = document.createElement("div");
-            const thumbnailSpan = document.createElement("span");
-
-
-            let result = event.target.result;
-
-            /* 썸네일 담을 div와 그 자식의 span에 썸네일 css와 x버튼 css 추가*/
-            thumbnail.classList.add("imageThumbnail");
-            thumbnailSpan.classList.add("closeImgButton");
-
-            /* 썸네일 담을 div에 절대경로 넣어주기 */
-            thumbnail.style.backgroundImage = `url('${result}')`;
-
-            /* 썸네일 담을 div와 그 자식의 span 추가해주기 */
-            thumbnailList.prepend(thumbnail);
-            thumbnail.appendChild(thumbnailSpan);
-
-            /* x버튼 선언 */
-            const closeButton = document.querySelector(".closeImgButton");
-
-            /* x버튼 누를 시 x버튼과 backgroundImage 지워주기 */
-            closeButton.addEventListener('click', function (e) {
-                e.preventDefault();
-                file.value = "";
-                this.style.display = 'none';
-                thumbnail.style.backgroundImage = `url('')`;
-                thumbnail.remove(thumbnail);
-                $(".imgButtonWrap").show();
-            });
-
-            /* 파일 개수가 8개 이상이면 모달창 띄우고 break */
-           if($(".imageThumbnail").length > 7 ){
-            $(".imgButtonWrap").hide();
-            return;
-           }
-            
-        };
-        /* result 속성(attribute)에 담기 */
-        reader.readAsDataURL(file);
-           
-    }
-
-}
-/* 버튼을 감싸고있는 label객체 들고오기 */
-const fileInput = document.getElementById("photo-picker");
-
-/* 버튼을 감싸고있는 label객체 클릭하면 위에 function handleFiles 실행 */
-fileInput.addEventListener("change", function(event) {
-    handleFiles(event.target.files);
-});
-
-/* 모달창 확인버튼 누르면 없애기 */
-function hideModal() {
-    showModal.classList.remove("showModal");
-}
-
-
-// 글자수세기, 제한  <작성가능 후기>
-const textarea = document.querySelector('.review-modal-content-inputBox');
-const counter = document.querySelector('.review-modal-content-inputBox-number-container span:first-child');
-const maxLength = 5000;
-
-// 텍스트 입력이 일어날 때마다 글자수를 세고, 글자수를 표시
-textarea.addEventListener('input', () => {
-  const textLength = textarea.value.length;
-  counter.textContent = `${textLength} / ${maxLength}`;
-
-  // 최대 글자수를 초과하면 입력을 제한
-  if (textLength > maxLength) {
-    textarea.value = textarea.value.slice(0, maxLength);
-    counter.textContent = `${maxLength} / ${maxLength}`;
-  }
-
-  // 글자 수가 10자 초과할 경우 버튼 색을 변경
-  if (textLength > 10) {
-    $('.change-modal-ok-btn').css('background-color', '#5f0080');
-  } else {
-    $('.change-modal-ok-btn').css('background-color', '#ddd');
-  }
-});
-
-
-/* 유효성검사 후 버튼 활성화 */
-function requireCheck() {
-  const arr = [true, true];
-  const $submitBtn = $('.change-modal-ok-btn');
-
-  $('.change-modal-ok-btn').attr('disabled', true);
-
-  if (JSON.stringify(infoCheckAll) === JSON.stringify(arr)) {
-    $('.change-modal-ok-btn').attr('disabled', false);
-  }
-
-  // 버튼 색이 변경되도록 코드를 추가
-  if (textarea.value.length > 10) {
-    $('.change-modal-ok-btn').css('background-color', '#5f0080');
-  } else {
-    $('.change-modal-ok-btn').css('background-color', '#ddd');
-  }
-}
-
-/* ................................................................................. */
-
-// 글자수세기, 제한  <작성한 후기>
-const textareas = document.querySelector('#content-inputBox');
-const charCountSpan = document.querySelector('#content-inputBox-number span:first-child');
-const maxChars = 5000;
-
-// textarea의 내용이 변경될 때마다 이벤트를 발생
-textareas.addEventListener('input', function() {
-  // 현재 textarea의 글자수를 가져오기
-  const currentChars = textareas.value.length;
-  
-  // 글자수
-  charCountSpan.textContent = `${currentChars}/${maxChars}`;
-  
-  // 최대 글자수를 초과하면 textarea의 값을 자르기
-  if (currentChars > maxChars) {
-    textareas.value = textareas.value.slice(0, maxChars);
-  }
-
-  // 글자수가 10자 이상인 경우 배경색을 바꾸기
-  if (currentChars >= 10) {
-    $('#ok-btn').css('background-color', '#5f0080');
-  } else {
-    $('#ok-btn').css('background-color', '#ddd');
-  }
-});
-
-// 동의 버튼 효과
-const $checkboxes = $('.termCheckBox');
-const $path = $('.path1');
-const $checks = $('.checked');
-
-$checkboxes.each((i,e)=>{
-    $(e).parent().on('click', function(){
-        var $ischecked = $(e).is(':checked');
-        if($ischecked){
-            $path.eq(i).attr('fill', '#fff');
-            $(e).prop('checked', false);
-        }else{
-            $path.eq(i).attr('fill', '#5f0080');
-            $(e).prop('checked', true);
-            
-        }
-    });
+$cancel.on("click", function () {
+    $container.css("display", "none");
 });
