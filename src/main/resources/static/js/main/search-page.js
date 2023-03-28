@@ -5,27 +5,8 @@ $('.filter-select-button').click(function(){
         $(this).find('.filter-path').attr('fill', 'none');
     }
 });
-/*
-$('.place').mouseover(function() {
-    $(this).attr('class', 'place-select');
-}).mouseout(function() {
-    $(this).attr('class', 'place');
-});*/
 
-/*$('.place-li a').click(function() {
-    event.preventDefault();
-    console.log("클릭됨");
-    $(this).attr('class', 'place-select');
-    $(this).attr('class', 'place');
-/!*    if($(this).hasClass('place')) {
-        console.log("place가지고 있음")
-        $(this).attr('class', 'place-select');
-    } else {
-        console.log("place 안가지고 있음")
-        $(this).attr('class', 'place');
-    }*!/
-});*/
-
+/*지역별 클릭시 클래스 바꾸기*/
 $(function() {
     $('.place-ul a').click(function(event) {
         event.preventDefault();  // 기본 동작인 링크 이동을 막음
@@ -40,16 +21,24 @@ $(function() {
         $(this).removeClass('place').addClass('place-select');
 
         // 가져온 href 속성 값으로 페이지 이동
-        window.location.href = href;
+        location.href = "/storages/search/?storageAddress=" + href;
     });
 });
 
+// 헤더의 지역별 클릭했을때 해당 지역별 색깔 바꾸기
+const $region_list = ["전체", "서울", "경기", "강원", "충북", "충남",
+    "경북", "경남", "전북", "전남", "제주특별자치도"];
+
+$region_list.forEach((value, index) => {
+    console.log("value :" + value);
+    if(value === storageAddress) {
+        console.log("주소 똑같음")
+        $('.place-ul a').eq(index).attr('class', 'place-select');
+    }
+    else{
+        $(this).attr('class', 'place');
+    }
+})
+
 /*
-$(document).ready(function() {
-    $('.place-li a').click(function() {
-        // 현재 클릭한 요소의 클래스를 place-select로 변경
-        $(this).removeClass('place').addClass('place-select');
-        // 이전에 클릭한 요소의 클래스를 place로 변경
-        $(this).parent().siblings().children('a').removeClass('place-select').addClass('place');
-    });
-});*/
+storageAddress*/
