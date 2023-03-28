@@ -1,6 +1,5 @@
 package com.app.jimcarry.controller;
 
-import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.*;
@@ -22,13 +21,13 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/users/mypage/*")
 @RequiredArgsConstructor
-@Slf4j
 public class MypageController {
 
     private final UserService userService;
     private final StorageService storageService;
     private final InquiryService inquiryService;
     private final InquiryFileService inquiryFileService;
+    private final ReviewFileService reviewFileService;
     private final ReviewService reviewService;
     private final PaymentService paymentService;
 
@@ -128,23 +127,24 @@ public class MypageController {
      * */
     @GetMapping("files/thumbnail/{id}")
     @ResponseBody
-    /* T : 제너릭 타입으로, 들어오는 타입으로 바뀜 */
-    public <T> List<T> display(@PathVariable Long id, String table) {
+    /* T : 제너릭 타입으로, 들어오는 파일 타입으로 바뀜 */
+    public <T extends FileVO> List<T> display(@PathVariable Long id, String table) {
         if(table == null){
             return new ArrayList<>();
         }
         /* table 분기처리 */
         if(table.equals("inquiry")) return (List<T>) inquiryFileService.getList(id);
-        else if(table.equals("review")) return (List<T>) inquiryFileService.getList(id);
+        else if(table.equals("review")) return (List<T>) reviewFileService.getList(id);
 
         return new ArrayList<>();
     }
 
-    @PostMapping("files/save")
+    @PostMapping("files/save/{id}")
     @ResponseBody
-    public void saveFile(@RequestBody List<InquiryFileVO> files, String page, String prev) {
+    public void saveFile(@RequestBody List<FileVO> files, @PathVariable Long id, String page, String prev, String table) {
 
-        inquiryFileService.registerFile(files);
+        if(table.equals("inquiry")) inquiryFileService.registerFile(files, id);
+        else if(table.equals("review")) reviewFileService.registerFile(files, id);
     }
 
     /* ================================ 내 후기 ================================== */
@@ -174,6 +174,14 @@ public class MypageController {
         model.addAttribute("pagination", pageDTO);
 
         return "mypage/my-review";
+    }
+
+    @PostMapping("review/update")
+    public RedirectView updateReview(ReviewVO reviewVO, String page) {
+        /* 추후 세션으로 변경 */
+        reviewVO.setUserId(2L);
+//        reviewService.(reviewVO);
+        return new RedirectView("/users/mypage/review?page=" + page);
     }
 
     /* ============================== 회원정보 수정 ================================ */
@@ -218,7 +226,6 @@ public class MypageController {
 
     @PostMapping("checkEmail")
     @ResponseBody
-    @LogStatus
     public boolean checkEmailDuplicate(@RequestBody Map<String, String> map) {
         String userEmail = map.get("userEmail");
         /* 나중에 세션으로 수정 */

@@ -23,7 +23,7 @@ $photoPicker.on("change", function () {
     let $files = $(this)[0].files;
     let formData = new FormData();
 
-    if($files.length > 8){
+    if ($files.length > 8) {
         alert("등록할 수 있는 파일의 최대 갯수는 8개 입니다.");
         /* 파일 input 초기화 */
         $photoPicker[0].files = prevFileList;
@@ -46,10 +46,10 @@ $photoPicker.on("change", function () {
     });
 });
 
-let $fileAjax = () => {
+let $fileAjax = (contentId, table) => {
     const $files = $photoPicker[0].files;
 
-    if($files.length === 0){
+    if ($files.length === 0) {
         return;
     }
 
@@ -59,30 +59,16 @@ let $fileAjax = () => {
         let fileVO = new Object();
         fileVO.fileOrgName = file.name;
         fileVO.fileUuid = globalThis.uuids[i];
-        fileVO.inquiryId = inquiries[contentIndex].inquiryId
         fileVOs.push(fileVO);
     });
 
     let config = {
-        url: `/users/mypage/files/save`,
+        url: `/users/mypage/files/save/${contentId}?table=${table}`,
         method: "POST",
         data: JSON.stringify(fileVOs),
         contentType: "application/json; charset=utf-8",
     }
 
-    doAjax(config, (result) => {});
+    doAjax(config, (result) => {
+    });
 }
-
-$(".change-modal-ok-btn").on("click", function () {
-    $fileAjax();
-
-    console.log($textarea.eq(contentIndex).val());
-
-    $("input[name='inquiryTitle']").val($textareaTitle.val());
-    $("input[name='inquiryContent']").val($textarea.val());
-    $("input[name='inquiryId']").val(inquiries[contentIndex].inquiryId);
-    $("input[name='inquiryAnswer']").val(inquiries[contentIndex].inquiryAnswer);
-    $("input[name='page']").val($page);
-
-    $(".change-modal-form-wrapper").submit();
-});
