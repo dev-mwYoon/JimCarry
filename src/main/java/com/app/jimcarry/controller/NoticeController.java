@@ -34,9 +34,9 @@ public class NoticeController {
 
     @GetMapping("detail")
     public String detail() { return "/notice/notice-detail";}
-/*
+
     @GetMapping("list")
-    public String list() { return "/notice/notice-list";}*/
+    public String list() { return "/notice/notice-list";}
 
 
     @GetMapping("list")
