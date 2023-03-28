@@ -4,7 +4,7 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
         insert into tbl_user
         (user_identification, user_password, user_name, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth)
-        values(#{userIdentification}, #{userPassword}, #{userName}, #{userEmail}, #{userPhone}, #{userAddress}, #{userAddress}, #{userGender}, #{userBirth});
+        values(#{userIdentification}, #{userPassword}, #{userName}, #{userEmail}, #{userPhone}, #{userAddress}, #{userAddressDetail}, #{userGender}, #{userBirth});
     </insert>
     <select id="select" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
@@ -39,8 +39,9 @@
         select count(user_id) from tbl_user
         <include refid="searchType"/>
     </select>
-    <select id="selectByIdentificationAndPassword" resultType="long">
-        select user_id from tbl_user
+    <select id="selectByIdentificationAndPassword" resultType="userVO">
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address,
+        user_address_detail, user_gender, user_birth from tbl_user
         where user_identification = #{userIdentification} and user_password = #{userPassword}
     </select>
     <select id="selectByIdentification" resultType="int">

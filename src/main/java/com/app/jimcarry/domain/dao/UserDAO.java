@@ -35,7 +35,7 @@ public class UserDAO {
     }
 
     //    아이디, 비밀번호로 조회(로그인)
-    public Long login(String userIdentification, String userPassword) {
+    public UserVO login(String userIdentification, String userPassword) {
         return userMapper.selectByIdentificationAndPassword(userIdentification, userPassword);
     }
 

@@ -115,7 +115,7 @@ public class UserService {
      */
     @LogStatus
     @Encryption
-    public Long login(String userIdentification, String userPassword) {
+    public UserVO login(String userIdentification, String userPassword) {
         return userDAO.login(userIdentification, userPassword);
     }
 
