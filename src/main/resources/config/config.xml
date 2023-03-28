@@ -15,6 +15,7 @@
         <typeAlias type="com.app.jimcarry.domain.dto.ReviewDTO" alias="reviewDTO"/>
         <typeAlias type="com.app.jimcarry.domain.dto.InquiryDTO" alias="inquiryDTO"/>
         <typeAlias type="com.app.jimcarry.domain.dto.StorageDTO" alias="storageDTO"/>
+        <typeAlias type="com.app.jimcarry.domain.dto.PaymentDTO" alias="paymentDTO"/>
         <typeAlias type="com.app.jimcarry.domain.vo.NoticeVO" alias="noticeVO"/>
     </typeAliases>
 </configuration>
