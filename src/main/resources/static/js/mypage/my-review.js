@@ -180,7 +180,7 @@ const thumbnailAjaxConfig = (i) => {
     return {
         url: `/users/mypage/files/thumbnail/${reviews[i].reviewId}`,
         method: "GET",
-        data: "",
+        data: {table : "review"},
         contentType: "application/json; charset=utf-8",
     }
 }
