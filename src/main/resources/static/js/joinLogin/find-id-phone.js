@@ -9,7 +9,6 @@ const $verifiCheck = $('.verifiCheck');
 
 $findnameInputBox.on('blur', function(){
     let value = $(this).val();
-    console.log(value);
 
     if(!value){
         $errorMsg1.css('display', 'block');
@@ -95,79 +94,20 @@ $verificationInput.on('blur', function(){
     }
 
 });
-// $verifiCheck.on('click', function(){
-//     $modalText.text("인증번호가 일치 하지 않습니다.");
-//     // $modalText.text("유효 시간이 만료되었습니다.\n재발송 후 다시 시도해주세요");
-//     $modal.css('visibility', 'visible');
-// });
 
 
-
+const $verifiCheckBtn = $('.verifiCheckBtn');
 var authNumber = null;
 
-$('.send-sms').on('click', function(){
-    $verifiCheckBtn.attr('disabled', false);
-    clearInterval(timer);
-
-    // $.ajax({
-    //     url: "/user/send-sms",
-    //     type: "get",
-    //     data: { userPhone : $('input[name=userPhone]').val() },
-    //     success: function(result) {
-    //         console.log(result);
-    //         authNumber = result;
-    //     }
-    // });
-    joinService.sendSMS(function(result) {
-        console.log(result);
-        authNumber = result;
-    });
-
-    var display = $(".verification-timer");
-    // 유효시간 설정
-    var leftSec = 180;
-
-    startTimer(leftSec, display);
-});
-$verifiCheckBtn = $('.verifiCheckBtn');
 $verifiCheckBtn.on('click', function(event){
     event.preventDefault();
-    if($('input[name=verificationNumber]').val() == authNumber) {
-        $modal.css('visibility', 'visible');
-        $modalText.text("인증확인이 완료되었습니다.");
-        clearInterval(timer);
-        $checkButton.on('click',()=>{
-            $modal.css('visibility', 'hidden');
-            document.findIdPhoneForm.submit();
-        });
-    } else {
-        $modal.css('visibility', 'visible');
-        $modalText.text("인증번호가 틀렸습니다.");
-        $checkButton.on('click',()=>{
-            $modal.css('visibility', 'hidden');
-        });
-    }
+    overlapService.checkAuthNumber();
+});
+
+
+
+$('.send-sms').on('click', function(){
+    overlapService.findByPhone();
 });
 
 var timer = null;
-function startTimer(count, display) {
-    var minutes, seconds;
-    timer = setInterval(function () {
-        minutes = parseInt(count / 60, 10);
-        seconds = parseInt(count % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.html(minutes + ":" + seconds);
-
-        // 타이머 끝
-        if (--count < 0) {
-            clearInterval(timer);
-            display.html("00:00");
-            $modal.css('visibility', 'visible');
-            $modalText.text("유효시간이 만료되었습니다.\n다시 시도해주세요.");
-            $verifiCheckBtn.attr('disabled', true);
-        }
-    }, 1000);
-}

@@ -14,7 +14,7 @@
                     <a th:if="${session.userId == null}" href="/user/join" class="sign-up-menu">회원가입</a>
                     <a th:if="${session.userId != null}" href="/users/mypage/mybox" class="login-menu">
                         <span class="welcome-box">웰컴</span>
-                        정현진 님
+                        <span th:text="${session.userName}"></span> 님
                     </a>
                     <div class="slash"></div>
                     <a th:if="${session.userId == null}" href="/user/login" class="login-menu">로그인</a>

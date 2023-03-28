@@ -58,13 +58,14 @@ public class UserController {
 
     @PostMapping("login")
     public RedirectView login(String userIdentification, String userPassword, HttpSession session) {
-        Long userId = userService.login(userIdentification, userPassword);
+        UserVO userVO = userService.login(userIdentification, userPassword);
 
-        if(userId == null) {
+        if(userVO == null) {
             return new RedirectView("/user/login?login=fail");
         }
 
-        session.setAttribute("userId", userId);
+        session.setAttribute("userId", userVO.getUserId());
+        session.setAttribute("userName", userVO.getUserName());
         return new RedirectView("/main/");
     }
 

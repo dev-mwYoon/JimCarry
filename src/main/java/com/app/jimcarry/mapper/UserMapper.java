@@ -23,7 +23,7 @@ public interface UserMapper {
     public int totalBy(@Param("page") SearchDTO searchDTO);
 
     //    아이디, 비밀번호로 조회(로그인)
-    public Long selectByIdentificationAndPassword(String userIdentification, String userPassword);
+    public UserVO selectByIdentificationAndPassword(String userIdentification, String userPassword);
 
     //    아이디 갯수 조회(중복검사)
     public int selectByIdentification(String userIdentification);

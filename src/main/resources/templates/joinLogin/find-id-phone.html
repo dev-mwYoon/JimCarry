@@ -28,7 +28,7 @@
                 <button class="authenticationPhoneButton" onclick="javascript:location.href='/user/find-id-phone'">휴대폰 인증</button>
                 <button class="authenticationEmailButton" onclick="javascript:location.href='/user/find-id-email'">이메일 인증</button>
             </div>
-            <form th:action="@{/user/find-id-phone}" method="post" class="findInputLayout" name="findIdPhoneForm">
+            <form th:action="@{/user/find-id-phone}" method="post" id="findForm" class="findInputLayout" name="findIdPhoneForm">
                 <div class="findInputDiv">
                     <div class="findLabelLayout">
                         <label class="findNameLabel" for="name">이름</label>
