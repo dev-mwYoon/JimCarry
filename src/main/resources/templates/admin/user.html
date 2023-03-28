@@ -139,7 +139,7 @@
                       <input type="checkbox" id="checkAll" />
                     </label>
                   </th>
-                  <th class="content__id">회원번호</th>
+                  <th>회원번호</th>
                   <th>아이디</th>
                   <th>이메일</th>
                   <th>생년월일</th>
@@ -189,12 +189,12 @@
     </section>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="/js/admin/app.js"></script>
+  <script src="/js/admin/events.js"></script>
   <script th:inline="javascript">
     let users = [[${users}]];
     let $page = [[${pagination.criteria.page}]];
   </script>
-  <script src="/js/admin/app.js"></script>
-  <script src="/js/admin/events.js"></script>
   <script src="/js/admin/user.js"></script>
 
 </html>

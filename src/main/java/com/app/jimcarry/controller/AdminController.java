@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,11 +59,14 @@ public class AdminController {
         model.addAttribute("users", userService.getList(pageDTO));
         model.addAttribute("pagination", pageDTO);
 
-        // 전체 user 수
-//        model.addAttribute("totalUser",userService.findTotalUser());
-
-
         return "/admin/user";
+    }
+//  삭제
+    @PostMapping("user/delete")
+    public RedirectView removeUser(String[] userIds){
+        log.info(userIds.toString());
+        Arrays.asList(userIds).stream().forEach(data -> userService.removeUser(Long.valueOf(data)));
+        return new RedirectView("/admin/user");
     }
 
 //    /*-----------문의사항----------*/
