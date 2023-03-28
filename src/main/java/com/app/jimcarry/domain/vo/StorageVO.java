@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 public class StorageVO {
     private Long storageId;
     private Long userId;
+    private String storageName;
+    private String storagePhone;
     private String storageTitle;
     private String storageSize;
     private Integer storagePrice;

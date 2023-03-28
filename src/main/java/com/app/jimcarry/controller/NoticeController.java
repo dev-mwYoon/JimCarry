@@ -36,10 +36,6 @@ public class NoticeController {
     public String detail() { return "/notice/notice-detail";}
 
     @GetMapping("list")
-    public String list() { return "/notice/notice-list";}
-
-
-    @GetMapping("list")
     public String list(Criteria criteria, Model model){
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 5;
@@ -63,15 +59,11 @@ public class NoticeController {
         //공지사항 전체 갯수
         model.addAttribute("totalNotice", noticeService.getTotal());
 
-      /*  log.info();*/
-
         return "/notice/notice-list";
-
     }
 
     @GetMapping("write")
     public String write() {
-
         return "/notice/qna-write";}
 
     @PostMapping("write")
