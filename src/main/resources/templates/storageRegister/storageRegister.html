@@ -85,15 +85,17 @@
                                     <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="storageSize" type="radio" value="SMALL" onclick="clickRadio()">
                                     <span id = "sizeSmallSpan" class="checkBox">
                                                 <div id="sizeSmallDiv" class="checkBox2"></div>
-                                            </span>
+                                    </span>
                                     <span class="radioText">소</span>
+                                    <input id="hidePrice" type="hidden" name="storagePrice" value="24000">
                                 </label>
                                 <label class="sizeSelect" for="sizeMiddle">
                                     <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="storageSize" type="radio" value="MIDDLE" onclick="clickRadio()">
                                     <span id="sizeMiddleSpan" class="checkBox">
                                                 <div id="sizeMiddleDiv" class="checkBox2"></div>
-                                            </span>
+                                    </span>
                                     <span class="radioText">중</span>
+                                    <input type="hidden" name="storagePrice" value="">
                                 </label>
                                 <label class="sizeSelect" for="sizeBig">
                                     <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="storageSize" type="radio" value="NONE" onclick="clickRadio()">
@@ -101,6 +103,7 @@
                                                 <div class="checkBox2"></div>
                                             </span>
                                     <span class="radioText">대</span>
+                                    <input type="hidden" name="storagePrice" value="">
                                 </label>
                                 <label class="sizeSelect" for="sizeBBig">
                                     <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="storageSize" type="radio" value="NONE" onclick="clickRadio()">
@@ -108,6 +111,7 @@
                                                 <div class="checkBox2"></div>
                                             </span>
                                     <span class="radioText">특대</span>
+                                    <input type="hidden" name="storagePrice" value="">
                                 </label>
                             </div>
                             <span class="explainText"> 사이즈는 공지사항을 참고하시기 바랍니다.</span>
