@@ -11,72 +11,62 @@
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/joinLogin/login.css">
-    <link rel="stylesheet" href="../../static/css/joinLogin/login.css">
     <link rel="stylesheet" href="/css/joinLogin/font.css">
     <link rel="stylesheet" href="/css/joinLogin/joinModal.css">
 </head>
 
 <body>
 <!-- 영역 잡기  -->
-<div id="fullscreen">
-    <div>
-    <!--헤더 -->
-    <header th:insert="~{main/header.html :: mainHeader}"></header>
-    <!-- main -->
-    <div class="loginLayout">
-        <div class="loginTitleLayout">로그인</div>
-        <div class="formLayout">
-            <form th:action="@{/user/login}" method="post" name="loginForm">
-                <div class="inputLayout">
-                    <div class="inputLayout2">
-                        <div class="idInputLayout">
-                            <input class="idPwInput" data-testid="input-box" name="userIdentification" placeholder="아이디를 입력해주세요"
-                                   type="text" autocomplete="off">
+    <div id="fullscreen">
+        <div>
+        <!--헤더 -->
+        <header th:insert="~{main/header.html :: mainHeader}"></header>
+        <!-- main -->
+        <div class="loginLayout">
+            <div class="loginTitleLayout">로그인</div>
+            <div class="formLayout">
+                <form th:action="@{/user/login}" method="post" name="loginForm">
+                    <div class="inputLayout">
+                        <div class="inputLayout2">
+                            <div class="idInputLayout">
+                                <input class="idPwInput" data-testid="input-box" name="userIdentification" placeholder="아이디를 입력해주세요"
+                                       type="text" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="inputLayout2">
+                            <div class="pWInputLayout">
+                                <input class="idPwInput" data-testid="input-box" name="userPassword"
+                                       placeholder="비밀번호를 입력해주세요" type="password" autocomplete="off">
+                            </div>
                         </div>
                     </div>
-                    <div class="inputLayout2">
-                        <div class="pWInputLayout">
-                            <input class="idPwInput" data-testid="input-box" name="userPassword"
-                                   placeholder="비밀번호를 입력해주세요" type="password" autocomplete="off">
+                    <div class="idPwFindLayout">
+                        <div class="sns">
+                            <div class="sns-img" style="margin-right: 20px;">
+                                <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_kakao.png" alt="sns아이콘" class="kakao-img">
+                            </div>
+                            <div class="sns-img">
+                                <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_naver.png" alt="sns아이콘" class="naver-img">
+                            </div>
+                        </div>
+                        <div>
+                            <a th:href="@{/user/find-id-phone}" class="idPwFindText">아이디 찾기</a>
+                            <span class="slash3"></span>
+                            <a th:href="@{/user/find-password-phone}" class="idPwFindText">비밀번호 찾기</a>
                         </div>
                     </div>
-                </div>
-                <div class="idPwFindLayout">
-                    <div class="sns">
-                        <div class="sns-img" style="margin-right: 20px;">
-                            <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_kakao.png" alt="sns아이콘" class="kakao-img">
-                        </div>
-                        <div class="sns-img">
-                            <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_naver.png" alt="sns아이콘" class="naver-img">
-                        </div>
+                    <div class="loginButtonLayout">
+                        <button class="loginButton" type="button" height="54" radius="3">
+                            <span class="buttonBox">로그인</span>
+                        </button>
+                        <button class="joinButton" type="button" height="54" radius="3" onclick="javascript:location.href='/user/join'">
+                            <span class="buttonBox">회원가입</span>
+                        </button>
                     </div>
-                    <div>
-                        <a th:href="@{/user/find-id-phone}" class="idPwFindText">아이디 찾기</a>
-                        <span class="slash3"></span>
-                        <a th:href="@{/user/find-password-phone}" class="idPwFindText">비밀번호 찾기</a>
-                    </div>
-                </div>
-                <div class="loginButtonLayout">
-                    <!-- 원래 loginButton, joinButton 둘다 type submit인데 연습도중에 console.log하면 자꾸 출력되고 바로 사라져서 연습을 위해 type button으로 바꿈 -->
-                    <button class="loginButton" type="button" height="54" radius="3">
-                        <span class="buttonBox">로그인</span>
-                    </button>
-                    <button class="joinButton" type="button" height="54" radius="3" onclick="javascript:location.href='/user/join'">
-                        <span class="buttonBox">회원가입</span>
-                    </button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-    </div>
-    <!-- <div class="SnsLoginBtn">
-        <a class="kakao-login">
-            <div class="flex-left-center">
-                <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_kakao.png" alt="sns아이콘" class="kakao-img">
-                <span style="font-size: 15px; color: rgb(51, 51, 51); border-color: rgb(51, 51, 51);">카카오톡 간편 로그인</span>
-            </div>
-        </a>
-    </div> -->
     <!--footer-->
     <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
     <!-- 모달 -->
