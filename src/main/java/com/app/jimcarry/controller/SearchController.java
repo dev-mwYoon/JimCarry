@@ -42,16 +42,16 @@ public class SearchController {
         return "/detail-info/detail-info";
     }*/
 
-    /*@GetMapping("detail/{storageId}")
-    public String searchDetail(Model model,@PathVariable Long storageId){
+    @GetMapping("detail/{storageId}")
+    public String searchDetail(@PathVariable("storageId") Long storageId, Model model){
 
-        model.addAttribute("storages", storageService.getStorageBy(storageId));
+        model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
 
-        return "detail-info/detail-info";
-    }*/
+        return "/detail-info/detail-info";
+    }
 
-    @GetMapping("detail")
+    /*@GetMapping("detail")
     public String searchDetail(){
         return "detail-info/detail-info";
-    }
+    }*/
 }
