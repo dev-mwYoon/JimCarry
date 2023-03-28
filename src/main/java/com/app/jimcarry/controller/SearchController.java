@@ -29,19 +29,6 @@ public class SearchController {
 
     private final StorageService storageService;
 
-    /* 창고 상세 목록 */
-    /*@GetMapping("detail/{storageId}")
-    public String searchDetail(Model model,@PathVariable Long storageId) {
-        int total = reviewService.getTotalById(storageId);
-
-        model.addAttribute("total", total);
-        model.addAttribute("reviews", reviewService.getListByStorageId(storageId));
-        *//* url 파라미터로 스토리지아이디 받기*//*
-        model.addAttribute("storages", storageService.getStorageDTO(storageId));
-
-        return "/detail-info/detail-info";
-    }*/
-
     @GetMapping("detail/{storageId}")
     public String searchDetail(@PathVariable("storageId") Long storageId, Model model){
 
