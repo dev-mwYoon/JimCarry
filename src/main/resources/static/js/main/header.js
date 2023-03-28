@@ -30,12 +30,13 @@ const $localName = $(".header-dropbox-li span").val();
     });
 }*/
 
+/*지역별 창고 누르면 이동 */
 $(function() {
     $('.header-dropbox-ul a').click(function(event) {
         event.preventDefault();
 
         let param = $(this).attr("href");
-        location.href = "/storages/search?storageAddress=" + param;
+        location.href = "/storages/search/?storageAddress=" + param;
     });
 });
 

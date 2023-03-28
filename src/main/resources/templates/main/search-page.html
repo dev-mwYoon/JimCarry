@@ -23,37 +23,37 @@
         </div>
             <ul class="place-ul">
                 <li class="place-li">
-                    <a class="place-select">전체보기</a>
+                    <a class="place">전체보기</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=서울'}" class="place">서울특별시</a>
+                    <a th:href="@{'서울'}" class="place">서울특별시</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=경기'}" class="place">경기도</a>
+                    <a th:href="@{'경기'}" class="place">경기도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=강원도'}" class="place">강원도</a>
+                    <a th:href="@{'강원'}" class="place">강원도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=충북'}" class="place">충청북도</a>
+                    <a th:href="@{'충북'}" class="place">충청북도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=충남'}" class="place">충청남도</a>
+                    <a th:href="@{'충남'}" class="place">충청남도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=경북'}" class="place">경상북도</a>
+                    <a th:href="@{'경북'}" class="place">경상북도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=경남'}" class="place">경상남도</a>
+                    <a th:href="@{'경남'}" class="place">경상남도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=전북'}" class="place">전라북도</a>
+                    <a th:href="@{'전북'}" class="place">전라북도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=전남'}" class="place">전라남도</a>
+                    <a th:href="@{'전남'}" class="place">전라남도</a>
                 </li>
                 <li class="place-li">
-                    <a th:href="@{'search?storageAddress=제주특별자치도'}" class="place">제주도</a>
+                    <a th:href="@{'제주특별자치도'}" class="place">제주도</a>
                 </li>
             </ul>
         <div class="result">
@@ -337,6 +337,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let storages = [[${storages}]];
+    let storageAddress = [[${storageAddress}]];
 </script>
 <script src="/js/main/search-page.js"></script>
 <script src="/js/main/header.js"></script>
