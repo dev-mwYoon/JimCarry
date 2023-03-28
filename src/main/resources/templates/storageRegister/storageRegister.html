@@ -19,9 +19,10 @@
             <span class="RequiredInput">*</span>
             필수입력사항
         </div>
-        <div class="formstart">
+        <form th:action="@{/storages/register}" method="post">
+            <div class="formstart">
             <!-- ----------------창고이름------------------ -->
-            <form th:action="@{/storages/storageRegister}" method="post">
+
                     <div class="wrapper">
                         <div class="title">
                             <label class="label">
@@ -30,7 +31,7 @@
                         <div class="flexLayout">
                             <div class="paddingBottom">
                                 <div class="inputBox">
-                                    <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageName"
+                                    <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageTitle"
                                            required autocomplete="none" value="">
                                 </div>
                             </div>
@@ -46,7 +47,7 @@
                         <div class="flexLayout">
                             <div class="paddingBottom">
                                 <div class="inputBox">
-                                    <input class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="userName"
+                                    <input class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="storageName"
                                            required autocomplete="none" value>
                                 </div>
                             </div>
@@ -63,7 +64,7 @@
                         </div>
                         <div class="flexLayout">
                             <div class="inputBox">
-                                <input class="input" type="text" placeholder="숫자만 입력해주세요." name="userPhone"
+                                <input class="input" type="text" placeholder="숫자만 입력해주세요." name="storagePhone"
                                        required autocomplete="none">
                             </div>
                             <div class="errorDiv">
@@ -79,36 +80,36 @@
                             </label>
                         </div>
                         <div class="flexLayout">
-                            <form class="radioLayout">
+                            <div class="radioLayout">
                                 <label class="sizeSelect" for="sizeSmall">
-                                    <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="size" type="radio" value="SMALL" onclick="clickRadio()">
+                                    <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="storageSize" type="radio" value="SMALL" onclick="clickRadio()">
                                     <span id = "sizeSmallSpan" class="checkBox">
                                                 <div id="sizeSmallDiv" class="checkBox2"></div>
                                             </span>
                                     <span class="radioText">소</span>
                                 </label>
                                 <label class="sizeSelect" for="sizeMiddle">
-                                    <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="size" type="radio" value="MIDDLE" onclick="clickRadio()">
+                                    <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="storageSize" type="radio" value="MIDDLE" onclick="clickRadio()">
                                     <span id="sizeMiddleSpan" class="checkBox">
                                                 <div id="sizeMiddleDiv" class="checkBox2"></div>
                                             </span>
                                     <span class="radioText">중</span>
                                 </label>
                                 <label class="sizeSelect" for="sizeBig">
-                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
+                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="storageSize" type="radio" value="NONE" onclick="clickRadio()">
                                     <span class="checkBox">
                                                 <div class="checkBox2"></div>
                                             </span>
                                     <span class="radioText">대</span>
                                 </label>
                                 <label class="sizeSelect" for="sizeBBig">
-                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="size" type="radio" value="NONE" onclick="clickRadio()">
+                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="storageSize" type="radio" value="NONE" onclick="clickRadio()">
                                     <span class="checkBox">
                                                 <div class="checkBox2"></div>
                                             </span>
                                     <span class="radioText">특대</span>
                                 </label>
-                            </form>
+                            </div>
                             <span class="explainText"> 사이즈는 공지사항을 참고하시기 바랍니다.</span>
                         </div>
                         <div class="checkBoxLimitWidth"></div>
@@ -122,17 +123,13 @@
                         <div class="periodOfUseFlexLayout">
                             <div class="periodOfUse">
                                 <div class="periodOfUseInputLayout">
-                                    <form>
-                                        <input class="useDateInput" type="date">
-                                    </form>
+                                        <input class="useDateInput" type="date" name="storageUseDate">
                                 </div>
                             </div>
                             <div class="wave">~</div>
                             <div class="periodOfUse">
                                 <div class="periodOfUseInputLayout">
-                                    <form>
-                                        <input class="useDateInput" type="date">
-                                    </form>
+                                        <input class="useDateInput" type="date" name="storageEndDate">
                                     <!-- <span class="periodOfUseInputText">2023.03.10</span>
                                     <span class="calendarSVG"></span> -->
                                 </div>
@@ -150,7 +147,7 @@
                         <div class="flexLayout">
                             <div class="addressWrapper">
                                 <div class="addressInputLayout">
-                                    <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="address" required autocomplete="none" value="" readonly>
+                                    <input id="address" class="addressInput" type="text" placeholder="주소를 찾아주세요." name="storageAddress" required autocomplete="none" value="" readonly>
                                 </div>
                                 <div class="errorDiv">
                                     <p class="errorMessage"></p>
@@ -158,7 +155,7 @@
                             </div>
                             <div class="addressDetailWrapper">
                                 <div class="addressInputLayout">
-                                    <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="addressDetail" required autocomplete="none">
+                                    <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="storageAddressDetail" required autocomplete="none">
                                 </div>
                                 <div class="errorDiv">
                                     <p class="errorMessage"></p>

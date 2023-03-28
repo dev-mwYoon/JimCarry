@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,6 +32,18 @@ public class StorageController {
 
     @GetMapping("register")
     public String register() { return "/storageRegister/storageRegister"; }
+
+
+    /*창고등록*/
+    @PostMapping("register")
+    public RedirectView storageSave(StorageVO storageVO, HttpSession httpSession) {
+        log.info("1234");
+        storageVO.setUserId((Long)httpSession.getAttribute("userId"));
+        log.info("5678");
+        storageService.register(storageVO);
+
+        return new RedirectView("/main/main");
+    }
 
     /* 전체 창고 목록 검색 */
     @GetMapping("search")
