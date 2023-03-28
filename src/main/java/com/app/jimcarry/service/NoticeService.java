@@ -38,7 +38,7 @@ public class NoticeService {
         String context = "안녕하세요 답변수신이 완료되었습니다";
 
 //        회원가입에서 -가 붙어서 오기 때문에 떼어주는것
-        String userPhone = userPhone.replace("-", "");
+     /*   String userPhone = userPhone.replace("-", "");*/
 
        /* for(int i = 0; i < 6; i++) {
             String number = Integer.toString(random.nextInt(10));
