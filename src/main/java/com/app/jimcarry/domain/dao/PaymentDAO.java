@@ -28,7 +28,7 @@ public class PaymentDAO {
 
     //    전체조회
     public List<PaymentDTO> findAll(PageDTO pageDTO) {
-        return paymentMapper.selectAll(pageDTO);
+        return paymentMapper.selectAllPayment(pageDTO);
     }
 
     //    수정
@@ -49,4 +49,7 @@ public class PaymentDAO {
     public int findTotalBy(SearchDTO searchDTO) {
         return paymentMapper.totalBy(searchDTO);
     }
+
+    // 총 개수
+    public int findTotal(){ return paymentMapper.total();}
 }

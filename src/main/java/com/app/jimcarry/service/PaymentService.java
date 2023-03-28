@@ -44,7 +44,7 @@ public class PaymentService {
 
     //    수정
     @Encryption
-    @LogStatus
+//    @LogStatus
     @Transactional(rollbackFor = Exception.class)
     public void updatePayment(PaymentVO paymentVO) {paymentDAO.setPaymentVO(paymentVO);}
 
@@ -66,4 +66,7 @@ public class PaymentService {
     public int geTotalBy(SearchDTO searchDTO) {
         return paymentDAO.findTotalBy(searchDTO);
     }
+
+    // 총 개수
+    public int getTotal(){return paymentDAO.findTotal();}
 }

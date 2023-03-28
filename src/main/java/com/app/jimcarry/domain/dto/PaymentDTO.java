@@ -20,4 +20,11 @@ public class PaymentDTO {
     private Long storageId;
     private String paymentDate;
     private int paymentAmount;
+    private String storageTitle;
+    private String storageSize;
+    private Integer storagePrice;
+    private String storageAddress;
+    private String storageAddressDetail;
+    private String storageUseDate;
+    private String storageEndDate;
 }
