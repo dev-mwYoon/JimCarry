@@ -164,6 +164,7 @@ const $checkButton = $('.popup-check');
 
 const $duplicateIdButton = $('.idDuplicate');
 const $duplicateEmailButton = $('.emailDuplicate');
+const $verifiCheckBtn = $('#duplicateBox');
 
 $duplicateEmailButton.on('click', function(){
     $modal.css('visibility', 'visible');
@@ -174,7 +175,7 @@ $duplicateEmailButton.on('click', function(){
     }else if(!errorCheck){
         $modalText.text("이메일 형식을 확인해주세요.")
     }else{
-        joinService.checkEmail(valueEmail, function(result) {
+        overlapService.checkEmail(valueEmail, function(result) {
             if(result) {
                 $modalText.text("사용 가능 합니다.");
                 $($('.duplicateBox')[1]).attr('disabled', true);
@@ -199,11 +200,10 @@ $duplicateIdButton.on('click', function(){
     }else if(!errorCheck){
         $modalText.text("영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.");
     }else{
-        joinService.checkIdentification(valueId, function(result) {
+        overlapService.checkIdentification(valueId, function(result) {
             if(result) {
                 $modalText.text("사용 가능 합니다.");
                 $($('.duplicateBox')[0]).attr('disabled', true);
-                // $('.idInput').attr('readonly', true);
             } else {
                 $modalText.text("사용 불가능 합니다.");
                 $('.idInput').val('');
@@ -307,7 +307,7 @@ $checkNum.on('click', function(){
     if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
         clearInterval(timer);
 
-        joinService.sendSMS(function(result) {
+        overlapService.sendSMS(function(result) {
             console.log(result);
             authNumber = result;
             $modal.css('visibility', 'visible');
@@ -323,11 +323,11 @@ $checkNum.on('click', function(){
         // 유효시간 설정
         var leftSec = 180;
 
-        startTimer(leftSec, display);
+        overlapService.startTimer(leftSec, display);
     }
 });
-$duplicateBox = $('#duplicateBox');
-$duplicateBox.on('click', function(){
+
+$verifiCheckBtn.on('click', function(){
     if($('input[name=authCode]').val() == authNumber) {
         $modal.css('visibility', 'visible');
         $modalText.text("인증확인이 완료되었습니다.");
@@ -348,24 +348,3 @@ $duplicateBox.on('click', function(){
 });
 
 var timer = null;
-function startTimer(count, display) {
-    var minutes, seconds;
-    timer = setInterval(function () {
-        minutes = parseInt(count / 60, 10);
-        seconds = parseInt(count % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.html(minutes + ":" + seconds);
-
-        // 타이머 끝
-        if (--count < 0) {
-            clearInterval(timer);
-            display.html("00:00");
-            $modal.css('visibility', 'visible');
-            $modalText.text("유효시간이 만료되었습니다.\n다시 시도해주세요.");
-            $('#duplicateBox').attr('disabled', true);
-        }
-    }, 1000);
-}
