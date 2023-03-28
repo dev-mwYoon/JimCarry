@@ -87,7 +87,7 @@
                                                 <div id="sizeSmallDiv" class="checkBox2"></div>
                                     </span>
                                     <span class="radioText">소</span>
-                                    <input id="hidePrice" type="hidden" name="storagePrice" value="24000">
+                                    <input id="hidePrice" type="hidden" name="storagePrice" value="">
                                 </label>
                                 <label class="sizeSelect" for="sizeMiddle">
                                     <input class="warehouseSizeRadio" data-testid="radioMiddle" id="sizeMiddle" name="storageSize" type="radio" value="MIDDLE" onclick="clickRadio()">
@@ -98,7 +98,7 @@
                                     <input type="hidden" name="storagePrice" value="">
                                 </label>
                                 <label class="sizeSelect" for="sizeBig">
-                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="storageSize" type="radio" value="NONE" onclick="clickRadio()">
+                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBig" name="storageSize" type="radio" value="Big" onclick="clickRadio()">
                                     <span class="checkBox">
                                                 <div class="checkBox2"></div>
                                             </span>
@@ -106,7 +106,7 @@
                                     <input type="hidden" name="storagePrice" value="">
                                 </label>
                                 <label class="sizeSelect" for="sizeBBig">
-                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="storageSize" type="radio" value="NONE" onclick="clickRadio()">
+                                    <input class="warehouseSizeRadio" data-testid="radioBig" id="sizeBBig" name="storageSize" type="radio" value="extraBig" onclick="clickRadio()">
                                     <span class="checkBox">
                                                 <div class="checkBox2"></div>
                                             </span>
@@ -256,5 +256,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/storageRegister/storageRegister.js"></script>
+<script src="/js/storageRegister/hiddenPrice.js"></script>
 <script src="/js/main/header.js"></script>
 </html>
