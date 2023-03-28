@@ -61,7 +61,7 @@ const $checkBt = $('.checkButton');
 
 $checkButton.on('click', ()=>{
     $modal.css('visibility', 'hidden');
-    passwordForm.submit();
+    document.passwordForm.submit();
 });
 $checkBt.on('click', function(event){
     event.preventDefault();

@@ -97,11 +97,6 @@ $wrapperInputs.on("blur", function () {
     
 });
 
-//생년월일 정규식
-// let yearRegex = /^(19[0-9][0-9]|20\d{2})$/;
-// let monthRegex = /^(0[0-9]|1[0-2])$/;
-// let dayRegex = /^(0[1-9]|[1-2][0-9]|3[0-1])$/;
-
 // 주소 api
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -122,11 +117,9 @@ $checkboxes.each((i,e)=>{
     $(e).parent().on('click', function(){
         var $ischecked = $(e).is(':checked');
         if($ischecked){
-            // $path.eq(i).attr('fill', '#5f0080');
             $path.eq(i).attr('fill', '#fff');
             $(e).prop('checked', false);
         }else{
-            // $path.eq(i).attr('fill', '#fff');
             $path.eq(i).attr('fill', '#5f0080');
             $(e).prop('checked', true);
             
@@ -181,33 +174,17 @@ $duplicateEmailButton.on('click', function(){
     }else if(!errorCheck){
         $modalText.text("이메일 형식을 확인해주세요.")
     }else{
-        // $.ajax({
-        //     url: "/user/emails-duplicate",
-        //     type: "post",
-        //     data: { userEmail : valueEmail },
-        //     success: function(result) {
-        //         if(result) {
-        //             $modalText.text("사용 가능 합니다.");
-        //             $($('.duplicateBox')[1]).attr('disabled', true);
-        //             $('.emailInput').attr('readonly', true);
-        //         } else {
-        //             $modalText.text("사용 불가능 합니다.");
-        //             $('.emailInput').val('');
-        //         }
-        //     }
-        // });
         joinService.checkEmail(valueEmail, function(result) {
             if(result) {
                 $modalText.text("사용 가능 합니다.");
                 $($('.duplicateBox')[1]).attr('disabled', true);
-                $('.emailInput').attr('readonly', true);
             } else {
                 $modalText.text("사용 불가능 합니다.");
                 $('.emailInput').val('');
             }
         })
     }
-    
+
     $checkButton.on('click',()=>{
         $modal.css('visibility', 'hidden');
     });
@@ -222,26 +199,11 @@ $duplicateIdButton.on('click', function(){
     }else if(!errorCheck){
         $modalText.text("영문 혹은 영문과 숫자를 조합하여 4자~20자로 입력해주세요.");
     }else{
-        // $.ajax({
-        //     url: "/user/identifications-duplicate",
-        //     type: "post",
-        //     data: { userIdentification : valueId },
-        //     success: function(result) {
-        //         if(result) {
-        //             $modalText.text("사용 가능 합니다.");
-        //             $($('.duplicateBox')[0]).attr('disabled', true);
-        //             $('.idInput').attr('readonly', true);
-        //         } else {
-        //             $modalText.text("사용 불가능 합니다.");
-        //             $('.idInput').val('');
-        //         }
-        //     }
-        // });
         joinService.checkIdentification(valueId, function(result) {
             if(result) {
                 $modalText.text("사용 가능 합니다.");
                 $($('.duplicateBox')[0]).attr('disabled', true);
-                $('.idInput').attr('readonly', true);
+                // $('.idInput').attr('readonly', true);
             } else {
                 $modalText.text("사용 불가능 합니다.");
                 $('.idInput').val('');
@@ -254,6 +216,15 @@ $duplicateIdButton.on('click', function(){
     });
 
 });
+
+$('.idInput').on('keydown', function() {
+    $($('.duplicateBox')[0]).attr('disabled', false);
+});
+
+$('.emailInput').on('keydown', function() {
+    $($('.duplicateBox')[1]).attr('disabled', false);
+});
+
 
 $checkWrapper = $('#checkWrapper');
 $checkNum = $('#checkNum');
@@ -298,6 +269,26 @@ $submitButton.on('click', function(event) {
         return;
     }
 
+    if($('.yearInput').val() || $('.monthInput').val() || $('.dayInput').val()) {
+        let check = true;
+        let regex = [
+            /^(19[0-9][0-9]|20\d{2})$/,
+            /^(0[0-9]|1[0-2])$/,
+            /^(0[1-9]|[1-2][0-9]|3[0-1])$/
+        ];
+        $('.birthInput').filter(data => $('.birthInput')[data].value.length < $('.birthInput')[data].maxLength).each((i, d) => check = false);
+        $('.birthInput').filter(data => !regex[data].test($('.birthInput')[data].value)).each((i, d) => check = false);
+
+        if(!check) {
+            $modal.css('visibility', 'visible');
+            $modalText.text("생년월일을 확인해주세요.");
+            $checkButton.on('click',()=>{
+                $modal.css('visibility', 'hidden');
+            });
+            return;
+        }
+    }
+
     if(!($($('.test')[0]).is(':checked')) || !($($('.test')[1]).is(':checked')) || !($($('.test')[3]).is(':checked'))) {
         $modal.css('visibility', 'visible');
         $modalText.text("필수 이용약관을 모두 선택 해주세요.");
@@ -306,8 +297,8 @@ $submitButton.on('click', function(event) {
         });
         return;
     }
-    // console.log('서브밋');
-    joinForm.submit();
+
+    document.joinForm.submit();
 });
 
 var authNumber = null;
@@ -316,22 +307,6 @@ $checkNum.on('click', function(){
     if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
         clearInterval(timer);
 
-        // $.ajax({
-        //     url: "/user/send-sms",
-        //     type: "get",
-        //     data: { userPhone : $('input[name=userPhone]').val() },
-        //     success: function(result) {
-        //         console.log(result);
-        //         authNumber = result;
-        //         $modal.css('visibility', 'visible');
-        //         $modalText.text("인증번호가 전송되었습니다.");
-        //         $checkWrapper.css("display", "flex");
-        //         $('#duplicateBox').attr('disabled', false);
-        //         $checkButton.on('click',()=>{
-        //             $modal.css('visibility', 'hidden');
-        //         });
-        //     }
-        // });
         joinService.sendSMS(function(result) {
             console.log(result);
             authNumber = result;
@@ -394,48 +369,3 @@ function startTimer(count, display) {
         }
     }, 1000);
 }
-
-
-
-//  ----------------------------------ajax----------------------------------
-// const joinService = (function() {
-//     function checkIdentification(userIdentification, callback) {
-//         $.ajax({
-//             url: "/user/identifications-duplicate",
-//             type: "post",
-//             data: { userIdentification : userIdentification },
-//             success: function(result) {
-//                 if(callback) {
-//                     callback(result);
-//                 }
-//             }
-//         });
-//     }
-//
-//     function checkEmail(userEmail, callback) {
-//         $.ajax({
-//             url: "/user/emails-duplicate",
-//             type: "post",
-//             data: { userEmail : userEmail },
-//             success: function(result) {
-//                 if(callback) {
-//                     callback(result);
-//                 }
-//             }
-//         });
-//     }
-//
-//     // function sendSMS(callback) {
-//     //     $.ajax({
-//     //         url: "/user/send-sms",
-//     //         type: "get",
-//     //         data: { userPhone : $('input[name=userPhone]').val() },
-//     //         success: function(result) {
-//     //             if(callback) {
-//     //                 callback(result);
-//     //             }
-//     //         }
-//     //     });
-//     // }
-//     return { checkIdentification : checkIdentification, checkEmail : checkEmail, sendSMS : sendSMS };
-// })();

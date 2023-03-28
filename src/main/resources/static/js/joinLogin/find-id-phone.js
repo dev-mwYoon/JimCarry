@@ -138,7 +138,7 @@ $verifiCheckBtn.on('click', function(event){
         clearInterval(timer);
         $checkButton.on('click',()=>{
             $modal.css('visibility', 'hidden');
-            findIdPhoneForm.submit();
+            document.findIdPhoneForm.submit();
         });
     } else {
         $modal.css('visibility', 'visible');

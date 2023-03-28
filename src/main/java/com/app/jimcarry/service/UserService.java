@@ -47,6 +47,7 @@ public class UserService {
         }
 
         userVO.setUserBirth(userVO.getUserBirth().replace(",", "-"));
+        String[] userBirth = userVO.getUserBirth().split("-");
 
         /* 아이디 중복검사 */
         if (checkIdentificationDuplicate(userIdentification)) {
