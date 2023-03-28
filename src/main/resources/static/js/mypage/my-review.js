@@ -162,7 +162,7 @@ $(".review-content-wrpper").append(
                                     취소
                                 </button>
                                 <button type="button" class="change-modal-ok-btn"
-                                        value="등록" disabled="true" style="cursor: default;">
+                                        value="등록">
                                     등록
                                 </button>
                             </div>
@@ -250,17 +250,6 @@ $btn.on("click", function () {
         }
 
         $counter.text(`${textLength}자 / ${maxLength}자`);
-
-        // 글자수가 10자 이상인 경우 배경색을 바꾸기
-        if (textLength >= 10 || $textareaTitle.val().length  == 0) {
-            $('.change-modal-ok-btn').css('background-color', '#5f0080');
-            $('.change-modal-ok-btn').css('cursor', 'pointer');
-            $('.change-modal-ok-btn').attr('disabled', false);
-        } else {
-            $('.change-modal-ok-btn').css('background-color', '#ddd');
-            $('.change-modal-ok-btn').css('cursor', 'defualt');
-            $('.change-modal-ok-btn').attr('disabled', true);
-        }
     });
 
     /* 썸네일 내용 및 파일 배열 비우기 */

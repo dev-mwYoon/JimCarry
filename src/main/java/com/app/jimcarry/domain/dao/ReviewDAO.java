@@ -3,6 +3,7 @@ package com.app.jimcarry.domain.dao;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.vo.ReviewVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class ReviewDAO {
     /* 리뷰 추가 */
 
     /* 리뷰 조회 */
+    public ReviewVO findById(Long reviewId) { return reviewMapper.select(reviewId); }
 
     /* 리뷰 목록 조회*/
     public List<ReviewDTO> findAll(PageDTO pageDTO) {
@@ -50,4 +52,7 @@ public class ReviewDAO {
     public int getTotalBy(SearchDTO searchDTO){
         return reviewMapper.totalBy(searchDTO);
     }
+
+    /* 리뷰 업데이트 */
+    public void setReviewVO(ReviewVO reviewVO) { reviewMapper.update(reviewVO); }
 }
