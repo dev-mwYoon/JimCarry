@@ -6,6 +6,9 @@ import com.app.jimcarry.domain.vo.*;
 import com.app.jimcarry.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.ParseException;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -16,11 +19,11 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users/mypage/*")
 @RequiredArgsConstructor
+@Slf4j
 public class MypageController {
 
     private final UserService userService;
@@ -124,27 +127,27 @@ public class MypageController {
 
     /**
      * @param table 파일 종류를 받아서 제너릭의 타입을 결정하는 변수
-     * */
+     */
     @GetMapping("files/thumbnail/{id}")
     @ResponseBody
     /* T : 제너릭 타입으로, 들어오는 파일 타입으로 바뀜 */
     public <T extends FileVO> List<T> display(@PathVariable Long id, String table) {
-        if(table == null){
+        if (table == null) {
             return new ArrayList<>();
         }
         /* table 분기처리 */
-        if(table.equals("inquiry")) return (List<T>) inquiryFileService.getList(id);
-        else if(table.equals("review")) return (List<T>) reviewFileService.getList(id);
+        if (table.equals("inquiry")) return (List<T>) inquiryFileService.getList(id);
+        else if (table.equals("review")) return (List<T>) reviewFileService.getList(id);
 
         return new ArrayList<>();
     }
 
     @PostMapping("files/save/{id}")
     @ResponseBody
-    public void saveFile(@RequestBody List<FileVO> files, @PathVariable Long id, String page, String prev, String table) {
+    public void saveFile(@RequestBody List<FileVO> files, @PathVariable Long id, String table) {
 
-        if(table.equals("inquiry")) inquiryFileService.registerFile(files, id);
-        else if(table.equals("review")) reviewFileService.registerFile(files, id);
+        if (table.equals("inquiry")) inquiryFileService.registerFile(files, id);
+        else if (table.equals("review")) reviewFileService.registerFile(files, id);
     }
 
     /* ================================ 내 후기 ================================== */
@@ -166,9 +169,9 @@ public class MypageController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = reviewService.getTotalBy(searchDTO);
-        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
-        model.addAttribute("total", total);
+//        total = paymentService.getTotalBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, 6, searchDTO);
+        model.addAttribute("total", 6);
         model.addAttribute("payments", paymentService.getListBy(pageDTO));
         model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
@@ -181,6 +184,27 @@ public class MypageController {
         /* 추후 세션으로 변경 */
         reviewVO.setUserId(2L);
         reviewService.updateReview(reviewVO);
+        return new RedirectView("/users/mypage/review?page=" + page);
+    }
+
+    @PostMapping("review/register")
+    public RedirectView registerReview(ReviewVO reviewVO, String files, String page) throws ParseException {
+
+        /* 추후 세션으로 변경 */
+        reviewVO.setUserId(2L);
+        reviewService.registerReview(reviewVO);
+        ArrayList<Object> filesArr = new JSONParser(files).parseArray();
+        List<FileVO> fileList = new ArrayList<>();
+
+        filesArr.stream().map(file -> (LinkedHashMap<String, String>)file)
+                .forEach(file -> {
+                    FileVO fileVO = new FileVO();
+                    fileVO.setFileOrgName(file.get("fileOrgName"));
+                    fileVO.setFileUuid(file.get("fileUuid"));
+                    fileList.add(fileVO);
+                });
+        reviewFileService.registerFile(fileList, reviewVO.getReviewId());
+
         return new RedirectView("/users/mypage/review?page=" + page);
     }
 

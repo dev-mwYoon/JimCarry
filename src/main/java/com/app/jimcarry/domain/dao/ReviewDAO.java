@@ -19,7 +19,7 @@ public class ReviewDAO {
     private final ReviewMapper reviewMapper;
 
     /* 리뷰 추가 */
-
+    public void save(ReviewVO reviewVO) { reviewMapper.insert(reviewVO); }
     /* 리뷰 조회 */
     public ReviewVO findById(Long reviewId) { return reviewMapper.select(reviewId); }
 

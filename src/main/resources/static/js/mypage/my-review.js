@@ -1,4 +1,5 @@
 payments.forEach((payment, i) => {
+    let check = reviews[i] === undefined;
     $(".review-content-list-container").append(
         `
             <div class="review-content-list">
@@ -8,11 +9,15 @@ payments.forEach((payment, i) => {
                              class="review-content-list-img">
                     </a>
                     <p>
-                        <a href="javascript:void(0)" class="review-content-name">${reviews[i].reviewTitle}</a>
+                        <a href="javascript:void(0)" class="review-content-name">
+                            ${check ? '리뷰 없음' : reviews[i].reviewTitle}
+                        </a>
                         <span>${payment.paymentDate} 주문완료</span>
                     </p>
                 </div>  
-                <button class="review-content-btn modal-btn">후기작성</button>
+                <button class="review-content-btn modal-btn">
+                    ${check ? '후기 작성' : '후기 수정'}
+                </button>
             </div>
             <div class="review-content-line"></div>
         `
@@ -82,7 +87,7 @@ $(".review-content-wrpper").append(
                                 솔직하게 얘기해주세요
                             </p>
                         </div>
-                        <form action="/users/mypage/review/update" method="post" class="change-modal-form-wrapper">
+                        <form action="/users/mypage/review/update" method="post" class="change-modal-form-wrapper" datatype="">
                             <div class="review-modal-content-container">
                                 <div class="review-modal-content-wrapper">
                                     <label class="review-modal-content-name">제목</label>
@@ -168,7 +173,6 @@ $(".review-content-wrpper").append(
                             </div>
                             <input type="text" name="reviewTitle" style="display: none">
                             <input type="text" name="reviewContext" style="display: none">
-                            <input type="text" name="reviewId" style="display: none">
                             <input type="text" name="page" style="display: none">
                         </form>
                     </div>
@@ -226,9 +230,9 @@ $btn.on("click", function () {
     /* 글자수 세팅 */
     // 글자수세기, 제한  <작성가능 후기>
     let textLength = 0;
-    $reviewTitle.text(reviews[i].reviewTitle);
-    $textareaTitle.val(reviews[i].reviewTitle)
-    $textarea.val(reviews[i].reviewContext);
+    $reviewTitle.text(reviews[i] === undefined ? "새로 작성하는 리뷰" : reviews[i].reviewTitle);
+    $textareaTitle.val(reviews[i] === undefined ? "" : reviews[i].reviewTitle)
+    $textarea.val(reviews[i] === undefined ? "" : reviews[i].reviewContext);
 
     textLength = $textarea.val().length;
 
@@ -256,6 +260,10 @@ $btn.on("click", function () {
     $thumbnailWrap.empty();
     fileVOs = new Array();
 
+    if(reviews[i] === undefined) {
+        return;
+    }
+
     doAjax(thumbnailAjaxConfig(i), (result) => {
         result.forEach((file) => {
             $thumbnailWrap.append(
@@ -278,15 +286,41 @@ $cancel.on("click", function () {
     $container.css("display", "none");
 });
 
-$(".change-modal-ok-btn").on("click", function () {
-    $fileAjax(reviews[contentIndex].reviewId, "review");
-
-    console.log($textarea.eq(contentIndex).val());
-
+const setReview = function (i) {
     $("input[name='reviewTitle']").val($textareaTitle.val());
     $("input[name='reviewContext']").val($textarea.val());
-    $("input[name='reviewId']").val(reviews[contentIndex].reviewId);
     $("input[name='page']").val($page);
+}
 
-    $(".change-modal-form-wrapper").submit();
+$(".change-modal-ok-btn").on("click", function () {
+
+    let $form = $(".change-modal-form-wrapper");
+
+    if(reviews[contentIndex] === undefined) {
+        const $files = $photoPicker[0].files;
+        $form.attr("action", "/users/mypage/review/register");
+        setReview(contentIndex);
+
+        fileVOs = new Array();
+        $files.forEach((file, i) => {
+            let fileVO = new Object();
+            fileVO.fileOrgName = file.name;
+            fileVO.fileUuid = globalThis.uuids[i];
+            fileVOs.push(fileVO);
+
+        });
+
+        $form.append($('<input/>', {type: 'hidden', name: 'files', value:`${JSON.stringify(fileVOs)}` }));
+        $form.append($('<input/>', {type: 'hidden', name: 'storageId', value:`${payments[contentIndex].storageId}` }));
+
+        $form.submit();
+        return;
+    }
+
+    $fileAjax(reviews[contentIndex].reviewId, "review");
+
+    setReview(contentIndex);
+    $("input[name='reviewId']").val(reviews[contentIndex].reviewId);
+
+    $form.submit();
 });
