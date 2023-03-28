@@ -140,38 +140,56 @@ console.log($checkbox);
 //
 // location.href = pageContext + `/noticeDeleteAction.admin?noticeId=${notice.noticeId}`;
 
+$('input[type=checkbox]').on('click', function() {
+    if ($(this).is(':checked')) {
+        $checkArr.push($(this).parent().parent().next().text());
+    } else {
+        var toRemove = $(this).parent().parent().next().text();
+        $checkArr = $checkArr.filter(function (item) {
+            return item !== toRemove;
+        });
+    }
+});
 
 // const confirmButton = $('#confirm-delete');
 // $('#delete-button')
-confirmButton.click(function () {
+confirmButton.on('click', function () {
     // 삭제를 실행하는 코드 작성
-    $checkbox.each(function (i) {
-        $checkbox.eq(i).on('click', function () {
-            console.log($('.content__id').eq(i).text());
-            if ($(this).is(':checked')) {
-                $checkArr.push($('.content__id').eq(i).text());
-            } else {
-                var toRemove = $('.content__id').eq(i).text();
-                $checkArr = $checkArr.filter(function (item) {
-                    return item !== toRemove;
-                });
-            }
-
-             // $checkArr.text();
-
-
-            // location.reload();
-            // modal.css('display', 'none');
-
-
-        });
-    });
+    // $checkbox.each(function (i, e) {
+    //     $checkbox.eq(i).on('click', function () {
+    //         if ($(this).is(':checked')) {
+    //             $checkArr.push($('.content__id').eq(i).text());
+    //         } else {
+    //             var toRemove = $('.content__id').eq(i).text();
+    //             $checkArr = $checkArr.filter(function (item) {
+    //                 return item !== toRemove;
+    //             });
+    //         }
+    //
+    //         for (let i = 0; i < $checkArr.length; i++) {
+    //             console.log($checkArr);
+    //         }
+    //
+    //          // $checkArr.text();
+    //
+    //
+    //         // location.reload();
+    //         // modal.css('display', 'none');
+    //
+    //
+    //     });
+    // });
     $.ajax({
         url: "/admin/user/delete",
         type: "post",
-        data: { userIds : $checkArr},
-        success : function(){}
-    })
+        data: { userIds : $checkArr },
+        traditional : true,
+        success : function(result){
+            if(result) {
+                location.reload();
+            }
+        }
+    });
 });
 
 // });
