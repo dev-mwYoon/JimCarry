@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.jimcarry.mapper.ReviewMapper">
     <!--리뷰 추가-->
-    <insert id="insert">
-        insert into jimcarry.tbl_review
+    <insert id="insert" useGeneratedKeys="true" keyProperty="reviewId">
+        insert into tbl_review
         (user_id, storage_id, review_title, review_context)
         values(#{userId}, #{storageId}, #{reviewTitle}, #{reviewContext})
     </insert>

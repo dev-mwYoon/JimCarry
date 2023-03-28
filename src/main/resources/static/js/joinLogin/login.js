@@ -17,7 +17,7 @@ $loginButton.on('click', ()=>{
         $modal.css("visibility", "visible");
         return;
     }
-    loginForm.submit();
+    document.loginForm.submit();
 });
 $checkButton.on("click", ()=>{
     $modal.css("visibility", "hidden");

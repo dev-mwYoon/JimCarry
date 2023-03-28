@@ -83,4 +83,16 @@ public class StorageMapperTest {
     public void selectAllBy() {
         storageMapper.selectAllBy(8L);
     }
+
+    /*storageDTO 주소별 조회*/
+    @Test
+    public void selectByAddress() {
+        int total = 0;
+        SearchDTO searchDTO = new SearchDTO();
+        Criteria criteria = new Criteria().create(1, 5);
+        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress("서울");
+        total = storageMapper.totalBy(searchDTO);
+        storageMapper.selectDTOAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
 }

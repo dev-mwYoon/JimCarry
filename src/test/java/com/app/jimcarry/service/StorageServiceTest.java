@@ -65,4 +65,17 @@ public class StorageServiceTest {
         storageService.getStorageBy(8L);
     }
 
+    /*DTO 창고 조건 조회*/
+    @Test
+    public void getStorageDTO(){
+        int total = 0;
+        Criteria criteria = new Criteria().create(1, 10);
+        PageDTO pageDTO = null;
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress("서울");
+
+        total = storageService.getTotalDTOBy(searchDTO);
+        storageService.getStorageDTOBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
 }

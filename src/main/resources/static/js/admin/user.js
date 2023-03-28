@@ -94,8 +94,6 @@ $(".modal-stage").append(
       </section>
     `
 );
-console.log("detailButton: " + $detailButton);
-
 $(".content__detail__btn").on('click', function () {
     console.log("click");
     const i = $detailButton.index($(this));
@@ -128,3 +126,55 @@ $('#completeBtn').on('click', function (e) {
         }
     );
 });
+let $checkArr = [];
+const $checkbox = $('input[name=check]');
+console.log($checkbox);
+
+
+
+// var notice
+
+// notice = JSON.parse(notices)[index];
+//
+// console.log(notice.noticeId);
+//
+// location.href = pageContext + `/noticeDeleteAction.admin?noticeId=${notice.noticeId}`;
+
+
+// const confirmButton = $('#confirm-delete');
+// $('#delete-button')
+confirmButton.click(function () {
+    // 삭제를 실행하는 코드 작성
+    $checkbox.each(function (i) {
+        $checkbox.eq(i).on('click', function () {
+            console.log($('.content__id').eq(i).text());
+            if ($(this).is(':checked')) {
+                $checkArr.push($('.content__id').eq(i).text());
+            } else {
+                var toRemove = $('.content__id').eq(i).text();
+                $checkArr = $checkArr.filter(function (item) {
+                    return item !== toRemove;
+                });
+            }
+
+             // $checkArr.text();
+
+
+            // location.reload();
+            // modal.css('display', 'none');
+
+
+        });
+    });
+    $.ajax({
+        url: "/admin/user/delete",
+        type: "post",
+        data: { userIds : $checkArr},
+        success : function(){}
+    })
+});
+
+// });
+// for(let i=0 ; i<$checkArr.length; i++) {
+//     console.log("넣는거" + $checkArr[i]);
+// }

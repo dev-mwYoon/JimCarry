@@ -16,6 +16,7 @@ public class SearchDTO {
     private String keyword;
     private Long userId;
     private Long storageId;
+    private String storageAddress;
 
     public SearchDTO createTypes(List<String> types){
         setTypes(types);
