@@ -141,7 +141,7 @@ $verifiCheckBtn.on('click', function(event){
         clearInterval(timer);
         $checkButton.on('click',()=>{
             $modal.css('visibility', 'hidden');
-            findPasswordPhoneForm.submit();
+            document.findPasswordPhoneForm.submit();
         });
     } else {
         $modal.css('visibility', 'visible');
