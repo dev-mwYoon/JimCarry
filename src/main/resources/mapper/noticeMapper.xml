@@ -15,4 +15,11 @@
     <select id="total" resultType="int">
         select count(notice_id) from tbl_notice
     </select>
+
+    <!--공지사항 1개씩 조회-->
+    <select id="select" resultType="noticeVO">
+        select notice_id, notice_title, notice_content, notice_writer, notice_regist, notice_update
+        from tbl_notice
+        where notice_id = ${noticeId}
+    </select>
 </mapper>
