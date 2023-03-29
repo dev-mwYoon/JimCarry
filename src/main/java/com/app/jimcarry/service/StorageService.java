@@ -94,4 +94,9 @@ public class StorageService {
     public List<StorageDTO> getStorageDTOBy(PageDTO pageDTO){
         return storageDAO.findStorageDTOListBy(pageDTO);
     }
+
+    /* DTO 메인 창고 조회*/
+    public List<StorageDTO> getStorageDTO(){
+        return storageDAO.findStorageDTOList();
+    }
 }

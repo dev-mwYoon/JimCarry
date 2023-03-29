@@ -135,4 +135,21 @@
             desc
         </if>
     </select>
+
+    <!-- 메인에서 보이는 창고DTO 조회 -->
+    <select id="selectDTOAll" resultType="storageDTO">
+        select storage_id, u.user_id, storage_name, storage_phone, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date,
+        user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from
+        (
+        select user_id, user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from tbl_user
+        ) u
+        join
+        (
+        select storage_id, user_id, storage_name, storage_phone,storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
+        from tbl_storage
+        ) r on u.user_id = r.user_id
+        order by storage_id desc
+    </select>
 </mapper>

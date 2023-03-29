@@ -1,3 +1,29 @@
+/*부트페이 결제 API*/
+
+
+// BootPay.request({
+//     price: '28000', //실제 결제되는 가격
+//     application_id: "6420f19a755e27001e7e35bc",
+//     name: '짐캐리', //결제창에서 보여질 이름
+//     pg: 'nicepay',
+//     method: 'card', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
+//     show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
+//     items: [
+//         {
+//             item_name: '창고 (소)', //상품명
+//             qty: 1, //수량
+//             unique: '123', //해당 상품을 구분짓는 primary key
+//             price: 28000, //상품 단가
+//         }
+//     ],
+//     user_info: {
+//         username: '김서현',
+//         email: 'ksh123@naver.com',
+//         phone: '010-1234-5678'
+//     },
+
+
+/*----------------------------------------------------------------------------*/
 const paymentTableContainer = $(".table");
 
 const createDOM = function(payments){

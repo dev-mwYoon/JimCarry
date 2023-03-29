@@ -99,4 +99,10 @@ class StorageDAOTest {
 
         storageDAO.findStorageDTOListBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
+
+    /*storage DTO 메인창고조회*/
+    @Test
+    public void findStorageDTOList(){
+        storageDAO.findStorageDTOList();
+    }
 }

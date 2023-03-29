@@ -1,5 +1,6 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.PaymentService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,15 @@ public class PayController {
 
     private final PaymentService paymentService;
 
-    @GetMapping("payment")
-    public void pay(Model model){
+    @GetMapping("/payment")
+    public String pay(Model model) {
         UserVO userVO = new UserVO();
         userVO.setUserId(4L);
+        StorageVO storageVO = new StorageVO();
+        storageVO.setStorageId(1L);
         model.addAttribute("user", paymentService.getUser(userVO.getUserId()));
-        model.addAttribute("order", paymentService.getUser(userVO.getUserId()));
+        model.addAttribute("storage", paymentService.getStorage(storageVO.getStorageId()));
+        return "/pay/payment";
     }
 
 }
