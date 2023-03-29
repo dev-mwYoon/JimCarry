@@ -46,7 +46,7 @@ public class ReviewServiceTest {
     /* 한 창고의 리뷰 개수 조회*/
     @Test
     public void getTotalByStorageId() {
-        reviewService.getTotalById(8L);
+        reviewService.getTotalById(1L);
     }
 
     /* 리뷰 조건조회 */
