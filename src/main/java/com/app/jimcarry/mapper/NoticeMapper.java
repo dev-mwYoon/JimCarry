@@ -14,4 +14,7 @@ public interface NoticeMapper {
 
     /* 공지사항 전체 갯수 조회*/
     public int total();
+
+    /*공지사항 조회*/
+    public NoticeVO select(Long noticeId);
 }

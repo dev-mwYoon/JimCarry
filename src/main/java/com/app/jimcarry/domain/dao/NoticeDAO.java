@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NoticeDAO {
     private final NoticeMapper noticeMapper;
+    private final  NoticeVO noticeVO;
 
     /* 공지사항 전체목록 조회 */
     public List<NoticeVO> findAll(PageDTO pageDTO){
@@ -19,7 +20,10 @@ public class NoticeDAO {
     }
 
 
-    /* 공지사사항 전체 개수 조회*/
+    /* 공지사항 전체 개수 조회*/
     public int findTotal(){return noticeMapper.total();}
 
+
+    /*공지사항 조회*/
+    public NoticeVO findById(Long noticeId) { return noticeMapper.select(noticeId);}
 }
