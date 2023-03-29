@@ -113,13 +113,18 @@ public class UserController {
     }
 
     @PostMapping("find-password-phone")
-    public RedirectView findPasswordPhone(String userIdentification, String userName, String userPhone, RedirectAttributes redirectAttributes) {
+    public RedirectView findPasswordPhone(String userIdentification, String userName, String userPhone) {
         if(userService.findIdByPhone(userIdentification, userName, userPhone) == null) {
             return new RedirectView("/user/find-password-phone?result=fail");
         }
-        redirectAttributes.addFlashAttribute("userIdentification", userIdentification);
 
-        return new RedirectView("/user/changePassword");
+        String randomKey = userService.randomKey();
+
+        //    비밀번호 변경 이메일 발송시 랜덤 키 값 컬럼에 저장
+        //    비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제
+        userService.updateUserRandomKey(userIdentification, randomKey);
+
+        return new RedirectView("/user/changePassword?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
     }
 
     @GetMapping("find-password-email")
@@ -128,12 +133,22 @@ public class UserController {
     }
 
     @GetMapping("changePassword")
-    public String changePassword() {
+    public String changePassword(String userIdentification, String userRandomKey) {
+        if(!userService.findByIdentification(userIdentification).getUserRandomKey().equals(userRandomKey)) {
+            return "/";
+        }
+
+        userService.updateUserRandomKey(userIdentification, null);
         return "/joinLogin/changePassword";
     }
 
+//    @GetMapping("changePassword")
+//    public String changePassword() {
+//        return "/joinLogin/changePassword";
+//    }
+
     @PostMapping("changePassword")
-    public RedirectView changePassword(String userIdentification, String userPassword) {
+    public RedirectView changePasswordOK(String userIdentification, String userPassword) {
         userService.updateUserPassword(userIdentification, userPassword);
         return new RedirectView("/user/login");
     }
@@ -149,10 +164,16 @@ public class UserController {
             return new RedirectView("/user/find-password-email?result=fail");
         }
 
+        String randomKey = userService.randomKey();
+
+        //    비밀번호 변경 이메일 발송시 랜덤 키 값 컬럼에 저장
+        //    비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제
+        userService.updateUserRandomKey(userIdentification, randomKey);
+
         MailTO mailTO = new MailTO();
         mailTO.setAddress(userEmail);
         mailTO.setTitle("새 비밀번호 설정 링크입니다.");
-        mailTO.setMessage("링크: http://localhost:10000/user/changePassword?userIdentification=" + userIdentification);
+        mailTO.setMessage("링크: http://localhost:10000/user/changePassword-email?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
         userService.sendMail(mailTO);
 
         redirectAttributes.addFlashAttribute("userEmail", userEmail);

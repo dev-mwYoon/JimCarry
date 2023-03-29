@@ -127,4 +127,17 @@
     <select id="selectTotalUser" resultType="int">
         select count(user_id) from tbl_user
     </select>
+    <!--  비밀번호 변경 이메일 발송시 랜덤 키 값 컬럼에 저장,
+      비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제 -->
+    <update id="updateRandomKeyByUserIdentification">
+        update tbl_user
+        set user_random_key = #{userRandomKey}
+        where user_identification = #{userIdentification}
+    </update>
+    <!--  아이디로 랜덤키 찾기  -->
+    <select id="selectByIdentificationUser" resultType="userVO">
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth, user_random_key
+        from tbl_user
+        where user_identification = #{userIdentification}
+    </select>
 </mapper>

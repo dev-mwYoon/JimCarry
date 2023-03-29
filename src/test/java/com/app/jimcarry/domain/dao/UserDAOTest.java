@@ -126,4 +126,9 @@ class UserDAOTest {
     public void setPasswordByIdentification() {
         userDAO.setPasswordByIdentification("1234", "4321");
     }
+
+    @Test
+    public void updateRandomKeyByUserIdentification() {
+        userDAO.setUserRandomKeyByIdentification("tonky0810", "123456");
+    }
 }

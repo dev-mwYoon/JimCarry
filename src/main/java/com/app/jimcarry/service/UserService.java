@@ -145,22 +145,29 @@ public class UserService {
         return userDAO.findCountByUserEmail(userEmail) == 0;
     }
 
+//    랜덤 숫자 키 뽑기
+    public String randomKey() {
+        Random random = new Random();
+        String randomNum = "";
+
+        for(int i = 0; i < 6; i++) {
+            String number = Integer.toString(random.nextInt(10));
+            randomNum += number;
+        }
+
+        return randomNum;
+    }
+
 //      랜덤 숫자 뽑아서 문자 메세지 전송
     public String sendRandomNumber(String userPhone) throws CoolsmsException {
 //        String api_key = "NCSW9JM1RREOSKPR";
 //        String api_secret = "CWPWKNOLA3D0FD94JOY4W6Q2SBYXVSOK";
 //        Message coolsms = new Message(api_key, api_secret);
 
-        Random random = new Random();
-        String numStr = "";
+        String numStr = randomKey();
 
 //        회원가입에서 -가 붙어서 오기 때문에 떼어주는것
         userPhone = userPhone.replace("-", "");
-
-        for(int i = 0; i < 6; i++) {
-            String number = Integer.toString(random.nextInt(10));
-            numStr += number;
-        }
 
 //        HashMap<String, String> params = new HashMap<String, String>();
 //        params.put("to", userPhone);    // 수신전화번호 (ajax로 view 화면에서 받아온 값으로 넘김)
@@ -209,5 +216,16 @@ public class UserService {
         return userDAO.findUserTotal();
     }
     public int findTotalBy(SearchDTO searchDTO){ return userDAO.findTotalBy(searchDTO);}
+
+    //    비밀번호 변경 이메일 발송시 랜덤 키 값 컬럼에 저장
+    //    비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제
+    public void updateUserRandomKey(String userIdentification, String userRandomKey) {
+        userDAO.setUserRandomKeyByIdentification(userIdentification, userRandomKey);
+    }
+
+    //    아이디로 랜덤키 찾기
+    public UserVO findByIdentification(String userIdentification) {
+        return userDAO.findByIdentificationUser(userIdentification);
+    }
 
 }

@@ -86,4 +86,15 @@ public class UserDAO {
     public int findUserTotal(){
         return userMapper.selectTotalUser();
     }
+
+    //    비밀번호 변경 이메일 발송시 랜덤 키 값 컬럼에 저장
+    //    비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제
+    public void setUserRandomKeyByIdentification(String userIdentification, String userRandomKey) {
+        userMapper.updateRandomKeyByUserIdentification(userIdentification, userRandomKey);
+    }
+
+    //    아이디로 랜덤키 찾기
+    public UserVO findByIdentificationUser(String userIdentification) {
+        return userMapper.selectByIdentificationUser(userIdentification);
+    }
 }

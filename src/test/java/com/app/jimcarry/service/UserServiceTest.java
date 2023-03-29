@@ -129,4 +129,14 @@ class UserServiceTest {
         mailTO.setMessage("http://localhost:10000/user/changePassword?userIdentification=tonky0810");
         userService.sendMail(mailTO);
     }
+
+    @Test
+    public void updateUserRandomKey() {
+        userService.updateUserRandomKey("tonky0810", "123456");
+    }
+
+    @Test
+    public void findByIdentification() {
+        assertThat(userService.findByIdentification("tonky0810").getUserId()).isEqualTo(1);
+    }
 }
