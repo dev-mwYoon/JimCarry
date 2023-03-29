@@ -34,7 +34,7 @@ $photoPicker.on("change", function () {
     prevFileList = $files;
     $files.forEach(file => formData.append("file", file));
 
-    doAjax(uploadAjaxConfig(formData), (result) => {
+    $doAjax(uploadAjaxConfig(formData), (result) => {
         console.log(result)
         globalThis.uuids = result.uuids;
         $thumbnailWrap.empty();
@@ -69,6 +69,6 @@ let $fileAjax = (contentId, table) => {
         contentType: "application/json; charset=utf-8",
     }
 
-    doAjax(config, (result) => {
+    $doAjax(config, (result) => {
     });
 }

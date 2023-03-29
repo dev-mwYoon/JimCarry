@@ -54,17 +54,30 @@ const checkEmailAjaxConfig = (data) => {
  * @param callback success시 콜백함수
  * */
 const doAjax = function (config, callback) {
+    let isContentType = true;
+    let isProcesData = true;
+
+    /* contentType과 processData의 false 값이 제대로 들어가게끔 조건문 설정 */
+    if (!config.contentType) {
+        isContentType = config.contentType === false ? true : false;
+    }
+    if (!config.processData) {
+        isProcesData = config.processData === false ? true : false;
+    }
+
+    console.log("으으악으가악");
+
     $.ajax({
         url: config.url,
         data: config.data,
         method: config.method,
-        contentType: "application/json; charset=utf-8",
+        processData: isProcesData ? config.processData : true,
+        contentType: isContentType ? config.contentType : "application/x-www-form-urlencoded; charset=UTF-8",
         success: function (result) {
-            //전송에 성공하면 실행될 코드;
             callback(result)
         },
         error: function () {
-            console.log(config);
+            console.log(config.data);
         }
     });
 }
