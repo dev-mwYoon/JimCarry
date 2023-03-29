@@ -7,6 +7,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
+import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -74,5 +75,10 @@ public class PaymentService {
     // 유저 조회
     public UserVO getUser(Long userId){
         return paymentDAO.findUserInfo(userId);
+    }
+
+    // 창고 조회
+    public StorageVO getStorage(Long storageId){
+        return paymentDAO.findStorageInfo(storageId);
     }
 }

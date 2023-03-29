@@ -62,4 +62,9 @@ public class StorageDAO {
     public List<StorageDTO> findStorageDTOListBy(PageDTO pageDTO) {
         return storageMapper.selectDTOAllBy(pageDTO);
     }
+
+    //    storagesDTO 메인창고조회
+    public List<StorageDTO> findStorageDTOList() {
+        return storageMapper.selectDTOAll();
+    }
 }

@@ -4,6 +4,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.PaymentVO;
+import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.mapper.PaymentMapper;
 import lombok.RequiredArgsConstructor;
@@ -58,5 +59,10 @@ public class PaymentDAO {
     // 유저 조회
     public UserVO findUserInfo(Long userId){
         return paymentMapper.selectUser(userId);
+    }
+
+    // 창고 조회
+    public StorageVO findStorageInfo(Long storageId){
+        return paymentMapper.selectStorage(storageId);
     }
 }

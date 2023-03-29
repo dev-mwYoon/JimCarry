@@ -20,6 +20,13 @@
         where user_id = #{user_id}
     </select>
 
+    <!-- 창고 정보조회-->
+    <select id="selectStorage" resultType="paymentDTO">
+        select t.storage_id, t.user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date, storage_name, pay_id, payment_amount, payment_date
+        from tbl_storage t
+        join tbl_payment p on t.storage_id = p.storage_id
+    </select>
+
     <select id="selectAllPayment" resultType="paymentDTO">
         select pu.user_id, user_identification, user_password, user_email, user_phone, user_address, user_address_detail,
         user_gender, user_birth, user_name, pay_id, s.storage_id, payment_date, payment_amount, storage_title, storage_size, storage_price,
@@ -100,6 +107,4 @@
             </foreach>
         </trim>
     </sql>
-
-
 </mapper>

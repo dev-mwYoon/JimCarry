@@ -97,4 +97,11 @@ public class StorageMapperTest {
         total = storageMapper.totalBy(searchDTO);
         storageMapper.selectDTOAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
+
+    /*storageDTO 메인 창고 조회*/
+    @Test
+    public void selectMain(){
+        storageMapper.selectDTOAll();
+    }
+
 }
