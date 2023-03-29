@@ -5,12 +5,10 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.UserDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.vo.Criteria;
-import com.app.jimcarry.domain.vo.MailTO;
+import com.app.jimcarry.domain.vo.MailVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -202,7 +200,7 @@ public class UserService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendMail(MailTO mail) {
+    public void sendMail(MailVO mail) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(mail.getAddress());
         message.setFrom("disappointed123419@gmail.com");

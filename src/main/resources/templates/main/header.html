@@ -11,7 +11,7 @@
         <header id="main-header" th:fragment="mainHeader">
             <div class="header-layout">
                 <div class="login-all-menu">
-                    <a th:if="${session.userId == null}" href="/user/join" class="sign-up-menu">회원가입</a>
+                    <a th:if="${session.userId == null}" href="/user/join-select" class="sign-up-menu">회원가입</a>
                     <a th:if="${session.userId != null}" href="/users/mypage/mybox" class="login-menu">
                         <span class="welcome-box">웰컴</span>
                         <span th:text="${session.userName}"></span> 님
