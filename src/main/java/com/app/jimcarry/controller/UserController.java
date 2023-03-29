@@ -1,14 +1,12 @@
 package com.app.jimcarry.controller;
 
-import com.app.jimcarry.domain.vo.MailTO;
+import com.app.jimcarry.domain.vo.MailVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -25,6 +23,16 @@ public class UserController {
     @GetMapping("join")
     public String join() {
         return "/joinLogin/joinForm";
+    }
+
+    @GetMapping("join-select")
+    public String joinSelect() {
+        return "joinLogin/join-select";
+    }
+
+    @GetMapping("callback")
+    public String callback() {
+        return "/joinLogin/callback";
     }
 
     @PostMapping("identifications-duplicate")
@@ -170,7 +178,7 @@ public class UserController {
         //    비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제
         userService.updateUserRandomKey(userIdentification, randomKey);
 
-        MailTO mailTO = new MailTO();
+        MailVO mailTO = new MailVO();
         mailTO.setAddress(userEmail);
         mailTO.setTitle("새 비밀번호 설정 링크입니다.");
         mailTO.setMessage("링크: http://localhost:10000/user/changePassword-email?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);

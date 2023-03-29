@@ -17,4 +17,5 @@ public class UserVO {
     private String userGender;
     private String userBirth;
     private String userRandomKey;
+    private Integer userStatus;
 }

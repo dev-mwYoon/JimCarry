@@ -1,7 +1,6 @@
 package com.app.jimcarry.service;
 
-import com.app.jimcarry.domain.vo.Criteria;
-import com.app.jimcarry.domain.vo.MailTO;
+import com.app.jimcarry.domain.vo.MailVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -123,7 +122,7 @@ class UserServiceTest {
 
     @Test
     public void sendMail() {
-        MailTO mailTO = new MailTO();
+        MailVO mailTO = new MailVO();
         mailTO.setAddress("tonky0810@naver.com");
         mailTO.setTitle("새 비밀번호 링크입니다.");
         mailTO.setMessage("http://localhost:10000/user/changePassword?userIdentification=tonky0810");

@@ -298,7 +298,12 @@ $submitButton.on('click', function(event) {
         return;
     }
 
-    document.joinForm.submit();
+    $modal.css('visibility', 'visible');
+    $modalText.text("회원가입이 완료되었습니다.");
+    $checkButton.on('click',()=>{
+        $modal.css('visibility', 'hidden');
+        document.joinForm.submit();
+    });
 });
 
 var authNumber = null;

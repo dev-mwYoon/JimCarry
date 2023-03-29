@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class MailTO {
+public class MailVO {
     private String address;
     private String title;
     private String message;
