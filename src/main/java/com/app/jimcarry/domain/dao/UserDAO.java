@@ -94,7 +94,7 @@ public class UserDAO {
     }
 
     //    아이디로 랜덤키 찾기
-    public UserVO findByIdentificationUser(String userIdentification) {
-        return userMapper.selectByIdentificationUser(userIdentification);
+    public UserVO findByIdentificationUser(String userIdentification, String userEmail) {
+        return userMapper.selectByIdentificationUser(userIdentification, userEmail);
     }
 }

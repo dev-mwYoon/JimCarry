@@ -1,6 +1,6 @@
 package com.app.jimcarry.controller;
 
-import com.app.jimcarry.domain.vo.MailVO;
+import com.app.jimcarry.domain.vo.MailTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -65,8 +65,17 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public RedirectView login(String userIdentification, String userPassword, HttpSession session) {
-        UserVO userVO = userService.login(userIdentification, userPassword);
+    public RedirectView login(String userIdentification, String userPassword, Long userStatus, String userEmail, HttpSession session) {
+        UserVO userVO = new UserVO();
+        if(userStatus == 2) {
+            userVO = userService.findByIdentification(userIdentification, userEmail);
+
+            session.setAttribute("userId", userVO.getUserId());
+            session.setAttribute("userName", userVO.getUserName());
+            return new RedirectView("/main/");
+        }
+
+        userVO = userService.login(userIdentification, userPassword);
 
         if(userVO == null) {
             return new RedirectView("/user/login?login=fail");
@@ -141,8 +150,11 @@ public class UserController {
     }
 
     @GetMapping("changePassword")
-    public String changePassword(String userIdentification, String userRandomKey) {
-        if(!userService.findByIdentification(userIdentification).getUserRandomKey().equals(userRandomKey)) {
+    public String changePassword(String userIdentification, String userRandomKey, String userEmail) {
+        log.info(userIdentification);
+        log.info(userEmail);
+        log.info(userRandomKey);
+        if(!userService.findByIdentification(userIdentification, userEmail).getUserRandomKey().equals(userRandomKey)) {
             return "/";
         }
 
@@ -178,10 +190,10 @@ public class UserController {
         //    비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제
         userService.updateUserRandomKey(userIdentification, randomKey);
 
-        MailVO mailTO = new MailVO();
+        MailTO mailTO = new MailTO();
         mailTO.setAddress(userEmail);
         mailTO.setTitle("새 비밀번호 설정 링크입니다.");
-        mailTO.setMessage("링크: http://localhost:10000/user/changePassword-email?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
+        mailTO.setMessage("링크: http://localhost:10000/user/changePassword?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
         userService.sendMail(mailTO);
 
         redirectAttributes.addFlashAttribute("userEmail", userEmail);
