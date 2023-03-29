@@ -136,6 +136,6 @@ class UserServiceTest {
 
     @Test
     public void findByIdentification() {
-        assertThat(userService.findByIdentification("tonky0810").getUserId()).isEqualTo(1);
+        assertThat(userService.findByIdentification(null, "tonky0810@naver.com").getUserId()).isEqualTo(1);
     }
 }

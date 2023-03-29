@@ -138,9 +138,12 @@
     <select id="selectByIdentificationUser" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth, user_random_key, user_status
         from tbl_user
-        where user_email = #{userEmail}
+        where
+        <if test="userEmail != null">
+            user_email = #{userEmail}
+        </if>
         <if test="userIdentification != null">
-            and user_identification = #{userIdentification}
+            user_identification = #{userIdentification}
         </if>
     </select>
 </mapper>

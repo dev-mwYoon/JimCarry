@@ -151,6 +151,9 @@ public class UserController {
 
     @GetMapping("changePassword")
     public String changePassword(String userIdentification, String userRandomKey, String userEmail) {
+        log.info(userIdentification);
+        log.info(userEmail);
+        log.info(userRandomKey);
         if(!userService.findByIdentification(userIdentification, userEmail).getUserRandomKey().equals(userRandomKey)) {
             return "/";
         }
@@ -190,7 +193,7 @@ public class UserController {
         MailTO mailTO = new MailTO();
         mailTO.setAddress(userEmail);
         mailTO.setTitle("새 비밀번호 설정 링크입니다.");
-        mailTO.setMessage("링크: http://localhost:10000/user/changePassword-email?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
+        mailTO.setMessage("링크: http://localhost:10000/user/changePassword?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
         userService.sendMail(mailTO);
 
         redirectAttributes.addFlashAttribute("userEmail", userEmail);
