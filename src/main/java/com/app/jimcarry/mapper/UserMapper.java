@@ -55,4 +55,10 @@ public interface UserMapper {
     //    총 회원수
     public int selectTotalUser();
 
+    //    비밀번호 변경 이메일 발송시 랜덤 키 값 컬럼에 저장
+    //    비밀번호 변경 완료 시 랜덤 키 컬럼 값 삭제
+    public void updateRandomKeyByUserIdentification(String userIdentification, String userRandomKey);
+
+    //    아이디로 랜덤키 찾기
+    public UserVO selectByIdentificationUser(String userIdentification);
 }

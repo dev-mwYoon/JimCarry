@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Slf4j
-@Transactional
+//@Transactional
 class UserMapperTest {
 
     @Autowired
@@ -146,5 +146,15 @@ class UserMapperTest {
     @Test
     public void updatePasswordByIdentification() {
         userMapper.updatePasswordByIdentification("1234", "1234");
+    }
+
+    @Test
+    public void updateRandomKeyByUserIdentification() {
+        userMapper.updateRandomKeyByUserIdentification("tonky0810", "123456");
+    }
+
+    @Test
+    public void selectByIdentificationUser() {
+        assertThat(userMapper.selectByIdentificationUser("tonky0810")).isEqualTo("tonky0810");
     }
 }
