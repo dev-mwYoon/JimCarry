@@ -1,6 +1,8 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.aspect.annotation.CheckLogin;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.*;
 import com.app.jimcarry.service.*;
@@ -40,7 +42,7 @@ public class MypageController {
 
 //        page, amount
         /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 5;
+        int amount = 3;
         /* 검색된 결과의 총 개수 */
         int total = 0;
         PageDTO pageDTO = null;
@@ -180,32 +182,25 @@ public class MypageController {
     }
 
     @PostMapping("review/update")
-    public RedirectView updateReview(ReviewVO reviewVO, String page) {
+    @ResponseBody
+    public String updateReview(@RequestBody ReviewDTO reviewDTO, @RequestParam String page) {
         /* 추후 세션으로 변경 */
-        reviewVO.setUserId(2L);
-        reviewService.updateReview(reviewVO);
-        return new RedirectView("/users/mypage/review?page=" + page);
+        reviewDTO.setUserId(2L);
+        reviewService.updateReview(reviewDTO);
+        log.info("===========" + reviewDTO.toString());
+
+        return "/users/mypage/review?page=" + page;
     }
 
     @PostMapping("review/register")
-    public RedirectView registerReview(ReviewVO reviewVO, String files, String page) throws ParseException {
+    @ResponseBody
+    public String registerReview(@RequestBody ReviewDTO reviewDTO, @RequestParam String page) {
 
         /* 추후 세션으로 변경 */
-        reviewVO.setUserId(2L);
-        reviewService.registerReview(reviewVO);
-        ArrayList<Object> filesArr = new JSONParser(files).parseArray();
-        List<FileVO> fileList = new ArrayList<>();
+        reviewDTO.setUserId(2L);
+        reviewService.registerReview(reviewDTO);
 
-        filesArr.stream().map(file -> (LinkedHashMap<String, String>)file)
-                .forEach(file -> {
-                    FileVO fileVO = new FileVO();
-                    fileVO.setFileOrgName(file.get("fileOrgName"));
-                    fileVO.setFileUuid(file.get("fileUuid"));
-                    fileList.add(fileVO);
-                });
-        reviewFileService.registerFile(fileList, reviewVO.getReviewId());
-
-        return new RedirectView("/users/mypage/review?page=" + page);
+        return "/users/mypage/review?page=" + page;
     }
 
     /* ============================== 회원정보 수정 ================================ */
