@@ -45,8 +45,10 @@
                             <div class="sns-img" style="margin-right: 20px;">
                                 <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_kakao.png" alt="sns아이콘" class="kakao-img">
                             </div>
-                            <div class="sns-img">
-                                <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_naver.png" alt="sns아이콘" class="naver-img">
+                            <div class="sns-img" id="naver_id_login">
+                                <a href="https://nid.naver.com/oauth2.0/authorize?response_type=token&amp;client_id=EVE2RFzPw29yZMdwRAx9&amp;redirect_uri=http%3A%2F%2Flocalhost%3A10000%2Fuser%2Fcallback&amp;state=eb7811b3-b788-479d-b90f-24289ff8bc29" id="naver_id_login_anchor">
+                                    <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_naver.png" alt="sns아이콘" class="naver-img">
+                                </a>
                             </div>
                         </div>
                         <div>
@@ -88,4 +90,14 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/joinLogin/login.js"></script>
 <script src="/js/main/header.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var naver_id_login = new naver_id_login("EVE2RFzPw29yZMdwRAx9", "http://localhost:10000/user/callback");
+    var state = naver_id_login.getUniqState();
+    naver_id_login.setButton("white", 2,40);
+    naver_id_login.setDomain("http://localhost:10000");
+    naver_id_login.setState(state);
+    // naver_id_login.setPopup();
+    // naver_id_login.init_naver_id_login();
+</script>
 </html>
