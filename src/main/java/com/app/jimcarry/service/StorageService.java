@@ -95,8 +95,11 @@ public class StorageService {
         return storageDAO.findStorageDTOListBy(pageDTO);
     }
 
-    /* DTO 메인 창고 조회*/
+    /* DTO 메인 신규창고 조회*/
     public List<StorageDTO> getStorageDTO(){
         return storageDAO.findStorageDTOList();
     }
+
+    /* DTO 메인 신규창고 조회*/
+    public List<StorageDTO> getStorage(){return storageDAO.findStorageDTOLists();}
 }

@@ -87,7 +87,7 @@ public class ReviewMapperTest {
     @Test
     void totalBy() {
         SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
-        searchDTO.setUserId(2L);
+        searchDTO.setUserId(1L);
         reviewMapper.totalBy(searchDTO);
     }
 

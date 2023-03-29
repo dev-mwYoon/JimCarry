@@ -3,6 +3,8 @@ package com.app.jimcarry.domain.dto;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
+
 @Component
 @Data
 public class StorageDTO {
@@ -26,4 +28,5 @@ public class StorageDTO {
     private String storageAddressDetail;
     private String storageUseDate;
     private String storageEndDate;
+    private BigInteger reviewId;
 }

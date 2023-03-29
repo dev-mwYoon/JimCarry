@@ -136,7 +136,7 @@
         </if>
     </select>
 
-    <!-- 메인에서 보이는 창고DTO 조회 -->
+    <!-- 메인에서 보이는 신규창고조회 -->
     <select id="selectDTOAll" resultType="storageDTO">
         select storage_id, u.user_id, storage_name, storage_phone, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date,
         user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
@@ -151,5 +151,14 @@
         from tbl_storage
         ) r on u.user_id = r.user_id
         order by storage_id desc
+    </select>
+    <!-- 메인에서 보이는 리뷰창고조회 -->
+    <select id="selectStorageDTOAll" resultType="storageDTO">
+        select u.user_id, s.storage_id, s.storage_title, s.storage_price, count(r.review_id)
+        from tbl_user u
+        join tbl_storage s on u.user_id = s.user_id
+        join tbl_review r on s.storage_id = r.storage_id
+        group by u.user_id, s.storage_id, s.storage_title, s.storage_price
+        order by count(r.review_id) desc
     </select>
 </mapper>

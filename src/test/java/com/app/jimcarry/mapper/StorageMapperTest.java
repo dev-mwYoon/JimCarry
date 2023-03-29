@@ -98,10 +98,16 @@ public class StorageMapperTest {
         storageMapper.selectDTOAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
 
-    /*storageDTO 메인 창고 조회*/
+    /*storageDTO 메인 신규창고 조회*/
     @Test
     public void selectMain(){
         storageMapper.selectDTOAll();
+    }
+
+    /*storageDTO 메인 리뷰창고 조회*/
+    @Test
+    public void selectMainReview(){
+        storageMapper.selectStorageDTOAll();
     }
 
 }

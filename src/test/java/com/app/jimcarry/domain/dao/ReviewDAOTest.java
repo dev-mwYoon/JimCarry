@@ -43,7 +43,7 @@ public class ReviewDAOTest {
     /* 한 창고의 리뷰 개수 조회*/
     @Test
     public void getTotalByStorageId() {
-        reviewDAO.getTotalById(8L);
+        reviewDAO.getTotalById(1L);
     }
 
     /* 리뷰 조건조회 */

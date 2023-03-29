@@ -1,23 +1,19 @@
 package com.app.jimcarry.controller;
 
-import com.app.jimcarry.domain.dto.PageDTO;
-import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.service.ReviewService;
 import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @Controller
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
 public class MainController {
     private final StorageService storageService;
+    private final ReviewService reviewService;
 
 //    /*메인페이지*/
 //    @GetMapping("")
@@ -29,6 +25,8 @@ public class MainController {
     @GetMapping("")
     public String storageMain(Model model){
         model.addAttribute("storages", storageService.getStorageDTO());
+        model.addAttribute("reviews", reviewService.getTotalById(1L));
+        model.addAttribute("countReview", storageService.getStorage());
         return "/main/main";
     }
 
