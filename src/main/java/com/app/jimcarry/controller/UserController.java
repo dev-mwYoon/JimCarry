@@ -66,16 +66,7 @@ public class UserController {
 
     @PostMapping("login")
     public RedirectView login(String userIdentification, String userPassword, Long userStatus, String userEmail, HttpSession session) {
-        UserVO userVO = new UserVO();
-        if(userStatus == 2) {
-            userVO = userService.findByIdentification(userIdentification, userEmail);
-
-            session.setAttribute("userId", userVO.getUserId());
-            session.setAttribute("userName", userVO.getUserName());
-            return new RedirectView("/main/");
-        }
-
-        userVO = userService.login(userIdentification, userPassword);
+        UserVO userVO = userService.login(userIdentification, userPassword);
 
         if(userVO == null) {
             return new RedirectView("/user/login?login=fail");
@@ -84,6 +75,20 @@ public class UserController {
         session.setAttribute("userId", userVO.getUserId());
         session.setAttribute("userName", userVO.getUserName());
         return new RedirectView("/main/");
+    }
+
+    @PostMapping("login-naver")
+    @ResponseBody
+    public boolean loginNaver(String userIdentification, String userEmail, HttpSession session) {
+        UserVO userVO = userService.findByIdentification(userIdentification, userEmail);
+
+        if(userVO == null) {
+            return false;
+        }
+
+        session.setAttribute("userId", userVO.getUserId());
+        session.setAttribute("userName", userVO.getUserName());
+        return true;
     }
 
     @GetMapping("find-id-phone")

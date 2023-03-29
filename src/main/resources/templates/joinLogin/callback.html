@@ -20,11 +20,15 @@
         // alert(naver_id_login.getProfileData('nickname'));
         // alert(naver_id_login.getProfileData('age'));
         $.ajax({
-            url: "/user/login",
+            url: "/user/login-naver",
             type: "post",
-            data: { userStatus : 2, userEmail : naver_id_login.getProfileData('email') },
-            success: function() {
-                window.location.href = "/main/";
+            data: { userEmail : naver_id_login.getProfileData('email') },
+            success: function(result) {
+                if(result) {
+                    window.location.href = "/main/";
+                } else {
+                    window.location.href = "/user/login?result=fail";
+                }
             }
         });
     }
