@@ -193,7 +193,7 @@ const thumbnailAjaxConfig = (i) => {
     return {
         url: `/users/mypage/files/thumbnail/${reviews[i].reviewId}`,
         method: "GET",
-        data: {table : "review"},
+        data: {table: "review"},
         contentType: "application/json; charset=utf-8",
     }
 }
@@ -260,11 +260,11 @@ $btn.on("click", function () {
     $thumbnailWrap.empty();
     fileVOs = new Array();
 
-    if(reviews[i] === undefined) {
+    if (reviews[i] === undefined) {
         return;
     }
 
-    doAjax(thumbnailAjaxConfig(i), (result) => {
+    $doAjax(thumbnailAjaxConfig(i), (result) => {
         result.forEach((file) => {
             $thumbnailWrap.append(
                 `
@@ -286,41 +286,55 @@ $cancel.on("click", function () {
     $container.css("display", "none");
 });
 
-const setReview = function (i) {
-    $("input[name='reviewTitle']").val($textareaTitle.val());
-    $("input[name='reviewContext']").val($textarea.val());
-    $("input[name='page']").val($page);
+reviewDTO = {
+    reviewTitle: $("input[name='reviewTitle']").val($textareaTitle.val()),
+    reviewContext: $("input[name='reviewContext']").val($textarea.val()),
 }
 
 $(".change-modal-ok-btn").on("click", function () {
 
-    let $form = $(".change-modal-form-wrapper");
+    let reviewId;
+    let config;
+    const $files = $photoPicker[0].files;
 
-    if(reviews[contentIndex] === undefined) {
-        const $files = $photoPicker[0].files;
-        $form.attr("action", "/users/mypage/review/register");
-        setReview(contentIndex);
+    fileVOs = new Array();
 
-        fileVOs = new Array();
-        $files.forEach((file, i) => {
-            let fileVO = new Object();
-            fileVO.fileOrgName = file.name;
-            fileVO.fileUuid = globalThis.uuids[i];
-            fileVOs.push(fileVO);
-
-        });
-
-        $form.append($('<input/>', {type: 'hidden', name: 'files', value:`${JSON.stringify(fileVOs)}` }));
-        $form.append($('<input/>', {type: 'hidden', name: 'storageId', value:`${payments[contentIndex].storageId}` }));
-
-        $form.submit();
-        return;
+    $files.forEach((file, i) => {
+        let fileVO = new Object();
+        fileVO.fileOrgName = file.name;
+        fileVO.fileUuid = globalThis.uuids[i];
+        fileVOs.push(fileVO);
+    });
+    /* 입력된 값을 가져와서 reviewDTO 객체 설정 */
+    const reviewTitle = $textareaTitle.val();
+    const reviewContext = $textarea.val();
+    const reviewDTO = {
+        reviewTitle: reviewTitle,
+        reviewContext: reviewContext,
+        files: fileVOs,
+    };
+    /* 리뷰 Id 확인 */
+    reviewId = reviews[contentIndex]?.reviewId;
+    /* 새로 작성 */
+    if (!reviewId) {
+        reviewDTO.storageId = payments[contentIndex].storageId;
+        config = {
+            url: `/users/mypage/review/register?page=${$page}`,
+            method: "POST",
+            data: JSON.stringify(reviewDTO),
+            contentType: "application/json; charset=utf-8",
+        };
+    } else {
+        /* 업데이트 */
+        reviewDTO.reviewId = reviewId;
+        config = {
+            url: `/users/mypage/review/update?page=${$page}`,
+            method: "POST",
+            data: JSON.stringify(reviewDTO),
+            contentType: "application/json; charset=utf-8",
+        };
     }
-
-    $fileAjax(reviews[contentIndex].reviewId, "review");
-
-    setReview(contentIndex);
-    $("input[name='reviewId']").val(reviews[contentIndex].reviewId);
-
-    $form.submit();
+    $doAjax(config, (result) => {
+        location.href = result;
+    });
 });
