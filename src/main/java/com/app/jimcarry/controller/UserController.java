@@ -124,9 +124,6 @@ public class UserController {
 
     @GetMapping("changePassword")
     public String changePassword(String userIdentification, String userRandomKey, String userEmail) {
-        log.info(userIdentification);
-        log.info(userEmail);
-        log.info(userRandomKey);
         if(!userService.findByIdentification(userIdentification, userEmail).getUserRandomKey().equals(userRandomKey)) {
             return "/";
         }
@@ -207,7 +204,10 @@ public class UserController {
         UserVO kakaoInfo = userService.getKakaoInfo(token);
         String userIdentification = null;
         UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
-        session.setAttribute("user", userVO);
+
+        if(userVO.getUserStatus() == 0 || userVO.getUserStatus() == 2) {
+            session.setAttribute("user", userVO);
+        }
     }
 //
 //    @GetMapping("/logout/kakao")
