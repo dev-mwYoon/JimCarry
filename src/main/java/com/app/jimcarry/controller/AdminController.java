@@ -3,19 +3,13 @@ package com.app.jimcarry.controller;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
-import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -60,7 +54,8 @@ public class AdminController {
 
         return "/admin/user";
     }
-//  삭제
+
+    /* 회원 삭제 */
     @PostMapping("user/delete")
     @ResponseBody
     public boolean removeUser(String[] userIds){
@@ -68,7 +63,7 @@ public class AdminController {
         return true;
     }
 
-//    /*-----------문의사항----------*/
+    /*-----------문의사항----------*/
     @GetMapping("enquiry")
         public String enquiry(Criteria criteria, Model model) {
 
@@ -88,13 +83,20 @@ public class AdminController {
         total = inquiryService.getTotal();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-//        model.addAttribute("getTotal", inquiryService.getTotalBy());
         model.addAttribute("inquiries", inquiryService.getList(pageDTO));
         model.addAttribute("pagination", pageDTO);
         return "/admin/enquiry";
     }
-//
-//    /*-----------공지사항----------*/
+    /* 문의사항 삭제 */
+    @PostMapping("enquiry/delete")
+    @ResponseBody
+    public boolean removeinquiry(Long inquiryIds){
+        Arrays.asList(inquiryIds).stream().forEach(data -> inquiryService.removeInquiry(Long.valueOf(data)));
+        return true;
+    }
+
+
+    /*-----------공지사항----------*/
     @GetMapping("notice")
     public String notice(Criteria criteria, Model model) {
         int amount = 5;
@@ -116,9 +118,16 @@ public class AdminController {
 
         return "/admin/notice";
     }
+    /* 공지사항 내역 삭제 */
+    @PostMapping("notice/delete")
+    @ResponseBody
+    public boolean removeNotice(Long noticeIds) {
+        Arrays.asList(noticeIds).stream().forEach(data -> noticeService.removeNotice(Long.valueOf(data)));
+        return true;
+    }
+
     /*-----------결제관리----------*/
     @GetMapping("payment")
-
     public String payment(Criteria criteria, Model model) {
         int amount = 5;
         int total = 0;
@@ -142,6 +151,14 @@ public class AdminController {
 
         return "/admin/payment";
     }
+    /* 결제내역 삭제 */
+    @PostMapping("payment/delete")
+    @ResponseBody
+    public boolean removePayment(Long payIds){
+        Arrays.asList(payIds).stream().forEach(data -> paymentService.removePayment(data));
+        return true;
+    }
+
     /*-----------리뷰관리----------*/
     @GetMapping("review")
     public String review(Criteria criteria, Model model) {
@@ -166,8 +183,15 @@ public class AdminController {
         model.addAttribute("pagination", pageDTO);
 
         return "/admin/review";
-
     }
+
+    @PostMapping("review/delete")
+    @ResponseBody
+    public boolean removeReview(Long reviewIds){
+        Arrays.asList(reviewIds).stream().forEach(data -> reviewService.removeReview(data));
+        return true;
+    }
+
     /*-----------창고관리----------*/
     @GetMapping("storage")
     public String storage(Criteria criteria, Model model) {
@@ -189,13 +213,18 @@ public class AdminController {
         total =  storageService.getTotal();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-        model.addAttribute("getTotal", storageService.getTotal());
         model.addAttribute("storages", storageService.getStorageList(pageDTO));
         model.addAttribute("pagination", pageDTO);
 
         return "/admin/storage";
     }
-
+    /* 창고 삭제 */
+    @PostMapping("storage/delete")
+    @ResponseBody
+    public boolean removeStorage(Long storageIds){
+        Arrays.asList(storageIds).stream().forEach(data -> storageService.removeStorage(Long.valueOf(data)));
+        return true;
+    }
 
 
 }

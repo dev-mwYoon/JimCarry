@@ -26,4 +26,9 @@ public class NoticeDAO {
 
     /*공지사항 조회*/
     public NoticeVO findById(Long noticeId) { return noticeMapper.select(noticeId);}
+
+    /* 공지사항 삭제*/
+    public void deleteById(Long noticeId){
+        noticeMapper.delete(noticeId);
+    }
 }

@@ -124,7 +124,6 @@ $storageFile.on('change', function (e) {
 });
 
 /* 체크박스 이벤트 ======================================= */
-
 $checkAll.click(function () {
   if ($checkAll.is(':checked')) $check.prop('checked', true);
   else $check.prop('checked', false);
@@ -133,7 +132,7 @@ $checkAll.click(function () {
 $check.click(function () {
   var total = $check.length;
   var checked = $('input[name=check]:checked').length;
-
+  console.log("들왓나?")
   if (total != checked) $checkAll.prop('checked', false);
   else $checkAll.prop('checked', true);
 });
