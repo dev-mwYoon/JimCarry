@@ -9,8 +9,8 @@ const createDOM = function(box){
             <input type="checkbox" name="check" />
             </label>
             </td>
-            <td class="content__id">${box.storageId} </td>
-            <td>${box.userIdentification} </td>
+            <td class="content__id">${box.storageId}</td>
+            <td>${box.userIdentification}</td>
             <td>${box.userEmail}</td>
         <td>${box.storageAddress} ${box.storageAddressDetail}</td>
         <td>${box.storageUseDate} ~ ${box.storageEndDate}</td>
@@ -174,11 +174,11 @@ $('#completeBtn').on('click', function (e) {
     );
 });
 
+/* 체크박스 */
+const $checkAll = $('#checkAll');
+const $check = $("input[name='check']");
 let $checkArr = [];
-const $checkbox = $('input[name=check]');
-console.log($checkbox);
-
-$('input[type=checkbox]').on('click', function() {
+$('input[name=check]').on('click', function() {
     if ($(this).is(':checked')) {
         $checkArr.push($(this).parent().parent().next().text());
     } else {
@@ -186,6 +186,38 @@ $('input[type=checkbox]').on('click', function() {
         $checkArr = $checkArr.filter(function (item) {
             return item !== toRemove;
         });
+    }
+    console.log($checkArr);
+});
+
+/* 체크박스 이벤트 ======================================= */
+$checkAll.click(function () {
+    if ($checkAll.is(':checked')) {
+        $check.prop('checked', true);
+        $check.each((i,e)=> {
+            $checkArr.push($check.eq(i).parent().parent().next().text());
+        });
+    }
+    else {
+        $check.prop('checked', false);
+        $check.each((i, e) => {
+            var toRemove = $check.eq(i).parent().parent().next().text();
+            $checkArr = $checkArr.filter(function (item) {
+                return item !== toRemove;
+            });
+        });
+    }
+    console.log($checkArr);
+});
+
+$check.click(function () {
+    var total = $check.length;
+    var checked = $('input[name=check]:checked').length;
+    if (total != checked) {
+        $checkAll.prop('checked', false);
+    }
+    else {
+        $checkAll.prop('checked', true);
     }
 });
 
