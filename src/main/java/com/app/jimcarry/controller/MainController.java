@@ -1,6 +1,7 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.service.ReviewService;
+import com.app.jimcarry.service.StorageFileService;
 import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
     private final StorageService storageService;
     private final ReviewService reviewService;
+    private final StorageFileService storageFileService;
 
 //    /*메인페이지*/
 //    @GetMapping("")
@@ -25,9 +27,9 @@ public class MainController {
     @GetMapping("")
     public String storageMain(Model model){
         model.addAttribute("storages", storageService.getStorageDTO());
-        model.addAttribute("reviews", reviewService.getTotalById(1L));
-        model.addAttribute("countReview", storageService.getStorage());
+//        model.addAttribute("reviews", reviewService.getTotalById(1L));
+        model.addAttribute("countReviews", storageService.getStorage());
+        model.addAttribute("files",storageFileService.getFile(1L));
         return "/main/main";
     }
-
 }

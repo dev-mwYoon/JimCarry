@@ -49,7 +49,7 @@ public class PaymentServiceTest {
         Criteria criteria = new Criteria().create(1, 5);
         SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
         searchDTO.setUserId(2L);
-        int total = paymentService.geTotalBy(searchDTO);
+        int total = paymentService.getTotalBy(searchDTO);
         paymentService.getListBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
 
@@ -58,6 +58,12 @@ public class PaymentServiceTest {
         paymentService.register(paymentVO);
         SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));
         searchDTO.setUserId(2L);
-        paymentService.geTotalBy(searchDTO);
+        paymentService.getTotalBy(searchDTO);
+    }
+
+    /*유저 정보 조회*/
+    @Test
+    public void getUser(){
+        paymentService.getUser(1L);
     }
 }

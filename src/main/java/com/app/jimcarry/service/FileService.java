@@ -1,12 +1,12 @@
 package com.app.jimcarry.service;
 
+import com.app.jimcarry.aspect.annotation.LogStatus;
+import com.app.jimcarry.domain.dao.FileDAO;
 import com.app.jimcarry.domain.vo.FileVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public interface FileService {
@@ -16,5 +16,6 @@ public interface FileService {
 
     //    삭제
     void remove(Long id);
+
 
 }

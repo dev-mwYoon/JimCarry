@@ -1,4 +1,5 @@
-package com.app.jimcarry.domain.dao;
+package com.app.jimcarry.mapper;
+
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -9,13 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Slf4j
 @Transactional
-public class FileDAOTest {
+public class FileMapperTest {
+
     @Autowired
-    FileDAO fileDAO;
+    FileMapper fileMapper;
 
     /*조회*/
     @Test
-    public void findById(){
-        fileDAO.findById(1L);
+    public void select(){
+        fileMapper.select(1L);
     }
 }

@@ -48,4 +48,10 @@ public class PaymentDAOTest {
         searchDTO.setUserId(2L);
         paymentDAO.findTotalBy(searchDTO);
     }
+
+    /*유저 정보 조회*/
+    @Test
+    public void findUserInfo(){
+        paymentDAO.findUserInfo(1L);
+    }
 }

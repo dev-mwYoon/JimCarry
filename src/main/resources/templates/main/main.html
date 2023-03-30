@@ -142,7 +142,7 @@
             </div>
             <div class="four-static-banner-outer-div">
                 <div class="four-static-banner-middle-div">
-                    <div class="four-static-banner-inner-div">
+                    <div class="four-static-banner-inner-div" id="storageReview">
                         <div class="four-static-banner-one-div">
                             <a href="#" class="four-static-banner-one-a">
                                 <div class="four-static-banner-img-div">
@@ -412,11 +412,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
+    let countReviews = [[${countReviews}]];
     let storages = [[${storages}]];
-    let reviews = [[${reviews}]];
-</script>
-<script th:inline="javascript">
-    let countReview = [[${countReview}]];
+    // let reviews = [[${reviews}]];
+    let files = [[${files}]];
 </script>
 <script src="/js/main/main.js"></script>
 <script src="/js/main/header.js"></script>
