@@ -110,4 +110,17 @@ public class StorageServiceTest {
     public void getStorageDTOMains(){
         storageService.getStorage();
     }
+
+    @Test
+    public void getStorageDTOBy() {
+        int total = 0;
+        Criteria criteria = new Criteria().create(1, 10);
+        PageDTO pageDTO = null;
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
+        searchDTO.setStorageAddressNumber(7);
+
+        total = storageService.getTotalDTOBy(searchDTO);
+        storageService.getStorageDTOBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
+    }
 }

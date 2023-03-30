@@ -46,8 +46,26 @@ public class SearchController {
     /*지역별 창고 목록 검색*/
     @PostMapping("list")
     @ResponseBody
-    public List<StorageDTO> searchByAddress(Long storageId){
-        return storageService.getStorageBy(storageId);
+    public List<StorageDTO> searchByAddress(Integer storageAddressNumber, Criteria criteria){
+
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 3;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
+        searchDTO.setStorageAddressNumber(storageAddressNumber);
+
+        //         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = storageService.getTotalBy(searchDTO);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+
+        return storageService.getStorageDTOBy(pageDTO);
     }
 
     /* 창고 상세페이지 조회*/
