@@ -52,7 +52,10 @@ public class StorageDAO {
     //    수정
 
     //    삭제
-    public void deleteById(Long storageId){ storageMapper.delete(storageId);}
+    public void deleteById(Long storageId) {
+        storageMapper.delete(storageId);
+    }
+
 
     //    storagesDTO 조회
     public List<StorageDTO> findStorageDTOBy(Long storageId) {

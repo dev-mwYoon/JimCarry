@@ -73,7 +73,7 @@ public class StorageService {
     //    수정
 
     //    삭제
-    public void removeStorage(Long storageId){
+    public void removeStorage(Long storageId) {
         storageDAO.deleteById(storageId);
     }
 

@@ -83,6 +83,10 @@ public class ReviewService {
                 .forEach(file -> { file.setFilePath(getPath()); reviewFileDAO.save(file); });
     }
 
+    public void removeReview(Long reviewId) {
+        reviewDAO.deleteById(reviewId);
+    }
+
     //    현재 날짜 경로 구하기
     private String getPath() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));

@@ -35,7 +35,7 @@ public interface StorageMapper {
 
     //    수정
 
-    /* 삭제 */
+    //    삭제
     public void delete(Long storageId);
 
     /*storageDTO 조회*/
