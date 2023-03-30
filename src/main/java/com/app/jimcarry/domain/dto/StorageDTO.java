@@ -35,4 +35,5 @@ public class StorageDTO {
     private BigInteger reviewId;
     private Integer reviewCount;
     private List<FileVO> files;
+    private FileVO file;
 }
