@@ -396,7 +396,7 @@
                 </div>
             </div>
         </div>
-    <input type="hidden" name="userStatus" th:if="${session.kakaoInfo == null}">
+    <input type="hidden" name="userStatus" th:if="${session.kakaoInfo == null}" value="0">
     <input type="hidden" name="userStatus" th:if="${session.kakaoInfo != null}" th:value="${session.kakaoInfo.getUserStatus()}">
     </form>
     <!-- 푸터 -->
