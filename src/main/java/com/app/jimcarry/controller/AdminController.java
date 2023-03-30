@@ -90,7 +90,7 @@ public class AdminController {
     /* 문의사항 삭제 */
     @PostMapping("enquiry/delete")
     @ResponseBody
-    public boolean removeinquiry(Long inquiryIds){
+    public boolean removeinquiry(String[] inquiryIds){
         Arrays.asList(inquiryIds).stream().forEach(data -> inquiryService.removeInquiry(Long.valueOf(data)));
         return true;
     }
@@ -121,7 +121,7 @@ public class AdminController {
     /* 공지사항 내역 삭제 */
     @PostMapping("notice/delete")
     @ResponseBody
-    public boolean removeNotice(Long noticeIds) {
+    public boolean removeNotice(String[] noticeIds) {
         Arrays.asList(noticeIds).stream().forEach(data -> noticeService.removeNotice(Long.valueOf(data)));
         return true;
     }
@@ -154,8 +154,8 @@ public class AdminController {
     /* 결제내역 삭제 */
     @PostMapping("payment/delete")
     @ResponseBody
-    public boolean removePayment(Long payIds){
-        Arrays.asList(payIds).stream().forEach(data -> paymentService.removePayment(data));
+    public boolean removePayment(String[] payIds){
+        Arrays.asList(payIds).stream().forEach(data -> paymentService.removePayment(Long.valueOf(data)));
         return true;
     }
 
@@ -187,8 +187,8 @@ public class AdminController {
 
     @PostMapping("review/delete")
     @ResponseBody
-    public boolean removeReview(Long reviewIds){
-        Arrays.asList(reviewIds).stream().forEach(data -> reviewService.removeReview(data));
+    public boolean removeReview(String[] reviewIds){
+        Arrays.asList(reviewIds).stream().forEach(data -> reviewService.removeReview(Long.valueOf(data)));
         return true;
     }
 
@@ -221,7 +221,7 @@ public class AdminController {
     /* 창고 삭제 */
     @PostMapping("storage/delete")
     @ResponseBody
-    public boolean removeStorage(Long storageIds){
+    public boolean removeStorage(String[] storageIds){
         Arrays.asList(storageIds).stream().forEach(data -> storageService.removeStorage(Long.valueOf(data)));
         return true;
     }

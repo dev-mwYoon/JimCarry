@@ -1,5 +1,7 @@
 const inquiryTableContainer = $(".table");
 
+
+
 const createDOM = function(inquiries){
     let text =
         `<tr class="table__content">
@@ -74,38 +76,55 @@ $(".modal-stage").append(
     `
 );
 
-$(".content__detail__btn").on('click', function () {
-    console.log("click");
-    const i = $detailButton.index($(this));
 
-    /* 해당 컨텐츠 번호 */
-    const contentId = $detailButton.eq(i).parent().siblings('.content__id').text();
+/* 체크박스 이벤트 ======================================= */
+// $('#checkAll').click(function () {
+//     console.log($('input[type=checkbox]').is(':checked'));
+//     if ($('#checkAll').is(':checked')) $('input[type=checkbox]').prop('checked', true);
+//     else $('input[type=checkbox]').prop('checked', false);
+// });
+//
+// $('input[type=checkbox]').click(function () {
+//     console.log($('input[type=checkbox]').is(':checked'));
+//     var total = $('input[type=checkbox]').length;
+//     var checked = $('input[name=check]:checked').length;
+//     console.log("들왓나?")
+//     if (total != checked) $('#checkAll').prop('checked', false);
+//     else $('#checkAll').prop('checked', true);
+// });
 
-    /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
+// $(".content__detail__btn").on('click', function () {
+//     const i = $detailButton.index($(this));
+//     /* 해당 컨텐츠 번호 */
+//     const contentId = $detailButton.eq(i).parent().siblings('.content__id').text();
+//
+//     /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
+//
+//     /* 추후 타임리프로 대체할 예정 */
+//     $modalStage.show();
+//
+//     /* 모달 닫는 이벤트 */
+//     /* 추후 외부로 빼야함 */
+//     $('.modal-close').on('click', function (e) {
+//         $modalStage.fadeOut(500);
+//     });
+// });
+//
+// /* 상세보기 모달 내용 submit 이벤트 */
+// $('#completeBtn').on('click', function (e) {
+//     e.preventDefault();
+//     return new Promise(
+//         function () {
+//             console.log('으으아');
+//             $modalStage.fadeOut(500);
+//         },
+//         () => {
+//             $('.storage_form').submit();
+//         }
+//     );
+// });
 
-    /* 추후 타임리프로 대체할 예정 */
-    $modalStage.show();
 
-    /* 모달 닫는 이벤트 */
-    /* 추후 외부로 빼야함 */
-    $('.modal-close').on('click', function (e) {
-        $modalStage.fadeOut(500);
-    });
-});
-
-/* 상세보기 모달 내용 submit 이벤트 */
-$('#completeBtn').on('click', function (e) {
-    e.preventDefault();
-    return new Promise(
-        function () {
-            console.log('으으아');
-            $modalStage.fadeOut(500);
-        },
-        () => {
-            $('.storage_form').submit();
-        }
-    );
-});
 
 let $checkArr = [];
 const $checkbox = $('input[name=check]');
@@ -121,6 +140,22 @@ $('input[type=checkbox]').on('click', function() {
         });
     }
 });
+// /* 체크박스 */
+// const $checkAll = $('#checkAll');
+// const $check = $("input[name='check']");
+// /* 체크박스 이벤트 ======================================= */
+// $checkAll.click(function () {
+//     if ($checkAll.is(':checked')) $check.prop('checked', true);
+//     else $check.prop('checked', false);
+// });
+//
+// $check.click(function () {
+//     var total = $check.length;
+//     var checked = $('input[name=check]:checked').length;
+//     console.log("들왓나?")
+//     if (total != checked) $checkAll.prop('checked', false);
+//     else $checkAll.prop('checked', true);
+// });
 
 confirmButton.on('click', function () {
 
@@ -136,3 +171,4 @@ confirmButton.on('click', function () {
         }
     });
 });
+
