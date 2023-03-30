@@ -6,23 +6,9 @@ naver_id_login.get_naver_userprofile("naverSignInCallback()");
 // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
 function naverSignInCallback() {
     $('input[name=userName]').val(naver_id_login.getProfileData('name'));
+    $('input[name=userName]').attr('readonly', true);
     $('input[name=userEmail]').val(naver_id_login.getProfileData('email'));
-
-    if(naver_id_login.getProfileData('gender') == 'M') {
-        $($('.genderRadio')[0]).prop('checked', true);
-        $('.man').attr('class', 'radioSpanClick');
-        $('.man2').attr('class', 'radioBoxDivClick');
-    }
-    if(naver_id_login.getProfileData('gender') == 'F') {
-        $($('.genderRadio')[1]).prop('checked', true);
-        $('.woman').attr('class', 'radioSpanClick');
-        $('.woman2').attr('class', 'radioBoxDivClick');
-    }
-    if(naver_id_login.getProfileData('gender') == 'U') {
-        $($('.genderRadio')[2]).prop('checked', true);
-        $('.none').attr('class', 'radioSpanClick');
-        $('.none2').attr('class', 'radioBoxDivClick');
-    }
+    $('input[name=userEmail]').attr('readonly', true);
 
     $('input[name=userStatus]').val(2);
     // alert(naver_id_login.getProfileData('name'));

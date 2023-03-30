@@ -180,8 +180,7 @@ $duplicateEmailButton.on('click', function(){
                 $modalText.text("사용 가능 합니다.");
                 $($('.duplicateBox')[1]).attr('disabled', true);
             } else {
-                $modalText.text("사용 불가능 합니다.");
-                $('.emailInput').val('');
+                $modalText.text("중복된 이메일입니다.");
             }
         })
     }
@@ -205,7 +204,7 @@ $duplicateIdButton.on('click', function(){
                 $modalText.text("사용 가능 합니다.");
                 $($('.duplicateBox')[0]).attr('disabled', true);
             } else {
-                $modalText.text("사용 불가능 합니다.");
+                $modalText.text("중복된 아이디입니다.");
                 $('.idInput').val('');
             }
         });

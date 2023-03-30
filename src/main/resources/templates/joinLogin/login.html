@@ -43,7 +43,10 @@
                     <div class="idPwFindLayout">
                         <div class="sns">
                             <div class="sns-img" style="margin-right: 20px;">
-                                <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_kakao.png" alt="sns아이콘" class="kakao-img">
+                                <a href="https://kauth.kakao.com/oauth/authorize?client_id=f98c5a800722daf40b2e538f2766c211&redirect_uri=
+http://localhost:10000/user/kakao&response_type=code">
+                                    <img src="https://d2v80xjmx68n4w.cloudfront.net/assets/icon/icon_kakao.png" alt="sns아이콘" class="kakao-img">
+                                </a>
                             </div>
                             <div class="sns-img" id="naver_id_login">
                                 <a href="https://nid.naver.com/oauth2.0/authorize?response_type=token&amp;client_id=EVE2RFzPw29yZMdwRAx9&amp;redirect_uri=http%3A%2F%2Flocalhost%3A10000%2Fuser%2Fcallback&amp;state=eb7811b3-b788-479d-b90f-24289ff8bc29" id="naver_id_login_anchor">
@@ -61,7 +64,7 @@
                         <button class="loginButton" type="button" height="54" radius="3">
                             <span class="buttonBox">로그인</span>
                         </button>
-                        <button class="joinButton" type="button" height="54" radius="3" onclick="javascript:location.href='/user/join'">
+                        <button class="joinButton" type="button" height="54" radius="3" onclick="javascript:location.href='/user/join-select'">
                             <span class="buttonBox">회원가입</span>
                         </button>
                     </div>
