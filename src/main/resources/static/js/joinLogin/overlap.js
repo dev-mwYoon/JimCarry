@@ -1,7 +1,7 @@
 const overlapService = (function() {
     function checkIdentification(userIdentification, callback) {
         $.ajax({
-            url: "/user/identifications-duplicate",
+            url: "/users/identifications-duplicate",
             type: "post",
             data: { userIdentification : userIdentification },
             success: function(result) {
@@ -14,7 +14,7 @@ const overlapService = (function() {
 
     function checkEmail(userEmail, callback) {
         $.ajax({
-            url: "/user/emails-duplicate",
+            url: "/users/emails-duplicate",
             type: "post",
             data: { userEmail : userEmail },
             success: function(result) {
@@ -27,7 +27,7 @@ const overlapService = (function() {
 
     function sendSMS(callback) {
         $.ajax({
-            url: "/user/send-sms",
+            url: "/users/send-sms",
             type: "get",
             data: { userPhone : $('input[name=userPhone]').val() },
             success: function(result) {

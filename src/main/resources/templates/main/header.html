@@ -11,14 +11,14 @@
         <header id="main-header" th:fragment="mainHeader">
             <div class="header-layout">
                 <div class="login-all-menu">
-                    <a th:if="${session.userId == null}" href="/user/join-select" class="sign-up-menu">회원가입</a>
-                    <a th:if="${session.userId != null}" href="/users/mypage/mybox" class="login-menu">
+                    <a th:if="${session.user == null}" href="/user/join-select" class="sign-up-menu">회원가입</a>
+                    <a th:if="${session.user != null}" href="/users/mypage/mybox" class="login-menu">
                         <span class="welcome-box">웰컴</span>
-                        <span th:text="${session.userName}"></span> 님
+                        <span th:text="${session.user.getUserName()}"></span> 님
                     </a>
                     <div class="slash"></div>
-                    <a th:if="${session.userId == null}" href="/user/login" class="login-menu">로그인</a>
-                    <a th:if="${session.userId != null}" href="/user/logout" class="login-menu">로그아웃</a>
+                    <a th:if="${session.user == null}" href="/user/login" class="login-menu">로그인</a>
+                    <a th:if="${session.user != null}" href="/user/logout" class="login-menu">로그아웃</a>
                     <div class="slash"></div>
                     <div class="customer-center-layout">
                         <a href="/notice/list" class="customer-centertext">고객센터
