@@ -37,3 +37,6 @@ const clock = document.querySelector('.clock h1');
 /* 파일 썸네일교체 */
 const $storageFile = $("input[name='file']");
 const $thumbnail = $(".content__img img");
+
+
+const pageButton = $(".page-button");

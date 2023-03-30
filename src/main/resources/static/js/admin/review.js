@@ -162,11 +162,11 @@ $('#completeBtn').on('click', function (e) {
     );
 });
 
+/* 체크박스 */
+const $checkAll = $('#checkAll');
+const $check = $("input[name='check']");
 let $checkArr = [];
-const $checkbox = $('input[name=check]');
-console.log($checkbox);
-
-$('input[type=checkbox]').on('click', function() {
+$('input[name=check]').on('click', function() {
     if ($(this).is(':checked')) {
         $checkArr.push($(this).parent().parent().next().text());
     } else {
@@ -174,6 +174,38 @@ $('input[type=checkbox]').on('click', function() {
         $checkArr = $checkArr.filter(function (item) {
             return item !== toRemove;
         });
+    }
+    console.log($checkArr);
+});
+
+/* 체크박스 이벤트 ======================================= */
+$checkAll.click(function () {
+    if ($checkAll.is(':checked')) {
+        $check.prop('checked', true);
+        $check.each((i,e)=> {
+            $checkArr.push($check.eq(i).parent().parent().next().text());
+        });
+    }
+    else {
+        $check.prop('checked', false);
+        $check.each((i, e) => {
+            var toRemove = $check.eq(i).parent().parent().next().text();
+            $checkArr = $checkArr.filter(function (item) {
+                return item !== toRemove;
+            });
+        });
+    }
+    console.log($checkArr);
+});
+
+$check.click(function () {
+    var total = $check.length;
+    var checked = $('input[name=check]:checked').length;
+    if (total != checked) {
+        $checkAll.prop('checked', false);
+    }
+    else {
+        $checkAll.prop('checked', true);
     }
 });
 confirmButton.on('click', function(){
