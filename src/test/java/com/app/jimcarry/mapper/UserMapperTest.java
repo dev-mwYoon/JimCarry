@@ -155,6 +155,6 @@ class UserMapperTest {
 
     @Test
     public void selectByIdentificationUser() {
-        assertThat(userMapper.selectByIdentificationUser("tonky0810")).isEqualTo("tonky0810");
+        assertThat(userMapper.selectByIdentificationUser("tonky0810", null).getUserIdentification()).isEqualTo("tonky0810");
     }
 }

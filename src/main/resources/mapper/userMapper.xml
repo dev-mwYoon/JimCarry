@@ -3,17 +3,17 @@
 <mapper namespace="com.app.jimcarry.mapper.UserMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
         insert into tbl_user
-        (user_identification, user_password, user_name, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth)
-        values(#{userIdentification}, #{userPassword}, #{userName}, #{userEmail}, #{userPhone}, #{userAddress}, #{userAddressDetail}, #{userGender}, #{userBirth});
+        (user_identification, user_password, user_name, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_status)
+        values(#{userIdentification}, #{userPassword}, #{userName}, #{userEmail}, #{userPhone}, #{userAddress}, #{userAddressDetail}, #{userGender}, #{userBirth}, #{userStatus})
     </insert>
     <select id="select" resultType="userVO">
-        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth, user_status
         from tbl_user
         where user_id = #{userId}
     </select>
     <select id="selectAllBy" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address,
-        user_address_detail, user_gender, user_birth
+        user_address_detail, user_gender, user_birth, user_status
         from tbl_user
         <include refid="searchType"/>
         order by user_id
@@ -24,7 +24,7 @@
     </select>
     <select id="selectAll" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address,
-        user_address_detail, user_gender, user_birth
+        user_address_detail, user_gender, user_birth, user_status
         from tbl_user
         order by user_id
         <if test="page.searchDTO.isDesc">
@@ -41,7 +41,7 @@
     </select>
     <select id="selectByIdentificationAndPassword" resultType="userVO">
         select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address,
-        user_address_detail, user_gender, user_birth from tbl_user
+        user_address_detail, user_gender, user_birth, user_status from tbl_user
         where user_identification = #{userIdentification} and user_password = #{userPassword}
     </select>
     <select id="selectByIdentification" resultType="int">
@@ -95,7 +95,7 @@
     </sql>
     <!--  이름, 핸드폰 번호로 아이디 찾기  -->
     <select id="selectByPhoneAndNameOrIdentification" resultType="userVO">
-        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth, user_status
         from tbl_user
         where user_phone = #{userPhone}
         <if test="userName != null">
@@ -113,7 +113,7 @@
     </update>
     <!--  이름, 이메일로 찾기  -->
     <select id="selectByEmailAndNameOrIdentification" resultType="userVO">
-        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth, user_status
         from tbl_user
         where user_email = #{userEmail}
         <if test="userName != null">
@@ -136,8 +136,14 @@
     </update>
     <!--  아이디로 랜덤키 찾기  -->
     <select id="selectByIdentificationUser" resultType="userVO">
-        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth, user_random_key
+        select user_id, user_identification, user_password, user_email, user_name, user_phone, user_address, user_address_detail, user_gender, user_birth, user_random_key, user_status
         from tbl_user
-        where user_identification = #{userIdentification}
+        where
+        <if test="userEmail != null">
+            user_email = #{userEmail}
+        </if>
+        <if test="userIdentification != null">
+            user_identification = #{userIdentification}
+        </if>
     </select>
 </mapper>

@@ -20,20 +20,20 @@
         <div class="notice-text">공지사항</div>
         <div class="notice-text-small">짐캐리의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</div>
     </div>
-    <div class="notice-content">
+    <div class="notice-content" th:object="${notice}">
         <div class="notice-table">
             <div class="notice-table-title">제목</div>
-            <div class="notice-table-content">빨간날</div>
+            <div class="notice-table-content" th:text="*{noticeTitle}">빨간날</div>
         </div>
         <div class="notice-table">
             <div class="notice-table-title">작성자</div>
-            <div class="notice-table-content">노라조</div>
+            <div class="notice-table-content" th:text="*{noticeWriter}">노라조</div>
         </div>
         <div class="notice-table">
             <div class="notice-table-title">작성일</div>
-            <div class="notice-table-content">2011.11.04</div>
+            <div class="notice-table-content" th:text="*{noticeRegist}">2011.11.04</div>
         </div>
-        <div class="notice-article">
+        <div class="notice-article"  th:text="*{noticeContent}">
             <p>스승의 은혜는 하늘같은데 스승의 날은 어째서 평일입니까<br>
                 선생님 죄송합니다 빨간날인줄 알았어요<br>
                 손발이 닳도록 고생하시는 어버이날은 어째서 평일입니까<br>

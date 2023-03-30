@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="qna-write-content">
-                <form th:action="@{/notice/write}" method="post" >
+                <form th:action="@{/notice/write}" method="post">
                     <div class="qna-original-input-layout">
                         <div class="qna-write-content-title-div">
                             <label for="inquiry-subject">
@@ -162,7 +162,7 @@
                                         <div class="phone-number-input-outter-div">
                                             <div class="phone-number-input-inner-div">
                                                 <input type="text" id="inquiryAllowsNotificationCheck" disabled=""
-                                                class="phone-number-input" name="userPhone" th:value="${userPhone}"/>
+                                                class="phone-number-input" th:value="${userPhone}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -183,6 +183,8 @@
                                                     <path d="M7 12.6667L10.3846 16L18 8.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> -->
                                                 </svg>
                                             </div>
+                                              <!--  <input type="hidden" id="checkSend" name="inquiryAnswer" value="1">-->
+
                                             <span>문자/알림톡 받기</span>
                                         </label>
                                     </div>
@@ -208,7 +210,6 @@
 <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!--<script src="/code.jquery.com/jquery-1.11.0.min.js"></script>-->
 <script src="/js/notice/qnaWrite.js"></script>
 <script src="/js/main/header.js"></script>
 </html>

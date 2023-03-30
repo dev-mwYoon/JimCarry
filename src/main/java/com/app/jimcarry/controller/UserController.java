@@ -6,9 +6,7 @@ import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -27,6 +25,16 @@ public class UserController {
     @GetMapping("join")
     public String join() {
         return "/joinLogin/joinForm";
+    }
+
+    @GetMapping("join-select")
+    public String joinSelect() {
+        return "joinLogin/join-select";
+    }
+
+    @GetMapping("callback")
+    public String callback() {
+        return "/joinLogin/callback";
     }
 
     @PostMapping("identifications-duplicate")
@@ -59,7 +67,7 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public RedirectView login(String userIdentification, String userPassword, HttpSession session, HttpServletResponse response) {
+    public RedirectView login(String userIdentification, String userPassword, Long userStatus, String userEmail, HttpSession session) {
         UserVO userVO = userService.login(userIdentification, userPassword);
 
         if(userVO == null) {
@@ -69,6 +77,20 @@ public class UserController {
         session.setAttribute("userId", userVO.getUserId());
         session.setAttribute("userName", userVO.getUserName());
         return new RedirectView("/main/");
+    }
+
+    @PostMapping("login-naver")
+    @ResponseBody
+    public boolean loginNaver(String userIdentification, String userEmail, HttpSession session) {
+        UserVO userVO = userService.findByIdentification(userIdentification, userEmail);
+
+        if(userVO == null) {
+            return false;
+        }
+
+        session.setAttribute("userId", userVO.getUserId());
+        session.setAttribute("userName", userVO.getUserName());
+        return true;
     }
 
     @GetMapping("find-id-phone")
@@ -135,8 +157,11 @@ public class UserController {
     }
 
     @GetMapping("changePassword")
-    public String changePassword(String userIdentification, String userRandomKey) {
-        if(!userService.findByIdentification(userIdentification).getUserRandomKey().equals(userRandomKey)) {
+    public String changePassword(String userIdentification, String userRandomKey, String userEmail) {
+        log.info(userIdentification);
+        log.info(userEmail);
+        log.info(userRandomKey);
+        if(!userService.findByIdentification(userIdentification, userEmail).getUserRandomKey().equals(userRandomKey)) {
             return "/";
         }
 
@@ -175,7 +200,7 @@ public class UserController {
         MailTO mailTO = new MailTO();
         mailTO.setAddress(userEmail);
         mailTO.setTitle("새 비밀번호 설정 링크입니다.");
-        mailTO.setMessage("링크: http://localhost:10000/user/changePassword-email?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
+        mailTO.setMessage("링크: http://localhost:10000/user/changePassword?userIdentification=" + userIdentification + "&userRandomKey=" + randomKey);
         userService.sendMail(mailTO);
 
         redirectAttributes.addFlashAttribute("userEmail", userEmail);

@@ -98,4 +98,16 @@ public class StorageServiceTest {
         total = storageService.getTotalDTOBy(searchDTO);
         storageService.getStorageDTOBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
+
+    /*DTO 메인 신규창고 조회*/
+    @Test
+    public void getStorageDTOMain(){
+        storageService.getStorageDTO();
+    }
+
+    /*DTO 메인 리뷰창고 조회*/
+    @Test
+    public void getStorageDTOMains(){
+        storageService.getStorage();
+    }
 }

@@ -42,4 +42,10 @@ public interface StorageMapper {
 
     /*storageDTO 조건 조회*/
     public List<StorageDTO> selectDTOAllBy(@Param("page") PageDTO pageDTO);
+
+    /*storageDTO 메인 신규창고 조회*/
+    public List<StorageDTO> selectDTOAll();
+
+    /*storageDTO 메인 리뷰창고 조회*/
+    public List<StorageDTO> selectStorageDTOAll();
 }

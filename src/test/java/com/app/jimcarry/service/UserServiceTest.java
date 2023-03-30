@@ -1,6 +1,5 @@
 package com.app.jimcarry.service;
 
-import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.MailTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -137,6 +136,6 @@ class UserServiceTest {
 
     @Test
     public void findByIdentification() {
-        assertThat(userService.findByIdentification("tonky0810").getUserId()).isEqualTo(1);
+        assertThat(userService.findByIdentification(null, "tonky0810@naver.com").getUserId()).isEqualTo(1);
     }
 }

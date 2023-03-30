@@ -65,8 +65,8 @@ public class PaymentService {
     // 조건조회
     public List<PaymentDTO> getListBy(PageDTO pageDTO){
         List<PaymentDTO> paymentDTOs = new ArrayList<>();
-        List<StorageVO> storages = new ArrayList<>();
         List<PaymentVO> payments = paymentDAO.findAllBy(pageDTO);
+        List<StorageVO> storages = new ArrayList<>();
 
         storages = payments.stream().map(pay -> storageDAO.findById(pay.getStorageId())).collect(Collectors.toList());
         paymentDTOs = payments.stream().map(new PaymentDTO()::createDTO).collect(Collectors.toList());
@@ -91,7 +91,7 @@ public class PaymentService {
         return paymentDAO.findUserInfo(userId);
     }
 
-    private void setPaymentDTO(PaymentDTO paymentDTO, StorageVO storageVO){
+    private void setPaymentDTO(PaymentDTO paymentDTO, StorageVO storageVO) {
         paymentDTO.setStoragePrice(storageVO.getStoragePrice());
         paymentDTO.setStorageTitle(storageVO.getStorageTitle());
         paymentDTO.setStorageAddress(storageVO.getStorageAddress());
@@ -99,5 +99,9 @@ public class PaymentService {
         paymentDTO.setStorageSize(storageVO.getStorageSize());
         paymentDTO.setStorageUseDate(storageVO.getStorageUseDate());
         paymentDTO.setStorageEndDate(storageVO.getStorageEndDate());
+    }
+    // 창고 조회
+    public StorageVO getStorage(Long storageId){
+        return paymentDAO.findStorageInfo(storageId);
     }
 }

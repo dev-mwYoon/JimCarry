@@ -60,5 +60,5 @@ public interface UserMapper {
     public void updateRandomKeyByUserIdentification(String userIdentification, String userRandomKey);
 
     //    아이디로 랜덤키 찾기
-    public UserVO selectByIdentificationUser(String userIdentification);
+    public UserVO selectByIdentificationUser(String userIdentification, String userEmail);
 }

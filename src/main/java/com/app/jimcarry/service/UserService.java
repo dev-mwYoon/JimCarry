@@ -5,12 +5,10 @@ import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.UserDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.MailTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -224,8 +222,8 @@ public class UserService {
     }
 
     //    아이디로 랜덤키 찾기
-    public UserVO findByIdentification(String userIdentification) {
-        return userDAO.findByIdentificationUser(userIdentification);
+    public UserVO findByIdentification(String userIdentification, String userEmail) {
+        return userDAO.findByIdentificationUser(userIdentification, userEmail);
     }
 
 }

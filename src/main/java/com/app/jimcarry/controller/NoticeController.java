@@ -4,6 +4,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.InquiryVO;
+import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.InquiryService;
 import com.app.jimcarry.service.NoticeService;
 import com.app.jimcarry.service.UserService;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -28,12 +30,21 @@ public class NoticeController {
     private final InquiryService inquiryService;
     private final UserService userService;
     private final NoticeService noticeService;
+    private final UserVO userVO;
 
     @GetMapping("faq")
     public String faq() { return "/notice/faq";}
 
-    @GetMapping("detail")
-    public String detail() { return "/notice/notice-detail";}
+    @GetMapping("detail/{noticeId}")
+    public String detail(@PathVariable("noticeId") Long noticeId, Model model) {
+        model.addAttribute("notice", noticeService.getNotice(noticeId));
+
+        return "/notice/notice-detail";}
+
+  /*  @GetMapping("detail")
+    public String detail() {
+
+        return "/notice/notice-detail";}*/
 
     @GetMapping("list")
     public String list(Criteria criteria, Model model){
@@ -59,11 +70,14 @@ public class NoticeController {
         //공지사항 전체 갯수
         model.addAttribute("totalNotice", noticeService.getTotal());
 
+
         return "/notice/notice-list";
     }
 
     @GetMapping("write")
-    public String write() {
+    public String write(Model model, HttpSession httpSession) {
+        model.addAttribute("userPhone", userService.getUser((Long)httpSession.getAttribute("userId")).getUserPhone());
+
         return "/notice/qna-write";}
 
     @PostMapping("write")

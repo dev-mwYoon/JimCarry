@@ -23,18 +23,7 @@
                         
                         </div>
 
-                        <div class="sharebox-payment-container">
-                            <span class="sharbox-photo"></span>
-                            <span class="sharebox-size-wrap">
-                                <span class="sharebox-size">[사미헌] 갈비탕</span>
-                            </span>
-                            <span class="sharebox-count-month">2개월</span>
-                            <span class="sharbox-price-wrap">
-                                <span class="sharebox-price">12,000원</span>
-                            </span>
-                        </div>
-
-                        <div class="sharebox-payment-container" th:object="${order}">
+                        <div class="sharebox-payment-container" th:object="${user}">
                             <span class="sharbox-photo"></span>
                             <span class="sharebox-size-wrap">
                                 <span class="sharebox-size" th:text="*{userName}">[이비에] KF94 새부리형 마스크 베이지 대형 10매</span>
@@ -44,11 +33,6 @@
                                 <span class="sharebox-price">9,800원</span>
                             </span>
                         </div>
-
-                        <!-- <div class="content-pay">[사미헌] 갈비탕 외 
-                            <span class="content-count"> 1개</span> 
-                            상품을 주문합니다.
-                        </div> -->
 
 
                         <div class="my-info">
@@ -160,7 +144,7 @@
                                         <div class="payment-sharebox-price-container">
                                             <div class="payment-sharebox-price-title">창고이용금액</div>
                                             <div>
-                                                <span class="payment-sharebox-price">
+                                                <span class="payment-sharebox-price" th:text="*{storagePrice}">
                                                     10,900
                                                 </span>
                                                 <span class="payment-sharebox-date">원</span>
@@ -170,7 +154,7 @@
                                                     <div class="payment-container">
                                                         <div class="payment-title-d">최종결제금액</div>
                                                         <div>
-                                                            <span class="payment">
+                                                            <span class="payment" th:text="*{storagePrice}">
                                                                 13,500
                                                             </span>
                                                             <span class="payment-sharebox-date">원</span>
@@ -190,7 +174,7 @@
                 <!-- 결제버튼 누르면 카카오 결제 api창으로 이동하기 -->                 
                 <div class="last-payment-wrap">
                     <button class="last-payment-btn" type="button" width="240" height="56" radius="3">
-                        <span class="last-payment-name">19,900원 결제하기</span>
+                        <span class="last-payment-name" th:text="*{storagePrice}">19,900원 결제하기</span>
                     </button>
                 </div>
             </div>
@@ -200,5 +184,7 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://js.bootpay.co.kr/bootpay-4.2.8.min.js" type="application/javascript"></script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.2.min.js" type="application/javascript"></script>
 <script src="/js/main/header.js"></script>
 </html>
