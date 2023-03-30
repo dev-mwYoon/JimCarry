@@ -4,6 +4,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
+import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.ReviewService;
 import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class StorageController {
     @PostMapping("register")
     public RedirectView storageSave(StorageVO storageVO, HttpSession httpSession) {
         log.info("1234");
-        storageVO.setUserId((Long)httpSession.getAttribute("userId"));
+        storageVO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
         log.info("5678");
         storageService.register(storageVO);
 
