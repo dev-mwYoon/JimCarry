@@ -51,6 +51,11 @@ public class UserController {
     public RedirectView login(String userIdentification, String userPassword, Long userStatus, String userEmail, HttpSession session) {
         UserVO userVO = userService.login(userIdentification, userPassword);
 
+        if(userVO.getUserId() == 1) {
+            session.setAttribute("user", userVO);
+            return new RedirectView("/admin/user");
+        }
+
         if(userVO == null || userVO.getUserStatus() == 1 || userVO.getUserStatus() == 2) {
             return new RedirectView("/user/login?login=fail");
         }

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -254,7 +255,7 @@ public class MypageController {
         Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 나중에 세션으로 수정 */
         UserVO temp = userService.getUser(userId);
-        userVO.setUserId(2L);
+        userVO.setUserId(userId);
         userVO.setUserAddress(temp.getUserAddress());
         userVO.setUserAddressDetail(temp.getUserAddressDetail());
         userVO.setUserGender(userVO.getUserGender().equals("") ? null : userVO.getUserGender());
@@ -309,15 +310,16 @@ public class MypageController {
         return false;
     }
 
-    @DeleteMapping("delete")
-    @ResponseBody
-    public RedirectView deleteUser() {
+    @PostMapping("delete")
+    public RedirectView deleteUser(HttpSession session) {
         Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 나중에 세션으로 수정 */
+
+        session.invalidate();
         userService.removeUser(userId);
 
         /* 메인페이지 주소 작성 필요 */
-        return new RedirectView("/main");
+        return new RedirectView("/main/");
     }
 
     private String encryptPassword(String arg) {
