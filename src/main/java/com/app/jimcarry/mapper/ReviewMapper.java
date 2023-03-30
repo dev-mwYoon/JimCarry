@@ -40,4 +40,5 @@ public interface ReviewMapper {
     public void update(ReviewVO reviewVO);
 
     /* 리뷰 삭제 */
+    public void delete(Long reviewId);
 }
