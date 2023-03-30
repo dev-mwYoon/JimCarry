@@ -27,7 +27,7 @@ public class ReviewDTO {
     private String userGender;
     private String userBirth;
 
-    List<FileVO> files;
+    private List<FileVO> files;
 
     public ReviewVO createVO() {
         ReviewVO reviewVO = new ReviewVO();

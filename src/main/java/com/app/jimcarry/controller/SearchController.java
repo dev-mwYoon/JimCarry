@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
@@ -30,33 +31,23 @@ public class SearchController {
     private final StorageService storageService;
 
     /* 헤더의 지역별을 눌렀을 때 지역별 창고 목록 검색 */
-    @GetMapping("/")
-    public String searchAll(@RequestParam("storageAddress") String storageAddress, Model model, Criteria criteria) {
-        /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 3;
-        /* 검색된 결과의 총 개수 */
-        int total = 0;
+    /*@GetMapping("list")
+    @ResponseBody
+    public RedirectView searchAll(@RequestParam("storageAddress") String storageAddress) {
+        return new RedirectView("/storages/list/" + storageAddress);
+    }*/
 
-        /* 창고 searchDTO에 주소로 검색타입 추가 */
-        SearchDTO storageSearchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddress")));
-        storageSearchDTO.setStorageAddress(storageAddress);
+/*    @PostMapping("register")
+    public RedirectView registerProduct(ProductVO productVO RedirectAttributes redirectAttributes){
+        redirectAttributes.addAttribute("productName", productVO.getProductName());
+        return new RedirectView("/ex/list");
+    }*/
 
-        //         페이지 번호가 없을 때, 디폴트 1페이지
-        if (criteria.getPage() == 0) {
-            criteria.create(1, amount);
-        } else criteria.create(criteria.getPage(), amount);
-
-        /*토탈은 주소로 찾는게 아닌 음....*/
-        total = storageService.getTotalDTOBy(storageSearchDTO);
-        PageDTO storagePageDTO = new PageDTO().createPageDTO(criteria, total, storageSearchDTO);
-
-
-        model.addAttribute("storageAddress", storageAddress);
-        model.addAttribute("total", total);
-        model.addAttribute("storages", storageService.getStorageDTOBy(storagePageDTO));
-        model.addAttribute("pagination", storagePageDTO);
-
-        return "/main/search-page";
+    /*지역별 창고 목록 검색*/
+    @PostMapping("list")
+    @ResponseBody
+    public List<StorageDTO> searchByAddress(Long storageId){
+        return storageService.getStorageBy(storageId);
     }
 
     /* 창고 상세페이지 조회*/
