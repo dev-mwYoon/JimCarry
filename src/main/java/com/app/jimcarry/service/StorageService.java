@@ -1,6 +1,7 @@
 package com.app.jimcarry.service;
 
 import com.app.jimcarry.aspect.annotation.LogStatus;
+import com.app.jimcarry.domain.dao.ReviewDAO;
 import com.app.jimcarry.domain.dao.StorageDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StorageService {
     private final StorageDAO storageDAO;
+    private final ReviewDAO reviewDAO;
 
     //    추가
     @LogStatus
@@ -92,7 +94,11 @@ public class StorageService {
 
     /* DTO 창고 조건 조회*/
     public List<StorageDTO> getStorageDTOBy(PageDTO pageDTO){
-        return storageDAO.findStorageDTOListBy(pageDTO);
+        List<StorageDTO> storageList = storageDAO.findStorageDTOListBy(pageDTO);
+        storageList.forEach(storage ->
+            storage.setReviewCount(reviewDAO.findByStorageId(storage.getStorageId()).size())
+        );
+        return storageList;
     }
 
     /* DTO 메인 창고 조회*/
