@@ -5,14 +5,12 @@ import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -38,7 +36,8 @@ public class UserController {
     }
 
     @PostMapping("join")
-    public RedirectView join(UserVO userVO) {
+    public RedirectView join(UserVO userVO, HttpSession session) {
+        session.invalidate();
         userService.registerUser(userVO);
         return new RedirectView("/user/login");
     }
@@ -174,4 +173,47 @@ public class UserController {
         session.invalidate();
         return new RedirectView("/main/");
     }
+
+
+    @GetMapping("kakao")
+    public RedirectView kakaoLogin(String code, HttpSession session, Model model) throws Exception {
+        String token = userService.getKaKaoAccessToken(code);
+        UserVO kakaoInfo = userService.getKakaoInfo(token);
+
+        kakaoInfo.setUserStatus(1);
+
+        String userIdentification = null;
+
+        UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
+
+        //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+        if (userVO == null) {
+            session.setAttribute("kakaoInfo", kakaoInfo);
+            return new RedirectView("/user/join");
+        } else if(userVO.getUserStatus() != 1){
+            return new RedirectView("/user/login");
+        }
+
+        session.setAttribute("user", userVO);
+        return new RedirectView("/main/");
+    }
+
+    @GetMapping("kakao-login")
+    public void kakaoCallback(String code, HttpSession session) throws Exception {
+        log.info(code);
+        String token = userService.getKaKaoAccessToken(code);
+        userService.getKakaoInfo(token);
+
+        UserVO kakaoInfo = userService.getKakaoInfo(token);
+        String userIdentification = null;
+        UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
+        session.setAttribute("user", userVO);
+    }
+//
+//    @GetMapping("/logout/kakao")
+//    public void kakaoLogout(HttpSession session){
+//        log.info("logout");
+//        userService.logoutKakao((String)session.getAttribute("token"));
+//        session.invalidate();
+//    }
 }
