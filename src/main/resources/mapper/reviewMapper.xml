@@ -112,4 +112,10 @@
         </trim>
     </sql>
 
+    <!-- 리뷰 삭제 -->
+    <delete id="delete" parameterType="long">
+        delete from tbl_review
+        where review_id = #{reviewId}
+    </delete>
+
 </mapper>
