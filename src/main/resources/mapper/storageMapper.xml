@@ -173,4 +173,11 @@
         group by u.user_id, s.storage_id, s.storage_title, s.storage_price
         order by count(r.review_id) desc
     </select>
+
+    <!-- 창고 삭제 -->
+    <delete id="delete" parameterType="long">
+        delete from tbl_storage
+        where storage_id = #{storageId}
+    </delete>
+
 </mapper>

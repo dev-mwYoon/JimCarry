@@ -190,12 +190,12 @@
     </section>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="/js/admin/app.js"></script>
+  <script src="/js/admin/events.js"></script>
   <script th:inline="javascript">
     let boxes = [[${storages}]];
     let $page = [[${pagination.criteria.page}]];
   </script>
-  <script src="/js/admin/app.js"></script>
-  <script src="/js/admin/events.js"></script>
   <script src="/js/admin/storage.js"></script>
   <script>
     /* 추후 타임리프로 대체할 예정 */

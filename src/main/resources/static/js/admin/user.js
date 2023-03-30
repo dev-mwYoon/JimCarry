@@ -130,16 +130,6 @@ let $checkArr = [];
 const $checkbox = $('input[name=check]');
 console.log($checkbox);
 
-
-
-// var notice
-
-// notice = JSON.parse(notices)[index];
-//
-// console.log(notice.noticeId);
-//
-// location.href = pageContext + `/noticeDeleteAction.admin?noticeId=${notice.noticeId}`;
-
 $('input[type=checkbox]').on('click', function() {
     if ($(this).is(':checked')) {
         $checkArr.push($(this).parent().parent().next().text());
