@@ -36,6 +36,7 @@ public interface StorageMapper {
     //    수정
 
     //    삭제
+    public void delete(Long storageId);
 
     /*storageDTO 조회*/
     public List<StorageDTO> selectAllBy(Long storageId);
