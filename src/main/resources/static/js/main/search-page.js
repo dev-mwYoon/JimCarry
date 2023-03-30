@@ -67,7 +67,7 @@ const createDOM = function (storage) {
                 </svg>
             </span>
             후기
-            <span class="review-number">999+</span>
+            <span class="review-number">${storage.reviewCount}</span>
         </div>
     </a>
 `
