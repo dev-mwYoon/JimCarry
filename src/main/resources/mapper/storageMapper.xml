@@ -73,6 +73,9 @@
                         <when test="type == 'storageId'.toString()">
                             storage_id = #{dto.storageId}
                         </when>
+                        <when test="type == 'storageAddressNumber'.toString()">
+                            storage_address_number = #{dto.storageAddressNumber}
+                        </when>
                         <when test="type == 'keyword'.toString()">
                             storage_title like concat('%', #{dto.keyword}, '%')
                         </when>
