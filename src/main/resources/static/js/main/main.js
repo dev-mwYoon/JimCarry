@@ -179,7 +179,7 @@ const storageContainer2 = $("#storageReview");
 function createDOMs(a, reviews) {
     let texts = `
     <div class="four-static-banner-one-div">
-        <a href="#" class="four-static-banner-one-a">
+        <a href="/storages/search/detail/${a.storageId}" class="four-static-banner-one-a">
             <div class="four-static-banner-img-div">
                 <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg">
             </div>
