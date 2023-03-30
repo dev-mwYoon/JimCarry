@@ -37,28 +37,10 @@ public class UserController {
         return "/joinLogin/callback";
     }
 
-    @PostMapping("identifications-duplicate")
-    @ResponseBody
-    public boolean checkIdentificationDuplicate(String userIdentification) {
-        return userService.checkIdentificationDuplicate(userIdentification);
-    }
-
-    @PostMapping("emails-duplicate")
-    @ResponseBody
-    public boolean checkEmailDuplicate(String userEmail) {
-        return userService.checkEmailDuplicate(userEmail);
-    }
-
     @PostMapping("join")
     public RedirectView join(UserVO userVO) {
         userService.registerUser(userVO);
         return new RedirectView("/user/login");
-    }
-
-    @GetMapping("send-sms")
-    @ResponseBody
-    public String sendSMS(String userPhone) throws CoolsmsException {
-        return userService.sendRandomNumber(userPhone);
     }
 
     @GetMapping("login")
@@ -70,27 +52,12 @@ public class UserController {
     public RedirectView login(String userIdentification, String userPassword, Long userStatus, String userEmail, HttpSession session) {
         UserVO userVO = userService.login(userIdentification, userPassword);
 
-        if(userVO == null) {
+        if(userVO == null || userVO.getUserStatus() == 1 || userVO.getUserStatus() == 2) {
             return new RedirectView("/user/login?login=fail");
         }
 
-        session.setAttribute("userId", userVO.getUserId());
-        session.setAttribute("userName", userVO.getUserName());
+        session.setAttribute("user", userVO);
         return new RedirectView("/main/");
-    }
-
-    @PostMapping("login-naver")
-    @ResponseBody
-    public boolean loginNaver(String userIdentification, String userEmail, HttpSession session) {
-        UserVO userVO = userService.findByIdentification(userIdentification, userEmail);
-
-        if(userVO == null) {
-            return false;
-        }
-
-        session.setAttribute("userId", userVO.getUserId());
-        session.setAttribute("userName", userVO.getUserName());
-        return true;
     }
 
     @GetMapping("find-id-phone")
@@ -168,11 +135,6 @@ public class UserController {
         userService.updateUserRandomKey(userIdentification, null);
         return "/joinLogin/changePassword";
     }
-
-//    @GetMapping("changePassword")
-//    public String changePassword() {
-//        return "/joinLogin/changePassword";
-//    }
 
     @PostMapping("changePassword")
     public RedirectView changePasswordOK(String userIdentification, String userPassword) {
