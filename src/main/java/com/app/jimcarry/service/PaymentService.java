@@ -69,7 +69,7 @@ public class PaymentService {
         List<StorageVO> storages = new ArrayList<>();
 
         storages = payments.stream().map(pay -> storageDAO.findById(pay.getStorageId())).collect(Collectors.toList());
-        paymentDTOs = payments.stream().map(new PaymentDTO()::createDTO).collect(Collectors.toList());
+        paymentDTOs = payments.stream().map(payment -> new PaymentDTO().createDTO(payment)).collect(Collectors.toList());
 
         for (int i = 0; i < paymentDTOs.size(); i++) {
             setPaymentDTO(paymentDTOs.get(i), storages.get(i));

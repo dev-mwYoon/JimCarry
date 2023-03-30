@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>짐캐리 | 마이페이지 | 이용 중인 창고</title>
     <link rel="stylesheet" href="/css/mypage/use-myBox.css">
+    <link rel="stylesheet" href="/css/mypage/paging.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="icon" href="/image/favicon.png">
@@ -28,42 +29,21 @@
                 </div>
             </div>
             <div class="mypage-list-right-line"></div>
-            <div class="mypage-list-right-list-container">
-                <!-- 이용한 창고 목록추가 -->
-                <div class="use-box-container">
-                    <div class="use-box-date-container">
-                        <span class="use-box-date">2023.03.13 (10시 10분)</span>
-                    </div>
-                    <div class="use-box-content-container">
-                        <div class="use-box-content-left-container">
-                            <div class="use-box-content-left-list-container">
-                                <d1 class="left-list-wrapper">
-                                    <dt class="left-list-text">창고규모</dt>
-                                    <dd class="left-list-text-content">[소] 100cm(가로) x 75cm(세로) x 220cm(높이)</dd>
-                                </d1>
-                                <d1 class="left-list-wrapper">
-                                    <dt class="left-list-text">이용기간</dt>
-                                    <dd class="left-list-text-content">2023.03.13 ~ 2023.04.13</dd>
-                                </d1>
-                                <d1 class="left-list-wrapper">
-                                    <dt class="left-list-text">결제금액</dt>
-                                    <dd class="left-list-text-content">166,000원</dd>
-                                </d1>
-                            </div>
-                        </div>
-                        <div class="use-box-content-right-container">
-                            <div class="right-btn-container">
-                                <button type="button" class="right-btn flip">
-                                    <span class="right-btn-text">주문 상세보기</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <!-- 이용한 창고 목록추가 -->
+            <div class="mypage-list-right-list-container"></div>
+            <div th:object="${pagination}">
+                <div class="paging" style="text-align: center">
+                    <a class="changePage" th:href="'usage?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="changePage" style="color: black" th:href="'usage?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                    </th:block>
+                    <a class="changePage" th:href="'usage?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
                 </div>
-                <!--  -->
-                <!-- 슬라이드 -->
-                <div class="qna-slide-container panel"></div>
-                <!--  -->
+                <form th:action="@{/users/mypage/usage}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                </form>
             </div>
         </div>
     </div>
@@ -73,14 +53,16 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/main/header.js"></script>
-<script src="/js/mypage/use-myBox.js"></script>
 <script th:inline="javascript">
     let payments = [[${payments}]];
+    let total = [[${total}]];
+    console.log(total);
     console.log(payments);
 
-        $(".mypage-list-left-section-name").eq(1).css({
+    $(".mypage-list-left-section-name").eq(1).css({
         "background-color": "rgb(250, 250, 250)",
         "color": "rgb(95, 0, 128)"
     });
 </script>
+<script src="/js/mypage/use-myBox.js"></script>
 </html>
