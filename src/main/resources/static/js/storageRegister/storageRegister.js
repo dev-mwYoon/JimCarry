@@ -181,3 +181,48 @@ $infoInputs.on('blur', function () {
     $erroMessage.eq(i).text('');
 });
 
+var region_list = ["", "서울", "경기", "강원", "충북", "충남",
+    "경북", "경남", "전북", "전남", "제주특별자치도"];
+$('.submitButton').on('click', function(){
+
+    const $address = $('#address').val();
+    console.log($address)
+    var startIndex = $address.indexOf(" "); // 첫 번째 공백의 인덱스
+
+    var result = $address.substring(0, startIndex); // 시작 인덱스부터 끝 인덱스 직전까지의 문자열 추출
+    console.log(result)
+
+    for (var i = 0; i < region_list.length; i++) {
+        if(result == region_list[i]) {
+            $('input[name=storageAddressNumber]').val(i);
+        }
+    }
+
+//    인천, 대구, 광주, 부산, 울산, 대전
+    if(result == "인천") {
+        $('input[name=storageAddressNumber]').val(2);
+    }
+
+    if(result == "대구") {
+        $('input[name=storageAddressNumber]').val(6);
+    }
+
+    if(result == "광주") {
+        $('input[name=storageAddressNumber]').val(9);
+    }
+
+    if(result == "부산") {
+        $('input[name=storageAddressNumber]').val(7);
+    }
+
+    if(result == "울산") {
+        $('input[name=storageAddressNumber]').val(7);
+    }
+
+    if(result == "대전") {
+        $('input[name=storageAddressNumber]').val(5);
+    }
+    // console.log($('input[name=storageAddressNumber]').val());
+
+    document.storageForm.submit();
+});

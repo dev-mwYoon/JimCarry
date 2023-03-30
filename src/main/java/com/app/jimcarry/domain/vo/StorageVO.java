@@ -17,4 +17,5 @@ public class StorageVO {
     private String storageAddressDetail;
     private String storageUseDate;
     private String storageEndDate;
+    private Integer storageAddressNumber;
 }
