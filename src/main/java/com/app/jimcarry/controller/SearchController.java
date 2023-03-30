@@ -86,12 +86,11 @@ public class SearchController {
         return "/detail-info/detail-info";
     }
 
-    /*창고 예약하기*//*
-    @GetMapping("pay/{storageId}")
+    /*창고 예약하기*/
+    /*@GetMapping("pay/{storageId}")
     public String reserveStorage(@PathVariable String storageId, Model model) {
 
         model.addAttribute("storageId", storageId);
         return "pay/payment"; // 예약 페이지 이름 반환
     }*/
-
 }
