@@ -12,15 +12,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -76,17 +75,20 @@ public class NoticeController {
 
     @GetMapping("write")
     public String write(Model model, HttpSession httpSession) {
-        model.addAttribute("userPhone", userService.getUser((Long)httpSession.getAttribute("userId")).getUserPhone());
+        model.addAttribute("userPhone", userService.getUser(((UserVO)httpSession.getAttribute("user")).getUserId()).getUserPhone());
 
         return "/notice/qna-write";}
 
+    /*파일 업로드 포함*/
     @PostMapping("write")
-    public RedirectView writeRegister(InquiryVO inquiryVO, HttpSession httpSession){
+    public RedirectView writeRegister(@RequestParam("files") List<MultipartFile> multipartFiles, InquiryVO inquiryVO, HttpSession httpSession){
         log.info("1234");
-        log.info(String.valueOf(httpSession.getAttribute("userId" )));
-        inquiryVO.setUserId((Long)httpSession.getAttribute("userId" ));
+      /*  log.info(String.valueOf(httpSession.getAttribute("userId" )));*/
+        inquiryVO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 
         inquiryService.register(inquiryVO);
+
+
         /*userService.login;*/
 
         /*문의 등록후 이동페이지*/
