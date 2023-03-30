@@ -19,7 +19,7 @@
             <span class="RequiredInput">*</span>
             필수입력사항
         </div>
-        <form th:action="@{/storages/register}" method="post">
+        <form th:action="@{/storages/register}" method="post" name="storageForm">
             <div class="formstart">
             <!-- ----------------창고이름------------------ -->
 
@@ -216,9 +216,9 @@
                         </div>
                     </div>
                 </div>
-
+                <input type="hidden" name="storageAddressNumber">
                 <div class="submitLayout">
-                    <button class="submitButton" type="submit" width="240" height="56" radius="3">
+                    <button class="submitButton" type="button" width="240" height="56" radius="3">
                         <span class="buttonBox">등록하기</span>
                     </button>
                 </div>

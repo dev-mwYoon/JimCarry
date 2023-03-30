@@ -36,7 +36,7 @@ $(function() {
         event.preventDefault();
 
         let param = $(this).attr("href");
-        location.href = "/storages/search/?storageAddress=" + param;
+        location.href = "/storages/list/" + param;
     });
 });
 
