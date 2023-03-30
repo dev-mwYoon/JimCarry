@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -35,6 +36,7 @@ public class MypageController {
     private final ReviewFileService reviewFileService;
     private final ReviewService reviewService;
     private final PaymentService paymentService;
+    private final HttpServletRequest request;
 
     /* ============================== 내 창고 ================================ */
 //    @CheckLogin
@@ -47,10 +49,11 @@ public class MypageController {
         /* 검색된 결과의 총 개수 */
         int total = 0;
         PageDTO pageDTO = null;
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
 
         /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);
+        searchDTO.setUserId(userId);
 
 //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
@@ -76,10 +79,11 @@ public class MypageController {
         /* 검색된 결과의 총 개수 */
         int total = 0;
         PageDTO pageDTO = null;
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
 
         /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);
+        searchDTO.setUserId(userId);
 
 //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
@@ -102,10 +106,10 @@ public class MypageController {
         int amount = 5;
         /* 검색된 결과의 총 개수 */
         int total = 0;
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
 
-        /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);
+        searchDTO.setUserId(userId);
 
         PageDTO pageDTO = null;
 
@@ -125,8 +129,9 @@ public class MypageController {
 
     @PostMapping("qna/update")
     public RedirectView updateQna(InquiryVO inquiryVO, String page) {
-        /* 추후 세션으로 변경 */
-        inquiryVO.setUserId(2L);
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
+
+        inquiryVO.setUserId(userId);
         inquiryService.updateInquiry(inquiryVO);
         return new RedirectView("/users/mypage/qna?page=" + page);
     }
@@ -183,10 +188,11 @@ public class MypageController {
         int amount = 3;
         /* 검색된 결과의 총 개수 */
         int total = 0;
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
 
         /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);
+        searchDTO.setUserId(userId);
 
         PageDTO pageDTO = null;
 
@@ -208,10 +214,10 @@ public class MypageController {
     @PostMapping("review/update")
     @ResponseBody
     public String updateReview(@RequestBody ReviewDTO reviewDTO, @RequestParam String page) {
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 추후 세션으로 변경 */
-        reviewDTO.setUserId(2L);
+        reviewDTO.setUserId(userId);
         reviewService.updateReview(reviewDTO);
-        log.info("===========" + reviewDTO.toString());
 
         return "/users/mypage/review?page=" + page;
     }
@@ -219,9 +225,9 @@ public class MypageController {
     @PostMapping("review/register")
     @ResponseBody
     public String registerReview(@RequestBody ReviewDTO reviewDTO, @RequestParam String page) {
-
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 추후 세션으로 변경 */
-        reviewDTO.setUserId(2L);
+        reviewDTO.setUserId(userId);
         reviewService.registerReview(reviewDTO);
 
         return "/users/mypage/review?page=" + page;
@@ -230,8 +236,9 @@ public class MypageController {
     /* ============================== 회원정보 수정 ================================ */
     @GetMapping("update")
     public String updateUser(Model model) {
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 나중에 세션으로 수정 */
-        UserVO userVO = userService.getUser(2L);
+        UserVO userVO = userService.getUser(userId);
         model.addAttribute(userVO);
         String[] births = userVO.getUserBirth().split("-");
         model.addAttribute("birthFirtst", births[0]);
@@ -244,8 +251,9 @@ public class MypageController {
     @PostMapping("update")
     @ResponseBody
     public RedirectView updateUser(UserVO userVO) {
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 나중에 세션으로 수정 */
-        UserVO temp = userService.getUser(2L);
+        UserVO temp = userService.getUser(userId);
         userVO.setUserId(2L);
         userVO.setUserAddress(temp.getUserAddress());
         userVO.setUserAddressDetail(temp.getUserAddressDetail());
@@ -258,9 +266,10 @@ public class MypageController {
     @PostMapping("checkIdentification")
     @ResponseBody
     public boolean checkIdentificationDuplicate(@RequestBody Map<String, String> map) {
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         String userIdentification = map.get("userIdentification");
         /* 나중에 세션으로 수정 */
-        if (userService.getUser(2L).getUserIdentification().equals(userIdentification)) {
+        if (userService.getUser(userId).getUserIdentification().equals(userIdentification)) {
             return true;
         }
 
@@ -270,9 +279,10 @@ public class MypageController {
     @PostMapping("checkEmail")
     @ResponseBody
     public boolean checkEmailDuplicate(@RequestBody Map<String, String> map) {
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         String userEmail = map.get("userEmail");
         /* 나중에 세션으로 수정 */
-        if (userService.getUser(2L).getUserEmail().equals(userEmail)) {
+        if (userService.getUser(userId).getUserEmail().equals(userEmail)) {
             return true;
         }
 
@@ -288,9 +298,10 @@ public class MypageController {
     @PostMapping("checkPassword")
     @ResponseBody
     public boolean checkPassword(@RequestBody Map<String, String> map) {
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         String userPassword = map.get("userPassword");
         /* 나중에 세션으로 수정 */
-        if (userService.getUser(2L).getUserPassword().equals(encryptPassword(userPassword))) {
+        if (userService.getUser(userId).getUserPassword().equals(encryptPassword(userPassword))) {
             return true;
         }
 
@@ -301,8 +312,9 @@ public class MypageController {
     @DeleteMapping("delete")
     @ResponseBody
     public RedirectView deleteUser() {
+        Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 나중에 세션으로 수정 */
-        userService.removeUser(2L);
+        userService.removeUser(userId);
 
         /* 메인페이지 주소 작성 필요 */
         return new RedirectView("/main");
@@ -312,20 +324,5 @@ public class MypageController {
         return new String(Base64.getEncoder().encode(arg.getBytes()));
     }
 
-    /**
-     * 검색조건 설정 메소드
-     *
-     * @param types    검색조건 List
-     * @param criteria 페이징 정보를 담고 있는 객체, 화면에서 받아온다.
-     */
-    private Map<String, Object> getSearchMap(List<String> types, Criteria criteria) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("types", new ArrayList<>(Arrays.asList("userId")));
-        map.put("userId", 1L);
-        map.put("startRow", criteria.getStartRow());
-        map.put("amount", criteria.getAmount());
-
-        return map;
-    }
     /* =========================================================================== */
 }
