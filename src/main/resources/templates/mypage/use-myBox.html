@@ -36,8 +36,6 @@
                     </div>
                     <div class="use-box-content-container">
                         <div class="use-box-content-left-container">
-                            <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
-                                 class="use-box-content-left-img">
                             <div class="use-box-content-left-list-container">
                                 <d1 class="left-list-wrapper">
                                     <dt class="left-list-text">창고규모</dt>
@@ -76,8 +74,11 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/mypage/use-myBox.js"></script>
-<script>
-    $(".mypage-list-left-section-name").eq(1).css({
+<script th:inline="javascript">
+    let payments = [[${payments}]];
+    console.log(payments);
+
+        $(".mypage-list-left-section-name").eq(1).css({
         "background-color": "rgb(250, 250, 250)",
         "color": "rgb(95, 0, 128)"
     });

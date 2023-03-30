@@ -3,6 +3,7 @@ package com.app.jimcarry.service;
 import com.app.jimcarry.aspect.annotation.Encryption;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.PaymentDAO;
+import com.app.jimcarry.domain.dao.StorageDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
@@ -14,14 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class PaymentService {
     private final PaymentDAO paymentDAO;
+    private final StorageDAO storageDAO;
 
     //    추가
     @LogStatus
@@ -45,7 +49,6 @@ public class PaymentService {
 
 
     //    수정
-    @Encryption
 //    @LogStatus
     @Transactional(rollbackFor = Exception.class)
     public void updatePayment(PaymentVO paymentVO) {paymentDAO.setPaymentVO(paymentVO);}
@@ -60,12 +63,23 @@ public class PaymentService {
     }
 
     // 조건조회
-    public List<PaymentVO> getListBy(PageDTO pageDTO){
-        return paymentDAO.findAllBy(pageDTO);
+    public List<PaymentDTO> getListBy(PageDTO pageDTO){
+        List<PaymentDTO> paymentDTOs = new ArrayList<>();
+        List<PaymentVO> payments = paymentDAO.findAllBy(pageDTO);
+        List<StorageVO> storages = new ArrayList<>();
+
+        storages = payments.stream().map(pay -> storageDAO.findById(pay.getStorageId())).collect(Collectors.toList());
+        paymentDTOs = payments.stream().map(new PaymentDTO()::createDTO).collect(Collectors.toList());
+
+        for (int i = 0; i < paymentDTOs.size(); i++) {
+            setPaymentDTO(paymentDTOs.get(i), storages.get(i));
+        }
+
+        return paymentDTOs;
     }
 
     // 조건조회 개수
-    public int geTotalBy(SearchDTO searchDTO) {
+    public int getTotalBy(SearchDTO searchDTO) {
         return paymentDAO.findTotalBy(searchDTO);
     }
 
@@ -77,6 +91,15 @@ public class PaymentService {
         return paymentDAO.findUserInfo(userId);
     }
 
+    private void setPaymentDTO(PaymentDTO paymentDTO, StorageVO storageVO) {
+        paymentDTO.setStoragePrice(storageVO.getStoragePrice());
+        paymentDTO.setStorageTitle(storageVO.getStorageTitle());
+        paymentDTO.setStorageAddress(storageVO.getStorageAddress());
+        paymentDTO.setStorageAddressDetail(storageVO.getStorageAddressDetail());
+        paymentDTO.setStorageSize(storageVO.getStorageSize());
+        paymentDTO.setStorageUseDate(storageVO.getStorageUseDate());
+        paymentDTO.setStorageEndDate(storageVO.getStorageEndDate());
+    }
     // 창고 조회
     public StorageVO getStorage(Long storageId){
         return paymentDAO.findStorageInfo(storageId);
