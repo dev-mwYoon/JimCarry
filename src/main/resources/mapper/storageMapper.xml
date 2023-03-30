@@ -104,7 +104,7 @@
         ) u
         join
         (
-        select storage_id, user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
+        select storage_id, user_id, storage_name, storage_phone, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date
         from tbl_storage
         <!--<include refid="searchType"/>-->
         ) r on u.user_id = r.user_id
