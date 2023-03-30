@@ -1,5 +1,6 @@
 package com.app.jimcarry.domain.dto;
 
+import com.app.jimcarry.domain.vo.PaymentVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -27,4 +28,14 @@ public class PaymentDTO {
     private String storageAddressDetail;
     private String storageUseDate;
     private String storageEndDate;
+
+    public PaymentDTO createDTO(PaymentVO paymentVO){
+        this.payId = paymentVO.getPayId();
+        this.userId = paymentVO.getUserId();
+        this.storageId = paymentVO.getStorageId();
+        this.paymentDate = paymentVO.getPaymentDate();
+        this.paymentAmount = paymentVO.getPaymentAmount();
+
+        return this;
+    }
 }

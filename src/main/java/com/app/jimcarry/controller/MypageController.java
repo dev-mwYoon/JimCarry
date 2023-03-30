@@ -37,6 +37,7 @@ public class MypageController {
     private final PaymentService paymentService;
 
     /* ============================== 내 창고 ================================ */
+//    @CheckLogin
     @GetMapping("mybox")
     public String myBox(Criteria criteria, Model model) {
 
@@ -66,8 +67,31 @@ public class MypageController {
     }
 
     /* ============================== 이용중인 창고 ================================ */
-    @GetMapping("using")
-    public String using() {
+    @GetMapping("usage")
+    public String usage(Criteria criteria, Model model) {
+
+        //  page, amount
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 3;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+        PageDTO pageDTO = null;
+
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(2L);
+
+//         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = paymentService.getTotalBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("payments", paymentService.getListBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+
         return "mypage/use-myBox";
     }
 
@@ -171,9 +195,9 @@ public class MypageController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        total = paymentService.getTotalBy(searchDTO);
-        pageDTO = new PageDTO().createPageDTO(criteria, 6, searchDTO);
-        model.addAttribute("total", 6);
+        total = paymentService.getTotalBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
         model.addAttribute("payments", paymentService.getListBy(pageDTO));
         model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);

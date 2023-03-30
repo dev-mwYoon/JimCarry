@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -57,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public RedirectView login(String userIdentification, String userPassword, HttpSession session) {
+    public RedirectView login(String userIdentification, String userPassword, HttpSession session, HttpServletResponse response) {
         UserVO userVO = userService.login(userIdentification, userPassword);
 
         if(userVO == null) {
