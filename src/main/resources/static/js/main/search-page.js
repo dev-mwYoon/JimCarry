@@ -49,7 +49,7 @@ $(function() {
             $.ajax({
                 type: "post",
                 url: "/storages/search/list",
-                data: { storageAddress: way },
+                data: { storageAddressNumber: way },
                 success:function (result) {
                     console.log("들어옴");
                     console.log(result);

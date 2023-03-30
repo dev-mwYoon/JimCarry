@@ -2,6 +2,7 @@ package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.ReviewService;
@@ -41,5 +42,33 @@ public class StorageController {
 
         return new RedirectView("/main/main");
     }
+
+    /*지역별 창고 조회 */
+    @GetMapping("list/{storageAddress}")
+    public String showList(@PathVariable String storageAddress, Model model, Criteria criteria){
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 3;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress(storageAddress);
+
+        //         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = storageService.getTotalBy(searchDTO);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("pagination", pageDTO);
+        model.addAttribute("storages", storageService.getStorageDTOBy(pageDTO));
+
+        /*return storageService.getStorageDTOBy(pageDTO);*/
+        return "/main/search-page";
+    }
+
 
 }
