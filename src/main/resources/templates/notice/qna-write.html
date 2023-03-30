@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="qna-write-content">
-                <form th:action="@{/notice/write}" method="post">
+                <form th:action="@{/notice/write}" method="post" enctype="multipart/form-data">
                     <div class="qna-original-input-layout">
                         <div class="qna-write-content-title-div">
                             <label for="inquiry-subject">
@@ -128,8 +128,8 @@
                                                 <div class="imgButton">
                                                     <span class="cameraIconImg"></span>
                                                 </div>
-                                                <input class="imageFileInput" id="photo-picker" type="file"
-                                                       accept="image/jpg, image/jpeg, image/png, image/bmp"/>
+                                                <input class="imageFileInput" id="photo-picker" type="file" name="files"
+                                                    multiple="multiple"  accept="image/jpg, image/jpeg, image/png, image/bmp"/>
                                             </label>
                                         </div>
                                     </div>
