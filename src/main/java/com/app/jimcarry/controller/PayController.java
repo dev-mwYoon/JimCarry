@@ -9,26 +9,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/pay/*")
 @RequiredArgsConstructor
 public class PayController {
-//
+    private final PaymentService paymentService;
+
 //    /*결제페이지*/
 //    @GetMapping("")
 //    public String pay() { return "/pay/payment";}
 
-    private final PaymentService paymentService;
 
     @GetMapping("/payment")
     public String pay(Model model) {
         UserVO userVO = new UserVO();
-        userVO.setUserId(4L);
-        StorageVO storageVO = new StorageVO();
-        storageVO.setStorageId(1L);
+        userVO.setUserId(8L);
         model.addAttribute("user", paymentService.getUser(userVO.getUserId()));
-        model.addAttribute("storage", paymentService.getStorage(storageVO.getStorageId()));
         return "/pay/payment";
     }
-
+//    @GetMapping("payment")
+//    public String pay(HttpSession httpSession) {
+//        paymentService.getUser((Long) httpSession.getAttribute("userId"));
+//        return "/pay/payment";
+//    }
 }

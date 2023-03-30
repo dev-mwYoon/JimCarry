@@ -59,4 +59,16 @@ public class PaymentMapperTest {
         int total = 5;
         paymentMapper.selectAllPayment(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
+
+    /*유저 정보 조회*/
+    @Test
+    public void selectUser(){
+        paymentMapper.selectUser(1L);
+    }
+
+    /*창고 정보 조회*/
+    @Test
+    public void selectStorage(){
+        paymentMapper.selectStorage(1L);
+    }
 }

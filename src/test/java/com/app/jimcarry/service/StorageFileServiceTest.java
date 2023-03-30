@@ -1,5 +1,6 @@
-package com.app.jimcarry.domain.dao;
+package com.app.jimcarry.service;
 
+import com.app.jimcarry.domain.vo.FileVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Slf4j
 @Transactional
-public class FileDAOTest {
+public class StorageFileServiceTest {
     @Autowired
-    FileDAO fileDAO;
+    StorageFileService storageFileService;
 
     /*조회*/
     @Test
-    public void findById(){
-        fileDAO.findById(1L);
-    }
+    public void getFile() {storageFileService.getFile(1L);}
+
 }
