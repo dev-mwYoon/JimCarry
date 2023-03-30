@@ -272,7 +272,7 @@ $btn.on("click", function () {
     $thumbnailWrap.empty();
     fileVOs = new Array();
 
-    doAjax(thumbnailAjaxConfig(i), (result) => {
+    $doAjax(thumbnailAjaxConfig(i), (result) => {
         result.forEach((file) => {
             $thumbnailWrap.append(
                 `
