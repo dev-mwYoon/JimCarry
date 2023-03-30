@@ -1,10 +1,4 @@
 const boxContainer = $(".mypage-list-right-list-container");
-const boxStandards = [
-    "우체국 5호 박스 24개",
-    "우체국 5호 박스 60개",
-    "우체국 5호 박스 120개",
-    "우체국 5호 박스 150개"
-];
 const createDOM = function (box) {
     let text = `
     <div class="use-box-container">
@@ -18,7 +12,7 @@ const createDOM = function (box) {
                 <div class="use-box-content-left-list-container">
                     <d1 class="left-list-wrapper">
                         <dt class="left-list-text">창고규모</dt>
-                        <dd class="left-list-text-content">[ ${box.storageSize} ] [ ${boxStandards[3]} ]</dd>
+                        <dd class="left-list-text-content">[ ${box.storageSize} ]</dd>
                     </d1>
                     <d1 class="left-list-wrapper">
                         <dt class="left-list-text">등록기간</dt>

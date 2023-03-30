@@ -22,7 +22,8 @@ $(".amend-password-inputBox-in").on("blur", function () {
     doAjax({
         url: "/users/mypage/checkPassword",
         method: "POST",
-        data: JSON.stringify({userPassword: $(this).val()})
+        data: JSON.stringify({userPassword: $(this).val()}),
+        contentType: "application/json; charset=utf-8"
     }, (result) => {
         if(result == true){
             $(".errorDiv").css("display", "none");

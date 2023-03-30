@@ -22,4 +22,8 @@
         from tbl_notice
         where notice_id = ${noticeId}
     </select>
+    <delete id="delete" parameterType="Long">
+        delete from tbl_notice
+        where notice_id = #{noticeId}
+    </delete>
 </mapper>

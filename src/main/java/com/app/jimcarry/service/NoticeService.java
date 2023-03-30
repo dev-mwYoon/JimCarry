@@ -63,6 +63,11 @@ public class NoticeService {
         @LogStatus
         public NoticeVO getNotice(Long noticeId) {return noticeDAO.findById(noticeId);}
 
+        /* 공지사항 삭제 */
+        public void removeNotice(Long noticeId){
+            noticeDAO.deleteById(noticeId);
+        }
+
 
 
 

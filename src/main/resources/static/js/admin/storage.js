@@ -173,6 +173,7 @@ $('#completeBtn').on('click', function (e) {
         }
     );
 });
+
 let $checkArr = [];
 const $checkbox = $('input[name=check]');
 console.log($checkbox);
@@ -191,9 +192,9 @@ $('input[type=checkbox]').on('click', function() {
 confirmButton.on('click', function () {
     // 삭제를 실행하는 코드 작성
     $.ajax({
-        url: "/admin/user/delete",
+        url: "/admin/storage/delete",
         type: "post",
-        data: { userIds : $checkArr },
+        data: { storageIds : $checkArr },
         traditional : true,
         success : function(result){
             if(result) {
