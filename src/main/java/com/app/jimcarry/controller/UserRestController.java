@@ -35,7 +35,7 @@ public class UserRestController {
     public boolean loginNaver(String userIdentification, String userEmail, HttpSession session) {
         UserVO userVO = userService.findByIdentification(userIdentification, userEmail);
 
-        if(userVO == null) {
+        if(userVO == null || userVO.getUserStatus() == 0 || userVO.getUserStatus() == 1) {
             return false;
         }
 
