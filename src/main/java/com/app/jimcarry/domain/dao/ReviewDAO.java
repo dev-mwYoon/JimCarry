@@ -59,4 +59,5 @@ public class ReviewDAO {
     public void deleteById(Long reviewId) {
         reviewMapper.delete(reviewId);
     }
+
 }

@@ -20,6 +20,8 @@ public class StorageDTO {
     private String userAddressDetail;
     private String userGender;
     private String userBirth;
+    private String userRandomKey;
+    private Integer userStatus;
     private Long storageId;
     private String storageName;
     private String storagePhone;
@@ -33,5 +35,4 @@ public class StorageDTO {
     private BigInteger reviewId;
     private Integer reviewCount;
     private List<FileVO> files;
-
 }

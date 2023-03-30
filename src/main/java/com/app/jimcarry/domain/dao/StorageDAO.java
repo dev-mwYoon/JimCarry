@@ -56,6 +56,7 @@ public class StorageDAO {
         storageMapper.delete(storageId);
     }
 
+
     //    storagesDTO 조회
     public List<StorageDTO> findStorageDTOBy(Long storageId) {
         return storageMapper.selectAllBy(storageId);

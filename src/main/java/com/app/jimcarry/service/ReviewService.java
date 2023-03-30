@@ -91,4 +91,8 @@ public class ReviewService {
     private String getPath() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
+    /* 리뷰 삭제 */
+    public void removeReview(Long reviewId){
+        reviewDAO.deleteById(reviewId);
+    }
 }
