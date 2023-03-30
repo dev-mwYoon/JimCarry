@@ -106,9 +106,15 @@ public class StorageService {
 
     /* DTO 메인 신규창고 조회*/
     public List<StorageDTO> getStorageDTO(){
-        return storageDAO.findStorageDTOList();
+        List<StorageDTO> storageLists = storageDAO.findStorageDTOList();
+        storageLists.forEach(storage -> storage.setReviewCount(reviewDAO.findByStorageId(storage.getStorageId()).size()));
+        return storageLists;
     }
 
     /* DTO 메인 신규창고 조회*/
-    public List<StorageDTO> getStorage(){return storageDAO.findStorageDTOLists();}
+    public List<StorageDTO> getStorage(){
+        List<StorageDTO> reviews = storageDAO.findStorageDTOLists();
+        reviews.forEach(storage -> storage.setReviewCount(reviewDAO.findByStorageId(storage.getStorageId()).size()));
+        return reviews;
+    }
 }

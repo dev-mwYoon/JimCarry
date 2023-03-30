@@ -121,10 +121,10 @@ $next.click(function(){
 
 /*----------------------------------------------------------------*/
 /*목록이 추가될 div 부모*/
-const storageContainer = $(".four-static-banner-inner-div");
+const storageContainer = $("#four-static-banner-inner-div");
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
-const createDOM = function (main) {
+const createDOM = function (storage, file, review) {
     let text = `
     <div class="four-static-banner-one-div">
         <a href="" class="four-static-banner-one-a">
@@ -132,11 +132,11 @@ const createDOM = function (main) {
                 <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg">
             </div>
             <div class="four-static-banner-product-div">
-                <h3 class="four-static-banner-name">${main.storageTitle}</h3>
+                <h3 class="four-static-banner-name">${storage.storageTitle}</h3>
                 <div class="four-static-banner-detail-div">
                     <div class="four-static-banner-price-div">
                         <span class="four-static-banner-price">
-                            ${main.storagePrice}원
+                            ${storage.storagePrice}원
                         </span>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ const createDOM = function (main) {
                         </svg>
                     </div>
                     후기
-                    <span>${main.reviewId}</span>
+                    <span>${storage.reviewCount}</span>
                 </div>
             </div>
         </a>
@@ -164,26 +164,19 @@ const createDOM = function (main) {
 /* html script에서 받아준 모델객체 */
 storages.forEach((storage, i) => {
     storageContainer.append(
-        createDOM(storage)
+        createDOM(storage, files[i], reviews)
     );
 });
-files.forEach((storage, i) => {
-    storageContainer.append(
-        createDOM(storage)
-    );
-});
-// reviews.forEach((storages, i) => {
-//     storageContainer.append(
-//         createDOM(storagea)
-//     );
-// });
+
+
 
 /*----------------------------------------------------------------*/
+/*리뷰많은순*/
 /*목록이 추가될 div 부모*/
 const storageContainer2 = $("#storageReview");
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
-const createDOMs = function (storages) {
+function createDOMs(a, reviews) {
     let texts = `
     <div class="four-static-banner-one-div">
         <a href="#" class="four-static-banner-one-a">
@@ -191,11 +184,11 @@ const createDOMs = function (storages) {
                 <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg">
             </div>
             <div class="four-static-banner-product-div">
-                <h3 class="four-static-banner-name">${storages.storageTitle}</h3>
+                <h3 class="four-static-banner-name">${a.storageTitle}</h3>
                 <div class="four-static-banner-detail-div">
                     <div class="four-static-banner-price-div">
                         <span class="four-static-banner-price">
-                            ${storages.storagePrice}원
+                            ${a.storagePrice}원
                         </span>
                     </div>
                 </div>
@@ -212,19 +205,17 @@ const createDOMs = function (storages) {
                         </svg>
                     </div>
                     후기
-                    <span>999+</span>
+                    <span>${a.reviewCount}</span>
                 </div>
             </div>
         </a>
     </div>
-`
-    return texts;
+`   ;
+    storageContainer2.append(texts);
 }
 /* html script에서 받아준 모델객체 */
-countReviews.forEach((storages, i) => {
-    storageContainer2.append(
-        createDOMs(storages)
-    );
+countReviews.forEach((a, i) => {
+    createDOMs(a, reviews);
 });
 
 

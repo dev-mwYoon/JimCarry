@@ -27,7 +27,7 @@ public class MainController {
     @GetMapping("")
     public String storageMain(Model model){
         model.addAttribute("storages", storageService.getStorageDTO());
-//        model.addAttribute("reviews", reviewService.getTotalById(1L));
+        model.addAttribute("reviews", reviewService.getTotalById(1L));
         model.addAttribute("countReviews", storageService.getStorage());
         model.addAttribute("files",storageFileService.getFile(1L));
         return "/main/main";
