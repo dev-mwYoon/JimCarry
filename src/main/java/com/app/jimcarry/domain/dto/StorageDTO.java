@@ -32,5 +32,7 @@ public class StorageDTO {
     private String storageAddressDetail;
     private String storageUseDate;
     private String storageEndDate;
-
+    private BigInteger reviewId;
+    private Integer reviewCount;
+    private List<FileVO> files;
 }
