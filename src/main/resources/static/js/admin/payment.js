@@ -149,3 +149,30 @@ $('#completeBtn').on('click', function (e) {
         }
     );
 });
+let $checkArr = [];
+const $checkbox = $('input[name=check]');
+console.log($checkbox);
+
+$('input[type=checkbox]').on('click', function() {
+    if ($(this).is(':checked')) {
+        $checkArr.push($(this).parent().parent().next().text());
+    } else {
+        var toRemove = $(this).parent().parent().next().text();
+        $checkArr = $checkArr.filter(function (item) {
+            return item !== toRemove;
+        });
+    }
+});
+confirmButton.on('click', function(){
+    $.ajax({
+        url: "/admin/payment/delete",
+        type: "post",
+        data: {payIds : $checkArr},
+        traditional : true,
+        success : function (result) {
+            if(result){
+                location.reload();
+            }
+        }
+    });
+});

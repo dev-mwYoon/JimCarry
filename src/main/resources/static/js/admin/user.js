@@ -126,6 +126,7 @@ $('#completeBtn').on('click', function (e) {
         }
     );
 });
+
 let $checkArr = [];
 const $checkbox = $('input[name=check]');
 console.log($checkbox);
@@ -140,35 +141,10 @@ $('input[type=checkbox]').on('click', function() {
         });
     }
 });
-
 // const confirmButton = $('#confirm-delete');
 // $('#delete-button')
 confirmButton.on('click', function () {
-    // 삭제를 실행하는 코드 작성
-    // $checkbox.each(function (i, e) {
-    //     $checkbox.eq(i).on('click', function () {
-    //         if ($(this).is(':checked')) {
-    //             $checkArr.push($('.content__id').eq(i).text());
-    //         } else {
-    //             var toRemove = $('.content__id').eq(i).text();
-    //             $checkArr = $checkArr.filter(function (item) {
-    //                 return item !== toRemove;
-    //             });
-    //         }
-    //
-    //         for (let i = 0; i < $checkArr.length; i++) {
-    //             console.log($checkArr);
-    //         }
-    //
-    //          // $checkArr.text();
-    //
-    //
-    //         // location.reload();
-    //         // modal.css('display', 'none');
-    //
-    //
-    //     });
-    // });
+
     $.ajax({
         url: "/admin/user/delete",
         type: "post",
@@ -182,7 +158,4 @@ confirmButton.on('click', function () {
     });
 });
 
-// });
-// for(let i=0 ; i<$checkArr.length; i++) {
-//     console.log("넣는거" + $checkArr[i]);
-// }
+
