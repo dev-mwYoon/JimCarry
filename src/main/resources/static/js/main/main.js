@@ -127,7 +127,7 @@ const storageContainer = $("#four-static-banner-inner-div");
 const createDOM = function (storage, files, review) {
     let text = `
     <div class="four-static-banner-one-div">
-        <a href="storages/search/detail/{storageId}" class="four-static-banner-one-a">
+        <a href="/storages/search/detail/${storage.storageId}" class="four-static-banner-one-a">
             <div class="four-static-banner-img-div">
                 <img src="@{/main/display(fileName=${storage.file.filePath}/${storage.file.fileUuid}_${storage.file.fileOrgName})}" alt="image">
             </div>
