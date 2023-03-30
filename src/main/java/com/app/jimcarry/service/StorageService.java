@@ -71,6 +71,9 @@ public class StorageService {
     //    수정
 
     //    삭제
+    public void removeStorage(Long storageId){
+        storageDAO.deleteById(storageId);
+    }
 
 
     //    DTO 창고 전체 조회

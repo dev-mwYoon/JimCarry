@@ -18,6 +18,8 @@ public class StorageDTO {
     private String userAddressDetail;
     private String userGender;
     private String userBirth;
+    private String userRandomKey;
+    private Integer userStatus;
     private Long storageId;
     private String storageName;
     private String storagePhone;
@@ -28,5 +30,4 @@ public class StorageDTO {
     private String storageAddressDetail;
     private String storageUseDate;
     private String storageEndDate;
-    private BigInteger reviewId;
 }

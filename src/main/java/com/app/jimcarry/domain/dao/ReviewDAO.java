@@ -55,4 +55,8 @@ public class ReviewDAO {
 
     /* 리뷰 업데이트 */
     public void setReviewVO(ReviewVO reviewVO) { reviewMapper.update(reviewVO); }
+
+    /* 리뷰 삭제 */
+    public void deleteById(Long reviewId) { reviewMapper.delete(reviewId);}
+
 }
