@@ -124,12 +124,12 @@ $next.click(function(){
 const storageContainer = $("#four-static-banner-inner-div");
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
-const createDOM = function (storage, file, review) {
+const createDOM = function (storage, files, review) {
     let text = `
     <div class="four-static-banner-one-div">
-        <a href="" class="four-static-banner-one-a">
+        <a href="storages/search/detail/{storageId}" class="four-static-banner-one-a">
             <div class="four-static-banner-img-div">
-                <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg">
+                <img src="@{/main/display(fileName=${storage.file.filePath}/${storage.file.fileUuid}_${storage.file.fileOrgName})}" alt="image">
             </div>
             <div class="four-static-banner-product-div">
                 <h3 class="four-static-banner-name">${storage.storageTitle}</h3>
@@ -164,7 +164,7 @@ const createDOM = function (storage, file, review) {
 /* html script에서 받아준 모델객체 */
 storages.forEach((storage, i) => {
     storageContainer.append(
-        createDOM(storage, files[i], reviews)
+        createDOM(storage, files, reviews)
     );
 });
 
