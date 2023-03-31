@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,7 +82,7 @@ public class NoticeController {
 
     /*파일 업로드 포함*/
     @PostMapping("write")
-    public RedirectView writeRegister(@RequestParam("files") List<MultipartFile> multipartFiles, InquiryVO inquiryVO, HttpSession httpSession){
+    public RedirectView writeRegister(@RequestParam("files") List<MultipartFile> multipartFiles, InquiryVO inquiryVO, HttpSession httpSession) throws IOException{
         log.info("1234");
       /*  log.info(String.valueOf(httpSession.getAttribute("userId" )));*/
         inquiryVO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
