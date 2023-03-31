@@ -30,7 +30,7 @@
     <!-- 검색조건에 맞는 테이블 불러옴(페이징처리) -->
     <select id="selectBy" resultType="storageVO">
         select storage_id, user_id, storage_name, storage_phone, storage_title, storage_size, storage_price,
-        storage_address, storage_address_detail, storage_address_number
+        storage_address, storage_address_detail, storage_address_number,
         storage_use_date, storage_end_date
         from tbl_storage
         <include refid="searchType"/>

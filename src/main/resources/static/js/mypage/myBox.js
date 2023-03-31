@@ -3,7 +3,7 @@ const createDOM = function (box) {
     let text = `
     <div class="use-box-container">
         <div class="use-box-date-container">
-            <span class="use-box-date">${box.storageUseDate}</span>
+            <span class="use-box-date">${box.storageAddress}</span>
         </div>
         <div class="use-box-content-container">
             <div class="use-box-content-left-container">
