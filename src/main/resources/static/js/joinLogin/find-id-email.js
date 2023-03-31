@@ -51,14 +51,7 @@ const $checkButton = $('.popup-check');
 
 const $codeButton = $('.codeButton');
 
-// $codeButton.on('click', ()=>{
-//     $modal.css("visibility", "visible");
-// });
-// $checkButton.on("click", ()=>{
-//     $modal.css("visibility", "hidden");
-// });
-
-if(window.location.search) {
+if(new URLSearchParams(location.search).get("result") == "fail") {
     $modalText.text('존재하지 않는 회원입니다.');
     $modal.css("visibility", "visible");
 }
