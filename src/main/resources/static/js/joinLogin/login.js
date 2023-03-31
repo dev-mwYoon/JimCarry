@@ -4,7 +4,7 @@ const $checkButton = $('.popup-check');
 
 const $loginButton = $('.loginButton');
 
-if(window.location.search) {
+if(new URLSearchParams(location.search).get("result") == "fail") {
     $modalText.text('아이디, 비밀번호를 확인해주세요.');
     $modal.css("visibility", "visible");
 }
