@@ -43,17 +43,16 @@ public class StorageController {
         return new RedirectView("/main/main");
     }
 
-    /*지역별 창고 조회 */
-    @GetMapping("list/{storageAddress}")
-    public String showList(@PathVariable String storageAddress, Model model, Criteria criteria){
+    /*헤더 지역별 창고 조회 */
+    @GetMapping("list/{storageAddressNumber}")
+    public String showList(@PathVariable("storageAddressNumber") int storageAddressNumber, Model model, Criteria criteria){
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 3;
         /* 검색된 결과의 총 개수 */
         int total = 0;
 
-        /* 추후에 setUserId 세션으로 변경 */
-        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddress")));
-        searchDTO.setStorageAddress(storageAddress);
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
+        searchDTO.setStorageAddressNumber(storageAddressNumber);
 
         //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
@@ -62,9 +61,11 @@ public class StorageController {
 
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("storageAddressNumber", storageAddressNumber);
         model.addAttribute("total", total);
         model.addAttribute("pagination", pageDTO);
-        model.addAttribute("storages", storageService.getStorageDTOBy(pageDTO));
+        model.addAttribute("storage", storageService.getStorageDTOBy(pageDTO));
+        log.info(storageService.getStorageDTOBy(pageDTO).toString());
 
         /*return storageService.getStorageDTOBy(pageDTO);*/
         return "/main/search-page";
