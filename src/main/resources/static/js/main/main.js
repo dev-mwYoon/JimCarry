@@ -181,7 +181,7 @@ function createDOMs(a, reviews) {
     <div class="four-static-banner-one-div">
         <a href="/storages/search/detail/${a.storageId}" class="four-static-banner-one-a">
             <div class="four-static-banner-img-div">
-                <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg">
+                <img src="@{/main/display(fileName=${a.file.filePath}/${a.file.fileUuid}_${a.file.fileOrgName})}" alt="image">
             </div>
             <div class="four-static-banner-product-div">
                 <h3 class="four-static-banner-name">${a.storageTitle}</h3>
