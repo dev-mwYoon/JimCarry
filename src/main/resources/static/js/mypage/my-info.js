@@ -21,11 +21,12 @@ const $wrapperInputs = $('input[type=text], input[type=password]');
 console.log($wrapperInputs);
 const $errorMessage = $('div.errorDiv p.errorMessage');
 let errorCheck;
-let errorCheckAll = [false, false, false, false, false, false];
+let errorCheckAll = [true, false, false, false, true, true];
 const $errorDiv = $('div.errorDiv');
 $wrapperInputs.on("blur", function () {
     let i = $wrapperInputs.index($(this));
     let value = $(this).val();
+    console.log(value);
 
     if (!value) {
         $errorDiv.eq(i).css("display", "block");
@@ -153,10 +154,12 @@ console.log($infobtn, $infocontainer, $infoclose);
 //모달창 열기
 $infobtn.on("click", function (e) {
     e.preventDefault();
-    let check = errorCheckAll.filter(e => e).length > 0;
+    let check = 0;
+    errorCheckAll.forEach(e => check += e ? 0 : 1);
+    console.log(errorCheckAll);
     console.log(check);
 
-    if (check) {
+    if (check == 0) {
         $(".pay-content").text("회원정보가 수정되었습니다.");
         $infocontainer.css("display", "block");
         setTimeout(() => $("form[name='userForm']").submit(), 1500);
