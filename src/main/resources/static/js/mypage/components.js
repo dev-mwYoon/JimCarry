@@ -18,6 +18,7 @@ const checkIdentificationAjaxConfig = (data) => {
     return {
         url: "/users/mypage/checkIdentification",
         method: "POST",
+        contentType: "application/json; charset=utf-8",
         data: JSON.stringify({userIdentification: data}),
     }
 }
@@ -31,6 +32,7 @@ const checkPasswordAjaxConfig = (data) => {
     return {
         url: "/users/mypage/checkPassword",
         method: "POST",
+        contentType: "application/json; charset=utf-8",
         data: JSON.stringify({userPassword: data}),
     }
 }
@@ -44,6 +46,7 @@ const checkEmailAjaxConfig = (data) => {
     return {
         url: "/users/mypage/checkEmail",
         method: "POST",
+        contentType: "application/json; charset=utf-8",
         data: JSON.stringify({userEmail: data}),
     }
 }
