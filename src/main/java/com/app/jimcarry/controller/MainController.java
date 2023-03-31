@@ -33,9 +33,13 @@ public class MainController {
         for(StorageDTO storageDTO: storageDTOS){
             storageDTO.setFile(storageFileService.getFile(1L));
         }
+        List<StorageDTO> reviews = storageService.getStorage();
+        for(StorageDTO storageDTO: reviews){
+            storageDTO.setFile(storageFileService.getFile(1L));
+        }
         model.addAttribute("storages", storageDTOS);
         model.addAttribute("reviews", reviewService.getTotalById(1L));
-        model.addAttribute("countReviews", storageService.getStorage());
+        model.addAttribute("countReviews", reviews);
 
         return "/main/main";
     }

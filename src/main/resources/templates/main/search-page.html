@@ -106,7 +106,7 @@
         </div>
         <div class="result-content">
             <div class="result-title">
-                <div class="total-number">
+                <div class="total-number" th:text="'총' + ${total} + '건'">
                     총 56건
                 </div>
                 <ul class="array-ul">
@@ -181,8 +181,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
-    let storages = [[${storages}]];
-    let storageAddress = [[${storageAddress}]];
+    let storage = [[${storage}]];
+    let headerStorageAddressNumber = [[${storageAddressNumber}]];
 </script>
 <script src="/js/main/search-page.js"></script>
 <script src="/js/main/header.js"></script>
