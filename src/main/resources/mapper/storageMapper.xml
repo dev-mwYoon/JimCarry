@@ -58,7 +58,9 @@
                 <bind name="dto" value="page.searchDTO"/>
             </otherwise>
         </choose>
-        <include refid="searchContext"/>
+        <if test="dto.storageAddressNumber != 0">
+            <include refid="searchContext"/>
+        </if>
     </sql>
     <!--  조건에 맞는 테이블 검색조건  -->
     <sql id="searchContext">

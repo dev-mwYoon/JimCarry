@@ -9,6 +9,7 @@ import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class StorageService {
     private final StorageDAO storageDAO;
     private final ReviewDAO reviewDAO;
