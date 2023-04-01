@@ -9,25 +9,15 @@ $('.filter-select-button').click(function(){
 /*헤더 문자열 비교 리스트*/
 const $region_list = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-// $region_list.forEach((value, index) => {
-//     console.log("value :" + value);
-//     if(value === storageAddress) {
-//         console.log("주소 똑같음")
-//         $('.place-ul a').eq(index).attr('class', 'place-select');
-//     }
-//     else{
-//         $(this).attr('class', 'place');
-//     }
-// })
-
 /*검색페이지 지역별 문자열 비교 리스트*/
-const region_list = ["", "서울특별시", "경기도", "강원도", "충청북도", "충청남도",
+const region_list = ["전체보기", "서울특별시", "경기도", "강원도", "충청북도", "충청남도",
     "경상북도", "경상남도", "전라북도", "전라남도", "제주도"];
 var way = 0;
 $(".place").on('click', function() {
     console.log("들어온거:" + $(this).text())
     for (var i = 0; i < region_list.length; i++) {
         if(region_list[i] == $(this).text()) {
+            $(".search-title").html($(this).text());
             way = i;
         }
     }
@@ -35,7 +25,7 @@ $(".place").on('click', function() {
     // $(e).text() == region_list
 })
 
-/*지역별 클릭시 href속성값 가져오기*/
+/*지역별 클릭시 창고주소번호로 창고 목록 조회하기*/
 $(function() {
     $('.place-ul a').click(function(event) {
         event.preventDefault();  // 기본 동작인 링크 이동을 막음
@@ -53,6 +43,7 @@ $(function() {
                 console.log("들어옴");
                 console.log(result);
                 var html = ``;
+                var count = 0;
                 $('.product').replaceWith(html);
                 result.forEach(e => {
                         html += `
@@ -86,8 +77,10 @@ $(function() {
                             </div>
                         </a>
                     `;
+                        count++;
                 })
                 $('.result-real-body').append(html);
+                $('.total-number').html("총 " + count + "건");
             },
             error:function (e) {
                 alert("통신에러");
@@ -97,18 +90,20 @@ $(function() {
 });
 
 // 헤더의 지역별 클릭했을때 해당 지역별 색깔 바꾸기
+/* 창고주소번호로 창고 목록 조회 */
 $region_list.forEach((value, index) => {
-    if(index == parseInt(headerStorageAddressNumber)) {
+    if(index == headerStorageAddressNumber) {
         console.log("index: " + index);
         console.log("storageAddressNumber: " + headerStorageAddressNumber);
         $('.place-ul a').eq(index).attr('class', 'place-select');
+        $(".search-title").html($('.place-ul a').eq(index).html());
     }
     else{
-        $(this).attr('class', 'place');
+        $('.place-ul a').eq(index).attr('class', 'place');
     }
-})
+});
 
-
+/* 헤더 창고주소번호로 창고 목록 append */
 /*목록이 추가될 div 부모*/
 const listContainer = $(".result-real-body");
 
