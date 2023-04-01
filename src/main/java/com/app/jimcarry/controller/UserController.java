@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.http.HttpResponse;
 
 @Controller
 @RequestMapping("/user/*")
@@ -54,7 +58,7 @@ public class UserController {
 
 //    로그인
     @PostMapping("login")
-    public RedirectView login(String userIdentification, String userPassword, HttpSession session) {
+    public RedirectView login(String userIdentification, String userPassword, HttpSession session, HttpServletResponse response) {
 //        아이디와 패스워드로 비교한 결과를 userVO객체로 받음
         UserVO userVO = userService.login(userIdentification, userPassword);
 
@@ -72,6 +76,17 @@ public class UserController {
         }
 
         session.setAttribute("user", userVO);
+
+        /* 쿠키 값 담기 */
+        Cookie userIdcookie = new Cookie("userId", String.valueOf(userVO.getUserId()));
+        Cookie userNamecookie = new Cookie("userName", String.valueOf(userVO.getUserName()));
+        userIdcookie.setMaxAge(60 * 60 * 8);
+        userIdcookie.setPath("/");
+        userNamecookie.setMaxAge(60 * 60 * 8);
+        userNamecookie.setPath("/");
+        response.addCookie(userIdcookie);
+        response.addCookie(userNamecookie);
+
         return new RedirectView("/main/");
     }
 
@@ -182,7 +197,14 @@ public class UserController {
     }
 
     @GetMapping("logout")
-    public RedirectView logout(HttpSession session) {
+    public RedirectView logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        /* 로그아웃 시 쿠키 삭제 */
+        for(Cookie cookie : request.getCookies()) {
+            cookie.setValue("");
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        }
         session.invalidate();
         return new RedirectView("/main/");
     }
