@@ -20,21 +20,25 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     private final UserService userService;
 
+//    회원가입 페이지 이동
     @GetMapping("join")
     public String join() {
         return "/joinLogin/joinForm";
     }
 
+//    카카오, 네이버, 일반 회원가입 선택 페이지 이동
     @GetMapping("join-select")
     public String joinSelect() {
         return "joinLogin/join-select";
     }
 
+//    네이버 회원가입 콜백 페이지로 이동
     @GetMapping("callback")
     public String callback() {
         return "/joinLogin/callback";
     }
 
+//    일반 회원가입 페이지로 이동
     @PostMapping("join")
     public RedirectView join(UserVO userVO, HttpSession session) {
         session.invalidate();
@@ -42,22 +46,29 @@ public class UserController {
         return new RedirectView("/user/login");
     }
 
+//    로그인 페이지로 이동
     @GetMapping("login")
     public String login() {
         return "/joinLogin/login";
     }
 
+//    로그인
     @PostMapping("login")
-    public RedirectView login(String userIdentification, String userPassword, Long userStatus, String userEmail, HttpSession session) {
+    public RedirectView login(String userIdentification, String userPassword, HttpSession session) {
+//        아이디와 패스워드로 비교한 결과를 userVO객체로 받음
         UserVO userVO = userService.login(userIdentification, userPassword);
 
-        if(userVO.getUserId() == 1) {
+//        로그인한 사람의 아이디가 admin이라면
+//        그 사람의 정보를 user라는 이름으로 세션에 담고
+//        관리자 페이지로 이동
+        if(userVO.getUserIdentification().equals("admin")) {
             session.setAttribute("user", userVO);
             return new RedirectView("/admin/user");
         }
 
-        if(userVO == null || userVO.getUserStatus() == 1 || userVO.getUserStatus() == 2) {
-            return new RedirectView("/user/login?login=fail");
+
+        if(userVO == null || userVO.getUserStatus() != 0) {
+            return new RedirectView("/user/login?result=fail");
         }
 
         session.setAttribute("user", userVO);
@@ -193,7 +204,7 @@ public class UserController {
             session.setAttribute("kakaoInfo", kakaoInfo);
             return new RedirectView("/user/join");
         } else if(userVO.getUserStatus() != 1){
-            return new RedirectView("/user/login");
+            return new RedirectView("/user/login?result=fail");
         }
 
         session.setAttribute("user", userVO);
@@ -210,7 +221,7 @@ public class UserController {
         String userIdentification = null;
         UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
 
-        if(userVO.getUserStatus() == 0 || userVO.getUserStatus() == 2) {
+        if(userVO.getUserStatus() != 1) {
             session.setAttribute("user", userVO);
         }
     }

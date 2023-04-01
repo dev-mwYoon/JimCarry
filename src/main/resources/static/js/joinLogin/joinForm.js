@@ -339,6 +339,7 @@ $verifiCheckBtn.on('click', function(){
         $('#checkNum').attr('disabled', true);
         $('#duplicateBox').text('확인');
         clearInterval(timer);
+        $(".checknum2").hide();
         $checkButton.on('click',()=>{
             $modal.css('visibility', 'hidden');
         });
