@@ -81,6 +81,7 @@ const overlapService = (function() {
             $modal.css('visibility', 'visible');
             $modalText.text("인증확인이 완료되었습니다.");
             clearInterval(timer);
+            $(".verification-timer").hide();
             $checkButton.on('click',()=>{
                 $modal.css('visibility', 'hidden');
                 $('#findForm').submit();
@@ -94,5 +95,5 @@ const overlapService = (function() {
         }
     }
     return { checkIdentification : checkIdentification, checkEmail : checkEmail, sendSMS : sendSMS, startTimer: startTimer,
-        findByPhone : findByPhone, checkAuthNumber : checkAuthNumber};
+        findByPhone : findByPhone, checkAuthNumber : checkAuthNumber };
 })();

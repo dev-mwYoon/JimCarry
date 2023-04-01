@@ -42,4 +42,12 @@ public class UserRestController {
         session.setAttribute("user", userVO);
         return true;
     }
+
+    @PostMapping("check-kakao-login")
+    public boolean checkKakaoLogin(HttpSession session) {
+        if(((UserVO)session.getAttribute("user")).getUserStatus() != 1) {
+            return false;
+        }
+        return true;
+    }
 }
