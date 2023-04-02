@@ -148,6 +148,11 @@ storage.forEach((storage, i) => {
     );
 });
 
-
-
+/* 검색시 창고 목록 조회 */
+/*
+$('.search-button').click(function() {
+    console.log("검색 들어옴");
+    document.searchForm.submit();
+});
+*/
 
