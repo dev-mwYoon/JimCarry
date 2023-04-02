@@ -9,4 +9,5 @@ public interface StorageFileMapper {
 
     //    등록
     public void insert(StorageFileVO storageFileVO);
+
 }
