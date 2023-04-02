@@ -55,6 +55,7 @@ public class StorageDTO {
         storageVO.setStorageAddressDetail(this.storageAddressDetail);
         storageVO.setStorageUseDate(this.storageUseDate);
         storageVO.setStorageEndDate(this.storageEndDate);
+        storageVO.setStorageAddressNumber(this.storageAddressNumber);
 
         return storageVO;
     }
