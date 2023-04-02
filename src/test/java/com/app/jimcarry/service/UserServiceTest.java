@@ -138,4 +138,9 @@ class UserServiceTest {
     public void findByIdentification() {
         assertThat(userService.findByIdentification(null, "tonky0810@naver.com").getUserId()).isEqualTo(1);
     }
+
+    @Test
+    public void findByPhone() {
+        assertThat(userService.findIdByPhone(null, null, "010-2287-6873").getUserId() != null);
+    }
 }
