@@ -53,6 +53,14 @@ reviews.forEach((review, i) => {
     );
 });
 
+/*창고예약 버튼 클릭시 개월수와 금액 값 정해주기*/
+$('.reserve-btn').click(function () {
+    $('input[name=paymentAmount]').val($count)
+    $('input[name=paymentMonth]').val($('.count-c').text());
+
+    document.payForm.submit();
+})
+
 
 
 
