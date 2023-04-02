@@ -21,6 +21,7 @@ public class SearchDTO {
     private String storageSize;
     private String userName;
     private String userAddress;
+    private String storageAddressDetail;
 
     public SearchDTO createTypes(List<String> types){
         setTypes(types);
