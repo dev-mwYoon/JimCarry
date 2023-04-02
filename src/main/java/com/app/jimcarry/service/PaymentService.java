@@ -1,6 +1,5 @@
 package com.app.jimcarry.service;
 
-import com.app.jimcarry.aspect.annotation.Encryption;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.PaymentDAO;
 import com.app.jimcarry.domain.dao.StorageDAO;
@@ -40,6 +39,10 @@ public class PaymentService {
         return paymentDAO.findById(payId);
     }
 
+//    @LogStatus
+//    public void findInfo(Long payId){
+//        return paymentDAO.findInfo();
+//    }
 
     //    전체조회
     @LogStatus
@@ -91,6 +94,9 @@ public class PaymentService {
         return paymentDAO.findUserInfo(userId);
     }
 
+    // 창고 조회
+    public PaymentDTO getStorage(PaymentDTO paymentDTO){return (PaymentDTO) paymentDAO.findStorageInfo(paymentDTO);}
+
     private void setPaymentDTO(PaymentDTO paymentDTO, StorageVO storageVO) {
         paymentDTO.setStoragePrice(storageVO.getStoragePrice());
         paymentDTO.setStorageTitle(storageVO.getStorageTitle());
@@ -100,8 +106,5 @@ public class PaymentService {
         paymentDTO.setStorageUseDate(storageVO.getStorageUseDate());
         paymentDTO.setStorageEndDate(storageVO.getStorageEndDate());
     }
-    // 창고 조회
-    public StorageVO getStorage(Long storageId){
-        return paymentDAO.findStorageInfo(storageId);
-    }
+
 }

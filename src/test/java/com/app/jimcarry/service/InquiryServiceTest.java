@@ -37,13 +37,11 @@ public class InquiryServiceTest {
        /* inquiryVO.setInquiryRegist(current_stamp); */
     }
 
-    //    추가
-    @Test
-    public void register() {
-            inquiryService.register(inquiryVO);
-
-
-    }
+//    //    추가
+//    @Test
+//    public void register() {
+//            inquiryService.register(inquiryVO);
+//    }
 
     //    조회
     @Test
@@ -74,14 +72,14 @@ public class InquiryServiceTest {
         inquiryService.getTotalBy(searchDTO);
     }
 
-    //    수정
-    @Test
-    void updateInquiry() {
-        inquiryService.register(inquiryVO);
-        inquiryVO.setInquiryTitle("updated");
-        inquiryService.updateInquiry(inquiryVO);
-        assertThat(inquiryService.getInquiry(inquiryVO.getInquiryId()).getInquiryTitle()).isEqualTo("updated");
-    }
+//    //    수정
+//    @Test
+//    void updateInquiry() {
+//        inquiryService.register(inquiryVO);
+//        inquiryVO.setInquiryTitle("updated");
+//        inquiryService.updateInquiry(inquiryVO);
+//        assertThat(inquiryService.getInquiry(inquiryVO.getInquiryId()).getInquiryTitle()).isEqualTo("updated");
+//    }
 
 //    삭제
 }

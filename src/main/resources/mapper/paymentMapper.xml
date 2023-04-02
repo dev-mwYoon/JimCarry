@@ -22,7 +22,7 @@
 
     <!-- 창고 정보조회-->
     <select id="selectStorage" resultType="paymentDTO">
-        select t.storage_id, t.user_id, storage_title, storage_size, storage_price, storage_address, storage_address_detail, storage_use_date, storage_end_date, storage_name, pay_id, payment_amount, payment_date
+        select t.storage_id, t.user_id, storage_title, storage_price, pay_id, payment_amount, p.payment_amount * t.storage_price AS total_price
         from tbl_storage t
         join tbl_payment p on t.storage_id = p.storage_id
     </select>
@@ -107,4 +107,9 @@
             </foreach>
         </trim>
     </sql>
+    <select id="selectPayment" resultType="paymentDTO">
+        SELECT p.pay_id, p.user_id, p.storage_id, p.payment_date, p.payment_amount, s.storage_price, p.payment_amount * s.storage_price AS total_price
+        FROM tbl_payment p
+        JOIN tbl_storage s ON p.storage_id = s.storage_id
+    </select>
 </mapper>

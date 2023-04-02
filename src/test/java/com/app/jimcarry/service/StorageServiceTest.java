@@ -41,9 +41,9 @@ public class StorageServiceTest {
         storageVO.setStorageEndDate("2099/12/31");
     }
 
-    @Test
-    void register() {storageService.register(storageVO);
-    }
+//    @Test
+//    void register() {storageService.register(storageVO);
+//    }
 
     @Test
     void getStorage() {

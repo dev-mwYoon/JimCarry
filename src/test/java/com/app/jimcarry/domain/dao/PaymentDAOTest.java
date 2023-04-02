@@ -1,6 +1,7 @@
 package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.PaymentVO;
@@ -22,6 +23,8 @@ public class PaymentDAOTest {
     PaymentDAO paymentDAO;
     @Autowired
     PaymentVO paymentVO;
+    @Autowired
+    PaymentDTO paymentDTO;
 
     @BeforeEach
     void setPaymentVO() {
@@ -54,4 +57,7 @@ public class PaymentDAOTest {
     public void findUserInfo(){
         paymentDAO.findUserInfo(1L);
     }
+
+    @Test
+    public void findInfo(){paymentDAO.findStorageInfo(paymentDTO);}
 }
