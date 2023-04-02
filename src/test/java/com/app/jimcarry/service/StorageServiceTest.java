@@ -120,10 +120,11 @@ public class StorageServiceTest {
         Criteria criteria = new Criteria().create(1, 10);
         PageDTO pageDTO = null;
         SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
-        searchDTO.setStorageAddressNumber(7);
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress("경북");
 
         total = storageService.getTotalDTOBy(searchDTO);
         storageService.getStorageDTOBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
+
 }
