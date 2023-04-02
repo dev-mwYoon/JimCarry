@@ -1,7 +1,6 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.dto.PageDTO;
-import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
@@ -9,17 +8,12 @@ import com.app.jimcarry.service.ReviewService;
 import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.lang.reflect.Array;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("storages/search/*")
@@ -46,7 +40,7 @@ public class SearchController {
     /*지역별 창고 목록 검색*/
     @PostMapping("list")
     @ResponseBody
-    public List<StorageDTO> searchByAddress(Integer storageAddressNumber, Criteria criteria){
+    public Map<String, Object> searchByAddress(Integer storageAddressNumber, Criteria criteria){
 
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 3;
@@ -65,7 +59,13 @@ public class SearchController {
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
 
-        return storageService.getStorageDTOBy(pageDTO);
+        List<StorageDTO> storageList = storageService.getStorageDTOBy(pageDTO);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("total", total);
+        resultMap.put("storageList", storageList);
+
+        return resultMap;
     }
 
     /* 창고 상세페이지 조회*/
@@ -94,12 +94,4 @@ public class SearchController {
 
         return "/detail-info/detail-info";
     }
-
-    /*창고 예약하기*/
-    /*@GetMapping("pay/{storageId}")
-    public String reserveStorage(@PathVariable String storageId, Model model) {
-
-        model.addAttribute("storageId", storageId);
-        return "pay/payment"; // 예약 페이지 이름 반환
-    }*/
 }

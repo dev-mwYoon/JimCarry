@@ -150,6 +150,7 @@
         <if test="page.searchDTO.isDesc">
             desc
         </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
 
     <!-- 메인에서 보이는 신규창고조회 -->

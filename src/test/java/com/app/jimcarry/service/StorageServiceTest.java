@@ -73,8 +73,11 @@ public class StorageServiceTest {
     @Test
     void getTotalBy() {
         SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
+/*
         searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);
+*/
+        searchDTO.setStorageAddressNumber(6);
         log.info("getTotalby : " + storageService.getTotalBy(searchDTO));
     }
 

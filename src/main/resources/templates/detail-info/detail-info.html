@@ -104,7 +104,7 @@
                         <div class="detail-price-wrap">
                             <div class="detail-price-wrapper">
                                 <span class="detail-price-title">총 상품금액 :</span>
-                                <span class="detail-price">12000</span>
+                                <span class="detail-price" th:text="${storages.storagePrice}">12000</span>
                                 <span class="detail-p">원</span>
                             </div>
                         </div>
@@ -114,9 +114,14 @@
                 <!-- 예약버튼 -->
                 <div class="reserve-btn-container">
                     <div class="reserve-btn-wrap">
-                        <button class="reserve-btn" type="submit" radius="3">
-                            <span class="reserve-btn-title">창고 예약하기</span>
-                        </button>
+                        <form action="/pay/payment" name="payForm" method="post">
+                            <input type="hidden" name="storageTitle" th:value="${storages.storageTitle}">
+                            <input type="hidden" name="paymentMonth">
+                            <input type="hidden" name="paymentAmount">
+                            <button class="reserve-btn" type="button" radius="3">
+                                <span class="reserve-btn-title">창고 예약하기</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
     </div>

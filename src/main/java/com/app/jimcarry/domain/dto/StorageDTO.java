@@ -35,6 +35,7 @@ public class StorageDTO {
     private Integer storageAddressNumber;
     private BigInteger reviewId;
     private Integer reviewCount;
+    private Integer storageCount;
     private List<FileVO> files;
     private FileVO file;
 }
