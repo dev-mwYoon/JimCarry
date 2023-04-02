@@ -38,6 +38,20 @@ const overlapService = (function() {
         });
     }
 
+    function checkPhone(callback) {
+        $.ajax({
+            url: "/users/userPhones-duplicate",
+            type: "post",
+            data: { userPhone : $('input[name=userPhone]').val() },
+            async: false,
+            success: function(result) {
+                if(callback) {
+                    callback(result);
+                }
+            }
+        });
+    }
+
     function startTimer(count, display) {
         var minutes, seconds;
         timer = setInterval(function () {
@@ -95,5 +109,5 @@ const overlapService = (function() {
         }
     }
     return { checkIdentification : checkIdentification, checkEmail : checkEmail, sendSMS : sendSMS, startTimer: startTimer,
-        findByPhone : findByPhone, checkAuthNumber : checkAuthNumber };
+        findByPhone : findByPhone, checkAuthNumber : checkAuthNumber, checkPhone : checkPhone };
 })();

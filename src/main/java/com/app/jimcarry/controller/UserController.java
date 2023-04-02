@@ -96,7 +96,9 @@ public class UserController {
     }
 
     @PostMapping("find-id-phone")
-    public RedirectView findIdPhone(String userIdentification, String userName, String userPhone, RedirectAttributes redirectAttributes) {
+    public RedirectView findIdPhone(String userName, String userPhone, RedirectAttributes redirectAttributes) {
+        String userIdentification = null;
+
         UserVO userVO = userService.findIdByPhone(userIdentification, userName, userPhone);
 
         if(userVO == null) {
@@ -118,7 +120,9 @@ public class UserController {
     }
 
     @PostMapping("find-id-email")
-    public RedirectView findIdEmail(String userIdentification, String userName, String userEmail, RedirectAttributes redirectAttributes) {
+    public RedirectView findIdEmail(String userName, String userEmail, RedirectAttributes redirectAttributes) {
+        String userIdentification = null;
+
         UserVO userVO = userService.findIdByEmail(userIdentification, userName, userEmail);
 
         if(userVO == null) {
@@ -134,7 +138,9 @@ public class UserController {
     }
 
     @PostMapping("find-password-phone")
-    public RedirectView findPasswordPhone(String userIdentification, String userName, String userPhone) {
+    public RedirectView findPasswordPhone(String userIdentification, String userPhone) {
+        String userName = null;
+
         if(userService.findIdByPhone(userIdentification, userName, userPhone) == null) {
             return new RedirectView("/user/find-password-phone?result=fail");
         }
@@ -175,7 +181,9 @@ public class UserController {
     }
 
     @PostMapping("find-password-email")
-    public RedirectView findPasswordEmail(String userIdentification, String userName, String userEmail, RedirectAttributes redirectAttributes) {
+    public RedirectView findPasswordEmail(String userIdentification, String userEmail, RedirectAttributes redirectAttributes) {
+        String userName = null;
+
         if(userService.findIdByEmail(userIdentification, userName, userEmail) == null) {
             return new RedirectView("/user/find-password-email?result=fail");
         }
@@ -235,12 +243,12 @@ public class UserController {
 
     @GetMapping("kakao-login")
     public void kakaoCallback(String code, HttpSession session) throws Exception {
-        log.info(code);
+        String userIdentification = null;
+
         String token = userService.getKaKaoAccessToken(code);
         userService.getKakaoInfo(token);
 
         UserVO kakaoInfo = userService.getKakaoInfo(token);
-        String userIdentification = null;
         UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
 
         if(userVO.getUserStatus() != 1) {
