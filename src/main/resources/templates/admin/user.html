@@ -99,7 +99,7 @@
                   사용자 삭제
                 </button>
                 <!-- default.css -->
-<!--                <form action="/admin/user" name="searchForm">-->
+                <form action="/admin/user/detail" name="searchForm">
                   <div class="search-box-wrap">
                     <div class="select-box">
                       <button class="listbox-selecter">검색조건 선택</button>
@@ -107,7 +107,7 @@
                         <li><button class="list">이름</button></li>
                         <li><button class="list">주소</button></li>
                       </ul>
-<!--                      <input type="text" name="searchType" style="display: none" value="all" />-->
+                      <input type="text" name="condition" style="display: none" value="" />
                     </div>
                     <div class="search-box">
                       <input
@@ -131,7 +131,7 @@
                       </span>
                     </div>
                   </div>
-<!--                </form>-->
+                </form>
               </div>
               <table class="table">
                 <tr class="table__header">
@@ -150,20 +150,39 @@
                 <tr class="table__content">
               </table>
               <!-- default.css > pagenation -->
-              <div th:object="${pagination}">
-                <div class="paging" style="text-align: center">
-                  <a class="changePage" th:href="'user?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
-                  <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                    <a class="changePage" style="color: black" th:href="'user?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-                    <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                  </th:block>
-                  <a class="changePage" th:href="'user?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+              <th:block th:if="${searchDTO.getTypes() == null}">
+                <div th:object="${pagination}">
+                    <div class="paging" style="text-align: center">
+                      <a class="changePage" th:href="'user?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                      <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="changePage" style="color: black" th:href="'user?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                      </th:block>
+                      <a class="changePage" th:href="'user?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                    </div>
+                    <form th:action="@{/admin/user}" th:object="${criteria}" name="pageForm">
+                      <input type="hidden" th:field="*{page}">
+                      <input type="hidden" th:field="*{amount}">
+                    </form>
                 </div>
-                <form th:action="@{/admin/user}" th:object="${criteria}" name="pageForm">
-                  <input type="hidden" th:field="*{page}">
-                  <input type="hidden" th:field="*{amount}">
-                </form>
-              </div>
+              </th:block>
+              <th:block th:if="${searchDTO.getTypes() != null}">
+                <div th:object="${pagination}">
+                    <div class="paging" style="text-align: center">
+                      <a class="changePage" th:href="'/admin/user/detail?page=' + *{startPage - 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{prev}" style="color: black"><code><</code></a>
+                      <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                        <a class="changePage" style="color: black" th:href="'/admin/user/detail?page=' + ${page} + '&condition='+${condition} + '&search='+${search}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                      </th:block>
+                      <a class="changePage" th:href="'/admin/user/detail?page=' + ${pagination.endPage + 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{next}" style="color: black"><code>></code></a>
+                    </div>
+                    <form th:action="@{/admin/user/detail}" th:object="${criteria}" name="pageForm">
+                      <input type="hidden" th:field="*{page}">
+                      <input type="hidden" th:field="*{amount}">
+                    </form>
+                </div>
+              </th:block>
+
             </div>
           </div>
         </main>
@@ -195,55 +214,54 @@
     let users = [[${users}]];
     let $page = [[${pagination.criteria.page}]];
 
-
-    $('#Glyph').on('click', function() {
-      const conditiontest = $('.listbox-selecter').text();
-
-      var condition;
-      if (conditiontest == '이름') {
-        // $("input[name='searchType']").val('userName');
-        condition = "userName";
-      } else if (conditiontest == '주소') {
-        // $("input[name='searchType']").val('userAddress');
-        condition = "userAddress";
-      } else if( conditiontest == '검색조건 선택'){
-        alert("제발 하지마");
-        return;
-      }
-
-      const search = $('input[name="search"]').val();
-      $.ajax({
-        url: "/admins/user",
-        type: "post",
-        data: {condition: condition, search: search},
-        success: function (results) {
-          let text = ``;
-          $('.table__content').html(text);
-          results.forEach((users, i) => {
-            text += `
-           <tr class="table__content">
-            <td>
-                <label class="check-label">
-                <input type="checkbox" name="check" />
-                </label>
-                </td>
-                    <td class="content__id">${users.userId}</td>
-                    <td>${users.userIdentification}</td>
-                    <td>${users.userEmail}</td>
-                    <td>${users.userBirth}</td>
-                    <td>${users.userGender}</td>
-                <td>
-                    <button class="content__detail__btn button__type_2 button__color__green">
-                     상세보기
-                    </button>
-                </td>
-            </tr>
-`
-          });
-          $(".table").append(text);
-        }
-      });
-    });
+//     $('#Glyph').on('click', function() {
+//       const conditiontest = $('.listbox-selecter').text();
+//
+//       var condition;
+//       if (conditiontest == '이름') {
+//         // $("input[name='searchType']").val('userName');
+//         condition = "userName";
+//       } else if (conditiontest == '주소') {
+//         // $("input[name='searchType']").val('userAddress');
+//         condition = "userAddress";
+//       } else if( conditiontest == '검색조건 선택'){
+//         alert("제발 하지마");
+//         return;
+//       }
+//
+//       const search = $('input[name="search"]').val();
+//       $.ajax({
+//         url: "/admins/user",
+//         type: "post",
+//         data: {condition: condition, search: search},
+//         success: function (results) {
+//           let text = ``;
+//           $('.table__content').html(text);
+//           results.forEach((users, i) => {
+//             text += `
+//            <tr class="table__content">
+//             <td>
+//                 <label class="check-label">
+//                 <input type="checkbox" name="check" />
+//                 </label>
+//                 </td>
+//                     <td class="content__id">${users.userId}</td>
+//                     <td>${users.userIdentification}</td>
+//                     <td>${users.userEmail}</td>
+//                     <td>${users.userBirth}</td>
+//                     <td>${users.userGender}</td>
+//                 <td>
+//                     <button class="content__detail__btn button__type_2 button__color__green">
+//                      상세보기
+//                     </button>
+//                 </td>
+//             </tr>
+// `
+//           });
+//           $(".table").append(text);
+//         }
+//       });
+//     });
 
   </script>
   <script src="/js/admin/app.js"></script>
