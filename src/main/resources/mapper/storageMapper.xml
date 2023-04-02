@@ -85,7 +85,7 @@
                             storage_address like concat('%', #{dto.storageAddress}, '%')
                         </when>
                         <when test="type == 'storageSize'.toString()">
-                            storage_sieze like concat('%', #{dto.storageSize}, '%')
+                            storage_size like concat('%', #{dto.storageSize}, '%')
                         </when>
                     </choose>
                 </trim>
