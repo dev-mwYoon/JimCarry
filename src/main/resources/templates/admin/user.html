@@ -25,7 +25,7 @@
         <div>
           <div class="content__header">
             <span>회원 관리</span>
-            <a href="javascript:void(0)" > 로그아웃 </a>
+            <a href="/user/logout"> 로그아웃 </a>
           </div>
         </div>
         <main class="content__main">
@@ -99,38 +99,39 @@
                   사용자 삭제
                 </button>
                 <!-- default.css -->
-                <div class="search-box-wrap">
-                  <div class="select-box">
-                    <button class="listbox-selecter">검색조건 선택</button>
-                    <ul class="listbox displayNone" id="listbox">
-                      <li><button class="list">전체</button></li>
-                      <li><button class="list">검색조건1</button></li>
-                      <li><button class="list">검색조건2</button></li>
-                    </ul>
-                    <input type="text" name="searchType" style="display: none" value="all" />
+<!--                <form action="/admin/user" name="searchForm">-->
+                  <div class="search-box-wrap">
+                    <div class="select-box">
+                      <button class="listbox-selecter">검색조건 선택</button>
+                      <ul class="listbox displayNone" id="listbox">
+                        <li><button class="list">이름</button></li>
+                        <li><button class="list">주소</button></li>
+                      </ul>
+<!--                      <input type="text" name="searchType" style="display: none" value="all" />-->
+                    </div>
+                    <div class="search-box">
+                      <input
+                        type="text"
+                        name="search"
+                        class="input__type_1 search-input"
+                        placeholder="검색" />
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                          enable-background="new 0 0 32 32"
+                          id="Glyph"
+                          version="1.1"
+                          viewBox="0 0 32 32"
+                          xml:space="preserve">
+                          <path
+                            d="M27.414,24.586l-5.077-5.077C23.386,17.928,24,16.035,24,14c0-5.514-4.486-10-10-10S4,8.486,4,14  s4.486,10,10,10c2.035,0,3.928-0.614,5.509-1.663l5.077,5.077c0.78,0.781,2.048,0.781,2.828,0  C28.195,26.633,28.195,25.367,27.414,24.586z M7,14c0-3.86,3.14-7,7-7s7,3.14,7,7s-3.14,7-7,7S7,17.86,7,14z"
+                            id="XMLID_223_" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
-                  <div class="search-box">
-                    <input
-                      type="text"
-                      name="userId"
-                      class="input__type_1 search-input"
-                      placeholder="검색" />
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        enable-background="new 0 0 32 32"
-                        id="Glyph"
-                        version="1.1"
-                        viewBox="0 0 32 32"
-                        xml:space="preserve">
-                        <path
-                          d="M27.414,24.586l-5.077-5.077C23.386,17.928,24,16.035,24,14c0-5.514-4.486-10-10-10S4,8.486,4,14  s4.486,10,10,10c2.035,0,3.928-0.614,5.509-1.663l5.077,5.077c0.78,0.781,2.048,0.781,2.828,0  C28.195,26.633,28.195,25.367,27.414,24.586z M7,14c0-3.86,3.14-7,7-7s7,3.14,7,7s-3.14,7-7,7S7,17.86,7,14z"
-                          id="XMLID_223_" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
+<!--                </form>-->
               </div>
               <table class="table">
                 <tr class="table__header">
@@ -146,7 +147,7 @@
                   <th>성별</th>
                   <th></th>
                 </tr>
-
+                <tr class="table__content">
               </table>
               <!-- default.css > pagenation -->
               <div th:object="${pagination}">
@@ -193,6 +194,57 @@
   <script th:inline="javascript">
     let users = [[${users}]];
     let $page = [[${pagination.criteria.page}]];
+
+
+    $('#Glyph').on('click', function() {
+      const conditiontest = $('.listbox-selecter').text();
+
+      var condition;
+      if (conditiontest == '이름') {
+        // $("input[name='searchType']").val('userName');
+        condition = "userName";
+      } else if (conditiontest == '주소') {
+        // $("input[name='searchType']").val('userAddress');
+        condition = "userAddress";
+      } else if( conditiontest == '검색조건 선택'){
+        alert("제발 하지마");
+        return;
+      }
+
+      const search = $('input[name="search"]').val();
+      $.ajax({
+        url: "/admins/user",
+        type: "post",
+        data: {condition: condition, search: search},
+        success: function (results) {
+          let text = ``;
+          $('.table__content').html(text);
+          results.forEach((users, i) => {
+            text += `
+           <tr class="table__content">
+            <td>
+                <label class="check-label">
+                <input type="checkbox" name="check" />
+                </label>
+                </td>
+                    <td class="content__id">${users.userId}</td>
+                    <td>${users.userIdentification}</td>
+                    <td>${users.userEmail}</td>
+                    <td>${users.userBirth}</td>
+                    <td>${users.userGender}</td>
+                <td>
+                    <button class="content__detail__btn button__type_2 button__color__green">
+                     상세보기
+                    </button>
+                </td>
+            </tr>
+`
+          });
+          $(".table").append(text);
+        }
+      });
+    });
+
   </script>
   <script src="/js/admin/app.js"></script>
   <script src="/js/admin/events.js"></script>
