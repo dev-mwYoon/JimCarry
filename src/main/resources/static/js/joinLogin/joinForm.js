@@ -259,6 +259,8 @@ $submitButton.on('click', function(event) {
         });
         return;
     }
+
+    if($('input[name=userPhone]'))
     if(!($('#duplicateBox').text() == '확인')) {
         $modal.css('visibility', 'visible');
         $modalText.text("인증번호를 확인해주세요.");
@@ -308,7 +310,18 @@ $submitButton.on('click', function(event) {
 var authNumber = null;
 
 $checkNum.on('click', function(){
-    if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
+    overlapService.checkPhone(function(result) {
+        if(!result) {
+            $modal.css('visibility', 'visible');
+            $modalText.text("이미 사용중인 휴대폰 번호입니다.");
+            $checkButton.on('click',()=>{
+                $modal.css('visibility', 'hidden');
+            });
+            return;
+        }
+    })
+    if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val() && check) {
+        console.log("이걸 옴?");
         clearInterval(timer);
 
         overlapService.sendSMS(function(result) {

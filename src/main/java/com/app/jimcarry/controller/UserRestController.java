@@ -26,6 +26,16 @@ public class UserRestController {
         return userService.checkEmailDuplicate(userEmail);
     }
 
+    @PostMapping("userPhones-duplicate")
+    public boolean checkPhoneDuplicate(String userPhone) {
+        String userIdentification = null, userName = null;
+
+        if(userService.findIdByPhone(userIdentification, userName, userPhone) == null) {
+            return true;
+        }
+        return false;
+    }
+
     @GetMapping("send-sms")
     public String sendSMS(String userPhone) throws CoolsmsException {
         return userService.sendRandomNumber(userPhone);
