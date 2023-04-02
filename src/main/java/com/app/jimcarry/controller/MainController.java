@@ -26,8 +26,8 @@ public class MainController {
 //        return "/main/main";
 //    }
 
-    /*창고최신순*/
-    @GetMapping("")
+  /*  창고최신순*/
+   /* @GetMapping("")
     public String storageMain(Model model){
         List<StorageDTO> storageDTOS = storageService.getStorageDTO();
         for(StorageDTO storageDTO: storageDTOS){
@@ -42,5 +42,6 @@ public class MainController {
         model.addAttribute("countReviews", reviews);
 
         return "/main/main";
-    }
+
+    }*/
 }

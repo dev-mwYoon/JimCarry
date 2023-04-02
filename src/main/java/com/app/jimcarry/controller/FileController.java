@@ -1,5 +1,10 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.domain.vo.FileVO;
+import com.app.jimcarry.service.InquiryFileService;
+import com.app.jimcarry.service.StorageFileService;
+import org.apache.ibatis.javassist.compiler.ast.Variable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -24,9 +29,32 @@ import java.util.*;
 @RequestMapping("/file/*")
 public class FileController {
 
+    @Autowired
+    private  InquiryFileService inquiryFileService;
+    private StorageFileService storageFileService;
+    private FileVO fileVO;
+
     /*메인 이미지 파일*/
     @GetMapping("/display")
-    public byte[] display(String fileName) throws IOException{
+    public byte[] display(String fileName) throws IOException {
         return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
+
+    // 파일 업로드
+    @PostMapping("upload")
+    @ResponseBody
+    public Map<String, Object> upload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
+        return inquiryFileService.uploadFile(multipartFiles);
+    }
+
+    // 파일 저장
+   /* @PostMapping("files/save/{id}")
+    @ResponseBody
+    public void saveFile(@RequestBody List<FileVO> files, @PathVariable Long id, String table) {
+
+        if (table.equals("inquiry")) inquiryFileService.registerFile(files, id);
+        else if (table.equals("storage")) storageFileService.registerFile(files, id);
+    }*/
+
 }
+

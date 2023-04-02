@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.jimcarry.mapper.StorageFileMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="fileId">
+        insert into tbl_storage_file
+        (storage_id, storage_file_path, storage_file_org_name, storage_file_uuid)
+        values(#{storageId}, #{filePath}, #{fileOrgName}, #{fileUuid})
+    </insert>
+
+
+</mapper>

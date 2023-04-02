@@ -2,14 +2,18 @@ package com.app.jimcarry.service;
 
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.InquiryDAO;
+import com.app.jimcarry.domain.dao.InquiryFileDAO;
 import com.app.jimcarry.domain.dto.InquiryDTO;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.vo.InquiryVO;
+import com.app.jimcarry.domain.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,13 +22,28 @@ import java.util.Optional;
 public class InquiryService {
 
     private final InquiryDAO inquiryDAO;
+    private final InquiryDTO inquiryDTO;
+    private final InquiryFileDAO inquiryFileDAO;
+    private final InquiryFileVO inquiryFileVO;
+    private final FileVO fileVO;
 
     //    추가
     /* 단위테스트 작성 필요 */
+    /* 문의 파일 업로드 같이 저장 */
     @LogStatus
     @Transactional(rollbackFor = Exception.class)
-    public void register(InquiryVO inquiryVO) {
-        inquiryDAO.save(inquiryVO);
+    public void register(InquiryDTO inquiryDTO) {
+        InquiryVO newInquiry = inquiryDTO.createVO();
+        inquiryDAO.save(newInquiry);
+        inquiryDTO.getFiles().stream().map(file -> new InquiryFileVO().create(file, newInquiry.getInquiryId()))
+                    .forEach(file -> {file.setFilePath(getPath()); inquiryFileDAO.save(file);});
+               /* inquiryDAO.save(inquiryVO);*/
+     /*   inquiryFileDAO.save(inquiryFileVO);*/
+    }
+
+    //    현재 날짜 경로 구하기
+    private String getPath() {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
 
     //    조회

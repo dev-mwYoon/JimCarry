@@ -1,6 +1,8 @@
 package com.app.jimcarry.domain.dto;
 
 import com.app.jimcarry.domain.vo.FileVO;
+import com.app.jimcarry.domain.vo.InquiryVO;
+import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +37,26 @@ public class StorageDTO {
     private Integer storageAddressNumber;
     private BigInteger reviewId;
     private Integer reviewCount;
+
     private List<FileVO> files;
-    private FileVO file;
+
+
+
+    public StorageVO createVO() {
+        StorageVO storageVO = new StorageVO();
+
+        storageVO.setStorageId(this.storageId);
+        storageVO.setUserId(this.userId);
+        storageVO.setStoragePhone(this.storagePhone);
+        storageVO.setStorageName(this.storageName);
+        storageVO.setStorageTitle(this.storageTitle);
+        storageVO.setStorageSize(this.storageSize);
+        storageVO.setStoragePrice(this.storagePrice);
+        storageVO.setStorageAddress(this.storageAddress);
+        storageVO.setStorageAddressDetail(this.storageAddressDetail);
+        storageVO.setStorageUseDate(this.storageUseDate);
+        storageVO.setStorageEndDate(this.storageEndDate);
+
+        return storageVO;
+    }
 }
