@@ -36,7 +36,6 @@ public class AdminController {
         int amount = 5;
         /* 검색된 결과의 총 개수 */
         int total = 0;
-        int totalby = 0;
 //        String type = null;
         /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO();
@@ -49,13 +48,11 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        totalby = userService.findTotalBy(searchDTO);
         total= userService.findTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("users", userService.getUserListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
-        log.info(searchDTO.toString());
         model.addAttribute("searchDTO", searchDTO);
 
         return "/admin/user";
@@ -69,7 +66,7 @@ public class AdminController {
         return true;
     }
     // 검색 + 페이징 처리
-    @GetMapping("user/detail")
+    @GetMapping("user/search")
     public String user(Criteria criteria, String search, String condition, Model model) {
 
         /* 한 페이지에 보여줄 게시글 개수 */
@@ -83,16 +80,12 @@ public class AdminController {
         searchDTO.setUserName(search);
         searchDTO.setUserAddress(search);
         PageDTO pageDTO = null;
-        log.info("1" + searchDTO);
-        log.info("2" + search);
 //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        totalby = userService.findTotalBy(searchDTO);
         total= userService.findTotalBy(searchDTO);
-        log.info("3" + total);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
 //        List<UserVO> users =  userService.getUserListBy(pageDTO);
         model.addAttribute("total", total);
@@ -251,7 +244,7 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total =  storageService.getTotal();
+        total =  storageService.getTotalDTOBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("storages", storageService.getStorageList(pageDTO));

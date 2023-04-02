@@ -58,7 +58,7 @@
                 <bind name="dto" value="page.searchDTO"/>
             </otherwise>
         </choose>
-        <if test="dto.storageAddressNumber != 0">
+        <if test="dto.types != null and dto.storageAddressNumber != 0">
             <include refid="searchContext"/>
         </if>
     </sql>
@@ -84,6 +84,9 @@
                         <when test="type == 'storageAddress'.toString()">
                             storage_address like concat('%', #{dto.storageAddress}, '%')
                         </when>
+                        <when test="type == 'storageSize'.toString()">
+                            storage_sieze like concat('%', #{dto.storageSize}, '%')
+                        </when>
                     </choose>
                 </trim>
             </foreach>
@@ -96,6 +99,8 @@
         storage_id, storage_name, storage_phone, storage_title, storage_size, storage_price, storage_address,
         storage_address_detail, storage_use_date, storage_end_date, storage_address_number
         from tbl_user u join tbl_storage s on u.user_id = s.user_id
+        <include refid="searchType"/>
+        order by storage_id
         <if test="page.searchDTO.isDesc">
             desc
         </if>

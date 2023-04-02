@@ -18,6 +18,7 @@ public class SearchDTO {
     private Long storageId;
     private String storageAddress;
     private Integer storageAddressNumber;
+    private String storageSize;
     private String userName;
     private String userAddress;
 

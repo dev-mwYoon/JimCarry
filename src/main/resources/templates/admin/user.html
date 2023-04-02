@@ -99,7 +99,7 @@
                   사용자 삭제
                 </button>
                 <!-- default.css -->
-                <form action="/admin/user/detail" name="searchForm">
+                <form action="/admin/user/search" name="searchForm">
                   <div class="search-box-wrap">
                     <div class="select-box">
                       <button class="listbox-selecter">검색조건 선택</button>
@@ -169,14 +169,14 @@
               <th:block th:if="${searchDTO.getTypes() != null}">
                 <div th:object="${pagination}">
                     <div class="paging" style="text-align: center">
-                      <a class="changePage" th:href="'/admin/user/detail?page=' + *{startPage - 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{prev}" style="color: black"><code><</code></a>
+                      <a class="changePage" th:href="'/admin/user/search?page=' + *{startPage - 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{prev}" style="color: black"><code><</code></a>
                       <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                        <a class="changePage" style="color: black" th:href="'/admin/user/detail?page=' + ${page} + '&condition='+${condition} + '&search='+${search}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                        <a class="changePage" style="color: black" th:href="'/admin/user/search?page=' + ${page} + '&condition='+${condition} + '&search='+${search}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
                         <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
                       </th:block>
-                      <a class="changePage" th:href="'/admin/user/detail?page=' + ${pagination.endPage + 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{next}" style="color: black"><code>></code></a>
+                      <a class="changePage" th:href="'/admin/user/search?page=' + ${pagination.endPage + 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{next}" style="color: black"><code>></code></a>
                     </div>
-                    <form th:action="@{/admin/user/detail}" th:object="${criteria}" name="pageForm">
+                    <form th:action="@{/admin/user/search}" th:object="${criteria}" name="pageForm">
                       <input type="hidden" th:field="*{page}">
                       <input type="hidden" th:field="*{amount}">
                     </form>
