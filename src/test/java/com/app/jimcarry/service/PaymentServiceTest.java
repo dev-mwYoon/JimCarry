@@ -2,6 +2,7 @@ package com.app.jimcarry.service;
 
 import com.app.jimcarry.domain.dao.PaymentDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.PaymentVO;
@@ -21,7 +22,9 @@ public class PaymentServiceTest {
     @Autowired
     private PaymentService paymentService;
     @Autowired
-    PaymentVO paymentVO;
+    private PaymentVO paymentVO;
+    @Autowired
+    private PaymentDTO paymentDTO;
 
     @BeforeEach
     void setPaymentVO() {
@@ -66,4 +69,15 @@ public class PaymentServiceTest {
     public void getUser(){
         paymentService.getUser(1L);
     }
+
+    /*창고 정보 조회*/
+    @Test
+    public void getStorage(){
+        paymentService.getStorage(paymentDTO);
+    }
+
+//    @Test
+//    public void findInfo(){
+//        paymentService.findInfo(paymentDTO);
+//    }
 }

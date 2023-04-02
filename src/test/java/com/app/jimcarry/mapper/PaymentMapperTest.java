@@ -69,6 +69,13 @@ public class PaymentMapperTest {
     /*창고 정보 조회*/
     @Test
     public void selectStorage(){
-        paymentMapper.selectStorage(1L);
+        PaymentDTO paymentDTO = new PaymentDTO();
+        paymentMapper.selectStorage(new PaymentDTO());}
+
+
+
+    @Test
+    public void selectPayment(){
+        paymentMapper.selectPayment(1L);
     }
 }

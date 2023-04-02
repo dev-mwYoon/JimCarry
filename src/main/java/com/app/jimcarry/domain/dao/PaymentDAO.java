@@ -62,7 +62,5 @@ public class PaymentDAO {
     }
 
     // 창고 조회
-    public StorageVO findStorageInfo(Long storageId){
-        return paymentMapper.selectStorage(storageId);
-    }
+    public List<PaymentDTO> findStorageInfo(PaymentDTO paymentDTO) {return paymentMapper.selectStorage(paymentDTO);}
 }

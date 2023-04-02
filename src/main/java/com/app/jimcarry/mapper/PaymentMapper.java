@@ -41,5 +41,10 @@ public interface PaymentMapper {
     public UserVO selectUser(Long userId);
 
     // 창고 정보 조회
-    public StorageVO selectStorage(Long storageId);
+    public List<PaymentDTO> selectStorage(PaymentDTO paymentDTO);
+
+
+
+    // 정보 전체조회
+    public PaymentDTO selectPayment(Long payId);
 }
