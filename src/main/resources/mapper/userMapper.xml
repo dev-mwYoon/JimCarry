@@ -73,7 +73,9 @@
                 <bind name="dto" value="page.searchDTO"/>
             </otherwise>
         </choose>
-        <include refid="searchContext"/>
+        <if test="dto.types != null">
+            <include refid="searchContext"/>
+        </if>
     </sql>
     <!--  조건에 맞는 테이블 검색조건  -->
     <sql id="searchContext">
@@ -87,6 +89,12 @@
                         </when>
                         <when test="type == 'keyword'.toString()">
                             user_identification like concat('%', #{dto.keyword}, '%')
+                        </when>
+                        <when test="type == 'userAddress'.toString()">
+                            user_address like concat('%', #{dto.userAddress}, '%')
+                        </when>
+                        <when test="type == 'userName'.toString()">
+                            user_name like concat('%', #{dto.userName}, '%')
                         </when>
                     </choose>
                 </trim>

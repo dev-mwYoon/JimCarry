@@ -59,32 +59,32 @@ $list.on('click', function (e) {
 });
 
 /* 검색바 이벤트 ======================================= */
-$searchBar.on('keyup', function (key) {
-  /* 추후 검색조건과 연동하여 ajax 작성 요망 */
-  /* 입력한 키가 엔터인가 검사 */
-  if (key.keyCode == 13) {
-    alert('검색 실행');
-  }
-});
+// $searchBar.on('keyup', function (key) {
+//   /* 추후 검색조건과 연동하여 ajax 작성 요망 */
+//   /* 입력한 키가 엔터인가 검사 */
+//   if (key.keyCode == 13) {
+//     alert('검색 실행');
+//   }
+// });
 
 /* 상세보기 모달창 ======================================= */
-$detailButton.on('click', function () {
-  var i = $detailButton.index($(this));
-
-  /* 해당 컨텐츠 번호 */
-  var contentId = $detailButton.eq(i).parent().siblings('.content__id').text();
-
-  /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
-
-  /* 추후 타임리프로 대체할 예정 */
-  $modalStage.show();
-
-  /* 모달 닫는 이벤트 */
-  /* 추후 외부로 빼야함 */
-  $('.modal-close').on('click', function (e) {
-    $modalStage.fadeOut(500);
-  });
-});
+// $detailButton.on('click', function () {
+//   var i = $detailButton.index($(this));
+//   console.log(i);
+//   /* 해당 컨텐츠 번호 */
+//   var contentId = $detailButton.eq(i).parent().siblings('.content__id').text();
+//
+//   /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
+//
+//   /* 추후 타임리프로 대체할 예정 */
+//   $modalStage.show();
+//
+//   /* 모달 닫는 이벤트 */
+//   /* 추후 외부로 빼야함 */
+//   $('.modal-close').on('click', function (e) {
+//     $modalStage.fadeOut(500);
+//   });
+// });
 
 /* 상세보기 모달 내용 submit 이벤트 */
 $('#completeBtn').on('click', function (e) {

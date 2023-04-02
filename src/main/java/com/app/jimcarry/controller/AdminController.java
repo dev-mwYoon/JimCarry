@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @Controller
@@ -32,11 +34,11 @@ public class AdminController {
         int amount = 5;
         /* 검색된 결과의 총 개수 */
         int total = 0;
-
+        int totalby = 0;
+//        String type = null;
         /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO();
-//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
-//        searchDTO.setUserId(2L);
+//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userName", "userBirth")));
 
         PageDTO pageDTO = null;
 
@@ -45,11 +47,11 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        total = userService.findTotalBy(searchDTO);
-        total= userService.findTotalUser();
+//        totalby = userService.findTotalBy(searchDTO);
+        total= userService.findTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-        model.addAttribute("users", userService.getList(pageDTO));
+        model.addAttribute("users", userService.getUserListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
 
         return "/admin/user";

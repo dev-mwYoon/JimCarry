@@ -1,6 +1,4 @@
 
-
-
 /*리뷰 목록 불러오기*/
 const userTableContainer = $(".table");
 const createDOM = function(users){
@@ -27,8 +25,10 @@ const createDOM = function(users){
 }
 users.forEach((users, i) => {
     userTableContainer.append(createDOM(users));
+
 });
 
+/*=====================  상세보기 모달 =====================*/
 $(".modal-stage").append(
     `
     <section class="modal">
@@ -94,15 +94,28 @@ $(".modal-stage").append(
       </section>
     `
 );
+
+
 $(".content__detail__btn").on('click', function () {
-    console.log("click");
-    const i = $detailButton.index($(this));
+    const i = $('.content__detail__btn').index($(this));
+    console.log(i);
 
     /* 해당 컨텐츠 번호 */
-    const contentId = $detailButton.eq(i).parent().siblings('.content__id').text();
+    const contentId = $('.content__detail__btn').eq(i).parent().siblings('.content__id').text();
+    console.log(contentId);
 
     /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
-
+    $.ajax({
+        url: "/admins/user",
+        type: "post",
+        data: { userId : userId },
+        traditional : true,
+        success : function(result){
+            if(result) {
+                location.reload();
+            }
+        }
+    });
     /* 추후 타임리프로 대체할 예정 */
     $modalStage.show();
 
@@ -127,6 +140,8 @@ $('#completeBtn').on('click', function (e) {
     );
 });
 
+
+/*=====================  목록 삭제 이벤트 =====================*/
 /* 체크박스 */
 const $checkAll = $('#checkAll');
 const $check = $("input[name='check']");
@@ -143,7 +158,7 @@ $('input[name=check]').on('click', function() {
     console.log($checkArr);
 });
 
-/* 체크박스 이벤트 ======================================= */
+/* 체크박스 이벤트 */
 $checkAll.click(function () {
     if ($checkAll.is(':checked')) {
         $check.prop('checked', true);
@@ -173,8 +188,7 @@ $check.click(function () {
         $checkAll.prop('checked', true);
     }
 });
-// const confirmButton = $('#confirm-delete');
-// $('#delete-button')
+/* 목록 삭제 ajax */
 confirmButton.on('click', function () {
 
     $.ajax({
