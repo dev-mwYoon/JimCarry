@@ -40,13 +40,13 @@ $(function() {
             url: "/storages/search/list",
             data: { storageAddressNumber: way },
             success:function (result) {
-                console.log("들어옴");
-                console.log(result);
+                /*console.log(result);
+                console.log(result.storageList)
+                console.log(result.total)*/
                 var html = ``;
-                var count = 0;
                 $('.product').replaceWith(html);
-                result.forEach(e => {
-                        html += `
+                result.storageList.forEach(e => {
+                    html += `
                         <a href="/storages/search/detail/${e.storageId}" class="product">
                             <div class="product-img-div">
                                 <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg" class="product-img">
@@ -77,10 +77,9 @@ $(function() {
                             </div>
                         </a>
                     `;
-                        count++;
                 })
                 $('.result-real-body').append(html);
-                $('.total-number').html("총 " + count + "건");
+                $('.total-number').html("총 " + result.total + "건");
             },
             error:function (e) {
                 alert("통신에러");

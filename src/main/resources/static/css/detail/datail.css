@@ -345,6 +345,10 @@ button, input[type=button], input[type=reset], input[type=submit] {
     padding-bottom: 40px;
 }
 
+.reserve-btn-wrap form{
+    display: contents;
+}
+
 .reserve-btn-container {
     display: flex;
     gap: 8px;

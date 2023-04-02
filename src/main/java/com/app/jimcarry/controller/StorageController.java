@@ -48,7 +48,7 @@ public class StorageController {
 
     /*헤더 지역별 창고 조회 */
     @GetMapping("list/{storageAddressNumber}")
-    public String showList(@PathVariable("storageAddressNumber") int storageAddressNumber, Model model, Criteria criteria){
+    public String showList(@PathVariable("storageAddressNumber") Integer storageAddressNumber, Model model, Criteria criteria){
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 3;
         /* 검색된 결과의 총 개수 */
