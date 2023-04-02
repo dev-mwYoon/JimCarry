@@ -67,7 +67,7 @@ public class AdminController {
     }
     // 검색 + 페이징 처리
     @GetMapping("user/search")
-    public String user(Criteria criteria, String search, String condition, Model model) {
+    public String userSearch(Criteria criteria, String search, String condition, Model model) {
 
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 5;
@@ -249,6 +249,7 @@ public class AdminController {
         model.addAttribute("total", total);
         model.addAttribute("storages", storageService.getStorageList(pageDTO));
         model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
 
         return "/admin/storage";
     }
@@ -259,8 +260,37 @@ public class AdminController {
         Arrays.asList(storageIds).stream().forEach(data -> storageService.removeStorage(Long.valueOf(data)));
         return true;
     }
+    /* 검색 + 페이징 처리*/
+    @GetMapping("storage/search")
+    public String storageSearch(Criteria criteria, String search, String condition, Model model) {
 
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 5;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+//        String type = null;
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList(condition)));
+        searchDTO.setStorageAddress(search);
+        searchDTO.setStorageSize(search);
+        PageDTO pageDTO = null;
+//         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
 
+        total= storageService.getTotalDTOBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+//        List<UserVO> users =  userService.getUserListBy(pageDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("storages", storageService.getStorageList(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
+        model.addAttribute("condition", condition);
+        model.addAttribute("search", search);
+        return "/admin/storage";
+    }
 }
 
 
