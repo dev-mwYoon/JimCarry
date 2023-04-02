@@ -2,10 +2,12 @@ package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.ReviewService;
+import com.app.jimcarry.service.StorageFileService;
 import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,7 @@ import java.util.Arrays;
 public class StorageController {
 
     private final StorageService storageService;
+    private final StorageFileService storageFileService;
     private final ReviewService reviewService;
 
     @GetMapping("register")
@@ -34,12 +37,12 @@ public class StorageController {
 
     /*창고등록*/
     @PostMapping("register")
-    public RedirectView storageSave(StorageVO storageVO, HttpSession httpSession) {
-        log.info("1234");
-        storageVO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
-        log.info("5678");
-        storageService.register(storageVO);
+    @ResponseBody
+    public RedirectView storageSave(@RequestBody StorageDTO storageDTO, HttpSession httpSession) {
+        storageDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
+        storageService.registerStorage(storageDTO);
 
+        /*창고등록 후 이동할 페이지*/
         return new RedirectView("/main/main");
     }
 

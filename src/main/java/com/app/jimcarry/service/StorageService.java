@@ -3,16 +3,18 @@ package com.app.jimcarry.service;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.ReviewDAO;
 import com.app.jimcarry.domain.dao.StorageDAO;
+import com.app.jimcarry.domain.dao.StorageFileDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.dto.StorageDTO;
-import com.app.jimcarry.domain.vo.Criteria;
-import com.app.jimcarry.domain.vo.StorageVO;
+import com.app.jimcarry.domain.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -20,13 +22,31 @@ import java.util.List;
 @Slf4j
 public class StorageService {
     private final StorageDAO storageDAO;
+    private final StorageFileDAO storageFileDAO;
     private final ReviewDAO reviewDAO;
 
     //    추가
-    @LogStatus
+   /* @LogStatus
     @Transactional(rollbackFor = Exception.class)
     public void register(StorageVO storageVO) {
         storageDAO.save(storageVO);
+    }*/
+
+    //    추가
+    /*파일 저장*/
+    @Transactional(rollbackFor = Exception.class)
+    @LogStatus
+    public void registerStorage(StorageDTO storageDTO) {
+        StorageVO newStorage = storageDTO.createVO();
+        /*storageFileDAO.deleteById(reviewId);*/
+        storageDAO.save(newStorage);
+        storageDTO.getFiles().stream().map(file -> new StorageFileVO().create(file, newStorage.getStorageId()))
+                .forEach(file -> {file.setFilePath(getPath()); storageFileDAO.save(file);});
+    }
+
+    //    현재 날짜 경로 구하기
+    private String getPath() {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
 
     //    조회

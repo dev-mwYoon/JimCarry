@@ -3,8 +3,10 @@ package com.app.jimcarry.controller;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.domain.vo.InquiryFileVO;
 import com.app.jimcarry.domain.vo.InquiryVO;
 import com.app.jimcarry.domain.vo.UserVO;
+import com.app.jimcarry.service.InquiryFileService;
 import com.app.jimcarry.service.InquiryService;
 import com.app.jimcarry.service.NoticeService;
 import com.app.jimcarry.service.UserService;
@@ -30,7 +32,9 @@ public class NoticeController {
     private final InquiryService inquiryService;
     private final UserService userService;
     private final NoticeService noticeService;
+    private final InquiryFileService inquiryFileService;
     private final UserVO userVO;
+    private final InquiryFileVO inquiryFileVO;
 
     @GetMapping("faq")
     public String faq() { return "/notice/faq";}
@@ -82,12 +86,14 @@ public class NoticeController {
 
     /*파일 업로드 포함*/
     @PostMapping("write")
-    public RedirectView writeRegister(@RequestParam("files") List<MultipartFile> multipartFiles, InquiryVO inquiryVO, HttpSession httpSession) throws IOException{
+    @ResponseBody
+    public RedirectView writeRegister(InquiryVO inquiryVO, InquiryFileVO inquiryFileVO, Long inquiryId, HttpSession httpSession) throws IOException{
         log.info("1234");
       /*  log.info(String.valueOf(httpSession.getAttribute("userId" )));*/
         inquiryVO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 
-        inquiryService.register(inquiryVO);
+     /*   inquiryService.register(inquiryVO);*/
+
 
 
         /*userService.login;*/

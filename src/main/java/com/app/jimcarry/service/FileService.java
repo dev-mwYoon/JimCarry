@@ -2,6 +2,7 @@ package com.app.jimcarry.service;
 
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.FileDAO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.FileVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,5 @@ public interface FileService {
     //    삭제
     void remove(Long id);
 
-
+    /*void registerStorage(StorageDTO storageDTO);*/
 }

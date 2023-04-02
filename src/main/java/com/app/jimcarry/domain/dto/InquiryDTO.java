@@ -1,7 +1,12 @@
 package com.app.jimcarry.domain.dto;
 
+import com.app.jimcarry.domain.vo.FileVO;
+import com.app.jimcarry.domain.vo.InquiryVO;
+import com.app.jimcarry.domain.vo.ReviewVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Data
@@ -22,4 +27,24 @@ public class InquiryDTO {
     private String inquiryContent;
     private String inquiryRegist;
     private Integer inquiryAnswer;
+
+    private List<FileVO> files;
+
+    public InquiryVO createVO() {
+        InquiryVO inquiryVO = new InquiryVO();
+
+        inquiryVO.setInquiryId(this.inquiryId);
+        inquiryVO.setUserId(this.userId);
+        inquiryVO.setInquiryTitle(this.inquiryTitle);
+        inquiryVO.setInquiryContent(this.inquiryContent);
+        inquiryVO.setInquiryRegist(this.inquiryRegist);
+        inquiryVO.setInquiryAnswer(this.inquiryAnswer);
+
+
+        return inquiryVO;
+    }
+
+
+
+
 }
