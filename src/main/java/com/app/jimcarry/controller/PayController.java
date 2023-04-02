@@ -1,5 +1,6 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.PaymentService;
@@ -22,14 +23,10 @@ public class PayController {
     private final PaymentService paymentService;
 
 //    /*결제페이지*/
-//    @GetMapping("")
-//    public String pay() { return "/pay/payment";}
-
-
     @PostMapping("/payment")
     public String pay(String storageTitle, String paymentMonth, String paymentAmount, Model model) {
         UserVO userVO = new UserVO();
-        userVO.setUserId(7L);
+        userVO.setUserId(1L);
         model.addAttribute("user", paymentService.getUser(userVO.getUserId()));
         model.addAttribute("storageTitle",storageTitle);
         model.addAttribute("paymentMonth", paymentMonth);
