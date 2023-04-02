@@ -219,6 +219,7 @@ public class UserService {
     public int findTotalUser(){
         return userDAO.findUserTotal();
     }
+    // 회원 리스트 조건 조회
     public int findTotalBy(SearchDTO searchDTO){ return userDAO.findTotalBy(searchDTO);}
 
     //    비밀번호 변경 이메일 발송시 랜덤 키 값 컬럼에 저장
