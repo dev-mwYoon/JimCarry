@@ -238,10 +238,17 @@ public class MypageController {
     @GetMapping("update")
     public String updateUser(Model model) {
         Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
-        /* 나중에 세션으로 수정 */
+
         UserVO userVO = userService.getUser(userId);
+        String userBirth = userVO.getUserBirth();
+        String[] births = null;
         model.addAttribute(userVO);
-        String[] births = userVO.getUserBirth().split("-");
+
+        if(userBirth.contains("-")){
+            births = userVO.getUserBirth().split("-");
+        } else if (userBirth.contains("/")) {
+            births = userVO.getUserBirth().split("/");
+        }
         model.addAttribute("birthFirtst", births[0]);
         model.addAttribute("birthMiddle", births[1]);
         model.addAttribute("birthLast", births[2]);
