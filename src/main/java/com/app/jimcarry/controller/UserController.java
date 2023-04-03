@@ -65,14 +65,14 @@ public class UserController {
 //        로그인한 사람의 아이디가 admin이라면
 //        그 사람의 정보를 user라는 이름으로 세션에 담고
 //        관리자 페이지로 이동
-        if(userVO.getUserIdentification().equals("admin")) {
-            session.setAttribute("user", userVO);
-            return new RedirectView("/admin/user");
-        }
-
 
         if(userVO == null || userVO.getUserStatus() != 0) {
             return new RedirectView("/user/login?result=fail");
+        }
+
+        if(userVO.getUserIdentification().equals("admin")) {
+            session.setAttribute("user", userVO);
+            return new RedirectView("/admin/user");
         }
 
         session.setAttribute("user", userVO);
@@ -219,8 +219,8 @@ public class UserController {
 
 
     @GetMapping("kakao")
-    public RedirectView kakaoLogin(String code, HttpSession session, Model model) throws Exception {
-        String token = userService.getKaKaoAccessToken(code);
+    public RedirectView kakaoJoin(String code, HttpSession session) throws Exception {
+        String token = userService.getKaKaoAccessToken(code, "join");
         UserVO kakaoInfo = userService.getKakaoInfo(token);
 
         kakaoInfo.setUserStatus(1);
@@ -230,11 +230,9 @@ public class UserController {
         UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
 
         //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-        if (userVO == null) {
+        if (userVO == null || userVO.getUserStatus() != 1) {
             session.setAttribute("kakaoInfo", kakaoInfo);
             return new RedirectView("/user/join");
-        } else if(userVO.getUserStatus() != 1){
-            return new RedirectView("/user/login?result=fail");
         }
 
         session.setAttribute("user", userVO);
@@ -242,18 +240,21 @@ public class UserController {
     }
 
     @GetMapping("kakao-login")
-    public void kakaoCallback(String code, HttpSession session) throws Exception {
+    public RedirectView kakaoLogin(String code, HttpSession session) throws Exception {
         String userIdentification = null;
 
-        String token = userService.getKaKaoAccessToken(code);
+        String token = userService.getKaKaoAccessToken(code, "login");
         userService.getKakaoInfo(token);
 
         UserVO kakaoInfo = userService.getKakaoInfo(token);
         UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
 
-        if(userVO.getUserStatus() != 1) {
-            session.setAttribute("user", userVO);
+        if(userVO.getUserStatus() != 1){
+            return new RedirectView("/user/login?result=fail");
         }
+
+        session.setAttribute("user", userVO);
+        return new RedirectView("/main/");
     }
 //
 //    @GetMapping("/logout/kakao")
