@@ -43,7 +43,8 @@ public interface PaymentMapper {
     // 창고 정보 조회
     public List<PaymentDTO> selectStorage(PaymentDTO paymentDTO);
 
-
+    // 총 결제 금액
+    public int totalPay();
 
     // 정보 전체조회
     public PaymentDTO selectPayment(Long payId);

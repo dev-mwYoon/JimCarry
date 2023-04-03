@@ -107,4 +107,9 @@ public class PaymentService {
         paymentDTO.setStorageEndDate(storageVO.getStorageEndDate());
     }
 
+    // 총 결제 금액 조회
+    public int getTotalPay(){
+        return paymentDAO.findTotalPay();
+    }
+
 }
