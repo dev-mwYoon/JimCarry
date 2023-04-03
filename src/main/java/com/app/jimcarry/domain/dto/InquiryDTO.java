@@ -40,7 +40,6 @@ public class InquiryDTO {
         inquiryVO.setInquiryRegist(this.inquiryRegist);
         inquiryVO.setInquiryAnswer(this.inquiryAnswer);
 
-
         return inquiryVO;
     }
 
