@@ -115,7 +115,7 @@ public class SearchController {
 //        storageService.getStorageDTOBy(pageDTO);
 
         model.addAttribute("total", total);
-        model.addAttribute("storages", storageService.getStorageDTOBy(pageDTO));
+        model.addAttribute("storage", storageService.getStorageDTOBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
 
         return "main/search-page";
