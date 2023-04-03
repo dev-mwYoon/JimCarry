@@ -27,7 +27,7 @@ public class MainController {
     }
 
   /*  창고최신순*/
-   /* @GetMapping("")
+    /*@GetMapping("")
     public String storageMain(Model model){
         List<StorageDTO> storageDTOS = storageService.getStorageDTO();
         for(StorageDTO storageDTO: storageDTOS){
@@ -36,6 +36,7 @@ public class MainController {
         List<StorageDTO> reviews = storageService.getStorage();
         for(StorageDTO storageDTO: reviews){
             storageDTO.setFile(storageFileService.getFile(1L));
+            storageDTO.set
         }
         model.addAttribute("storages", storageDTOS);
         model.addAttribute("reviews", reviewService.getTotalById(1L));
