@@ -211,6 +211,7 @@
                                            class="amend-birth-input-text">
                                 </div>
                                 <span class="amend-birth-input-span">/</span>
+
                                 <div class="amend-birth-input-container">
                                     <input type="text" placeholder="MM" th:value="${birthMiddle}"
                                            class="amend-birth-input-text">
@@ -221,7 +222,7 @@
                                            class="amend-birth-input-text">
                                 </div>
                             </div>
-                            <input type="text" th:field="*{userBirth}" id="userBirth" style="display:none;">
+                            <input type="text" th:field="*{userBirth}" id="userBirth" style="display:block;">
                         </div>
                         <div class="amend-inputBox-right"></div>
                     </div>
