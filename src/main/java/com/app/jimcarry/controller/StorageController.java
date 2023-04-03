@@ -55,7 +55,7 @@ public class StorageController {
     @GetMapping("list/{storageAddressNumber}")
     public String showList(@PathVariable("storageAddressNumber") Integer storageAddressNumber, Model model, Criteria criteria){
         /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 3;
+        int amount = 6;
         /* 검색된 결과의 총 개수 */
         int total = 0;
 
@@ -73,7 +73,6 @@ public class StorageController {
         model.addAttribute("total", total);
         model.addAttribute("pagination", pageDTO);
         model.addAttribute("storage", storageService.getStorageDTOBy(pageDTO));
-        log.info(storageService.getStorageDTOBy(pageDTO).toString());
 
         /*return storageService.getStorageDTOBy(pageDTO);*/
         return "/main/search-page";
