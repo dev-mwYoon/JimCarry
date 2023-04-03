@@ -18,6 +18,7 @@ public interface PaymentMapper {
 
     //    조회
     public PaymentVO select(Long payId);
+    public PaymentDTO selectPaymentId(Long payId);
 
     //    전체조회
     public List<PaymentDTO> selectAllPayment(@Param("page") PageDTO PageDTO);
@@ -33,6 +34,7 @@ public interface PaymentMapper {
 
     // 조건조회 개수
     public int totalBy(@Param("page") SearchDTO searchDTO);
+    public int totalPayCount(@Param("page") SearchDTO searchDTO);
 
     // 총 개수 조회
     public int total();

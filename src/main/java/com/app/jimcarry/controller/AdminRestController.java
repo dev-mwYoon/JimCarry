@@ -1,9 +1,12 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.domain.dao.PaymentDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.domain.vo.UserVO;
+import com.app.jimcarry.service.PaymentService;
 import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +26,7 @@ import java.util.Optional;
 @Slf4j
 public class AdminRestController {
     private final UserService userService;
+    private final PaymentService paymentService;
 
 
 
@@ -31,5 +35,10 @@ public class AdminRestController {
     public UserVO getUser(Long userId){
         UserVO userdetail = Optional.ofNullable(userService.getUser(userId)).get();
         return userdetail;
+    }
+    @PostMapping("payment/detail")
+    public PaymentDTO getPay(Long payId){
+        PaymentDTO paydetail = Optional.ofNullable(paymentService.getPaymentId(payId)).get();
+        return paydetail;
     }
 }
