@@ -56,8 +56,17 @@ public class InquiryDAO {
         inquiryMapper.update(inquiryVO);
     }
 
-//    삭제
+    //    삭제
     public void deleteById(Long inquiryId){
         inquiryMapper.delete(inquiryId);
+    }
+
+    //    답변 완료 총 개수
+    public int findAnswerTrue(){
+        return inquiryMapper.totalAnswerTrue();
+    }
+    //    답변 대기 총 개수
+    public int findAnswerFalse(){
+        return inquiryMapper.totalAnswerFalse();
     }
 }

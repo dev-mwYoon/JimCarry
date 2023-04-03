@@ -115,4 +115,13 @@ public class InquiryService {
         Optional.ofNullable(inquiryDAO.findById(inquiryId)).get();
         inquiryDAO.deleteById(inquiryId);
     }
+
+    //     답변 완료 총 개수
+    public int getAnswerTrue(){
+        return inquiryDAO.findAnswerTrue();
+    }
+    //     답변 대기 총 개수
+    public int getAnswerFalse(){
+        return inquiryDAO.findAnswerFalse();
+    }
 }

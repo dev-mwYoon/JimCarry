@@ -116,4 +116,13 @@
         delete from tbl_inquiry
         where inquiry_id = #{inquiryId}
     </delete>
+
+    <!-- 답변 완료 총 개수-->
+    <select id="totalAnswerTrue" resultType="int">
+        select count(inquiry_answer) from tbl_inquiry where inquiry_answer = 1
+    </select>
+    <!-- 답변 대기 총 개수-->
+    <select id="totalAnswerFalse" resultType="int">
+        select count(inquiry_answer) from tbl_inquiry where inquiry_answer = 0
+    </select>
 </mapper>
