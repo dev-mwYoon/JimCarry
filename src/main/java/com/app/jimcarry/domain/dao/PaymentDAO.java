@@ -28,6 +28,9 @@ public class PaymentDAO {
     public PaymentVO findById(Long payId) {
         return paymentMapper.select(payId);
     }
+    public PaymentDTO findByPaymentId(Long payId) {
+        return paymentMapper.selectPaymentId(payId);
+    }
 
     //    전체조회
     public List<PaymentDTO> findAll(PageDTO pageDTO) {
@@ -51,6 +54,9 @@ public class PaymentDAO {
     // 조건조회 개수
     public int findTotalBy(SearchDTO searchDTO) {
         return paymentMapper.totalBy(searchDTO);
+    }
+    public int findTotalPayCount(SearchDTO searchDTO) {
+        return paymentMapper.totalPayCount(searchDTO);
     }
 
     // 총 개수

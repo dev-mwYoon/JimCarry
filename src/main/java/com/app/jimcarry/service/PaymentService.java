@@ -38,6 +38,9 @@ public class PaymentService {
     public PaymentVO getPayment(Long payId) {
         return paymentDAO.findById(payId);
     }
+    public PaymentDTO getPaymentId(Long payId) {
+        return paymentDAO.findByPaymentId(payId);
+    }
 
 //    @LogStatus
 //    public void findInfo(Long payId){
@@ -84,6 +87,9 @@ public class PaymentService {
     // 조건조회 개수
     public int getTotalBy(SearchDTO searchDTO) {
         return paymentDAO.findTotalBy(searchDTO);
+    }
+    public int getTotalPayCount(SearchDTO searchDTO) {
+        return paymentDAO.findTotalPayCount(searchDTO);
     }
 
     // 총 개수

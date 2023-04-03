@@ -255,7 +255,7 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = paymentService.getTotalBy(searchDTO);
+        total = paymentService.getTotalPayCount(searchDTO);
         payAmount = paymentService.getTotalPay();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
@@ -292,7 +292,7 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = paymentService.getTotalBy(searchDTO);
+        total = paymentService.getTotalPayCount(searchDTO);
         payAmount = paymentService.getTotalPay();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
