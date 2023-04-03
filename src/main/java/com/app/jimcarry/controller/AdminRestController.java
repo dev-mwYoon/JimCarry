@@ -26,10 +26,10 @@ public class AdminRestController {
 
 
 
-    // 상세보기
-//    @PostMapping("user/detail")
-//    public UserVO getUser(Long userId){
-//        UserVO userdetail = Optional.ofNullable(userService.getUser(userId)).get();
-//        return userdetail;
-//    }
+    /* 상세보기 */
+    @PostMapping("user/detail")
+    public UserVO getUser(Long userId){
+        UserVO userdetail = Optional.ofNullable(userService.getUser(userId)).get();
+        return userdetail;
+    }
 }
