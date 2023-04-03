@@ -6,6 +6,7 @@ import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.domain.vo.InquiryVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.InquiryService;
 import com.app.jimcarry.service.PaymentService;
@@ -51,6 +52,21 @@ public class AdminRestController {
         }
         InquiryDTO inquirydetail = inquiryService.getDTOInquiryId(inquiryId);
         return inquirydetail;
+    }
+    /* 문의하기 답변 */
+    @PostMapping("inquiry/answer")
+    public boolean changeAnswer(String[] answerCheck){
+        for (String id : answerCheck) {
+            InquiryVO inquiry = inquiryService.getInquiry(Long.valueOf(id));
+            if(inquiry.getInquiryAnswer() == 1){
+                inquiry.setInquiryAnswer(0);
+            }else {
+                inquiry.setInquiryAnswer(1);
+            }
+            inquiryService.updateInquiry(inquiry);
+
+        }
+        return true;
     }
 
 

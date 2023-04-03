@@ -68,10 +68,12 @@ inquiries.forEach((inquiries, i)=>{
 //     else $('#checkAll').prop('checked', true);
 // });
 //
+
+/* ------------------- 문의사항 상세보기 모달 ---------------------------- */
 console.log($detailButton);
 $(".content__detail__btn").on('click', function () {
-    const $detailBt = $('.content__detail__btn');
-    const i = $detailBt.index($(this));
+    let $detailBt = $('.content__detail__btn');
+    let i = $detailBt.index($(this));
     /* 해당 컨텐츠 번호 */
     const inquiryId = $detailBt.eq(i).parent().siblings('.content__id').text();
     console.log(inquiryId);
@@ -239,13 +241,28 @@ $check.click(function () {
 //     console.log($checkArr);
 // });
 
-
+/* 문의사항 삭제 */
 confirmButton.on('click', function () {
 
     $.ajax({
         url: "/admin/enquiry/delete",
         type: "post",
         data: { inquiryIds : $checkArr },
+        traditional : true,
+        success : function(result){
+            if(result) {
+                location.reload();
+            }
+        }
+    });
+});
+/* 문의하기 답변 */
+$('#answer-check').on('click', function(){
+    console.log($('#answer-check'))
+    $.ajax({
+        url: "/admins/inquiry/answer",
+        type: "post",
+        data: { answerCheck : $checkArr },
         traditional : true,
         success : function(result){
             if(result) {
