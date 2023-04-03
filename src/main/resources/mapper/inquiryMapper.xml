@@ -36,7 +36,7 @@
     <update id="update">
         update jimcarry.tbl_inquiry
         set inquiry_title=#{inquiryTitle}, inquiry_content=#{inquiryContent}, inquiry_answer=#{inquiryAnswer}
-        where inquiry_id=#{inquiryId};
+        where inquiry_id=#{inquiryId}
     </update>
 
     <!--  PageDTO인지 SearchDTO인지 판별  -->
@@ -49,7 +49,9 @@
                 <bind name="dto" value="page.searchDTO"/>
             </otherwise>
         </choose>
-        <include refid="searchContext"/>
+        <if test="dto.types != null">
+            <include refid="searchContext"/>
+        </if>
     </sql>
     <!--  조건에 맞는 테이블 검색조건  -->
     <sql id="searchContext">
@@ -64,6 +66,15 @@
                         <when test="type == 'keyword'.toString()">
                             enquiry_title like concat('%', #{dto.keyword}, '%')
                         </when>
+                        <when test="type == 'userAddress'.toString()">
+                            user_address like concat('%', #{dto.userAddress}, '%')
+                        </when>
+                        <when test="type == 'userName'.toString()">
+                            user_name like concat('%', #{dto.userName}, '%')
+                        </when>
+                        <when test="type == 'userIdentification'.toString()">
+                            user_identification like concat('%', #{dto.userIdentification}, '%')
+                        </when>
                     </choose>
                 </trim>
             </foreach>
@@ -72,9 +83,22 @@
     <!--전체 조회-->
     <select id="selectAll" resultType="inquiryDTO">
         select u.user_id , user_identification, user_password, user_email, user_phone, user_address,
-        user_address_detail, user_gender, user_birth, inquiry_id, inquiry_title,
-        inquiry_content, inquiry_regist, inquiry_answer, user_name
+        user_address_detail, user_gender, user_birth, inquiry_id, inquiry_title, user_name
+        inquiry_content, inquiry_regist, inquiry_answer
         from tbl_user u join tbl_inquiry i on u.user_id = i.user_id
+        order by user_id
+        <if test="page.searchDTO.isDesc">
+            desc
+        </if>
+        limit #{page.criteria.startRow}, #{page.criteria.amount}
+    </select>
+    <!--조건 전체 조회-->
+    <select id="selectAllBy" resultType="inquiryDTO">
+        select inquiry_id, u.user_id, inquiry_title, inquiry_content, inquiry_regist, inquiry_answer,
+        user_identification, user_password, user_name, user_email, user_phone, user_address, user_address_detail,
+        user_gender, user_birth, user_random_key, user_status
+        from tbl_user u join tbl_inquiry i on u.user_id = i.user_id
+        <include refid="searchType"/>
         order by user_id
         <if test="page.searchDTO.isDesc">
             desc

@@ -29,6 +29,9 @@ public class InquiryDAO {
     //    전체조회
     public List<InquiryDTO> findAll(PageDTO pageDTO){ return inquiryMapper.selectAll(pageDTO);}
 
+    //    전체 조건 조회
+    public List<InquiryDTO> findAllBy(PageDTO pageDTO){ return inquiryMapper.selectAllBy(pageDTO);}
+
     //    전체조회 개수
     public int findTotal(){ return inquiryMapper.total();}
 

@@ -3,6 +3,7 @@ package com.app.jimcarry.service;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.NoticeDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.NoticeVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +27,17 @@ public class NoticeService {
         return noticeDAO.findAll(pageDTO);
     }
 
+    @LogStatus
+    public List<NoticeVO> getListBy(PageDTO pageDTO){
+        return noticeDAO.findAllBy(pageDTO);
+    }
+
     /*공지사항 전체 개수*/
     @LogStatus
     public int getTotal(){return noticeDAO.findTotal();}
+
+    @LogStatus
+    public int getTotalBy(SearchDTO searchDTO){return noticeDAO.findTotalBy(searchDTO);}
 
     @LogStatus
     public String sendRandomNumber(String userPhone) throws CoolsmsException {

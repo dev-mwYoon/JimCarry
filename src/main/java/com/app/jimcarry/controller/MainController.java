@@ -21,10 +21,10 @@ public class MainController {
     private final StorageFileService storageFileService;
 
 //    /*메인페이지*/
-//    @GetMapping("")
-//    public String mainPage(){
-//        return "/main/main";
-//    }
+    @GetMapping("")
+    public String mainPage(){
+        return "/main/main";
+    }
 
   /*  창고최신순*/
    /* @GetMapping("")
