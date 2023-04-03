@@ -29,10 +29,11 @@ let setStorageDTO = function() {
         storageName: $("input[name='storageName']").val(),
         storagePhone: $("input[name='storagePhone']").val(),
         storageSize: $("input[name='storageSize']").val(),
+        storagePrice: $("input[name='storagePrice']").val(),
         storageAddress: $("input[name='storageAddress']").val(),
         storageAddressDetail: $("input[name='storageAddressDetail']").val(),
-        storageDateStart: $("input[name='storageUseDate']").val(),
-        storageDateEnd: $("input[name='storageEndDate']").val(),
+        storageUseDate: $("input[name='storageUseDate']").val(),
+        storageEndDate: $("input[name='storageEndDate']").val(),
         files: fileVOs
     }
 
