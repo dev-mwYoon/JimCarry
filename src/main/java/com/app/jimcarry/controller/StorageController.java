@@ -14,12 +14,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.mail.Multipart;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/storages/*")
@@ -37,10 +40,10 @@ public class StorageController {
 
     /*창고등록*/
     @PostMapping("register")
-    @ResponseBody
-    public RedirectView storageSave(@RequestBody StorageDTO storageDTO, HttpSession httpSession) {
+    public RedirectView storageSave(StorageDTO storageDTO, List<MultipartFile> multipartFiles, HttpSession httpSession) {
         storageDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
-        storageService.registerStorage(storageDTO);
+        storageService.register(storageDTO);
+
 
         /*창고등록 후 이동할 페이지*/
         return new RedirectView("/main/main");
