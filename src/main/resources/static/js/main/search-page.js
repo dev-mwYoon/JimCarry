@@ -44,8 +44,10 @@ $(function() {
                 console.log(result.storageList)
                 console.log(result.total)*/
                 var html = ``;
+                var paging = ``;
                 $('.product').replaceWith(html);
-                result.storageList.forEach(e => {
+                $('.product').replaceWith(paging);
+                (result.paginationDTO.storageDTO).forEach(e => {
                     html += `
                         <a href="/storages/search/detail/${e.storageId}" class="product">
                             <div class="product-img-div">
@@ -76,9 +78,49 @@ $(function() {
                                 <span class="review-number">${e.reviewCount}</span>
                             </div>
                         </a>
+                       
                     `;
                 })
                 $('.result-real-body').append(html);
+
+                // 페이징 HTML 태그를 추가하는 코드 작성
+                paging += `
+                    <div>
+                        <div class="paging" style="text-align: center">
+                       `
+                if(result.paginationDTO.pageDTO.prev) {
+                        paging += `
+                        <a class="changePage" href="?page=${result.paginationDTO.pageDTO.startPage - 1}" style="color: black"><code><</code></a>
+                        `;
+                }
+                for (let i = 1; i <= result.paginationDTO.pageDTO.endPage; i++) {
+                    let page = i;
+                    if(result.paginationDTO.pageDTO.criteria.page != page) {
+                        paging += `
+                    <a class="changePage" style="color: black" href="/storages/list/${way}?page=${page}"><code>${page}</code></a>
+                     `
+                     }
+                    else {
+                        paging += `
+                            <code id="currentPage">${page}</code>
+                        `
+                    }
+                }
+                if(result.paginationDTO.pageDTO.next) {
+                    paging += `
+                        <a class="changePage" href="?page=${result.paginationDTO.pageDTO.endPage + 1}" style="color: black"><code>></code></a>
+                    `
+                }
+
+                paging += `
+                </div>
+                <form action="/storages/search" method="get" name="pageForm">
+                    <input type="hidden" name="page" value="${result.paginationDTO.pageDTO.criteria.page}">
+                    <input type="hidden" name="amount" value="${result.paginationDTO.pageDTO.criteria.amount}">
+                    </form>
+                </div>
+                `
+                $('.paging-div').html(paging); // 생성된 HTML 태그를 product 클래스를 가진 DOM에 추가합니다.
                 $('.total-number').html("총 " + result.total + "건");
             },
             error:function (e) {
