@@ -32,14 +32,13 @@ public class InquiryService {
     /* 문의 파일 업로드 같이 저장 */
     @LogStatus
     @Transactional(rollbackFor = Exception.class)
-   /* public void register(InquiryDTO inquiryDTO) {
+    public void registerInquiry(InquiryDTO inquiryDTO) {
         InquiryVO newInquiry = inquiryDTO.createVO();
         inquiryDAO.save(newInquiry);
         inquiryDTO.getFiles().stream().map(file -> new InquiryFileVO().create(file, newInquiry.getInquiryId()))
-                    .forEach(file -> {file.setFilePath(getPath()); inquiryFileDAO.save(file);});
-                inquiryDAO.save(inquiryVO);
-        inquiryFileDAO.save(inquiryFileVO);
-    }*/
+                .forEach(file -> {file.setFilePath(getPath()); inquiryFileDAO.save(file);});
+    }
+
 
 
     //    현재 날짜 경로 구하기

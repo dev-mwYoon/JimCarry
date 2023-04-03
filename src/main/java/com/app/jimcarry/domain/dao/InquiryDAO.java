@@ -3,7 +3,9 @@ package com.app.jimcarry.domain.dao;
 import com.app.jimcarry.domain.dto.InquiryDTO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.vo.InquiryFileVO;
 import com.app.jimcarry.domain.vo.InquiryVO;
+import com.app.jimcarry.mapper.InquiryFileMapper;
 import com.app.jimcarry.mapper.InquiryMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
@@ -15,12 +17,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InquiryDAO {
     private final InquiryMapper inquiryMapper;
+    private final InquiryFileMapper inquiryFileMapper;
 
     //    추가
     public void save(InquiryVO inquiryVO) {
         inquiryMapper.insert(inquiryVO);
     }
 
+   /* public void save(InquiryFileVO inquiryFileVO) {
+        inquiryFileMapper.insert(inquiryFileVO);
+    }*/
     //    조회
     public InquiryVO findById(Long inquiryId) {
         return inquiryMapper.select(inquiryId);
