@@ -25,8 +25,8 @@ public class StorageDAO {
         storageMapper.insert(storageVO);
     }*/
 
-    public void save(StorageDTO storageDTO) {
-        storageMapper.insert(storageDTO);
+    public void save(StorageVO storageVO) {
+        storageMapper.insert(storageVO);
     }
 
     //    조회

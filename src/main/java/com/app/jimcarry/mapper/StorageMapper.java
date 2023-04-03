@@ -15,7 +15,7 @@ import java.util.Map;
 public interface StorageMapper {
 
     //    추가
-    public void insert(StorageDTO storageDTO);
+    public void insert(StorageVO storageVO);
 
     /*public void insert(StorageVO storageVO);*/
     //    조회

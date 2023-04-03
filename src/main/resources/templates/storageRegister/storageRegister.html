@@ -19,7 +19,7 @@
             <span class="RequiredInput">*</span>
             필수입력사항
         </div>
-        <form th:action="@{/storages/register}" method="post" name="storageForm">
+        <form name="storageForm">
             <div class="formstart">
                 <!-- ----------------창고이름------------------ -->
 
@@ -31,7 +31,7 @@
                     <div class="flexLayout">
                         <div class="paddingBottom">
                             <div class="inputBox">
-                                <input class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageTitle"
+                                <input id="inputTitle" class="input" type="text" placeholder="창고 이름을 입력해 주세요" name="storageTitle"
                                        required autocomplete="none" value="">
                             </div>
                         </div>
@@ -47,8 +47,8 @@
                     <div class="flexLayout">
                         <div class="paddingBottom">
                             <div class="inputBox">
-                                <input class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="storageName"
-                                       required autocomplete="none" value>
+                                <input id="inputName" class="input" type="text" placeholder="본인의 이름을 입력해 주세요" name="storageName"
+                                       required autocomplete="none" value="">
                             </div>
                         </div>
                         <div class="errorDiv">
@@ -64,7 +64,7 @@
                     </div>
                     <div class="flexLayout">
                         <div class="inputBox">
-                            <input class="input" type="text" placeholder="숫자만 입력해주세요." name="storagePhone"
+                            <input id="inputPhone" class="input" type="text" placeholder="숫자만 입력해주세요." name="storagePhone"
                                    required autocomplete="none">
                         </div>
                         <div class="errorDiv">
@@ -82,7 +82,7 @@
                     <div class="flexLayout">
                         <div class="radioLayout">
                             <label class="sizeSelect" for="sizeSmall">
-                                <input class="warehouseSizeRadio" data-testid="radioSmall" id="sizeSmall" name="storageSize" type="radio" value="소" onclick="clickRadio()">
+                                <input class="warehouseSizeRadio inputsize" data-testid="radioSmall" id="sizeSmall" name="storageSize" type="radio" value="소" onclick="clickRadio()">
                                 <span id = "sizeSmallSpan" class="checkBox">
                                                 <div id="sizeSmallDiv" class="checkBox2"></div>
                                     </span>
@@ -127,13 +127,13 @@
                     <div class="periodOfUseFlexLayout">
                         <div class="periodOfUse">
                             <div class="periodOfUseInputLayout">
-                                <input class="useDateInput" type="date" name="storageUseDate">
+                                <input id="inputDateStart" class="useDateInput" type="date" name="storageUseDate">
                             </div>
                         </div>
                         <div class="wave">~</div>
                         <div class="periodOfUse">
                             <div class="periodOfUseInputLayout">
-                                <input class="useDateInput" type="date" name="storageEndDate">
+                                <input id="inputDateEnd" class="useDateInput" type="date" name="storageEndDate">
                                 <!-- <span class="periodOfUseInputText">2023.03.10</span>
                                 <span class="calendarSVG"></span> -->
                             </div>
@@ -159,7 +159,7 @@
                         </div>
                         <div class="addressDetailWrapper">
                             <div class="addressInputLayout">
-                                <input class="input" type="text" placeholder="상세주소를 입력해주세요." name="storageAddressDetail" required autocomplete="none">
+                                <input id="inputDetail" class="input" type="text" placeholder="상세주소를 입력해주세요." name="storageAddressDetail" required autocomplete="none">
                             </div>
                             <div class="errorDiv">
                                 <p class="errorMessage"></p>
@@ -258,4 +258,7 @@
 <script src="/js/storageRegister/storageRegister.js"></script>
 <script src="/js/storageRegister/hiddenPrice.js"></script>
 <script src="/js/main/header.js"></script>
+<script src="/js/mypage/doAjax.js"></script>
+<script src="/js/storageRegister/storageFile.js"></script>
+<script src="/js/storageRegister/storageRegisterFile.js"></script>
 </html>

@@ -26,11 +26,11 @@ public class StorageService {
     private final ReviewDAO reviewDAO;
 
     //    추가
-    @LogStatus
+    /*@LogStatus
     @Transactional(rollbackFor = Exception.class)
     public void register(StorageDTO storageDTO) {
         storageDAO.save(storageDTO);
-    }
+    }*/
 
     //    추가
     /*파일 저장*/
@@ -39,7 +39,7 @@ public class StorageService {
     public void registerStorage(StorageDTO storageDTO) {
         StorageVO newStorage = storageDTO.createVO();
 //        storageFileDAO.deleteById(reviewId);
-    /*    storageDAO.save(newStorage);*/
+        storageDAO.save(newStorage);
         storageDTO.getFiles().stream().map(file -> new StorageFileVO().create(file, newStorage.getStorageId()))
                 .forEach(file -> {file.setFilePath(getPath()); storageFileDAO.save(file);});
     }

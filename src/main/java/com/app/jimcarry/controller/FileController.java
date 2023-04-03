@@ -49,12 +49,12 @@ public class FileController {
     }
 
     // 파일 저장
+    //  DB에 파일 저장
     @PostMapping("files/save/{id}")
-    @ResponseBody
     public void saveFile(@RequestBody List<FileVO> files, @PathVariable Long id, String table) {
 
         if (table.equals("inquiry")) inquiryFileService.registerFile(files, id);
-        else if (table.equals("storage")) storageFileService.registerStorageFile(files, id);
+        else if (table.equals("storage")) storageFileService.storageFile(files, id);
         else if (table.equals("review")) reviewFileService.registerFile(files, id);
     }
 
