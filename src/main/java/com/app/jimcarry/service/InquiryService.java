@@ -30,21 +30,17 @@ public class InquiryService {
     //    추가
     /* 단위테스트 작성 필요 */
     /* 문의 파일 업로드 같이 저장 */
-   /* @LogStatus
+    @LogStatus
     @Transactional(rollbackFor = Exception.class)
-    public void register(InquiryDTO inquiryDTO) {
+   /* public void register(InquiryDTO inquiryDTO) {
         InquiryVO newInquiry = inquiryDTO.createVO();
         inquiryDAO.save(newInquiry);
         inquiryDTO.getFiles().stream().map(file -> new InquiryFileVO().create(file, newInquiry.getInquiryId()))
                     .forEach(file -> {file.setFilePath(getPath()); inquiryFileDAO.save(file);});
-               *//* inquiryDAO.save(inquiryVO);*//*
-     *//*   inquiryFileDAO.save(inquiryFileVO);*//*
+                inquiryDAO.save(inquiryVO);
+        inquiryFileDAO.save(inquiryFileVO);
     }*/
 
-    @LogStatus
-    public void register(InquiryVO inquiryVO) {
-
-    }
 
     //    현재 날짜 경로 구하기
     private String getPath() {

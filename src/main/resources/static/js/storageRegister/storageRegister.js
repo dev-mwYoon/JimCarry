@@ -185,7 +185,7 @@ var region_list = ["", "서울", "경기", "강원", "충북", "충남",
     "경북", "경남", "전북", "전남", "제주특별자치도"];
 
 const checkRegion = function() {
-    console.log("sdadas")
+    console.log("sdadas");
     const $address = $('#address').val();
     var startIndex = $address.indexOf(" "); // 첫 번째 공백의 인덱스
 

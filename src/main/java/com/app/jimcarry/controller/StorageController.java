@@ -44,11 +44,13 @@ public class StorageController {
     public String  storageSave(@RequestBody StorageDTO storageDTO, HttpSession httpSession) {
         storageDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
         // 자바 스크립트 파일 리스트
+        log.info(String.valueOf(storageDTO.getStorageAddressNumber()));
+        log.info(String.valueOf(storageDTO.getStorageSize()));
         storageService.registerStorage(storageDTO);
 
 
         /*창고등록 후 이동할 페이지*/
-        return "/main/main";
+        return "/main/";
     }
 
     /*헤더 지역별 창고 조회 */

@@ -28,12 +28,14 @@ let setStorageDTO = function() {
         storageTitle: $("input[name='storageTitle']").val(),
         storageName: $("input[name='storageName']").val(),
         storagePhone: $("input[name='storagePhone']").val(),
-        storageSize: $("input[name='storageSize']").val(),
+        storageSize: $("input:radio[name=storageSize]:checked"). val(),
         storagePrice: $("input[name='storagePrice']").val(),
         storageAddress: $("input[name='storageAddress']").val(),
         storageAddressDetail: $("input[name='storageAddressDetail']").val(),
         storageUseDate: $("input[name='storageUseDate']").val(),
         storageEndDate: $("input[name='storageEndDate']").val(),
+        storageAddressNumber: $('input[name=storageAddressNumber]').val(),
+
         files: fileVOs
     }
 
@@ -42,6 +44,7 @@ let setStorageDTO = function() {
 
 $submitBtn.on("click", function () {
     checkRegion();
+    console.log($('input[name=storageAddressNumber]').val())
 
     config = {
         url: `/storages/register`,
