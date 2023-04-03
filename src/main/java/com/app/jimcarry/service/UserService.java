@@ -216,8 +216,8 @@ public class UserService {
 
         mailSender.send(message);
     }
-    public int findTotalUser(){
-        return userDAO.findUserTotal();
+    public int getTotalUser(){
+        return userDAO.findTotal();
     }
     // 회원 리스트 조건 조회
     public int findTotalBy(SearchDTO searchDTO){ return userDAO.findTotalBy(searchDTO);}

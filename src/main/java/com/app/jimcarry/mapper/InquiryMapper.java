@@ -34,6 +34,11 @@ public interface InquiryMapper {
 
     //    수정
     public void update(InquiryVO inquiryVO);
-//    삭제
+    //    삭제
     public void delete(Long inquiryId);
+    // 답변 완료 총 개수
+    public int totalAnswerTrue();
+    // 답변 대기 총 개수
+    public int totalAnswerFalse();
+
 }
