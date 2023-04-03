@@ -320,8 +320,7 @@ $checkNum.on('click', function(){
             return;
         }
     })
-    if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val() && check) {
-        console.log("이걸 옴?");
+    if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
         clearInterval(timer);
 
         overlapService.sendSMS(function(result) {

@@ -235,7 +235,7 @@ public class UserService {
 
 
 
-    public String getKaKaoAccessToken(String code){
+    public String getKaKaoAccessToken(String code, String type){
         String access_Token="";
         String refresh_Token ="";
         String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -253,7 +253,14 @@ public class UserService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=f98c5a800722daf40b2e538f2766c211"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost:10000/user/kakao"); // TODO 인가코드 받은 redirect_uri 입력
+
+//            회원가입에서 접근했을 때
+            if(type.equals("join")) {
+                sb.append("&redirect_uri=http://localhost:10000/user/kakao"); // TODO 인가코드 받은 redirect_uri 입력
+            } else if (type.equals("login")) {
+//            로그인에서 접근했을 때
+                sb.append("&redirect_uri=http://localhost:10000/user/kakao-login"); // TODO 인가코드 받은 redirect_uri 입력
+            }
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
@@ -289,6 +296,7 @@ public class UserService {
 
         return access_Token;
     }
+
 
     public UserVO getKakaoInfo(String token) throws Exception {
 
