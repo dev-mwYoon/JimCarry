@@ -23,14 +23,14 @@
                 <div class="payment-detail-success">
                     <img src="https://res.kurly.com/mobile/service/order/1909/img_success_order_end.gif" alt="" class="success-size">
                     <div class="payment-detail-title-wrap">
-                        <p class="payment-detail-title">문은서님의 예약이 완료되었습니다.</p>
+                        <p class="payment-detail-title" th:text="${userVO.userName} + '님의 예약이 완료되었습니다.'">님의 예약이 완료되었습니다.</p>
                         <p class="payment-detail-enter"><br></p>
                     </div>
                 </div>
                 <div class="payment-detail-price-container">
                     <div class="payment-detail-price-wrap">
                         <span class="payment-detail-price-title">결제금액</span>
-                        <span class="payment-detail-price-count">0
+                        <span class="payment-detail-price-count" th:text="${paymentAmount} + '원'">0
                             <span class="payment-detail-price">원</span>
                         </span>
                     <!--  <span class="payment-detail-price-title">이용기간</span>
@@ -47,10 +47,14 @@
                 </div>
                 <div class="payment-detail-btn">
                     <button class="reserve-detail-btn" type="button">
-                        <span class="reserve-detail-title">주문 상세보기</span>
+                        <a href="/users/mypage/usage">
+                            <span class="reserve-detail-title">주문 상세보기</span>
+                        </a>
                     </button>
-                    <button class="reserve-continue-btn" type="button" onclick="location.href='/templates/main/main.html'">
-                        <span class="reserve-detail-title">예약 계속하기</span>
+                    <button class="reserve-continue-btn" type="button">
+                        <a href="/main/">
+                            <span class="reserve-detail-title">예약 계속하기</span>
+                        </a>
                     </button>
                 </div>
             </div>
