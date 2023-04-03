@@ -1,8 +1,7 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.vo.FileVO;
-import com.app.jimcarry.service.InquiryFileService;
-import com.app.jimcarry.service.StorageFileService;
+import com.app.jimcarry.service.*;
 import org.apache.ibatis.javassist.compiler.ast.Variable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +30,9 @@ public class FileController {
 
     @Autowired
     private  InquiryFileService inquiryFileService;
+    private ReviewFileService reviewFileService;
     private StorageFileService storageFileService;
+    private StorageService storageService;
     private FileVO fileVO;
 
     /*메인 이미지 파일*/
@@ -48,13 +49,15 @@ public class FileController {
     }
 
     // 파일 저장
-   /* @PostMapping("files/save/{id}")
+    @PostMapping("files/save/{id}")
     @ResponseBody
     public void saveFile(@RequestBody List<FileVO> files, @PathVariable Long id, String table) {
 
         if (table.equals("inquiry")) inquiryFileService.registerFile(files, id);
-        else if (table.equals("storage")) storageFileService.registerFile(files, id);
-    }*/
+        else if (table.equals("storage")) storageFileService.registerStorageFile(files, id);
+        else if (table.equals("review")) reviewFileService.registerFile(files, id);
+    }
+
 
 }
 

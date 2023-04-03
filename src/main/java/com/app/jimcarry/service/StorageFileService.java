@@ -49,7 +49,7 @@ public class StorageFileService implements FileService {
     /*파일 저장*/
     @Transactional(rollbackFor = Exception.class)
     @LogStatus
-    public void registerStorage(List<FileVO> files, Long storageId) {
+    public void registerStorageFile(List<FileVO> files, Long storageId) {
         /*storageFileDAO.deleteById(reviewId);*/
         files.stream().map(file -> new StorageFileVO().create(file, storageId))
                 .forEach(file -> {

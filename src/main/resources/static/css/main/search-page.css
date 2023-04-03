@@ -293,6 +293,7 @@ ol, ul {
 }
 
 .search-detail-address {
+    vertical-align: super;
     width: 300px;
     background-color: inherit;
     border: none;

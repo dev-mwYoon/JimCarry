@@ -87,12 +87,12 @@ public class NoticeController {
     /*파일 업로드 포함*/
     @PostMapping("write")
     @ResponseBody
-    public RedirectView writeRegister(InquiryVO inquiryVO, InquiryFileVO inquiryFileVO, Long inquiryId, HttpSession httpSession) throws IOException{
+    public RedirectView writeRegister(InquiryVO inquiryVO, MultipartFile file, HttpSession httpSession) throws IOException{
         log.info("1234");
       /*  log.info(String.valueOf(httpSession.getAttribute("userId" )));*/
         inquiryVO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 
-     /*   inquiryService.register(inquiryVO);*/
+        inquiryService.register(inquiryVO);
 
 
 
