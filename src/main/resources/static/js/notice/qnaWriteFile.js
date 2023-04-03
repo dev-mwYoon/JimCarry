@@ -37,7 +37,7 @@ $submitBtn.on("click", function () {
         url: `/notice/write`,
         method: "POST",
         data: JSON.stringify(setInquiryDTO()),
-        contentType: "application/json; charset=utf-8",
+        contentType: "application/json; charset=utf-8"
     }
 
     console.log("ㅇㅁㅇㅁㅇㅁㄴㅇㅁㄴㅇ");
@@ -47,3 +47,6 @@ $submitBtn.on("click", function () {
     });
 
 });
+
+/*
+"application/json; charset=utf-8"*/
