@@ -28,6 +28,8 @@ public class PayController {
         model.addAttribute("storageTitle",storageTitle);
         model.addAttribute("paymentMonth", paymentMonth);
         model.addAttribute("paymentAmount", paymentAmount);
+        log.info("asdfasdfsadfadfs sa fasdf asd as sf as das paymentAmount: " + paymentAmount);
+
         return "/pay/payment";
     }
     @GetMapping("pay-reserve")
