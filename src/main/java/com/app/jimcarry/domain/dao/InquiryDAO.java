@@ -31,6 +31,9 @@ public class InquiryDAO {
     public InquiryVO findById(Long inquiryId) {
         return inquiryMapper.select(inquiryId);
     }
+    public InquiryDTO findDTOInquiryId(Long inquiryId) {
+        return inquiryMapper.selectInquiryId(inquiryId);
+    }
 
     //    전체조회
     public List<InquiryDTO> findAll(PageDTO pageDTO){ return inquiryMapper.selectAll(pageDTO);}
@@ -49,6 +52,9 @@ public class InquiryDAO {
     //    조건조회 개수
     public int findTotalBy(SearchDTO searchDTO){
         return inquiryMapper.totalBy(searchDTO);
+    }
+    public int findTotalByCount(SearchDTO searchDTO){
+        return inquiryMapper.totalByCount(searchDTO);
     }
 
     //    수정

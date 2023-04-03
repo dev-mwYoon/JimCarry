@@ -16,6 +16,7 @@ public interface InquiryMapper {
 
     //    조회
     public InquiryVO select(Long inquiryId);
+    public InquiryDTO selectInquiryId(Long inquiryId);
 
     //    전체조회
     public List<InquiryDTO> selectAll(@Param("page") PageDTO pageDTO);
@@ -28,6 +29,7 @@ public interface InquiryMapper {
 
     //    조건조회 개수
     public int totalBy(@Param("page") SearchDTO searchDTO);
+    public int totalByCount(@Param("page") SearchDTO searchDTO);
 
     //    문의 총 개수
    public int total();
