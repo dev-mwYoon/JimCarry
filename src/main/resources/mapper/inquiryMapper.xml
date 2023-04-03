@@ -23,6 +23,10 @@
 
     <!-- 검색조건에 맞는 총 갯수 -->
     <select id="totalBy" resultType="int">
+        select count(inquiry_id) from join tbl_inquiry
+        <include refid="searchType"/>
+    </select>
+    <select id="totalByCount" resultType="int">
         select count(inquiry_id) from tbl_user u join tbl_inquiry i on u.user_id = i.user_id
         <include refid="searchType"/>
     </select>
@@ -110,6 +114,14 @@
             desc
         </if>
         limit #{page.criteria.startRow}, #{page.criteria.amount}
+    </select>
+    <select id="selectInquiryId" resultType="inquiryDTO">
+        select inquiry_id, u.user_id, inquiry_title, inquiry_content, inquiry_regist, inquiry_answer,
+        user_identification, user_password, user_name, user_email, user_phone, user_address, user_address_detail,
+        user_gender, user_birth, user_random_key, user_status
+        from tbl_user u join tbl_inquiry i on u.user_id = i.user_id
+        where inquiry_id = #{inquiryId}
+        order by inquiry_id
     </select>
     <!-- 삭제 -->
     <delete id="delete">
