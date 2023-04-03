@@ -29,9 +29,9 @@
                             <span class="sharebox-size-wrap">
                                 <span class="sharebox-size" th:text="${storageTitle}">[이비에] KF94 새부리형 마스크 베이지 대형 10매</span>
                             </span>
-                            <span class="sharebox-count-month" th:text="${paymentMonth}">1개월</span>
+                            <span class="sharebox-count-month" th:text="${paymentMonth} + '개월'">1개월</span>
                             <span class="sharbox-price-wrap">
-                                <span class="sharebox-price" th:text="${paymentAmount}">9,800원</span>
+                                <span class="sharebox-price" th:text="${paymentAmount} + '원'">9,800원</span>
                             </span>
                         </div>
 
@@ -199,6 +199,7 @@
     let storageTitle = [[${storageTitle}]];
     let paymentMonth = [[${paymentMonth}]];
     let paymentAmount = [[${paymentAmount}]];
+    let storageId = [[${storageId}]];
     /*부트페이 결제 API*/
     $('#payBtn, #payBtns').on('click', function() {
         BootPay.request({
@@ -244,11 +245,11 @@
             //결제가 정상적으로 완료되면 수행됩니다
             //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.4
             $.ajax({
-                url: "/pay/payment", // 컨트롤러 주소
+                url: "/pay/payRegister", // 컨트롤러 주소
                 type: "POST",
-                data: { paymentAmount : paymentAmount }, // 결제정보 객체 paymetnVO
+                data: { paymentAmount : paymentAmount, storageId : storageId }, // 결제정보 객체 paymetnVO
                 success: function (result) {
-                    location.href="/pay/pay-reserve?paymentAmount="+paymentAmount;
+                    location.href = result;
                 },
                 error: function (error) {
                     console.log(error);
