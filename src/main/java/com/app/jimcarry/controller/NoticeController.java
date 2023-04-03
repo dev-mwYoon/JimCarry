@@ -1,5 +1,6 @@
 package com.app.jimcarry.controller;
 
+import com.app.jimcarry.domain.dto.InquiryDTO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.Criteria;
@@ -85,23 +86,23 @@ public class NoticeController {
         return "/notice/qna-write";}
 
     /*파일 업로드 포함*/
-    @PostMapping("write")
+    /*@PostMapping("write")
     @ResponseBody
-    public RedirectView writeRegister(InquiryVO inquiryVO, MultipartFile file, HttpSession httpSession) throws IOException{
+    public RedirectView writeRegister(@RequestBody InquiryDTO inquiryDTO, HttpSession httpSession) throws IOException{
         log.info("1234");
-      /*  log.info(String.valueOf(httpSession.getAttribute("userId" )));*/
-        inquiryVO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
+        log.info(String.valueOf(httpSession.getAttribute("userId" )));
+        inquiryDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 
-        inquiryService.register(inquiryVO);
+        inquiryService.register(inquiryDTO);
 
 
 
-        /*userService.login;*/
+        *//*userService.login;*//*
 
-        /*문의 등록후 이동페이지*/
+        *//*문의 등록후 이동페이지*//*
         return new RedirectView ("/notice/list");
 
-    }
+    }*/
 
     @GetMapping("info")
     public String info() { return "/notice/service-use-info";}
