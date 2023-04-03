@@ -1,6 +1,7 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.PaginationDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
@@ -32,13 +33,15 @@ public class SearchController {
     public Map<String, Object> searchByAddress(Integer storageAddressNumber, Criteria criteria){
 
         /* 한 페이지에 보여줄 게시글 개수 */
-        int amount = 3;
+        int amount = 6;
         /* 검색된 결과의 총 개수 */
         int total = 0;
 
         /*창고주소번호 */
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
         searchDTO.setStorageAddressNumber(storageAddressNumber);
+
+        PaginationDTO paginationDTO = new PaginationDTO();
 
         //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
@@ -47,12 +50,14 @@ public class SearchController {
 
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
-
         List<StorageDTO> storageList = storageService.getStorageDTOBy(pageDTO);
+
+        paginationDTO.setPageDTO(pageDTO);
+        paginationDTO.setStorageDTO(storageList);
 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("total", total);
-        resultMap.put("storageList", storageList);
+        resultMap.put("paginationDTO", paginationDTO);
 
         return resultMap;
     }
@@ -96,13 +101,12 @@ public class SearchController {
     @GetMapping("keyword")
     public String searchByKeyword(String storageAddress, Criteria criteria, Model model) {
          /*한 페이지에 보여줄 게시글 개수 */
-        int amount = 3;
+        int amount = 6;
         /* 검색된 결과의 총 개수 */
         int total = 0;
 
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddress")));
         searchDTO.setStorageAddress(storageAddress);
-        log.info("너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐"+searchDTO.toString());
 
         //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
