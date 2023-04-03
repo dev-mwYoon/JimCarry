@@ -25,6 +25,10 @@ public class SearchDTO {
     private String userAddress;
     private String noticeWriter;
     private String noticeTitle;
+    private String reviewContext;
+    private String reviewTitle;
+    private String inquiryContent;
+    private String inquiryTitle;
 
     public SearchDTO createTypes(List<String> types){
         setTypes(types);

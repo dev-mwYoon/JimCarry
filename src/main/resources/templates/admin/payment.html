@@ -31,29 +31,7 @@
             <!-- status.css -->
             <section class="trip-status">
               <ul class="status-list">
-                <li class="status-list-item">
-                  <div class="status-item-wrapper">
-                    <svg
-                      width="36"
-                      height="36"
-                      viewBox="0 0 36 36"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <rect width="36" height="36" rx="12" fill="#EDFEE0"></rect>
-                      <path
-                        d="M9.75 12.75H24.25C25.3546 12.75 26.25 13.6454 26.25 14.75V24.25C26.25 25.3546 25.3546 26.25 24.25 26.25H11.75C10.6454 26.25 9.75 25.3546 9.75 24.25V12.75Z"
-                        fill="#11CA2D"></path>
-                      <path
-                        d="M9.75 12.5C9.75 11.3954 10.6454 10.5 11.75 10.5H16.125L18 12.75H9.75V12.5Z"
-                        fill="#11CA2D"></path>
-                    </svg>
-                    <div class="status-item-name">금일 결제수</div>
-                  </div>
-                  <div class="status-item-count">
-                    <a href="">0</a>
-                  </div>
-                </li>
-                <li class="status-list-item">
+                <li class="status-list-item" style="margin-left:10px; width: 35%;">
                   <div class="status-item-wrapper">
                     <div class="problem-icon-wrapper">
                       <div class="problem-icon">
@@ -82,7 +60,7 @@
                     <div class="status-item-name">결제 총 금액</div>
                   </div>
                   <div class="status-item-count">
-                    <a href="">0</a>
+                    <a href="" th:text="${payAmount} + '원'"></a>
                   </div>
                 </li>
                 <div class="clock">
@@ -100,38 +78,39 @@
                   결제내역 삭제
                 </button>
                 <!-- default.css -->
-                <div class="search-box-wrap">
-                  <div class="select-box">
-                    <button class="listbox-selecter">검색조건 선택</button>
-                    <ul class="listbox displayNone" id="listbox">
-                      <li><button class="list">전체</button></li>
-                      <li><button class="list">창고 위치</button></li>
-                      <li><button class="list">아이디</button></li>
-                    </ul>
-                    <input type="text" name="searchType" style="display: none" value="all" />
-                  </div>
-                  <div class="search-box">
-                    <input
-                      type="text"
-                      name="userId"
-                      class="input__type_1 search-input"
-                      placeholder="검색" />
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        enable-background="new 0 0 32 32"
-                        id="Glyph"
-                        version="1.1"
-                        viewBox="0 0 32 32"
-                        xml:space="preserve">
-                        <path
-                          d="M27.414,24.586l-5.077-5.077C23.386,17.928,24,16.035,24,14c0-5.514-4.486-10-10-10S4,8.486,4,14  s4.486,10,10,10c2.035,0,3.928-0.614,5.509-1.663l5.077,5.077c0.78,0.781,2.048,0.781,2.828,0  C28.195,26.633,28.195,25.367,27.414,24.586z M7,14c0-3.86,3.14-7,7-7s7,3.14,7,7s-3.14,7-7,7S7,17.86,7,14z"
-                          id="XMLID_223_" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
+                <form action="/admin/payment/search" name="searchForm">
+                    <div class="search-box-wrap">
+                      <div class="select-box">
+                        <button class="listbox-selecter">검색조건 선택</button>
+                        <ul class="listbox displayNone" id="listbox">
+                          <li><button class="list">창고위치</button></li>
+                          <li><button class="list">창고크기</button></li>
+                        </ul>
+                        <input type="text" name="condition" style="display: none" value="" />
+                      </div>
+                      <div class="search-box">
+                        <input
+                          type="text"
+                          name="search"
+                          class="input__type_1 search-input"
+                          placeholder="검색" />
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            enable-background="new 0 0 32 32"
+                            id="Glyph"
+                            version="1.1"
+                            viewBox="0 0 32 32"
+                            xml:space="preserve">
+                            <path
+                              d="M27.414,24.586l-5.077-5.077C23.386,17.928,24,16.035,24,14c0-5.514-4.486-10-10-10S4,8.486,4,14  s4.486,10,10,10c2.035,0,3.928-0.614,5.509-1.663l5.077,5.077c0.78,0.781,2.048,0.781,2.828,0  C28.195,26.633,28.195,25.367,27.414,24.586z M7,14c0-3.86,3.14-7,7-7s7,3.14,7,7s-3.14,7-7,7S7,17.86,7,14z"
+                              id="XMLID_223_" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                </form>
               </div>
               <table class="table">
                 <tr class="table__header">
@@ -151,20 +130,38 @@
 
               </table>
               <!-- default.css > pagenation -->
-              <div th:object="${pagination}">
-                <div class="paging" style="text-align: center">
-                  <a class="changePage" th:href="'payment?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
-                  <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
-                    <a class="changePage" style="color: black" th:href="'payment?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
-                    <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
-                  </th:block>
-                  <a class="changePage" th:href="'payment?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+              <th:block th:if="${searchDTO.getTypes() == null}">
+                <div th:object="${pagination}">
+                  <div class="paging" style="text-align: center">
+                    <a class="changePage" th:href="'payment?page=' + *{startPage - 1}" th:if="*{prev}" style="color: black"><code><</code></a>
+                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                      <a class="changePage" style="color: black" th:href="'payment?page=' + ${page}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                      <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                    </th:block>
+                    <a class="changePage" th:href="'payment?page=' + ${pagination.endPage + 1}" th:if="*{next}" style="color: black"><code>></code></a>
+                  </div>
+                  <form th:action="@{/admin/payment}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                  </form>
                 </div>
-                <form th:action="@{/admin/payment}" th:object="${criteria}" name="pageForm">
-                  <input type="hidden" th:field="*{page}">
-                  <input type="hidden" th:field="*{amount}">
-                </form>
-              </div>
+              </th:block>
+              <th:block th:if="${searchDTO.getTypes() != null}">
+                <div th:object="${pagination}">
+                  <div class="paging" style="text-align: center">
+                    <a class="changePage" th:href="'/admin/payment/search?page=' + *{startPage - 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{prev}" style="color: black"><code><</code></a>
+                    <th:block th:each="page:${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                      <a class="changePage" style="color: black" th:href="'/admin/payment/search?page=' + ${page} + '&condition='+${condition} + '&search='+${search}" th:if="${pagination.criteria.page != page}"><code th:text="${page}"></code></a>
+                      <code id="currentPage" th:unless="${pagination.criteria.page != page}" th:text="${page}"></code>
+                    </th:block>
+                    <a class="changePage" th:href="'/admin/payment/search?page=' + ${pagination.endPage + 1} + '&condition='+${condition} + '&search='+${search}" th:if="*{next}" style="color: black"><code>></code></a>
+                  </div>
+                  <form th:action="@{/admin/payment/search}" th:object="${criteria}" name="pageForm">
+                    <input type="hidden" th:field="*{page}">
+                    <input type="hidden" th:field="*{amount}">
+                  </form>
+                </div>
+              </th:block>
             </div>
           </div>
         </main>

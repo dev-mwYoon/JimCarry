@@ -63,4 +63,7 @@ public class PaymentDAO {
 
     // 창고 조회
     public List<PaymentDTO> findStorageInfo(PaymentDTO paymentDTO) {return paymentMapper.selectStorage(paymentDTO);}
+
+    // 총 결제 금액 조회
+    public int findTotalPay(){return paymentMapper.totalPay();}
 }
