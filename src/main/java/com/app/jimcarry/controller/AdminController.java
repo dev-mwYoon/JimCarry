@@ -73,6 +73,7 @@ public class AdminController {
         int amount = 5;
         /* 검색된 결과의 총 개수 */
         int total = 0;
+
 //        String type = null;
         /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO();
@@ -103,6 +104,8 @@ public class AdminController {
 
         int amount = 5;
         int total = 0;
+        int getAnswerTrue = 0;
+        int getAnswerFalse = 0;
 
         SearchDTO searchDTO = new SearchDTO();
         PageDTO pageDTO = null;
@@ -111,9 +114,17 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
+        // 답변대기 총 개수
+        getAnswerFalse = inquiryService.getAnswerFalse();
+        // 답변완료 총 개수
+        getAnswerTrue = inquiryService.getAnswerTrue();
+
         total = inquiryService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+
         model.addAttribute("total", total);
+        model.addAttribute("getAnswerTrue", getAnswerTrue);
+        model.addAttribute("getAnswerFalse", getAnswerFalse);
         model.addAttribute("inquiries", inquiryService.getDTOListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
         model.addAttribute("searchDTO", searchDTO);
@@ -135,25 +146,31 @@ public class AdminController {
         int amount = 5;
         /* 검색된 결과의 총 개수 */
         int total = 0;
+        int getAnswerTrue = 0;
+        int getAnswerFalse = 0;
 
         SearchDTO searchDTO = new SearchDTO();
         searchDTO.setTypes(new ArrayList<>(Arrays.asList(condition)));
-        searchDTO.setUserIdentification(search);
-        searchDTO.setUserAddress(search);
         searchDTO.setUserName(search);
+        searchDTO.setUserIdentification(search);
         PageDTO pageDTO = null;
-        log.info(search);
-        log.info(searchDTO.toString());
 //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
+
+        // 답변대기 총 개수
+        getAnswerFalse = inquiryService.getAnswerFalse();
+        // 답변완료 총 개수
+        getAnswerTrue = inquiryService.getAnswerTrue();
+
         total= inquiryService.getTotalBy(searchDTO);
-        log.info(String.valueOf(total));
 
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         log.info(inquiryService.getDTOListBy(pageDTO).toString());
         model.addAttribute("total", total);
+        model.addAttribute("getAnswerTrue", getAnswerTrue);
+        model.addAttribute("getAnswerFalse", getAnswerFalse);
         model.addAttribute("inquiries", inquiryService.getDTOListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
         model.addAttribute("searchDTO", searchDTO);
@@ -228,10 +245,9 @@ public class AdminController {
     public String payment(Criteria criteria, Model model) {
         int amount = 5;
         int total = 0;
-
+        int payAmount = 0;
         SearchDTO searchDTO = new SearchDTO();
 //        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
-//        searchDTO.setUserId(2L);
 
         PageDTO pageDTO = null;
 
@@ -239,12 +255,14 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = paymentService.getTotal();
+        total = paymentService.getTotalBy(searchDTO);
+        payAmount = paymentService.getTotalPay();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-//        model.addAttribute("getTotal", paymentService.getTotal());
+        model.addAttribute("payAmount", payAmount);
         model.addAttribute("payments", paymentService.getList(pageDTO));
         model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
 
         return "/admin/payment";
     }
@@ -254,6 +272,38 @@ public class AdminController {
     public boolean removePayment(String[] payIds){
         Arrays.asList(payIds).stream().forEach(data -> paymentService.removePayment(Long.valueOf(data)));
         return true;
+    }
+
+    /* 검색 + 페이징 처리*/
+    @GetMapping("payment/search")
+    public String paymentSearch(Criteria criteria, String search, String condition, Model model) {
+        int amount = 5;
+        int total = 0;
+        int payAmount = 0;
+
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList(condition)));
+        searchDTO.setStorageAddress(search);
+        searchDTO.setStorageSize(search);
+
+        PageDTO pageDTO = null;
+
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = paymentService.getTotalBy(searchDTO);
+        payAmount = paymentService.getTotalPay();
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("payAmount", payAmount);
+        model.addAttribute("payments", paymentService.getList(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
+        model.addAttribute("condition", condition);
+        model.addAttribute("search", search);
+
+        return "/admin/payment";
     }
 
     /*-----------리뷰관리----------*/
@@ -272,12 +322,12 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = reviewService.getTotal();
+        total = reviewService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-        model.addAttribute("getTotal", reviewService.getTotal());
-        model.addAttribute("reviews", reviewService.getList(pageDTO));
+        model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
 
         return "/admin/review";
     }
@@ -287,6 +337,34 @@ public class AdminController {
     public boolean removeReview(String[] reviewIds){
         Arrays.asList(reviewIds).stream().forEach(data -> reviewService.removeReview(Long.valueOf(data)));
         return true;
+    }
+    /* 검색 + 페이징 */
+    @GetMapping("review/search")
+    public String review(Criteria criteria, String search, String condition, Model model) {
+        int amount = 5;
+        int total = 0;
+
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList(condition)));
+        searchDTO.setReviewContext(search);
+        searchDTO.setReviewTitle(search);
+
+        PageDTO pageDTO = null;
+
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = reviewService.getTotalBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("reviews", reviewService.getListBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+        model.addAttribute("condition", condition);
+        model.addAttribute("search", search);
+        model.addAttribute("searchDTO", searchDTO);
+
+        return "/admin/review";
     }
 
     /*-----------창고관리----------*/

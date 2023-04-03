@@ -50,7 +50,7 @@
                     <div class="status-item-name">답변 대기중</div>
                   </div>
                   <div class="status-item-count">
-                    <a href="">0</a>
+                    <a href="" th:text="${getAnswerFalse}"></a>
                   </div>
                 </li>
                 <li class="status-list-item">
@@ -82,7 +82,7 @@
                     <div class="status-item-name">답변 완료</div>
                   </div>
                   <div class="status-item-count">
-                    <a href="">0</a>
+                    <a href="" th:text="${getAnswerTrue}"></a>
                   </div>
                 </li>
                 <li class="status-list-item">
@@ -137,9 +137,8 @@
                         <div class="select-box">
                           <button class="listbox-selecter">검색조건 선택</button>
                           <ul class="listbox displayNone" id="listbox">
-                            <li><button class="list">주소</button></li>
-                            <li><button class="list">이름</button></li>
                             <li><button class="list">아이디</button></li>
+                            <li><button class="list">이름</button></li>
                           </ul>
                           <input type="text" name="condition" style="display: none" value="" />
                         </div>

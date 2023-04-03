@@ -23,6 +23,22 @@ const createDOM = function(reviews){
 `
     return text;
 }
+$('#Glyph').on('click', function() {
+    const conditiontest = $('.listbox-selecter').text();
+
+    var condition;
+    if (conditiontest == '제목') {
+        condition = "reviewTitle";
+    } else if (conditiontest == '내용') {
+        condition = "reviewContext";
+    } else if( conditiontest == '검색조건 선택'){
+        alert("검색 조건을 선택해주세요.");
+        return;
+    }
+    $("input[name='condition']").val(condition);
+
+    document.searchForm.submit();
+});
 reviews.forEach((reviews, i) => {
     reviewTableContainer.append(
         createDOM(reviews)

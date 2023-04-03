@@ -25,6 +25,22 @@ const createDOM = function(payments){
 `
     return text;
 }
+$('#Glyph').on('click', function() {
+    const conditiontest = $('.listbox-selecter').text();
+
+    var condition;
+    if (conditiontest == '창고위치') {
+        condition = "storageAddress";
+    } else if (conditiontest == '창고크기') {
+        condition = "storageSize";
+    } else if( conditiontest == '검색조건 선택'){
+        alert("검색 조건을 선택해주세요.");
+        return;
+    }
+    $("input[name='condition']").val(condition);
+
+    document.searchForm.submit();
+});
 payments.forEach((payments, i) => {
     paymentTableContainer.append(
         createDOM(payments)

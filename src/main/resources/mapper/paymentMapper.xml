@@ -36,6 +36,8 @@
         user_gender, user_birth, user_name, pay_id, p.storage_id, payment_date, payment_amount from tbl_user u join tbl_payment p
         on u.user_id = p.user_id) pu join tbl_storage s
         on pu.storage_id = s.storage_id
+        <include refid="searchType"/>
+        order by pay_id
         <if test="page.searchDTO.isDesc">
             desc
         </if>
@@ -73,10 +75,15 @@
     <select id="total" resultType="int">
         select count(pay_id) from tbl_payment
     </select>
+    <!-- 총 결제 금액-->
+    <select id="totalPay" resultType="int">
+        select sum(payment_amount)
+        from tbl_payment;
+    </select>
 
     <!-- 검색조건에 맞는 총 갯수 -->
     <select id="totalBy" resultType="int">
-        select count(pay_id) from tbl_payment
+        select count(pay_id) from tbl_storage s join tbl_payment p on s.storage_id = p.storage_id
         <include refid="searchType"/>
     </select>
 
@@ -90,7 +97,9 @@
                 <bind name="dto" value="page.searchDTO"/>
             </otherwise>
         </choose>
-        <include refid="searchContext"/>
+        <if test="dto.types != null">
+            <include refid="searchContext"/>
+        </if>
     </sql>
     <!--  조건에 맞는 테이블 검색조건  -->
     <sql id="searchContext">
@@ -101,6 +110,12 @@
                     <choose>
                         <when test="type == 'userId'.toString()">
                             user_id = #{dto.userId}
+                        </when>
+                        <when test="type == 'storageSize'.toString()">
+                            storage_size like concat('%', #{dto.storageSize}, '%')
+                        </when>
+                        <when test="type == 'storageAddress'.toString()">
+                            storage_address like concat('%', #{dto.storageAddress}, '%')
                         </when>
                     </choose>
                 </trim>
