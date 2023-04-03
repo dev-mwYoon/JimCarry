@@ -28,13 +28,11 @@ $('#Glyph').on('click', function() {
 
     var condition;
     if (conditiontest == '창고위치') {
-        // $("input[name='searchType']").val('userName');
         condition = "storageAddress";
     } else if (conditiontest == '창고크기') {
-        // $("input[name='searchType']").val('userAddress');
         condition = "storageSize";
     } else if( conditiontest == '검색조건 선택'){
-        alert("제발 하지마");
+        alert("검색 조건을 선택해주세요.");
         return;
     }
     $("input[name='condition']").val(condition);

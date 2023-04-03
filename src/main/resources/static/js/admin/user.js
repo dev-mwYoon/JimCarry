@@ -28,13 +28,11 @@ $('#Glyph').on('click', function() {
 
     var condition;
     if (conditiontest == '이름') {
-        // $("input[name='searchType']").val('userName');
         condition = "userName";
     } else if (conditiontest == '주소') {
-        // $("input[name='searchType']").val('userAddress');
         condition = "userAddress";
     } else if( conditiontest == '검색조건 선택'){
-        alert("제발 하지마");
+        alert("검색 조건을 선택해주세요.");
         return;
     }
     $("input[name='condition']").val(condition);

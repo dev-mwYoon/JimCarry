@@ -1,6 +1,7 @@
 package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.NoticeVO;
 import com.app.jimcarry.mapper.NoticeMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,14 @@ public class NoticeDAO {
     public List<NoticeVO> findAll(PageDTO pageDTO){
         return noticeMapper.selectAll(pageDTO);
     }
+    public List<NoticeVO> findAllBy(PageDTO pageDTO){
+        return noticeMapper.selectAllBy(pageDTO);
+    }
 
 
     /* 공지사항 전체 개수 조회*/
     public int findTotal(){return noticeMapper.total();}
+    public int findTotalBy(SearchDTO searchDTO){return noticeMapper.totalBy(searchDTO);}
 
 
     /*공지사항 조회*/

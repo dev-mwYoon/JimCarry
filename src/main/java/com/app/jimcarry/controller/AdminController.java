@@ -105,20 +105,18 @@ public class AdminController {
         int total = 0;
 
         SearchDTO searchDTO = new SearchDTO();
-//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
-//        searchDTO.setUserId(2L);
-
         PageDTO pageDTO = null;
 
         if (criteria.getPage() == 0) {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = inquiryService.getTotal();
+        total = inquiryService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-        model.addAttribute("inquiries", inquiryService.getList(pageDTO));
+        model.addAttribute("inquiries", inquiryService.getDTOListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
         return "/admin/enquiry";
     }
     /* 문의사항 삭제 */
@@ -127,6 +125,41 @@ public class AdminController {
     public boolean removeinquiry(String[] inquiryIds){
         Arrays.asList(inquiryIds).stream().forEach(data -> inquiryService.removeInquiry(Long.valueOf(data)));
         return true;
+    }
+
+    // 검색 + 페이징 처리
+    @GetMapping("enquiry/search")
+    public String enquirySearch(Criteria criteria, String search, String condition, Model model) {
+
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 5;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList(condition)));
+        searchDTO.setUserIdentification(search);
+        searchDTO.setUserAddress(search);
+        searchDTO.setUserName(search);
+        PageDTO pageDTO = null;
+        log.info(search);
+        log.info(searchDTO.toString());
+//         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+        total= inquiryService.getTotalBy(searchDTO);
+        log.info(String.valueOf(total));
+
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        log.info(inquiryService.getDTOListBy(pageDTO).toString());
+        model.addAttribute("total", total);
+        model.addAttribute("inquiries", inquiryService.getDTOListBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
+        model.addAttribute("condition", condition);
+        model.addAttribute("search", search);
+        return "/admin/enquiry";
     }
 
 
@@ -144,11 +177,12 @@ public class AdminController {
             criteria.create(1, amount);
         }else criteria.create(criteria.getPage(), amount);
 
-        total= noticeService.getTotal();
+        total= noticeService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-        model.addAttribute("notices", noticeService.getList(pageDTO));
+        model.addAttribute("notices", noticeService.getListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
 
         return "/admin/notice";
     }
@@ -158,6 +192,35 @@ public class AdminController {
     public boolean removeNotice(String[] noticeIds) {
         Arrays.asList(noticeIds).stream().forEach(data -> noticeService.removeNotice(Long.valueOf(data)));
         return true;
+    }
+    /* 검색 + 페이징 처리*/
+    @GetMapping("notice/search")
+    public String noticeSearch(Criteria criteria, String search, String condition, Model model) {
+        /* 한 페이지에 보여줄 게시글 개수 */
+        int amount = 5;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+//        String type = null;
+        /* 추후에 setUserId 세션으로 변경 */
+        SearchDTO searchDTO = new SearchDTO();
+        searchDTO.setTypes(new ArrayList<>(Arrays.asList(condition)));
+        searchDTO.setNoticeTitle(search);
+        searchDTO.setNoticeWriter(search);
+        PageDTO pageDTO = null;
+//         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total= noticeService.getTotalBy(searchDTO);
+        pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        model.addAttribute("total", total);
+        model.addAttribute("notices", noticeService.getListBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+        model.addAttribute("searchDTO", searchDTO);
+        model.addAttribute("condition", condition);
+        model.addAttribute("search", search);
+        return "/admin/notice";
     }
 
     /*-----------결제관리----------*/
@@ -263,7 +326,6 @@ public class AdminController {
     /* 검색 + 페이징 처리*/
     @GetMapping("storage/search")
     public String storageSearch(Criteria criteria, String search, String condition, Model model) {
-
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 5;
         /* 검색된 결과의 총 개수 */

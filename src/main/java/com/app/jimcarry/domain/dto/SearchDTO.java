@@ -19,9 +19,12 @@ public class SearchDTO {
     private String storageAddress;
     private Integer storageAddressNumber;
     private String storageSize;
-    private String userName;
-    private String userAddress;
     private String storageAddressDetail;
+    private String userName;
+    private String userIdentification;
+    private String userAddress;
+    private String noticeWriter;
+    private String noticeTitle;
 
     public SearchDTO createTypes(List<String> types){
         setTypes(types);

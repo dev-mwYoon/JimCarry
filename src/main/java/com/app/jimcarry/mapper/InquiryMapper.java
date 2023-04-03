@@ -20,8 +20,8 @@ public interface InquiryMapper {
     //    전체조회
     public List<InquiryDTO> selectAll(@Param("page") PageDTO pageDTO);
 
-    //    전체조회 개수
-    //    public int totalBy();
+    //    전체 조건 조회
+    public List<InquiryDTO> selectAllBy(@Param("page") PageDTO pageDTO);
 
     //    조건조회
     public List<InquiryVO> selectBy(@Param("page") PageDTO pageDTO);
