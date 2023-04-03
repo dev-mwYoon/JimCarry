@@ -40,13 +40,15 @@ public class StorageController {
 
     /*창고등록*/
     @PostMapping("register")
-    public RedirectView storageSave(StorageDTO storageDTO, List<MultipartFile> multipartFiles, HttpSession httpSession) {
+    @ResponseBody
+    public String  storageSave(@RequestBody StorageDTO storageDTO, HttpSession httpSession) {
         storageDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
-        storageService.register(storageDTO);
+        // 자바 스크립트 파일 리스트
+        storageService.registerStorage(storageDTO);
 
 
         /*창고등록 후 이동할 페이지*/
-        return new RedirectView("/main/main");
+        return "/main/main";
     }
 
     /*헤더 지역별 창고 조회 */

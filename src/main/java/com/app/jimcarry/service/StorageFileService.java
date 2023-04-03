@@ -47,17 +47,27 @@ public class StorageFileService implements FileService {
     }
 
     /*파일 저장*/
-    @Transactional(rollbackFor = Exception.class)
+   /* @Transactional(rollbackFor = Exception.class)
     @LogStatus
     public void registerStorageFile(List<FileVO> files, Long storageId) {
-        /*storageFileDAO.deleteById(reviewId);*/
+        *//*storageFileDAO.deleteById(reviewId);*//*
+        files.stream().map(file -> new StorageFileVO().create(file, storageId))
+                .forEach(file -> {
+                    file.setFilePath(getPath());
+                    storageFileDAO.save(file);
+                });
+    }*/
+
+    /*창고등록 파일저장*/
+
+    @LogStatus
+    public void storageFile(List<FileVO> files, Long storageId) {
         files.stream().map(file -> new StorageFileVO().create(file, storageId))
                 .forEach(file -> {
                     file.setFilePath(getPath());
                     storageFileDAO.save(file);
                 });
     }
-
     //    현재 날짜 경로 구하기
     private String getPath() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
