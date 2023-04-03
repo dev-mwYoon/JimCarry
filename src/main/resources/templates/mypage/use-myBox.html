@@ -56,8 +56,7 @@
 <script th:inline="javascript">
     let payments = [[${payments}]];
     let total = [[${total}]];
-    console.log(total);
-    console.log(payments);
+    let $userName = [[${session.user.userName}]]
 
     $(".mypage-list-left-section-name").eq(1).css({
         "background-color": "rgb(250, 250, 250)",

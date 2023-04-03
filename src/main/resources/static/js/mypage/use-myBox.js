@@ -74,7 +74,7 @@ payments.forEach(payment => {
                 </li>
                 <li class="detail-order-content">
                     <span class="detail-order-content-text">이용고객</span>
-                    <span class="detail-order-content-text-next">세션/쿠키값 필요</span>
+                    <span class="detail-order-content-text-next">${$userName}</span>
                 </li>
                 <li class="detail-order-content">
                     <span class="detail-order-content-text">결제일시</span>
