@@ -18,10 +18,15 @@ import java.util.Map;
 public class StorageDAO {
 
     private final StorageMapper storageMapper;
+    private final StorageDTO storageDTO;
 
     //    추가
-    public void save(StorageVO storageVO) {
+   /* public void save(StorageVO storageVO) {
         storageMapper.insert(storageVO);
+    }*/
+
+    public void save(StorageDTO storageDTO) {
+        storageMapper.insert(storageDTO);
     }
 
     //    조회

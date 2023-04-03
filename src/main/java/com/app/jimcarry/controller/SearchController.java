@@ -12,6 +12,8 @@ import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
@@ -24,19 +26,6 @@ public class SearchController {
     private final ReviewService reviewService;
     private final StorageService storageService;
 
-    /* 헤더의 지역별을 눌렀을 때 지역별 창고 목록 검색 */
-    /*@GetMapping("list")
-    @ResponseBody
-    public RedirectView searchAll(@RequestParam("storageAddress") String storageAddress) {
-        return new RedirectView("/storages/list/" + storageAddress);
-    }*/
-
-/*    @PostMapping("register")
-    public RedirectView registerProduct(ProductVO productVO RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("productName", productVO.getProductName());
-        return new RedirectView("/ex/list");
-    }*/
-
     /*지역별 창고 목록 검색*/
     @PostMapping("list")
     @ResponseBody
@@ -47,7 +36,7 @@ public class SearchController {
         /* 검색된 결과의 총 개수 */
         int total = 0;
 
-        /* 추후에 setUserId 세션으로 변경 */
+        /*창고주소번호 */
         SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
         searchDTO.setStorageAddressNumber(storageAddressNumber);
 
@@ -93,5 +82,42 @@ public class SearchController {
         model.addAttribute("pagination", pageDTO);
 
         return "/detail-info/detail-info";
+    }
+    
+    /* 창고 검색 */
+    @PostMapping("keyword")
+    public RedirectView registerProduct(String storageAddress, RedirectAttributes redirectAttributes){
+        redirectAttributes.addAttribute("storageAddress", storageAddress);
+        return new RedirectView("/storages/search/keyword");
+    }
+
+
+    /* 창고 검색 목록*/
+    @GetMapping("keyword")
+    public String searchByKeyword(String storageAddress, Criteria criteria, Model model) {
+         /*한 페이지에 보여줄 게시글 개수 */
+        int amount = 3;
+        /* 검색된 결과의 총 개수 */
+        int total = 0;
+
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress(storageAddress);
+        log.info("너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐너 어디갔냐"+searchDTO.toString());
+
+        //         페이지 번호가 없을 때, 디폴트 1페이지
+        if (criteria.getPage() == 0) {
+            criteria.create(1, amount);
+        } else criteria.create(criteria.getPage(), amount);
+
+        total = storageService.getTotalBy(searchDTO);
+        PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+
+//        storageService.getStorageDTOBy(pageDTO);
+
+        model.addAttribute("total", total);
+        model.addAttribute("storages", storageService.getStorageDTOBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
+
+        return "main/search-page";
     }
 }

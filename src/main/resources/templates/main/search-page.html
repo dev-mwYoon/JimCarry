@@ -18,8 +18,10 @@
     <div class="search-title-search-div">
         <h3 class="search-title">전체보기</h3>
         <div class="search-window-layout">
-            <input class="search-detail-address" id="gnb_search" placeholder="상세주소를 입력해주세요" required="">
-            <button class="search-button" id="submit" aria-label="submit"></button>
+            <form action="/storages/search/keyword" name="searchForm" method="post">
+                <input class="search-detail-address" name="storageAddress" id="gnb_search" placeholder="주소를 입력해주세요" required="">
+                <button class="search-button" type="submit" id="submit" aria-label="submit"></button>
+            </form>
         </div>
     </div>
     <ul class="place-ul">
@@ -152,7 +154,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
-    let storage = [[${storage}]];
+    let storage = [[${storages}]];
     let headerStorageAddressNumber = [[${storageAddressNumber}]];
 </script>
 <script src="/js/main/search-page.js"></script>
