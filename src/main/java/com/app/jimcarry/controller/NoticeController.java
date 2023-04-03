@@ -86,23 +86,23 @@ public class NoticeController {
         return "/notice/qna-write";}
 
     /*파일 업로드 포함*/
-    /*@PostMapping("write")
+    @PostMapping("write")
     @ResponseBody
-    public RedirectView writeRegister(@RequestBody InquiryDTO inquiryDTO, HttpSession httpSession) throws IOException{
-        log.info("1234");
-        log.info(String.valueOf(httpSession.getAttribute("userId" )));
+    public String writeRegister(@RequestBody InquiryDTO inquiryDTO, HttpSession httpSession) throws IOException{
+       /* log.info("1234");
+        log.info(String.valueOf(httpSession.getAttribute("userId" )));*/
         inquiryDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 
-        inquiryService.register(inquiryDTO);
+        inquiryService.registerInquiry(inquiryDTO);
 
 
 
-        *//*userService.login;*//*
+     /*   userService.login;*/
 
-        *//*문의 등록후 이동페이지*//*
-        return new RedirectView ("/notice/list");
+      /*  문의 등록후 이동페이지*/
+        return "/notice/list";
 
-    }*/
+    }
 
     @GetMapping("info")
     public String info() { return "/notice/service-use-info";}

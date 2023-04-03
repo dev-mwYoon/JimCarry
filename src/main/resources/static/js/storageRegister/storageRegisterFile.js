@@ -61,21 +61,3 @@ $submitBtn.on("click", function () {
 
 });
 
-
-    /* 리뷰 Id 확인 */
-    /*storageId = reviews[contentIndex]?.reviewId;*/
- /* storageId = storageDTO.storageId
-    /!* 새로 작성 *!/
-    if(storageId)  {
-        config = {
-            url: `/storages/register`,
-            method: "POST",
-            data: JSON.stringify(storageDTO),
-            contentType: "application/json; charset=utf-8",
-        };
-    }
-
-    $doAjax(config, (result) => {
-        location.href = result;
-    });
-});*/
