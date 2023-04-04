@@ -56,15 +56,6 @@ function createDOM(reviews) {
     })
     return text;
 };
-/* html script에서 받아준 모델객체 */
-
-// reviews.forEach((review, i) => {
-//     reviewContainer.append(
-//         createDOM(review, reviewFile[i])
-//     );
-// });
-
-// createDOM(reviews, reviewFiles);
 reviewContainer.empty();
 reviewContainer.append(createDOM(reviews));
 
@@ -79,7 +70,29 @@ $('.reserve-btn').click(function () {
 })
 
 
+/* 창고 이미지 불러오기 */
+/* 목록이 추가될 div 부모 */
+const storageContainer = $('.sharebox-img-container').eq(0);
 
+function createList(files) {
+    let text = '';
+    files.forEach((file, i) => {
+        text += `
+      <img class="review-img" src="/storages/search/files/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}"></img>
+    `;
+    });
+    return text;
+}
+
+/*
+$('.review-img').on("click", function(e,i) {
+    console.log("이미지 클릭함");
+    $('#expandedImg').eq(i).css("src", "/storages/search/files/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}");
+});
+*/
+
+storageContainer.empty();
+storageContainer.append(createList(files));
 
 
 
