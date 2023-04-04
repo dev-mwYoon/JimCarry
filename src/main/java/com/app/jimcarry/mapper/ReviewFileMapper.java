@@ -1,5 +1,6 @@
 package com.app.jimcarry.mapper;
 
+import com.app.jimcarry.domain.dto.ReviewFileDTO;
 import com.app.jimcarry.domain.vo.ReviewFileVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,5 +19,5 @@ public interface ReviewFileMapper {
     public void delete(Long reviewId);
     
     /* 창고 아이디로 조회 */
-    public List<ReviewFileVO> selectByStorageId(Long storageId);
+    public List<ReviewFileVO> selectByReviewId(Long reviewId);
 }

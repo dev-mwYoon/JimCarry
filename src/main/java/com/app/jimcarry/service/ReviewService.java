@@ -65,11 +65,11 @@ public class ReviewService {
         reviewDAO.setReviewVO(reviewDTO.createVO());
 
         /* 들어온 파일이 아예 없을 때 */
-        if(reviewDTO.getFiles().size() < 1) {
+        if(reviewDTO.getFileVOS().size() < 1) {
             return;
         }
         reviewFileDAO.deleteById(reviewDTO.getReviewId());
-        reviewDTO.getFiles().stream().map(file -> new ReviewFileVO().create(file, reviewDTO.getReviewId()))
+        reviewDTO.getFileVOS().stream().map(file -> new ReviewFileVO().create(file, reviewDTO.getReviewId()))
                 .forEach(file -> { file.setFilePath(getPath()); reviewFileDAO.save(file); });
 
     }
@@ -79,7 +79,7 @@ public class ReviewService {
     public void registerReview(ReviewDTO reviewDTO) {
         ReviewVO newReview = reviewDTO.createVO();
         reviewDAO.save(newReview);
-        reviewDTO.getFiles().stream().map(file -> new ReviewFileVO().create(file, newReview.getReviewId()))
+        reviewDTO.getFileVOS().stream().map(file -> new ReviewFileVO().create(file, newReview.getReviewId()))
                 .forEach(file -> { file.setFilePath(getPath()); reviewFileDAO.save(file); });
     }
 

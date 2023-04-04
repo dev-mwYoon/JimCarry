@@ -205,8 +205,8 @@
 
                                 <p class="review-context">매번 주문하는 제품이에요</p>
 
-                                <div class="review-img-container">
-                                    <img class="review-photo">
+                                <div class="review-img-container" th:each="reviewFile: ${reviewFile}">
+                                    <img th:src="@{/storages/search/files/display(fileName=${reviewFile.reviewFilePath} + '/' + ${reviewFile.reviewFileUuid} + '_' + ${reviewFile.reviewFileOrgName})}" class="review-photo" >
                                     <img class="review-photo">
                                     <!-- <button class="css-1cnkf63 e36z05c2"></button> -->
                                 </div>
@@ -257,12 +257,13 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
-    let reviews = [[${reviews}]];
     let storages = [[${storages}]];
+    let reviews = [[${reviews}]];
+    // let reviewFiles = [[${reviewFile}]];
 </script>
 <script src="/js/detail/changeimg.js"></script>
 <script src="/js/main/header.js"></script>
 <script src="/js/detail/count.js"></script>
-<script src="/js/detail/detailInfo.js"></script>
+<script th:inline="javascript" src="/js/detail/detailInfo.js"></script>
 
 </html>

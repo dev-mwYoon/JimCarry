@@ -1,16 +1,13 @@
 package com.app.jimcarry.controller;
 
-import com.app.jimcarry.domain.dto.PageDTO;
-import com.app.jimcarry.domain.dto.PaginationDTO;
-import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.dto.StorageDTO;
+import com.app.jimcarry.domain.dto.*;
 import com.app.jimcarry.domain.vo.Criteria;
+import com.app.jimcarry.service.ReviewFileService;
 import com.app.jimcarry.service.ReviewService;
 import com.app.jimcarry.service.StorageFileService;
 import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -21,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("storages/search/*")
@@ -31,6 +29,7 @@ public class SearchController {
     private final ReviewService reviewService;
     private final StorageService storageService;
     private final StorageFileService storageFileService;
+    private final ReviewFileService reviewFileService;
 
     /*지역별 창고 목록 검색*/
     @PostMapping("list")
@@ -86,11 +85,15 @@ public class SearchController {
 
         total = reviewService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+        List<ReviewDTO> reviewDTOList = reviewService.getListBy(pageDTO);
+        log.info(reviewFileService.getListByReviewId(reviewDTOList.get(0).getReviewId()).get(0).toString());
         model.addAttribute("total", total);
-        model.addAttribute("reviews", reviewService.getListBy(pageDTO));
+        model.addAttribute("pagination", pageDTO);
         model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
         model.addAttribute("file", storageFileService.getByStorageId(storageId));
-        model.addAttribute("pagination", pageDTO);
+
+        model.addAttribute("reviews", insertFileVOS(reviewDTOList));
+//        model.addAttribute("reviewFile", reviewFileService.getListByStorageId(storageId));
 
         return "/detail-info/detail-info";
     }
@@ -135,7 +138,14 @@ public class SearchController {
     @GetMapping("files/display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        log.info("display display display displaydisplay displaydisplay displaydisplay displaydisplay displaydisplay display");
         return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+    }
+
+    /*dto set*/
+    private List<ReviewDTO> insertFileVOS(List<ReviewDTO> dtos){
+        return dtos.stream().map(dto -> {
+            dto.setFileVOS(reviewFileService.getListByReviewId(dto.getReviewId()));
+            return dto;
+        }).collect(Collectors.toList());
     }
 }
