@@ -6,16 +6,20 @@ import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.Criteria;
 import com.app.jimcarry.service.ReviewService;
+import com.app.jimcarry.service.StorageFileService;
 import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -26,6 +30,7 @@ public class SearchController {
 
     private final ReviewService reviewService;
     private final StorageService storageService;
+    private final StorageFileService storageFileService;
 
     /*지역별 창고 목록 검색*/
     @PostMapping("list")
@@ -84,6 +89,7 @@ public class SearchController {
         model.addAttribute("total", total);
         model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
+        model.addAttribute("file", storageFileService.getByStorageId(storageId));
         model.addAttribute("pagination", pageDTO);
 
         return "/detail-info/detail-info";
@@ -123,5 +129,13 @@ public class SearchController {
         model.addAttribute("pagination", pageDTO);
 
         return "main/search-page";
+    }
+
+    /*창고 이미지 불러오기*/
+    @GetMapping("files/display")
+    @ResponseBody
+    public byte[] display(String fileName) throws IOException {
+        log.info("display display display displaydisplay displaydisplay displaydisplay displaydisplay displaydisplay display");
+        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 }

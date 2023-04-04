@@ -2,6 +2,7 @@ package com.app.jimcarry.domain.dto;
 
 import com.app.jimcarry.domain.vo.FileVO;
 import com.app.jimcarry.domain.vo.InquiryVO;
+import com.app.jimcarry.domain.vo.StorageFileVO;
 import com.app.jimcarry.domain.vo.StorageVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -37,7 +38,7 @@ public class StorageDTO {
     private Integer storageAddressNumber;
     private BigInteger reviewId;
     private Integer reviewCount;
-    private List<FileVO> files;
+    private List<StorageFileVO> files;
 
 
 

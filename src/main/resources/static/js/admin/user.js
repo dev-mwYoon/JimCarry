@@ -32,7 +32,6 @@ $('#Glyph').on('click', function() {
     } else if (conditiontest == '주소') {
         condition = "userAddress";
     } else if( conditiontest == '검색조건 선택'){
-        alert("검색 조건을 선택해주세요.");
         return;
     }
     $("input[name='condition']").val(condition);
@@ -144,29 +143,10 @@ $(".content__detail__btn").on('click', function () {
                       </div>
                       <form action="">
                         <main class="modal__main">
-                          <div class="modal__profile__top">
+                          <!--<div class="modal__profile__top">
                             <h4>수정가능</h4>
-                            <div class="user__profile">
-                              <h5>아이디</h5>
-                              <div class="user__profile__input">
-                                <input type="text" name="userIdentification" value="${userdetail.userIdentification}" />
-                              </div>
-                            </div>
-                            <div class="user__profile">
-                              <h5>이메일</h5>
-                              <div class="user__profile__input">
-                                <input type="text" name="userEmail" value="${userdetail.userEmail}" />
-                              </div>
-                            </div>
-                            <div class="user__profile">
-                              <h5>전화번호</h5>
-                              <div class="user__profile__input">
-                                <input type="text" name="userPhone" value="${userdetail.userPhone}" />
-                              </div>
-                            </div>
-                          </div>
+                          </div>-->
                           <div class="modal__profile__bottom">
-                            <h4>수정 불가능</h4>
                             <div class="user__profile">
                               <h5>이름</h5>
                               <div class="user__profile__input">
@@ -185,9 +165,39 @@ $(".content__detail__btn").on('click', function () {
                                 <input type="text" name="" value="${userdetail.userGender}" readonly="true" />
                               </div>
                             </div>
+                            <div class="user__profile">
+                              <h5>아이디</h5>
+                              <div class="user__profile__input">
+                                <input type="text" name="userIdentification" value="${userdetail.userIdentification}" />
+                              </div>
+                            </div>
+                            <div class="user__profile">
+                              <h5>이메일</h5>
+                              <div class="user__profile__input">
+                                <input type="text" name="userEmail" value="${userdetail.userEmail}" />
+                              </div>
+                            </div>
+                            <div class="user__profile">
+                              <h5>전화번호</h5>
+                              <div class="user__profile__input">
+                                <input type="text" name="userPhone" value="${userdetail.userPhone}" />
+                              </div>
+                            </div>
+                            <div class="user__profile">
+                              <h5>주소</h5>
+                              <div class="user__profile__input">
+                                <input type="text" name="userAddress" value="${userdetail.userAddress}" />
+                              </div>
+                            </div>
+                            <div class="user__profile">
+                              <h5>상세주소</h5>
+                              <div class="user__profile__input">
+                                <input type="text" name="userAddressDetail" value="${userdetail.userAddressDetail}" />
+                              </div>
+                            </div>
                           </div>
                           <div class="user__profile__button">
-                            <button class="button__type_2 button__color__green">수정완료</button>
+                            <button type="button" class="button__type_2 button__color__green close_detailModal">닫기</button>
                           </div>
                         </main>
                       </form>
@@ -195,6 +205,14 @@ $(".content__detail__btn").on('click', function () {
                   </section>
                 `
             );
+            /* 모달 닫는 이벤트 */
+            /* 추후 외부로 빼야함 */
+            $('#modal-close').on('click', function () {
+                $modalStage.fadeOut(500);
+            });
+            $('.close_detailModal').on('click', function () {
+                $modalStage.fadeOut(500);
+            });
 
         }
     });
@@ -203,13 +221,7 @@ $(".content__detail__btn").on('click', function () {
 
 });
 console.log($modalStage);
-/* 모달 닫는 이벤트 */
-/* 추후 외부로 빼야함 */
-console.log($('a#modal-close'));
-$('a#modal-close').on('click', function () {
-    console.log($('#modal-close'));
-    $modalStage.fadeOut(500);
-});
+
 
 /* 상세보기 모달 내용 submit 이벤트 */
 $('#completeBtn').on('click', function (e) {

@@ -51,6 +51,9 @@ public class InquiryService {
     public InquiryVO getInquiry(Long inquiryId) {
         return inquiryDAO.findById(inquiryId);
     }
+    public InquiryDTO getDTOInquiryId(Long inquiryId) {
+        return inquiryDAO.findDTOInquiryId(inquiryId);
+    }
 
     //    전체조회
     @LogStatus
@@ -86,6 +89,9 @@ public class InquiryService {
     @LogStatus
     public int getTotalBy(SearchDTO searchDTO) {
         return inquiryDAO.findTotalBy(searchDTO);
+    }
+    public int getTotalByCount(SearchDTO searchDTO) {
+        return inquiryDAO.findTotalByCount(searchDTO);
     }
 
 

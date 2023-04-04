@@ -119,7 +119,7 @@ public class AdminController {
         // 답변완료 총 개수
         getAnswerTrue = inquiryService.getAnswerTrue();
 
-        total = inquiryService.getTotalBy(searchDTO);
+        total = inquiryService.getTotalByCount(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
 
         model.addAttribute("total", total);
@@ -164,7 +164,7 @@ public class AdminController {
         // 답변완료 총 개수
         getAnswerTrue = inquiryService.getAnswerTrue();
 
-        total= inquiryService.getTotalBy(searchDTO);
+        total= inquiryService.getTotalByCount(searchDTO);
 
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         log.info(inquiryService.getDTOListBy(pageDTO).toString());
@@ -255,7 +255,7 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = paymentService.getTotalBy(searchDTO);
+        total = paymentService.getTotalPayCount(searchDTO);
         payAmount = paymentService.getTotalPay();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
@@ -292,7 +292,7 @@ public class AdminController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = paymentService.getTotalBy(searchDTO);
+        total = paymentService.getTotalPayCount(searchDTO);
         payAmount = paymentService.getTotalPay();
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);

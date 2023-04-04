@@ -18,4 +18,9 @@ public class StorageFileServiceTest {
     @Test
     public void getFile() {storageFileService.getFile(1L);}
 
+
+    @Test
+    public void getByStorageId() {
+        log.info(storageFileService.getByStorageId(31L).toString());
+    }
 }
