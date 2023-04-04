@@ -222,3 +222,22 @@ const checkRegion = function() {
         $('input[name=storageAddressNumber]').val(5);
     }
 }
+
+/*날짜 제한 설정하기*/
+
+// 지금 날짜를 밀리초로
+var now_utc = Date.now();
+//getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+var timeoff = new Date().getTimezoneOffset()*60000; // 분 단위를 밀리초로 반환
+
+var today = new Date(now_utc-timeoff).toISOString().split("T")[0];
+//오늘자 이후로 선택 안됨
+document.getElementById("inputDateStart").setAttribute("min", today);
+
+// 지금 날짜를 밀리초로
+var now_utc = Date.now();
+//getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+var timeoff = new Date().getTimezoneOffset()*60000; // 분 단위를 밀리초로 반환
+
+var today = new Date(now_utc-timeoff).toISOString().split("T")[0];
+document.getElementById("inputDateEnd").setAttribute("min", today);

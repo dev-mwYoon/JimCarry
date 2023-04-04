@@ -66,6 +66,6 @@ let $fileAjax = (contentId, table) => {
         contentType: "application/json; charset=utf-8",
     }
 
-    $doAjax(config, (result) => {
-    });
+ /*   $doAjax(config, (result) => {
+    });*/
 }
