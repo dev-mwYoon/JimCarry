@@ -3,15 +3,13 @@ package com.app.jimcarry.domain.dao;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.vo.FileVO;
 import com.app.jimcarry.domain.vo.PaymentVO;
-import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.mapper.PaymentMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @Repository

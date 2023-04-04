@@ -143,4 +143,5 @@
         FROM tbl_payment p
         JOIN tbl_storage s ON p.storage_id = s.storage_id
     </select>
+
 </mapper>

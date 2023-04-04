@@ -3,6 +3,7 @@ package com.app.jimcarry.mapper;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.vo.FileVO;
 import com.app.jimcarry.domain.vo.PaymentVO;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
