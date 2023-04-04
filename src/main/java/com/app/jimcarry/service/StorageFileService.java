@@ -73,5 +73,10 @@ public class StorageFileService implements FileService {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
 
+    /*창고 아이디로 조회*/
+    public List<StorageFileVO> getByStorageId(Long storageId) {
+        return storageFileDAO.findByStorageId(storageId);
+    }
+
 
 }
