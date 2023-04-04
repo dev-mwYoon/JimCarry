@@ -6,6 +6,7 @@ import com.app.jimcarry.domain.dao.StorageDAO;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.PaymentDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.vo.FileVO;
 import com.app.jimcarry.domain.vo.PaymentVO;
 import com.app.jimcarry.domain.vo.StorageVO;
 import com.app.jimcarry.domain.vo.UserVO;
@@ -102,6 +103,9 @@ public class PaymentService {
 
     // 창고 조회
     public PaymentDTO getStorage(PaymentDTO paymentDTO){return (PaymentDTO) paymentDAO.findStorageInfo(paymentDTO);}
+
+    // 창고 파일 조회
+//    public FileVO getStorage(Long storageId){return paymentDAO.findStorageInfo(storageId);}
 
     private void setPaymentDTO(PaymentDTO paymentDTO, StorageVO storageVO) {
         paymentDTO.setStoragePrice(storageVO.getStoragePrice());

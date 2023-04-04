@@ -90,6 +90,7 @@ public class SearchController {
         model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
         model.addAttribute("file", storageFileService.getByStorageId(storageId));
+
         model.addAttribute("pagination", pageDTO);
 
         return "/detail-info/detail-info";

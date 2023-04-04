@@ -16,6 +16,7 @@
     <div>
         <header th:insert="~{main/header.html :: mainHeader}"></header>
 
+
             <div class="container-pay">
                 <h2 class="big">예약정보</h2>
                 <div class="wrapper">
@@ -25,7 +26,7 @@
                         </div>
 
                         <div class="sharebox-payment-container">
-                            <img class="sharbox-photo" src="/storages/search/files/display?fileName=${$file.filePath}/${$file.fileUuid}_${$file.fileOrgName}" alt="image">
+                            <img class="sharbox-photo" th:src="@{/storages/search/files/display(fileName=${file[0].filePath} + '/' + ${file[0].fileUuid} + '_' + ${file[0].fileOrgName})}" alt="image">
                             <span class="sharebox-size-wrap">
                                 <span class="sharebox-size" th:text="${storageTitle}">[이비에] KF94 새부리형 마스크 베이지 대형 10매</span>
                             </span>
