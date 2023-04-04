@@ -131,9 +131,9 @@
                   </th>
                   <th class="content__id">공지번호</th>
                   <th>공지 제목</th>
-                  <th>공지 내용</th>
                   <th>공지 등록일</th>
                   <th>공지 수정일</th>
+                  <th>공지 작성자</th>
                   <th></th>
                 </tr>
 
@@ -206,12 +206,10 @@
     let notices = [[${notices}]];
     let $page = [[${pagination.criteria.page}]];
   </script>
-  <script src="/js/admin/notice.js"></script>
-
-
   <!-- 웹에디터 API -->
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-  <script>
+  <script src="/js/admin/notice.js"></script>
+  <!--<script>
     console.log('썸머노트');
     $('#summernote').summernote({
       placeholder: '공지사항 내용 작성',
@@ -227,5 +225,5 @@
         ['insert', ['link']],
       ],
     });
-  </script>
+  </script>-->
 </html>

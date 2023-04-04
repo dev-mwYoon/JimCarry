@@ -42,6 +42,18 @@
         delete from tbl_notice
         where notice_id = #{noticeId}
     </delete>
+    <!--수정-->
+    <update id="update" useGeneratedKeys="true" keyProperty="noticeId">
+        update tbl_notice
+        set notice_title=#{noticeTitle}, notice_content=#{noticeContent}, notice_writer=#{noticeWriter}, notice_regist=curdate(), notice_update=curdate()
+        where notice_id=#{noticeId}
+    </update>
+    <!--공지사항 작성-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="noticeId">
+        insert into tbl_notice
+        (notice_title, notice_content, notice_writer, notice_regist)
+        values(#{noticeTitle}, #{noticeContent}, #{noticeWriter}, curdate());
+    </insert>
 
     <!--  PageDTO인지 SearchDTO인지 판별  -->
     <sql id="searchType">

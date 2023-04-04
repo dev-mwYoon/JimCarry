@@ -33,6 +33,9 @@ public class StorageDAO {
     public StorageVO findById(Long storageId) {
         return storageMapper.select(storageId);
     }
+    public StorageDTO findStorageById(Long storageId) {
+        return storageMapper.selectStorageById(storageId);
+    }
 
     //    조회
     public List<StorageVO> findAll(PageDTO pageDTO) {
@@ -55,6 +58,8 @@ public class StorageDAO {
         return storageMapper.totalBy(searchDTO);
     }
     //    수정
+
+    public void updateBy(StorageVO storageVO){ storageMapper.update(storageVO);}
 
     //    삭제
     public void deleteById(Long storageId) {

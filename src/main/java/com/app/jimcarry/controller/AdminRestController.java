@@ -1,22 +1,13 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.dao.PaymentDAO;
-import com.app.jimcarry.domain.dto.InquiryDTO;
-import com.app.jimcarry.domain.dto.PageDTO;
-import com.app.jimcarry.domain.dto.PaymentDTO;
-import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.vo.Criteria;
-import com.app.jimcarry.domain.vo.InquiryVO;
-import com.app.jimcarry.domain.vo.UserVO;
-import com.app.jimcarry.service.InquiryService;
-import com.app.jimcarry.service.PaymentService;
-import com.app.jimcarry.service.UserService;
+import com.app.jimcarry.domain.dto.*;
+import com.app.jimcarry.domain.vo.*;
+import com.app.jimcarry.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +22,11 @@ public class AdminRestController {
     private final UserService userService;
     private final PaymentService paymentService;
     private final InquiryService inquiryService;
+    private final NoticeService noticeService;
+    private final StorageService storageService;
+    private final StorageFileService storageFileService;
+    private final ReviewService reviewService;
+
 
 
 
@@ -76,4 +72,26 @@ public class AdminRestController {
         PaymentDTO paydetail = Optional.ofNullable(paymentService.getPaymentId(payId)).get();
         return paydetail;
     }
+    /* 공지사항 상세보기 */
+    @PostMapping("notice/detail")
+    public NoticeVO getNotice(Long noticeId){
+        NoticeVO noticedetail = Optional.ofNullable(noticeService.getNotice(noticeId)).get();
+        return noticedetail;
+    }
+    /* 창고관리 상세보기 */
+    @PostMapping("storage/detail")
+    public StorageDTO getStorage(@RequestParam Long storageId){
+
+        StorageDTO storagedetail = Optional.ofNullable(storageService.getStorageById(storageId)).get();
+        storagedetail.setFiles(storageFileService.getByStorageId(storageId));
+        log.info(storagedetail.getFiles().toString());
+        return storagedetail;
+    }
+    /* 리뷰관리 상세보기*/
+    @PostMapping("review/detail")
+    public ReviewVO getReview(Long reviewId){
+        ReviewVO reviewdetail = Optional.ofNullable(reviewService.getReview(reviewId)).get();
+        return reviewdetail;
+    }
+
 }

@@ -1,15 +1,18 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.domain.dto.PageDTO;
+import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
-import com.app.jimcarry.domain.vo.Criteria;
-import com.app.jimcarry.domain.vo.UserVO;
+import com.app.jimcarry.domain.vo.*;
 import com.app.jimcarry.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -239,7 +242,18 @@ public class AdminController {
         model.addAttribute("search", search);
         return "/admin/notice";
     }
-
+    /*공지사항 수정*/
+    @PostMapping("notice/update")
+    public RedirectView setNotice(NoticeVO noticeVO){
+        noticeService.setNotice(noticeVO);
+        return new RedirectView("/admin/notice");
+    }
+    /* 공지사항 작성 */
+    @PostMapping("notice/register")
+    public RedirectView registerNotice(NoticeVO noticeVO) {
+        noticeService.registerNotice(noticeVO);
+        return new RedirectView("/admin/notice");
+    }
     /*-----------결제관리----------*/
     @GetMapping("payment")
     public String payment(Criteria criteria, Model model) {
@@ -366,8 +380,16 @@ public class AdminController {
 
         return "/admin/review";
     }
+    /*공지사항 수정*/
+    @PostMapping("review/update")
+        public RedirectView setReview(ReviewVO reviewVO) {
+            // 리뷰 수정 기능 구현
+            reviewService.registerSet(reviewVO);
 
-    /*-----------창고관리----------*/
+        return new RedirectView("/admin/review");
+    }
+
+            /*-----------창고관리----------*/
     @GetMapping("storage")
     public String storage(Criteria criteria, Model model) {
 
@@ -401,6 +423,35 @@ public class AdminController {
         Arrays.asList(storageIds).stream().forEach(data -> storageService.removeStorage(Long.valueOf(data)));
         return true;
     }
+    /* 창고 수정*/
+    @PostMapping("storage/update")
+    @ResponseBody
+    public RedirectView updateStorage(@RequestParam("storageId") Long storageId,
+                                      @RequestParam("storageAddress") String storageAddress,
+                                      @RequestParam("storageTitle") String storageTitle,
+                                      @RequestParam("userId") Long userId,
+                                      @RequestParam("userName") String userName,
+                                      @RequestParam("userPhone") String userPhone,
+                                      @RequestParam("storageEndDate") String storageEndDate,
+                                      @RequestParam("storagePrice") Integer storagePrice,
+                                      @RequestParam("storageUseDate") String storageUseDate){
+
+        StorageVO storageVO = storageService.getStorage(storageId);
+        storageVO.setStorageTitle(storageTitle);
+        storageVO.setStorageAddress(storageAddress);
+        storageVO.setStoragePrice(storagePrice);
+        storageVO.setStorageEndDate(storageEndDate);
+        storageVO.setStorageUseDate(storageUseDate);
+        storageService.setStorage(storageVO);
+
+        UserVO userVO = userService.getUser(userId);
+        userVO.setUserName(userName);
+        userVO.setUserPhone(userPhone);
+        userService.updateUser(userVO);
+
+        return new RedirectView("/admin/storage");
+    }
+
     /* 검색 + 페이징 처리*/
     @GetMapping("storage/search")
     public String storageSearch(Criteria criteria, String search, String condition, Model model) {

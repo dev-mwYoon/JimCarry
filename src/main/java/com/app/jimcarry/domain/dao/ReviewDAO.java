@@ -22,6 +22,7 @@ public class ReviewDAO {
     public void save(ReviewVO reviewVO) { reviewMapper.insert(reviewVO); }
     /* 리뷰 조회 */
     public ReviewVO findById(Long reviewId) { return reviewMapper.select(reviewId); }
+    public ReviewDTO findByDTOId(Long reviewId) { return reviewMapper.selectAllById(reviewId); }
 
     /* 리뷰 목록 조회*/
     public List<ReviewDTO> findAll(PageDTO pageDTO) {

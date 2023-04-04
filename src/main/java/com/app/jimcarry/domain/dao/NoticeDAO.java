@@ -36,4 +36,10 @@ public class NoticeDAO {
     public void deleteById(Long noticeId){
         noticeMapper.delete(noticeId);
     }
+
+    /*공지사항 수정*/
+    public void updateById(NoticeVO noticeVO){ noticeMapper.update(noticeVO);}
+
+    /*공지사항 작성*/
+    public void save(NoticeVO noticeVO){noticeMapper.insert(noticeVO);}
 }

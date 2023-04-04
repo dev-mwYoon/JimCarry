@@ -23,4 +23,10 @@ public interface NoticeMapper {
 
     /* 공지사항 삭제*/
     public void delete(Long noticeId);
+
+    /*공지사항 수정*/
+    public void update(NoticeVO NoticeVO);
+
+    /*공지사항 작성*/
+    public void insert(NoticeVO NoticeVO);
 }
