@@ -19,8 +19,7 @@
     <div class="container">
         <main class="wrap">
             <div class="img-wrap">
-                <th:block th:each="file : ${storages.files}">.
-                <img th:src="'/storages/search/files/display?fileName=' + ${file.filePath} + '/' + ${file.fileUuid} + '_' + ${file.fileOrgName}" alt="image">
+                <img th:src="@{/storages/search/files/display(fileName=${file[0].storageFilePath} + '/' + ${file[0].storageFileUuid} + '_' + ${file[0].storageFileOrgName})}" />
             </div>
 
             <section class="content-container">

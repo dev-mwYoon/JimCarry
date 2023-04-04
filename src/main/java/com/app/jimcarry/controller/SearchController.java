@@ -89,6 +89,7 @@ public class SearchController {
         model.addAttribute("total", total);
         model.addAttribute("reviews", reviewService.getListBy(pageDTO));
         model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
+        model.addAttribute("file", storageFileService.getByStorageId(storageId));
         model.addAttribute("pagination", pageDTO);
 
         return "/detail-info/detail-info";
@@ -134,6 +135,7 @@ public class SearchController {
     @GetMapping("files/display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
+        log.info("display display display displaydisplay displaydisplay displaydisplay displaydisplay displaydisplay display");
         return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
     }
 }

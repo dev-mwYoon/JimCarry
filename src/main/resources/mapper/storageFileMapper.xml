@@ -8,9 +8,9 @@
     </insert>
 
     <!--창고 아이디로 조회-->
-    <select id="selectByStorageId" resultType="StorageFileVO">
+    <select id="selectByStorageId" resultType="storageFileVO">
         select storage_file_id, storage_id, storage_file_path, storage_file_org_name, storage_file_uuid
         from tbl_storage_file
-        where storage_id = #{storageId};
+        where storage_id = #{storageId}
     </select>
 </mapper>

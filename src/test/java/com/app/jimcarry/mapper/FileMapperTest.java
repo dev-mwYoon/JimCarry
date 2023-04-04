@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class FileMapperTest {
 
     @Autowired
-    FileMapper fileMapper;
+    StorageFileMapper storageFileMapper;
 
     /*조회*/
     @Test
     public void select(){
-        fileMapper.select(1L);
+        log.info("여깅겨ㅐㅇ너미러ㅏㅇ널미ㅏㅇ드렁ㅁ렁ㄴㄴ완ㄹ완ㅇㅁ싿" + storageFileMapper.selectByStorageId(31L));
     }
 }
