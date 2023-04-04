@@ -26,6 +26,7 @@ public class AdminRestController {
     private final StorageService storageService;
     private final StorageFileService storageFileService;
     private final ReviewService reviewService;
+    private final ReviewFileService reviewFileServicece;
 
 
 
@@ -84,13 +85,13 @@ public class AdminRestController {
 
         StorageDTO storagedetail = Optional.ofNullable(storageService.getStorageById(storageId)).get();
         storagedetail.setFiles(storageFileService.getByStorageId(storageId));
-        log.info(storagedetail.getFiles().toString());
         return storagedetail;
     }
     /* 리뷰관리 상세보기*/
     @PostMapping("review/detail")
-    public ReviewVO getReview(Long reviewId){
-        ReviewVO reviewdetail = Optional.ofNullable(reviewService.getReview(reviewId)).get();
+    public ReviewDTO getReview(Long reviewId){
+        ReviewDTO reviewdetail = Optional.ofNullable(reviewService.getReviewById(reviewId)).get();
+        reviewdetail.setFileVOS(reviewFileServicece.getListByReviewId(reviewId));
         return reviewdetail;
     }
 

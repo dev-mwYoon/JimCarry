@@ -88,15 +88,21 @@ $(".content__detail__btn").on('click', function () {
                               <input type="text" name="storageAddress" value="${storagedetail.storageAddress}" readonly="true" />
                             </div>
                             <div class="content__main">
+                            <div class="content__img__wrap">
                               <!--이미지 들어갈 곳-->
-                                  <div class="content__img__wrap">
-                                    <label class="attach">
-                                      <div class="content__img">
-                                        <img src="/storages/search/files/display?fileName=${storagedetail.files.filePath}/${storagedetail.files.fileUuid}_${storagedetail.files.fileOrgName}">
-                                      </div>
-                                      <input type="file" style="display: none;"/>
-                                    </label>
-                                  </div>
+                ${
+                    storagedetail.files
+                        .map((data, i) => {
+                            return `<label class="attach">
+                                            <div class="content__img">
+                                              <img src="/storages/search/files/display?fileName=${data.filePath}/${data.fileUuid}_${data.fileOrgName}">
+                                            </div>
+                                            <input type="" style="display: none;"/>
+                                          </label>`;
+                        })
+                        .join('')
+                }
+                              </div>
                               <ul>
                                 <li class="content__list">
                                   <span>창고 이름</span>
@@ -189,6 +195,8 @@ $(document).on("click", "#completeBtn", function(e) {
         }
     });
 });
+
+
 /* 상세보기 모달 내용 submit 이벤트 */
 // $('#completeBtn').on('click', function (e) {
 //     e.preventDefault();

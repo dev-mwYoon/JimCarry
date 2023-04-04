@@ -103,25 +103,25 @@ $('#completeBtn').on('click', function (e) {
 /* 항목 한개이상 선택안되게 */
 
 /* 창고 썸네일변경 */
-$storageFile.on('change', function (e) {
-  let i = $storageFile.index($(this));
-  console.log(i);
-  var reader = new FileReader();
-  reader.readAsDataURL(e.target.files[0]);
-  console.log(e.target);
-  reader.onload = function (e) {
-    console.log(e.target);
-    let url = e.target.result;
-    if (url.includes('image')) {
-      $('label.attach').eq(i).find('h6').hide();
-      $('div.x').eq(i).show();
-      $thumbnail.eq(i).show();
-      $thumbnail.eq(i).attr('src', url);
-    } else {
-      showWarnModal('이미지 파일만 등록 가능합니다.');
-    }
-  };
-});
+// $storageFile.on('change', function (e) {
+//   let i = $storageFile.index($(this));
+//   console.log(i);
+//   var reader = new FileReader();
+//   reader.readAsDataURL(e.target.files[0]);
+//   console.log(e.target);
+//   reader.onload = function (e) {
+//     console.log(e.target);
+//     let url = e.target.result;
+//     if (url.includes('image')) {
+//       $('label.attach').eq(i).find('h6').hide();
+//       $('div.x').eq(i).show();
+//       $thumbnail.eq(i).show();
+//       $thumbnail.eq(i).attr('src', url);
+//     } else {
+//       showWarnModal('이미지 파일만 등록 가능합니다.');
+//     }
+//   };
+// });
 
 // /* 체크박스 이벤트 ======================================= */
 // $checkAll.click(function () {
