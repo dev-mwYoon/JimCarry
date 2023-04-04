@@ -41,7 +41,7 @@ public class StorageController {
     /*창고등록*/
     @PostMapping("register")
     @ResponseBody
-    public String  storageSave(@RequestBody StorageDTO storageDTO, HttpSession httpSession) {
+    public String storageSave(@RequestBody StorageDTO storageDTO, HttpSession httpSession) {
         storageDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
         // 자바 스크립트 파일 리스트
         log.info(String.valueOf(storageDTO.getStorageAddressNumber()));
