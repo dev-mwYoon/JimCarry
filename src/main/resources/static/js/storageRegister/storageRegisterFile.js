@@ -23,8 +23,10 @@ let setStorageDTO = function() {
         fileVO.fileOrgName = file.name;
         fileVO.fileUuid = globalThis.uuids[i];
         fileVOs.push(fileVO);
+
+
     });
-    /* 입력된 값을 가져와서 reviewDTO 객체 설정 */
+    /* 입력된 값을 가져와서 storageDTO 객체 설정 */
 
     const storageDTO = {
         storageTitle: $("input[name='storageTitle']").val(),
@@ -44,29 +46,36 @@ let setStorageDTO = function() {
     return storageDTO;
 }
 
-$submitBtn.on("click", function () {
-    checkRegion();
-    console.log($('input[name=storageAddressNumber]').val())
+    $submitBtn.on("click", function () {
+        checkRegion();
+        console.log($('input[name=storageAddressNumber]').val())
+        console.log($('input[type=file]').val())
 
-    config = {
-        url: `/storages/register`,
-        method: "POST",
-        data: JSON.stringify(setStorageDTO()),
-        contentType: "application/json; charset=utf-8",
-    }
-    $container.css("display", "block");
-    console.log("ㅇㅁㅇㅁㅇㅁㄴㅇㅁㄴㅇ");
+        if($('input[type=file]').val() == "") {
+            alert("파일을 선택해주세요");
 
-    $doAjax(config, (result) => {
+        } else {
+
+            config = {
+                url: `/storages/register`,
+                method: "POST",
+                data: JSON.stringify(setStorageDTO()),
+                contentType: "application/json; charset=utf-8",
+            }
+            /*$container.css("display", "block");*/
+            console.log("ㅇㅁㅇㅁㅇㅁㄴㅇㅁㄴㅇ");
 
 
-        $close.on("click", function () {
-            $container.css("display","none");
-            location.href = result;
+            $doAjax(config, (result) => {
+                location.href = result;
+                /*$close.on("click", function () {
 
-        });
+                });*/
+            });
 
-    });
+            /*  $container.css("display", "none");*/
+        }
+
 
 });
 
