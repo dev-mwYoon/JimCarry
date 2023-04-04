@@ -224,18 +224,18 @@ console.log($modalStage);
 
 
 /* 상세보기 모달 내용 submit 이벤트 */
-$('#completeBtn').on('click', function (e) {
-    e.preventDefault();
-    return new Promise(
-        function () {
-            console.log('으으아');
-            $modalStage.fadeOut(500);
-        },
-        () => {
-            $('.storage_form').submit();
-        }
-    );
-});
+// $('#completeBtn').on('click', function (e) {
+//     e.preventDefault();
+//     return new Promise(
+//         function () {
+//             console.log('으으아');
+//             $modalStage.fadeOut(500);
+//         },
+//         () => {
+//             $('.storage_form').submit();
+//         }
+//     );
+// });
 
 
 /*=====================  목록 삭제 이벤트 =====================*/

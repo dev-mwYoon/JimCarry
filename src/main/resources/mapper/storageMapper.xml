@@ -109,6 +109,16 @@
         </if>
         limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
+    <select id="selectStorageById" resultType="storageDTO">
+        select u.user_id, user_identification, user_password, user_email, user_phone, user_address, user_address_detail,
+        user_gender, user_birth, user_name, user_random_key, user_status,
+        storage_id, storage_name, storage_phone, storage_title, storage_size, storage_price, storage_address,
+        storage_address_detail, storage_use_date, storage_end_date, storage_address_number
+        from tbl_user u join tbl_storage s on u.user_id = s.user_id
+        where storage_id = #{storageId}
+        order by storage_id
+        desc
+    </select>
 
     <!-- 창고DTO 조회 -->
     <select id="selectAllBy" resultType="storageDTO">
@@ -192,5 +202,13 @@
         delete from tbl_storage
         where storage_id = #{storageId}
     </delete>
+
+    <update id="update" parameterType="long">
+        UPDATE tbl_storage
+        SET user_id=${userId}, storage_name=#{storageName}, storage_phone=#{storagePhone}, storage_title=#{storageTitle}, storage_size=#{storageSize},
+         storage_price=#{storagePrice}, storage_address=#{storageAddress}, storage_address_detail=#{storageAddressDetail}, storage_use_date=#{storageUseDate},
+          storage_end_date=#{storageEndDate}, storage_address_number=#{storageAddressNumber}
+        WHERE storage_id=#{storageId};
+    </update>
 
 </mapper>

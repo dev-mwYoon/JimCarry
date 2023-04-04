@@ -55,6 +55,10 @@ public class StorageService {
     public StorageVO getStorage(Long storageId) {
         return storageDAO.findById(storageId);
     }
+    public StorageDTO getStorageById(Long storageId) {
+
+        return storageDAO.findStorageById(storageId);
+    }
 
     /**
      * 전체조회
@@ -94,6 +98,7 @@ public class StorageService {
     }
 
     //    수정
+    public void setStorage(StorageVO storageVO){ storageDAO.updateBy(storageVO);}
 
     //    삭제
     public void removeStorage(Long storageId) {

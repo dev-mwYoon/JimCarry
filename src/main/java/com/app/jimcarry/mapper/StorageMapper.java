@@ -20,6 +20,7 @@ public interface StorageMapper {
     /*public void insert(StorageVO storageVO);*/
     //    조회
     public StorageVO select(Long storageId);
+    public StorageDTO selectStorageById(Long storageId);
 
     //    조건조회
     public List<StorageVO> selectBy(@Param("page") PageDTO pageDTO);
@@ -35,7 +36,7 @@ public interface StorageMapper {
     public Integer totalBy(@Param("page") SearchDTO searchDTO);
 
     //    수정
-
+    public void update(StorageVO storageVO);
     //    삭제
     public void delete(Long storageId);
 

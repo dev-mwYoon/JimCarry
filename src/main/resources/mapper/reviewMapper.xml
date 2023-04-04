@@ -27,6 +27,7 @@
         limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
 
+
     <!--리뷰 목록 개수-->
     <select id="total" resultType="int">
         select count(review_id) from tbl_review
@@ -66,6 +67,23 @@
         </if>
         limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
+    <select id="selectAllById" resultType="reviewDTO">
+        select review_id, u.user_id, storage_id, review_title, review_context, review_write_date, review_edit_date,
+        user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+        from
+        (
+            select user_id, user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth, user_name
+            from tbl_user
+        ) u
+        join
+        (
+            select review_id, user_id, storage_id, review_title, review_context, review_write_date, review_edit_date
+            from tbl_review
+        ) r on u.user_id = r.user_id
+        where review_id = #{reviewId}
+        order by review_id
+        desc
+    </select>
 
     <!--리뷰 조건조회 개수-->
     <select id="totalBy" resultType="int">
@@ -76,7 +94,7 @@
     <!-- 리뷰 수정 -->
     <update id="update">
         update tbl_review
-        set review_title=#{reviewTitle}, review_context=#{reviewContext}, review_edit_date=CURRENT_TIMESTAMP
+        set review_context=#{reviewContext}, review_edit_date=CURRENT_TIMESTAMP
         where review_id=#{reviewId}
     </update>
 

@@ -77,7 +77,13 @@ public class NoticeService {
             noticeDAO.deleteById(noticeId);
         }
 
+        /* 공지사항 수정*/
+        public void setNotice(NoticeVO noticeVO){noticeDAO.updateById(noticeVO);}
 
+        /* 공지사항 작성*/
+        public void registerNotice(NoticeVO noticeVO){
+            noticeDAO.save(noticeVO);
+        }
 
 
 }
