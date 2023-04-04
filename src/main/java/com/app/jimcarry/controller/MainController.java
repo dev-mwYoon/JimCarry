@@ -7,8 +7,11 @@ import com.app.jimcarry.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -21,28 +24,34 @@ public class MainController {
     private final StorageFileService storageFileService;
 
 //    /*메인페이지*/
-    @GetMapping("")
-    public String mainPage(){
-        return "/main/main";
-    }
+//    @GetMapping("")
+//    public String mainPage(){
+//        return "/main/main";
+//    }
 
   /*  창고최신순*/
-    /*@GetMapping("")
+    @GetMapping("")
     public String storageMain(Model model){
         List<StorageDTO> storageDTOS = storageService.getStorageDTO();
         for(StorageDTO storageDTO: storageDTOS){
-            storageDTO.setFile(storageFileService.getFile(1L));
+            storageDTO.setFiles(storageFileService.getByStorageId(storageDTO.getStorageId()));
         }
-        List<StorageDTO> reviews = storageService.getStorage();
-        for(StorageDTO storageDTO: reviews){
-            storageDTO.setFile(storageFileService.getFile(1L));
-            storageDTO.set
+        List<StorageDTO> reviewDTOs = storageService.getStorage();
+        for(StorageDTO storageDTO: reviewDTOs){
+            storageDTO.setFiles(storageFileService.getByStorageId(1L));
         }
         model.addAttribute("storages", storageDTOS);
         model.addAttribute("reviews", reviewService.getTotalById(1L));
-        model.addAttribute("countReviews", reviews);
+        model.addAttribute("countReviews", reviewDTOs);
 
         return "/main/main";
 
-    }*/
+    }
+
+    /*창고 이미지 불러오기*/
+    @GetMapping("display")
+    @ResponseBody
+    public byte[] display(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+    }
 }

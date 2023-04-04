@@ -125,12 +125,20 @@ const storageContainer = $("#four-static-banner-inner-div");
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
 const createDOM = function (storage, files, review) {
+    let $file = storage.files[0];
+
     let text = `
     <div class="four-static-banner-one-div">
         <a href="/storages/search/detail/${storage.storageId}" class="four-static-banner-one-a">
             <div class="four-static-banner-img-div">
-                <img src="@{/main/display(fileName=${storage.file.filePath}/${storage.file.fileUuid}_${storage.file.fileOrgName})}" alt="image">
-            </div>
+      `
+        if(storage.files[0] != undefined){
+            text += `<img src="/main/display?fileName=${$file.filePath}/${$file.fileUuid}_${$file.fileOrgName}" alt="image">`
+        }else {
+            text += `<img src="/image/no_image.jpg" style="object-fit: contain" alt="image">`
+        }
+
+    text += `</div>
             <div class="four-static-banner-product-div">
                 <h3 class="four-static-banner-name">${storage.storageTitle}</h3>
                 <div class="four-static-banner-detail-div">
@@ -176,13 +184,21 @@ storages.forEach((storage, i) => {
 const storageContainer2 = $("#storageReview");
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
-function createDOMs(a, reviews) {
+function createDOMs(a, reviews, files) {
+    let $file = a.files[0];
+
     let texts = `
     <div class="four-static-banner-one-div">
         <a href="/storages/search/detail/${a.storageId}" class="four-static-banner-one-a">
             <div class="four-static-banner-img-div">
-                <img src="@{/main/display(fileName=${a.file.filePath}/${a.file.fileUuid}_${a.file.fileOrgName})}" alt="image">
-            </div>
+      `
+    if(a.files[0] != undefined){
+        texts += `<img src="/main/display?fileName=${$file.filePath}/${$file.fileUuid}_${$file.fileOrgName}" alt="image">`
+    }else {
+        texts += `<img src="/image/no_image.jpg" style="object-fit: contain" alt="image">`
+    }
+
+    texts += `</div>
             <div class="four-static-banner-product-div">
                 <h3 class="four-static-banner-name">${a.storageTitle}</h3>
                 <div class="four-static-banner-detail-div">
@@ -215,7 +231,7 @@ function createDOMs(a, reviews) {
 }
 /* html script에서 받아준 모델객체 */
 countReviews.forEach((a, i) => {
-    createDOMs(a, reviews);
+    createDOMs(a, reviews, files);
 });
 
 

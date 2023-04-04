@@ -38,7 +38,7 @@ public class StorageFileService implements FileService {
 
     /*조회*/
     @LogStatus
-    public FileVO getFile(Long fileId) {return fileDAO.findById(fileId);}
+    public List<StorageFileVO> getFile(Long storageId) {return storageFileDAO.findByStorageId(storageId);}
 
     @GetMapping("display")
     @ResponseBody
