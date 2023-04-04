@@ -41,8 +41,8 @@ public class MainController {
             storageDTO.setFiles(storageFileService.getByStorageId(1L));
         }
         model.addAttribute("storages", storageDTOS);
-        model.addAttribute("reviews", reviewService.getTotalById(1L));
         model.addAttribute("countReviews", reviewDTOs);
+        model.addAttribute("reviews", reviewService.getTotalById(1L));
 
         return "/main/main";
 
