@@ -86,7 +86,6 @@ public class SearchController {
         total = reviewService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         List<ReviewDTO> reviewDTOList = reviewService.getListBy(pageDTO);
-        log.info(reviewFileService.getListByReviewId(reviewDTOList.get(0).getReviewId()).get(0).toString());
         model.addAttribute("total", total);
         model.addAttribute("pagination", pageDTO);
         model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
