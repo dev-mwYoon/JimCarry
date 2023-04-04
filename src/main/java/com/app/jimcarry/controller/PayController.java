@@ -37,19 +37,6 @@ public class PayController {
         return "/pay/pay-reserve";
     }
 
-//    @PostMapping("/payment")
-//    public String pay(PaymentVO paymentVO, Model model, HttpSession httpSession) {
-//        model.addAttribute("user", paymentService.getUser(((UserVO)(httpSession.getAttribute("user"))).getUserId()));
-//
-//        paymentService.register(paymentVO);
-//
-//        model.addAttribute("storageTitle", paymentVO.getStorageTitle());
-//        model.addAttribute("paymentMonth", paymentVO.getPaymentMonth());
-//        model.addAttribute("paymentAmount", paymentVO.getPaymentAmount());
-//
-//        return "/pay/payment";
-//    }
-
     @PostMapping("/payRegister")
     @ResponseBody
     public String payRegister(String paymentAmount, String storageAmount, HttpSession httpSession) {
