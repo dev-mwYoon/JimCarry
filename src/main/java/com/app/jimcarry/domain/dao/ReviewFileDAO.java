@@ -28,4 +28,9 @@ public class ReviewFileDAO {
     public void deleteById(Long reviewId) {
         reviewFileMapper.delete(reviewId);
     }
+
+    /* 창고 아이디로 조회 */
+    public List<ReviewFileVO> findByStorageId(Long storageId) {
+        return reviewFileMapper.selectByStorageId(storageId);
+    }
 }

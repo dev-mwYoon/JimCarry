@@ -45,4 +45,9 @@ class ReviewFileDAOTest {
         reviewFileDAO.save(reviewFileVO);
         reviewFileDAO.deleteById(reviewFileVO.getFileId());
     }
+
+    @Test
+    public void findByStorageId() {
+        reviewFileDAO.findByStorageId(1L);
+    }
 }
