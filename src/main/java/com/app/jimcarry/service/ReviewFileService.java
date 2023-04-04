@@ -3,7 +3,6 @@ package com.app.jimcarry.service;
 import com.app.jimcarry.aspect.annotation.LogStatus;
 import com.app.jimcarry.domain.dao.ReviewFileDAO;
 import com.app.jimcarry.domain.vo.FileVO;
-import com.app.jimcarry.domain.vo.InquiryFileVO;
 import com.app.jimcarry.domain.vo.ReviewFileVO;
 import lombok.RequiredArgsConstructor;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -92,8 +91,8 @@ public class ReviewFileService implements FileService {
     }
 
     /* 창고 아이디로 조회 */
-    public List<ReviewFileVO> getListByStorageId(Long storageId){
-        return reviewFileDAO.findByStorageId(storageId);
+    public List<ReviewFileVO> getListByReviewId(Long reviewId){
+        return reviewFileDAO.findByReviewId(reviewId);
     }
 
 }

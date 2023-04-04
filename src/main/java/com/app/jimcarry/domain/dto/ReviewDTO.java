@@ -1,6 +1,7 @@
 package com.app.jimcarry.domain.dto;
 
 import com.app.jimcarry.domain.vo.FileVO;
+import com.app.jimcarry.domain.vo.ReviewFileVO;
 import com.app.jimcarry.domain.vo.ReviewVO;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,7 @@ public class ReviewDTO {
     private String userGender;
     private String userBirth;
 
-    private List<FileVO> files;
+    private List<ReviewFileVO> fileVOS;
 
     public ReviewVO createVO() {
         ReviewVO reviewVO = new ReviewVO();

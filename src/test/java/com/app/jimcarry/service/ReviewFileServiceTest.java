@@ -14,6 +14,6 @@ public class ReviewFileServiceTest {
 
     @Test
     public void getListByStorageId() {
-        reviewFileService.getListByStorageId(1L);
+        reviewFileService.getListByReviewId(1L);
     }
 }

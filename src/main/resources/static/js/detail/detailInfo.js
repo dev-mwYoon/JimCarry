@@ -1,9 +1,11 @@
 /*목록이 추가될 div 부모*/
-const reviewContainer = $(".review-container");
+const reviewContainer = $($(".review-container")[0]);
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
-const createDOM = function (review) {
-    let text = `
+function createDOM(reviews) {
+    let text = ``;
+    reviews.forEach((review, i) => {
+        text = `
     <div class="review-detail-container">
         <div class="review-detail-wrap">
             <div class="review-detail-name-wrap">
@@ -19,40 +21,54 @@ const createDOM = function (review) {
                         <p class="review-context">${review.reviewContext}</p>
                
                 <!-- 리뷰사진 -->
-                <div class="review-img-container">
-                    <img class="review-photo">
-                    <img class="review-photo">
-                    <img class="review-photo">
-                    <img class="review-photo">
-                   <!--  <button class="review-img"></button>
-                    <button class="review-img"></button>
-                    <button class="review-img"></button> -->
-                </div>
-    
-    
-                <footer class="review-register-container">
-                    <div>
-                        <span class="review-date">${review.reviewEditDate}</span>
-                    </div>
-                    <!--
-                    <button class="css-g3a39p e198bwfo1">
-                        <span class="ico css-xdee1z e198bwfo0"></span>
-                        <span>도움돼요 39</span>
-                    </button> -->
-                </footer>
-            </div>
-        </article>
-    </div>
-`
-    return text;
-}
-/* html script에서 받아준 모델객체 */
-reviews.forEach((review, i) => {
-    reviewContainer.append(
-        createDOM(review)
-    );
-});
+                <div class="review-img-container">`;
+        /*let file = [[$(review[0])]];
+        console.log(review.fileVOS);
+        console.log(review.fileVOS[0].filePath);*/
 
+        review.fileVOS.forEach(file => {
+            text += `
+                  <img class="review-photo" src="/storages/search/files/display?fileName=${file.filePath + '/' + file.fileUuid + '_' + file.fileOrgName}">
+                  `;
+            //    th:src="@{/storages/search/files/display(fileName=${file.filePath} + '/' + ${file.fileUuid} + '_' + ${file.fileOrgName})}"
+        })
+
+
+        text += `
+                        <button class="review-img"></button>
+                        <button class="review-img"></button>
+                        <button class="review-img"></button>
+                    </div>
+                    <footer class="review-register-container">
+                        <div>
+                            <span class="review-date">${review.reviewEditDate}</span>
+                        </div>
+                        <!--
+                        <button class="css-g3a39p e198bwfo1">
+                            <span class="ico css-xdee1z e198bwfo0"></span>
+                            <span>도움돼요 39</span>
+                        </button> -->
+                    </footer>
+                </div>
+            </article>
+        </div>
+    `;
+    })
+    return text;
+};
+/* html script에서 받아준 모델객체 */
+
+// reviews.forEach((review, i) => {
+//     reviewContainer.append(
+//         createDOM(review, reviewFile[i])
+//     );
+// });
+
+// createDOM(reviews, reviewFiles);
+reviewContainer.empty();
+reviewContainer.append(createDOM(reviews));
+
+`<!--                    <img class="review-photo">-->`
 
 /*창고예약 버튼 클릭시 개월수와 금액 값 정해주기*/
 $('.reserve-btn').click(function () {
@@ -61,6 +77,8 @@ $('.reserve-btn').click(function () {
 
     document.payForm.submit();
 })
+
+
 
 
 

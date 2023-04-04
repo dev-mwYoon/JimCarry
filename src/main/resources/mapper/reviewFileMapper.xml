@@ -18,9 +18,11 @@
     </delete>
 
     <!--한 창고의 리뷰 파일 조회-->
-    <select id="selectByStorageId" resultType="reviewFileVO">
-        select review_id, user_id, storage_id, review_title, review_context, review_write_date, review_edit_date
-        from jimcarry.tbl_review
-        where storage_id = 1;
+    <select id="selectByReviewId" resultType="reviewFileVO">
+        select review_file_id as file_id, review_id, review_file_path as file_path
+        , review_org_name as file_org_name
+        , review_file_uuid as file_uuid
+        from tbl_review_file
+        where review_id = #{reviewId}
     </select>
 </mapper>
