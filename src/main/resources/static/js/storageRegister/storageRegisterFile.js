@@ -7,6 +7,8 @@ const $inputDetail = $('#inputDetail');
 const $inputDateStart = $('#inputDateStart');
 const $inputDateEnd = $('#inputDateEnd');
 const $submitBtn = $('.submitButton');
+const $container = $('.modal');
+const $close = $('.pay-popup-check');
 // const $photoPicker = $("#photo-picker");
 /*실제 저장할 fileVO들의 배열*/
 let fileVOs = new Array();
@@ -52,17 +54,11 @@ $submitBtn.on("click", function () {
         data: JSON.stringify(setStorageDTO()),
         contentType: "application/json; charset=utf-8",
     }
-
+    $container.css("display", "block");
     console.log("ㅇㅁㅇㅁㅇㅁㄴㅇㅁㄴㅇ");
 
     $doAjax(config, (result) => {
-        const $subBtn = $('.submitButton');
-        const $container = $('.modal');
-        const $close = $('.pay-popup-check');
 
-        $subBtn.on("click", function () {
-            $container.css("display", "block");
-        });
 
         $close.on("click", function () {
             $container.css("display","none");
