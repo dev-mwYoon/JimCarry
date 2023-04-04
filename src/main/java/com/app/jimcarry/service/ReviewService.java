@@ -26,6 +26,9 @@ public class ReviewService {
     public ReviewVO getReview(Long reviewId) {
         return reviewDAO.findById(reviewId);
     }
+    public void registerSet(ReviewVO reviewVO){
+        reviewDAO.setReviewVO(reviewVO);
+    }
 
     /* 리뷰 전체 목록 조회*/
     public List<ReviewDTO> getList(PageDTO pageDTO) {
@@ -47,7 +50,7 @@ public class ReviewService {
         return reviewDAO.getTotalById(storageId);
     }
 
-    ;
+
 
     /* 리뷰 조건조회 */
     public List<ReviewDTO> getListBy(PageDTO pageDTO) {
@@ -72,6 +75,9 @@ public class ReviewService {
         reviewDTO.getFileVOS().stream().map(file -> new ReviewFileVO().create(file, reviewDTO.getReviewId()))
                 .forEach(file -> { file.setFilePath(getPath()); reviewFileDAO.save(file); });
 
+    }
+    public ReviewDTO getReviewById(Long reviewId) {
+        return reviewDAO.findByDTOId(reviewId);
     }
 
     /* 리뷰 저장 */
