@@ -1,7 +1,6 @@
 package com.app.jimcarry.domain.dao;
 
 import com.app.jimcarry.domain.vo.ReviewFileVO;
-import com.app.jimcarry.mapper.ReviewFileMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -48,6 +45,6 @@ class ReviewFileDAOTest {
 
     @Test
     public void findByStorageId() {
-        reviewFileDAO.findByStorageId(1L);
+        reviewFileDAO.findByReviewId(1L);
     }
 }

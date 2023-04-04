@@ -1,5 +1,6 @@
 package com.app.jimcarry.domain.dao;
 
+import com.app.jimcarry.domain.dto.ReviewFileDTO;
 import com.app.jimcarry.domain.vo.InquiryFileVO;
 import com.app.jimcarry.domain.vo.ReviewFileVO;
 import com.app.jimcarry.mapper.InquiryFileMapper;
@@ -30,7 +31,7 @@ public class ReviewFileDAO {
     }
 
     /* 창고 아이디로 조회 */
-    public List<ReviewFileVO> findByStorageId(Long storageId) {
-        return reviewFileMapper.selectByStorageId(storageId);
+    public List<ReviewFileVO> findByReviewId(Long reviewId) {
+        return reviewFileMapper.selectByReviewId(reviewId);
     }
 }
