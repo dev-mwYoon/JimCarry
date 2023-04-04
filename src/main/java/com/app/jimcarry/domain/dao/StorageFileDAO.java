@@ -5,6 +5,8 @@ import com.app.jimcarry.mapper.StorageFileMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class StorageFileDAO {
@@ -14,4 +16,8 @@ public class StorageFileDAO {
         storageFileMapper.insert(storageFileVO);
     }
 
+    /* 창고 아이디로 파일 목록 조회*/
+    public List<StorageFileVO> findByStorageId(Long storageId) {
+        return storageFileMapper.selectByStorageId(storageId);
+    }
 }

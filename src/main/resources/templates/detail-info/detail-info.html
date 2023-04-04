@@ -19,7 +19,7 @@
     <div class="container">
         <main class="wrap">
             <div class="img-wrap">
-                <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/store/1/main-1.png">
+                <img th:src="@{/storages/search/files/display(fileName=${file[0].storageFilePath} + '/' + ${file[0].storageFileUuid} + '_' + ${file[0].storageFileOrgName})}" />
             </div>
 
             <section class="content-container">
@@ -118,6 +118,7 @@
                             <input type="hidden" name="storageTitle" th:value="${storages.storageTitle}">
                             <input type="hidden" name="paymentMonth">
                             <input type="hidden" name="paymentAmount">
+                            <input type="hidden" name="storageId" th:value="${storages.storageId}">
                             <button class="reserve-btn" type="button" radius="3">
                                 <span class="reserve-btn-title">창고 예약하기</span>
                             </button>
