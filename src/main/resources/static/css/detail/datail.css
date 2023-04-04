@@ -644,7 +644,6 @@ ul {
     height: 93px;
     flex-shrink: 0;
     background : 0% 0% / cover no-repeat;
-    background-image: url('/static/image/logo.png');
     border:  none;
 }
 

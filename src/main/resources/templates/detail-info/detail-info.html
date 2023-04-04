@@ -152,9 +152,12 @@
         <div id="description" class="sharebox-info-container">
             <div class="sharebox-info-wrap">
                 <div class="sharebox-photo-wrap">
+<!--                    <div class="img-wrap" th:each="file: ${file}">
+                <img th:src="@{/storages/search/files/display(fileName=${file.filePath} + '/' + ${file.fileUuid} + '_' + ${file.fileOrgName})}" />
+            </div>
+-->
                     <div id="moveInfo" class="sharebox-photo">
-                        <!-- <img id="expandedImg"  src="https://img-cf.kurly.com/shop/data/goodsview/20200803/gv40000025492_1.jpg"> -->
-                        <img id="expandedImg" src="/image/logo.png">
+                        <img id="expandedImg"/>
                     </div>
                 </div>
             </div>
@@ -259,6 +262,7 @@
 <script th:inline="javascript">
     let storages = [[${storages}]];
     let reviews = [[${reviews}]];
+    let files = [[${file}]];
     // let reviewFiles = [[${reviewFile}]];
 </script>
 <script src="/js/detail/changeimg.js"></script>
