@@ -16,4 +16,7 @@ public interface ReviewFileMapper {
 
     //    삭제
     public void delete(Long reviewId);
+    
+    /* 창고 아이디로 조회 */
+    public List<ReviewFileVO> selectByStorageId(Long storageId);
 }

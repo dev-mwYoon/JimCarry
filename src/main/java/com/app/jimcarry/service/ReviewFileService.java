@@ -90,4 +90,10 @@ public class ReviewFileService implements FileService {
     private String getPath() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     }
+
+    /* 창고 아이디로 조회 */
+    public List<ReviewFileVO> getListByStorageId(Long storageId){
+        return reviewFileDAO.findByStorageId(storageId);
+    }
+
 }

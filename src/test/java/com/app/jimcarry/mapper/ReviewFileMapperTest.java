@@ -45,4 +45,9 @@ public class ReviewFileMapperTest {
         reviewFileMapper.insert(reviewFileVO);
         reviewFileMapper.delete(reviewFileVO.getFileId());
     }
+
+    @Test
+    public void selectByStorageId() {
+        reviewFileMapper.selectByStorageId(1L);
+    }
 }
