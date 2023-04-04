@@ -7,6 +7,7 @@
     <title>창고등록</title>
     <link rel="icon" href="/image/favicon.png">
     <link rel="stylesheet" href="/css/storageRegister/storageRegister.css">
+    <link rel="stylesheet" href="/css/pay/pay-model.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
 </head>
@@ -250,15 +251,28 @@
         <div></div>
     </div>
 </div>
-<!-- 푸터 -->
+
+<!--창고 등록 확인 모달-->
 <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
+<!-- 푸터 -->
+
+    <div id="modal" class="modal" >
+        <div class="modal-content">
+            <div class="pay-content">창고 등록이 완료되었습니다.</div>
+                <div class="pay-footer">
+                    <button class="pay-popup-check" type="button">확인</button>
+                </div>
+        </div>
+    </div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/storageRegister/storageRegister.js"></script>
 <script src="/js/storageRegister/hiddenPrice.js"></script>
 <script src="/js/main/header.js"></script>
-<script src="/js/mypage/doAjax.js"></script>
 <script src="/js/storageRegister/storageFile.js"></script>
 <script src="/js/storageRegister/storageRegisterFile.js"></script>
+<script src="/js/mypage/doAjax.js"></script>
+
 </html>

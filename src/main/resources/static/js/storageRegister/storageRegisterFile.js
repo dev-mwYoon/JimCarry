@@ -56,7 +56,20 @@ $submitBtn.on("click", function () {
     console.log("ㅇㅁㅇㅁㅇㅁㄴㅇㅁㄴㅇ");
 
     $doAjax(config, (result) => {
-        location.href = result;
+        const $subBtn = $('.submitButton');
+        const $container = $('.modal');
+        const $close = $('.pay-popup-check');
+
+        $subBtn.on("click", function () {
+            $container.css("display", "block");
+        });
+
+        $close.on("click", function () {
+            $container.css("display","none");
+            location.href = result;
+
+        });
+
     });
 
 });
