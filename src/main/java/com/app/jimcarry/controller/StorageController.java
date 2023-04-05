@@ -76,9 +76,7 @@ public class StorageController {
         model.addAttribute("pagination", pageDTO);
         model.addAttribute("storage", storageService.getStorageDTOBy(pageDTO));
 
-        /*return storageService.getStorageDTOBy(pageDTO);*/
         return "/main/search-page";
     }
-
 
 }

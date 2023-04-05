@@ -16,5 +16,4 @@ const $doAjax = function (config, callback) {
     });
 }
 
-/*
-"application/x-www-form-urlencoded; charset=UTF-8"*/
+
