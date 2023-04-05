@@ -32,7 +32,6 @@ $('#Glyph').on('click', function() {
     } else if (conditiontest == '창고크기') {
         condition = "storageSize";
     } else if( conditiontest == '검색조건 선택'){
-        alert("검색 조건을 선택해주세요.");
         return;
     }
     $("input[name='condition']").val(condition);

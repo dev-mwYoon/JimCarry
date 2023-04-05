@@ -15,7 +15,7 @@ const createDOM = function(payments){
           <td>${payments.userIdentification}</td>
           <td>${payments.userEmail}</td>
           <td>${payments.storageAddress} ${payments.storageAddressDetail}</td>
-          <td>${payments.paymentDate}</td>
+          <td>${payments.paymentDate.split(" ")[0]}</td>
           <td>
             <button class="content__detail__btn button__type_2 button__color__green">
               상세보기
@@ -34,7 +34,6 @@ $('#Glyph').on('click', function() {
     } else if (conditiontest == '창고크기') {
         condition = "storageSize";
     } else if( conditiontest == '검색조건 선택'){
-        alert("검색 조건을 선택해주세요.");
         return;
     }
     $("input[name='condition']").val(condition);

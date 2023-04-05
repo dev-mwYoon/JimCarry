@@ -35,7 +35,6 @@ $('#Glyph').on('click', function() {
     } else if (conditiontest == '이름') {
         condition = "userName";
     } else if( conditiontest == '검색조건 선택'){
-        alert("검색 조건을 선택해주세요.");
         return;
     }
     console.log(condition);

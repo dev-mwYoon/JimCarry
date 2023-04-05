@@ -115,7 +115,7 @@
         storage_address_detail, storage_use_date, storage_end_date, storage_address_number
         from tbl_user u join tbl_storage s on u.user_id = s.user_id
         <include refid="searchType"/>
-        order by storage_id
+        order by storage_id desc
         <if test="page.searchDTO.isDesc">
             desc
         </if>
