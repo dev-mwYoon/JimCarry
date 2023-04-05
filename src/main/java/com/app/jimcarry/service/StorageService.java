@@ -26,11 +26,19 @@ public class StorageService {
     private final ReviewDAO reviewDAO;
 
     //    추가
+    /*@LogStatus
+    @Transactional(rollbackFor = Exception.class)
+    public void register(StorageDTO storageDTO) {
+        storageDAO.save(storageDTO);
+    }*/
+
+    //    추가
     /*파일 저장*/
     @Transactional(rollbackFor = Exception.class)
     @LogStatus
     public void registerStorage(StorageDTO storageDTO) {
         StorageVO newStorage = storageDTO.createVO();
+//        storageFileDAO.deleteById(reviewId);
         storageDAO.save(newStorage);
         storageDTO.getFiles().stream().map(file -> new StorageFileVO().create(file, newStorage.getStorageId()))
                 .forEach(file -> {file.setFilePath(getPath()); storageFileDAO.save(file);});
@@ -116,41 +124,26 @@ public class StorageService {
         return storageDAO.findStorageDTOBy(storageId);
     }
 
-    // DTO 창고 조건 조회
-    /* PageDTO를 매개변수로 받아 저장소DTO 리스트를 반환하는 메서드*/
-    /* PageDTO 객체는 페이징 처리에 필요한 정보를 담고 있다.*/
+    /* DTO 창고 조건 조회*/
     public List<StorageDTO> getStorageDTOBy(PageDTO pageDTO){
-        /*StorageDAO에서 PageDTO에 맞는 저장소 정보를 가져와서 결과를 저장소DTO 리스트에 할당*/
         List<StorageDTO> storageList = storageDAO.findStorageDTOListBy(pageDTO);
-
-        /* 저장소DTO 리스트의 각 요소마다 해당 저장소에 대한 리뷰 수를 가져와서 설정*/
-        storageList.forEach(storage -> storage.setReviewCount(reviewDAO.findByStorageId(storage.getStorageId()).size()));
-
-        /*저장소DTO 리스트를 반환*/
+        storageList.forEach(storage ->
+            storage.setReviewCount(reviewDAO.findByStorageId(storage.getStorageId()).size())
+        );
         return storageList;
     }
 
-    // DTO 메인 신규창고 조회
+    /* DTO 메인 신규창고 조회*/
     public List<StorageDTO> getStorageDTO(){
-        /*StorageDAO에서 저장소 정보를 가져오는 메서드를 호출하여 결과를 저장소DTO 리스트에 할당*/
         List<StorageDTO> storageLists = storageDAO.findStorageDTOList();
-
-        /*저장소DTO 리스트의 각 요소마다 해당 저장소에 대한 리뷰 수를 가져와서 설정*/
         storageLists.forEach(storage -> storage.setReviewCount(reviewDAO.findByStorageId(storage.getStorageId()).size()));
-
-        /*저장소DTO 리스트를 반환*/
         return storageLists;
     }
 
-    // DTO 메인 신규창고 조회
+    /* DTO 메인 신규창고 조회*/
     public List<StorageDTO> getStorage(){
-        /*StorageDAO에서 저장소 정보를 가져오는 메서드를 호출하여 결과를 저장소DTO 리스트에 할당*/
         List<StorageDTO> reviews = storageDAO.findStorageDTOLists();
-
-        /*저장소DTO 리스트의 각 요소마다 해당 저장소에 대한 리뷰 수를 가져와서 설정*/
         reviews.forEach(storage -> storage.setReviewCount(reviewDAO.findByStorageId(storage.getStorageId()).size()));
-
-        /*저장소DTO 리스트를 반환*/
         return reviews;
     }
 }
