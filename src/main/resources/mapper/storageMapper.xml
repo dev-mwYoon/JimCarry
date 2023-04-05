@@ -47,6 +47,13 @@
     <select id="totalBy" resultType="int">
         select count(storage_id) from tbl_storage
         <include refid="searchType"/>
+        <if test="dto.sizes != null and dto.sizes.size() > 0">
+            <trim prefix="where">
+                <foreach collection="dto.sizes" item="size" separator=" OR ">
+                    storage_size like concat('%', #{size}, '%')
+                </foreach>
+            </trim>
+        </if>
     </select>
     <!--  PageDTO인지 SearchDTO인지 판별  -->
     <sql id="searchType">
@@ -58,9 +65,17 @@
                 <bind name="dto" value="page.searchDTO"/>
             </otherwise>
         </choose>
-        <if test="dto.types != null and dto.storageAddressNumber != 0">
-            <include refid="searchContext"/>
-        </if>
+        <choose>
+            <when test="dto.types != null and dto.storageAddressNumber != 0">
+                <include refid="searchContext"/>
+                and storage_address_number = #{dto.storageAddressNumber}
+            </when>
+            <otherwise>
+                <if test="dto.types != null">
+                    where storage_address like concat('%', #{dto.storageAddress}, '%')
+                </if>
+            </otherwise>
+        </choose>
     </sql>
     <!--  조건에 맞는 테이블 검색조건  -->
     <sql id="searchContext">
@@ -74,9 +89,6 @@
                         </when>
                         <when test="type == 'storageId'.toString()">
                             storage_id = #{dto.storageId}
-                        </when>
-                        <when test="dto.storageAddressNumber != null">
-                            storage_address_number = #{dto.storageAddressNumber}
                         </when>
                         <when test="type == 'keyword'.toString()">
                             storage_title like concat('%', #{dto.keyword}, '%')

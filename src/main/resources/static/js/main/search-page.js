@@ -1,5 +1,5 @@
 let page = 1;
-let keyword;
+let keyword = "add";
 let order;
 let size;
 
@@ -25,8 +25,6 @@ function selectPlace() {
             way = i;
         }
     }
-    console.log("들어온거:" + $('.place-select').text())
-    console.log(way);
     // $(e).text() == region_list
 
 }
@@ -60,11 +58,6 @@ function load() {
     selectPlace(); // way 값 찾는 함수
     way *= 1; // number로 타입 변경, way = way * 1
     page *= 1; // number로 타입 변경, page = page * 1
-    console.log(way);
-    console.log(page);
-    console.log(keyword);
-    console.log(size);
-    console.log(order);
     $.ajax({
         type: "post",
         url: "/storages/search/list",
@@ -83,6 +76,8 @@ function load() {
             console.log(result.total)*/
             showList(result);
             showPage(result);
+            console.log("result");
+            console.log(result);
         },
         error:function (e) {
             alert("통신에러");
@@ -143,14 +138,14 @@ function showPage(result) {
                        `
     if(result.paginationDTO.pageDTO.prev) {
         paging += `
-                        <a class="changePage" onclick="preventDefault(this)" href="?page=${result.paginationDTO.pageDTO.startPage - 1}" style="color: black"><code><</code></a>
+                        <a class="changePage" data-page="${result.paginationDTO.pageDTO.startPage - 1}" onclick="preventDefault(this)" style="color: black"><code><</code></a>
                         `;
     }
     for (let i = 1; i <= result.paginationDTO.pageDTO.endPage; i++) {
         let page = i;
         if(result.paginationDTO.pageDTO.criteria.page != page) {
             paging += `
-                    <a class="changePage" onclick="findPage(this)" style="color: black" href="/storages/list/${way}?page=${page}"><code>${page}</code></a>
+                    <a class="changePage" data-page="${page}" onclick="findPage(this)" style="color: black" ><code>${page}</code></a>
                      `
         }
         else {
@@ -161,7 +156,7 @@ function showPage(result) {
     }
     if(result.paginationDTO.pageDTO.next) {
         paging += `
-                        <a class="changePage" onclick="findPage(this)" href="?page=${result.paginationDTO.pageDTO.endPage + 1}" style="color: black"><code>></code></a>
+                        <a class="changePage" data-page="${result.paginationDTO.pageDTO.endPage + 1}" onclick="findPage(this)" style="color: black"><code>></code></a>
                     `
     }
 
@@ -179,11 +174,11 @@ function showPage(result) {
 }
 
 function findPage(currentPage) {
-    currentPage.preventDefault();
+    // currentPage.preventDefault();
     page = currentPage.dataset.page;
     page *= 1;
     // console.log(typeof page);
-    filter();
+    loadAll();
 }
 
 

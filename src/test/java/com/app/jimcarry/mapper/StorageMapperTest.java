@@ -64,10 +64,10 @@ public class StorageMapperTest {
     @Test
     void selectBy() {
         SearchDTO searchDTO = new SearchDTO();
-        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("userId")));
-        searchDTO.setUserId(2L);
+        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("storageAddress")));
+        searchDTO.setStorageAddress("경기");
         int total = storageMapper.totalBy(searchDTO);
-        Criteria criteria = new Criteria().create(1, 20);
+        Criteria criteria = new Criteria().create(1, 10);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         storageMapper.selectBy(pageDTO);
     }
@@ -92,8 +92,9 @@ public class StorageMapperTest {
         int total = 0;
         SearchDTO searchDTO = new SearchDTO();
         Criteria criteria = new Criteria().create(1, 5);
-        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("storageAddress")));
-        searchDTO.setStorageAddress("서울");
+        searchDTO.setTypes(new ArrayList<String>(Arrays.asList("storageAddress", "storageAddressNumber")));
+        searchDTO.setStorageAddress("경기");
+        searchDTO.setStorageAddressNumber(1);
         total = storageMapper.totalBy(searchDTO);
         storageMapper.selectDTOAllBy(new PageDTO().createPageDTO(criteria, total, searchDTO));
     }
