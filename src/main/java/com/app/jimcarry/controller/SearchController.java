@@ -41,6 +41,9 @@ public class SearchController {
         List<String> size = (List<String>) requestData.get("size"); // sizes
         String order = (String) requestData.get("order"); // order
 
+        log.info("================================");
+        log.info("page" + page);
+        log.info("================================");
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 6;
         /* 검색된 결과의 총 개수 */
@@ -49,10 +52,10 @@ public class SearchController {
         /*창고주소번호 */
         List<String> types = new ArrayList<>();
 
-        types.add("keyword");
+        types.add("storageAddress");
         types.add("storageAddressNumber");
         SearchDTO searchDTO = new SearchDTO().createTypes(types);
-        searchDTO.setKeyword(keyword);
+        searchDTO.setStorageAddress(keyword);
         searchDTO.setStorageAddressNumber(storageAddressNumber);
         searchDTO.setSizes(size);
         searchDTO.setOrder(order);
@@ -64,12 +67,18 @@ public class SearchController {
         PaginationDTO paginationDTO = new PaginationDTO();
 
         //         페이지 번호가 없을 때, 디폴트 1페이지
-        if (criteria.getPage() == 0) {
-            criteria.create(1, amount);
-        } else {
-            criteria.create(criteria.getPage(), amount);
+        if(page == 0) {
+            page = 1;
         }
-
+        criteria.create(page, amount);
+//        if (criteria.getPage() == 0) {
+//            criteria.create(1, amount);
+//        } else {
+//            criteria.create(page, amount);
+//        }
+        log.info("================================");
+        log.info(criteria.toString());
+        log.info("================================");
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         List<StorageDTO> storageList = storageService.getStorageDTOBy(pageDTO);
