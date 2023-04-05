@@ -91,6 +91,7 @@ public class StorageService {
 
     //    수정
     public void setStorage(StorageVO storageVO){ storageDAO.updateBy(storageVO);}
+    public void modify(StorageVO storageVO){ storageDAO.setAdminStorageVO(storageVO);}
 
     //    삭제
     public void removeStorage(Long storageId) {

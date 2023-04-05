@@ -101,6 +101,9 @@ public class UserService {
     public void updateUser(UserVO userVO) {
         userDAO.setUserVO(userVO);
     }
+    public void modify(UserVO userVO) {
+        userDAO.setAdminUserVO(userVO);
+    }
 
     /**
      * 회원정보 삭제 서비스

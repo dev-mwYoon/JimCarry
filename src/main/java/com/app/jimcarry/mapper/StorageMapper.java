@@ -37,6 +37,7 @@ public interface StorageMapper {
 
     //    수정
     public void update(StorageVO storageVO);
+    public void updateById(StorageVO storageVO);
     //    삭제
     public void delete(Long storageId);
 
