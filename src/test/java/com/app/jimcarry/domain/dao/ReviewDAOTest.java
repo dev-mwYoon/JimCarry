@@ -52,7 +52,7 @@ public class ReviewDAOTest {
         /*SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("userId"));*/
         SearchDTO searchDTO = new SearchDTO().createTypes(Arrays.asList("storageId"));
         /*searchDTO.setUserId(2L);*/
-        searchDTO.setStorageId(8L);
+        searchDTO.setStorageId(1L);
         Criteria criteria = new Criteria().create(1, 5);
         int total = reviewDAO.getTotalBy(searchDTO);
 

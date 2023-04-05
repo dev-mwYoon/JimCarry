@@ -3,9 +3,10 @@ const reviewContainer = $($(".review-container")[0]);
 
 /* 목록이 추가될 div에 화면에서 필요한 필드멤버 뿌려주기 */
 function createDOM(reviews) {
+    console.log(reviews)
     let text = ``;
     reviews.forEach((review, i) => {
-        text = `
+        text += `
     <div class="review-detail-container">
         <div class="review-detail-wrap">
             <div class="review-detail-name-wrap">
@@ -26,18 +27,18 @@ function createDOM(reviews) {
         console.log(review.fileVOS);
         console.log(review.fileVOS[0].filePath);*/
 
+
         review.fileVOS.forEach(file => {
-            text += `
+            if(file.fileOrgName != null){
+                text += `
                   <img class="review-photo" src="/storages/search/files/display?fileName=${file.filePath + '/' + file.fileUuid + '_' + file.fileOrgName}">
                   `;
+            }
             //    th:src="@{/storages/search/files/display(fileName=${file.filePath} + '/' + ${file.fileUuid} + '_' + ${file.fileOrgName})}"
         })
 
 
         text += `
-                        <button class="review-img"></button>
-                        <button class="review-img"></button>
-                        <button class="review-img"></button>
                     </div>
                     <footer class="review-register-container">
                         <div>
@@ -56,7 +57,7 @@ function createDOM(reviews) {
     })
     return text;
 };
-reviewContainer.empty();
+/*reviewContainer.empty();*/
 reviewContainer.append(createDOM(reviews));
 
 `<!--                    <img class="review-photo">-->`
@@ -78,21 +79,19 @@ function createList(files) {
     let text = '';
     files.forEach((file, i) => {
         text += `
-      <img class="review-img" src="/storages/search/files/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}"></img>
+      <a class="aClick"><img class="review-img" src="/storages/search/files/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}"></a>
     `;
     });
     return text;
 }
 
-/*
-$('.review-img').on("click", function(e,i) {
-    console.log("이미지 클릭함");
-    $('#expandedImg').eq(i).css("src", "/storages/search/files/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOrgName}");
-});
-*/
-
 storageContainer.empty();
+
 storageContainer.append(createList(files));
 
-
+$('.aClick').on("click", function(e) {
+    console.log("이미지 클릭함");
+    let imgSrc = $(this).children().attr("src")
+    $('#expandedImg').attr("src", imgSrc);
+});
 

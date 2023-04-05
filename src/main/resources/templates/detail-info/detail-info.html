@@ -157,19 +157,12 @@
             </div>
 -->
                     <div id="moveInfo" class="sharebox-photo">
-                        <img id="expandedImg"/>
+                        <img id="expandedImg" th:src="@{/storages/search/files/display(fileName=${file[0].filePath} + '/' + ${file[0].fileUuid} + '_' + ${file[0].fileOrgName})}"/>
                     </div>
                 </div>
             </div>
 
             <div class="sharebox-img-container">
-                <button type="button" class="review-img"></button>
-                <button type="button" class="review-img1"></button>
-                <button type="button" class="review-img2"></button>
-                <button type="button" class="review-img"></button>
-                <button type="button" class="review-img"></button>
-                <button type="button" class="review-img"></button>
-                <button type="button" class="review-img"></button>
                 <button type="button" class="review-img"></button>
             </div>
         </div>
@@ -193,7 +186,7 @@
                         <span class="review-count-total" th:text=" '총' + ${total} + '개'">총 68,918개</span>
                     </div>
 
-                    <div class="review-detail-container">
+                    <!--<div class="review-detail-container">
                         <div class="review-detail-wrap">
                             <div class="review-detail-name-wrap">
                                 <span class="review-name">라**</span>
@@ -208,24 +201,23 @@
 
                                 <p class="review-context">매번 주문하는 제품이에요</p>
 
-                                <div class="review-img-container" th:each="reviewFile: ${reviewFile}">
-                                    <img th:src="@{/storages/search/files/display(fileName=${reviewFile.reviewFilePath} + '/' + ${reviewFile.reviewFileUuid} + '_' + ${reviewFile.reviewFileOrgName})}" class="review-photo" >
-                                    <img class="review-photo">
-                                    <!-- <button class="css-1cnkf63 e36z05c2"></button> -->
+                                <div class="review-img-container">
+                                    <img class="review-photo" >
+                                    &lt;!&ndash; <button class="css-1cnkf63 e36z05c2"></button> &ndash;&gt;
                                 </div>
 
                                 <footer class="review-register-container">
                                     <div>
                                         <span class="review-date">2023.03.16</span>
                                     </div>
-                                    <!--  <button class="css-g3a39p e198bwfo1">
+                                    &lt;!&ndash;  <button class="css-g3a39p e198bwfo1">
                                          <span class="ico css-xdee1z e198bwfo0"></span>
                                          <span>도움돼요</span>
-                                     </button> -->
+                                     </button> &ndash;&gt;
                                 </footer>
                             </div>
                         </article>
-                    </div>
+                    </div>-->
                 </div>
             </section>
             <div th:object="${pagination}">
