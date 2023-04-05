@@ -71,10 +71,16 @@ public class StorageController {
 
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
+
+        List<StorageDTO> storageList = storageService.getStorageDTOBy(pageDTO);
+        for(StorageDTO storageDTO: storageList){
+            storageDTO.setFiles(storageFileService.getByStorageId(storageDTO.getStorageId()));
+        }
+
         model.addAttribute("storageAddressNumber", storageAddressNumber);
         model.addAttribute("total", total);
         model.addAttribute("pagination", pageDTO);
-        model.addAttribute("storage", storageService.getStorageDTOBy(pageDTO));
+        model.addAttribute("storage", storageList);
 
         /*return storageService.getStorageDTOBy(pageDTO);*/
         return "/main/search-page";
