@@ -38,7 +38,7 @@ public class MainController {
         }
         List<StorageDTO> reviewDTOs = storageService.getStorage();
         for(StorageDTO storageDTO: reviewDTOs){
-            storageDTO.setFiles(storageFileService.getByStorageId(1L));
+            storageDTO.setFiles(storageFileService.getByStorageId(storageDTO.getStorageId()));
         }
         model.addAttribute("storages", storageDTOS);
         model.addAttribute("countReviews", reviewDTOs);
