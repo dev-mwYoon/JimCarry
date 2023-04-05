@@ -431,7 +431,7 @@ public class AdminController {
                                       @RequestParam("storageTitle") String storageTitle,
                                       @RequestParam("userId") Long userId,
                                       @RequestParam("userName") String userName,
-                                      @RequestParam("userPhone") String userPhone,
+                                      @RequestParam("storagePhone") String storagePhone,
                                       @RequestParam("storageEndDate") String storageEndDate,
                                       @RequestParam("storagePrice") Integer storagePrice,
                                       @RequestParam("storageUseDate") String storageUseDate){
@@ -442,12 +442,12 @@ public class AdminController {
         storageVO.setStoragePrice(storagePrice);
         storageVO.setStorageEndDate(storageEndDate);
         storageVO.setStorageUseDate(storageUseDate);
-        storageService.setStorage(storageVO);
+        storageVO.setStoragePhone(storagePhone);
+        storageService.modify(storageVO);
 
         UserVO userVO = userService.getUser(userId);
         userVO.setUserName(userName);
-        userVO.setUserPhone(userPhone);
-        userService.updateUser(userVO);
+        userService.modify(userVO);
 
         return new RedirectView("/admin/storage");
     }

@@ -81,6 +81,7 @@ public class NoticeController {
     @GetMapping("write")
     public String write(Model model, HttpSession httpSession) {
         model.addAttribute("userPhone", userService.getUser(((UserVO)httpSession.getAttribute("user")).getUserId()).getUserPhone());
+        model.addAttribute("userId", userService.getUser(((UserVO)httpSession.getAttribute("user")).getUserId()));
 
         return "/notice/qna-write";}
 
