@@ -380,7 +380,7 @@ public class AdminController {
 
         return "/admin/review";
     }
-    /*공지사항 수정*/
+    /*리뷰 수정*/
     @PostMapping("review/update")
         public RedirectView setReview(ReviewVO reviewVO) {
             // 리뷰 수정 기능 구현

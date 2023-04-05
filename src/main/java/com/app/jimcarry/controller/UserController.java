@@ -33,7 +33,7 @@ public class UserController {
 //    카카오, 네이버, 일반 회원가입 선택 페이지 이동
     @GetMapping("join-select")
     public String joinSelect() {
-        return "joinLogin/join-select";
+        return "/joinLogin/join-select";
     }
 
 //    네이버 회원가입 콜백 페이지로 이동
@@ -219,7 +219,7 @@ public class UserController {
 
 
     @GetMapping("kakao")
-    public RedirectView kakaoJoin(String code, HttpSession session) throws Exception {
+    public RedirectView kakaoJoin(String code, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
         String token = userService.getKaKaoAccessToken(code, "join");
         UserVO kakaoInfo = userService.getKakaoInfo(token);
 
@@ -231,7 +231,7 @@ public class UserController {
 
         //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
         if (userVO == null || userVO.getUserStatus() != 1) {
-            session.setAttribute("kakaoInfo", kakaoInfo);
+            redirectAttributes.addFlashAttribute("kakaoInfo", kakaoInfo);
             return new RedirectView("/user/join");
         }
 
@@ -249,7 +249,7 @@ public class UserController {
         UserVO kakaoInfo = userService.getKakaoInfo(token);
         UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
 
-        if(userVO.getUserStatus() != 1){
+        if(userVO == null || userVO.getUserStatus() != 1){
             return new RedirectView("/user/login?result=fail");
         }
 

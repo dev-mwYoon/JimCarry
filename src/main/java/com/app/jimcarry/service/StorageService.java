@@ -78,6 +78,8 @@ public class StorageService {
      * */
     @LogStatus
     public List<StorageVO> getListBy(PageDTO pageDTO) {
+        log.info("★★★★★★★★★★" + pageDTO);
+        log.info("★★★★★★★★★★" + storageDAO.findBy(pageDTO));
         return storageDAO.findBy(pageDTO);
     }
 
@@ -99,7 +101,7 @@ public class StorageService {
 
     //    수정
     public void setStorage(StorageVO storageVO){ storageDAO.updateBy(storageVO);}
-    public void modify(StorageVO storageVO){ storageDAO.setAdminStorageVO(storageVO);}
+    public void modify(StorageVO storageVO){ storageDAO.setStorage(storageVO);}
 
     //    삭제
     public void removeStorage(Long storageId) {

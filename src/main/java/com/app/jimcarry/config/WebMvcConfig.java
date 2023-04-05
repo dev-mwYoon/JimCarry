@@ -21,7 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(authInterceptor) // 적용할 URL 패턴
                 .addPathPatterns("/users/mypage/**",
                         "/main",
-                        "/storages/register", "/pay/payment");
+                        "/storages/register", "/pay/payment", "/notice/write");
 //                .excludePathPatterns("/login/**"); // 제외할 URL 패턴
     }
 }

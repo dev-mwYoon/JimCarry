@@ -56,7 +56,7 @@
             </a>
         </li>
     </ul>
-    <a href="#" class="mypage-list-left-section-help" style="text-decoration: none;">
+    <a href="/notice/write" class="mypage-list-left-section-help" style="text-decoration: none;">
         <div class="mypage-list-left-section-help-text">
             <span style="font-weight: 500;">도움이 필요하신가요?</span>
             <span style="font-size: 12px;">1:1 문의하기</span>
@@ -79,14 +79,14 @@
                 <li class="status-list-item">
                     <div class="status-item-wrapper">
                         <div class="status-item-name">내 창고</div>
-                        <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                        <a href="" class="status-item-count" style="text-decoration: none;" th:text="${storageTotal}"></a>
                     </div>
                 </li>
                 <div class="mypage-list-right-line"></div>
                 <li class="status-list-item">
                     <div class="status-item-wrapper">
-                        <div class="status-item-name">이용중인 창고</div>
-                        <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                        <div class="status-item-name">이용한 창고</div>
+                        <a href="" class="status-item-count" style="text-decoration: none;"th:text="${paymentTotal}"></a>
                     </div>
                 </li>
             </div>
