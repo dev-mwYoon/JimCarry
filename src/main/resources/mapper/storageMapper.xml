@@ -68,7 +68,6 @@
         <choose>
             <when test="dto.types != null and dto.storageAddressNumber != 0">
                 <include refid="searchContext"/>
-                and storage_address_number = #{dto.storageAddressNumber}
             </when>
             <otherwise>
                 <if test="dto.types != null">
@@ -102,6 +101,9 @@
                         <when test="type == 'storageSize'.toString()">
                             storage_size like concat('%', #{dto.storageSize}, '%')
                         </when>
+                            <otherwise>
+                            storage_address_number = #{dto.storageAddressNumber}
+                        </otherwise>
                     </choose>
                 </trim>
             </foreach>
