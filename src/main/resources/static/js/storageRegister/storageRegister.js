@@ -52,10 +52,7 @@ function handleFiles(files) {
             $(".imgButtonWrap").hide();
         }
 
-        if(!files.value){
-            alert("파일을 첨부해 주세요");
-            return false;
-        }
+
 
         /* 파일절대경로얻기 */  
         const file = files[i];
@@ -94,12 +91,6 @@ function handleFiles(files) {
                 $(".imgButtonWrap").show();
             });
 
-            submitBtn.addEventListener('click', function () {
-                if(file.value == "") {
-                    alert("파일을 선택해주세요");
-                }
-
-            });
 
 
             /* 파일 개수가 8개 이상이면 버튼숨기기 */
