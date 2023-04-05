@@ -9,7 +9,7 @@ payments.forEach((payment, i) => {
                              class="review-content-list-img">
                     </a>
                     <p>
-                        <a href="javascript:void(0)" class="review-content-name">
+                        <a class="review-content-name">
                             ${check ? '리뷰 없음' : reviews[i].reviewTitle}
                         </a>
                         <span>${payment.paymentDate} 주문완료</span>
@@ -311,7 +311,7 @@ $(".change-modal-ok-btn").on("click", function () {
     const reviewDTO = {
         reviewTitle: reviewTitle,
         reviewContext: reviewContext,
-        fileVOs: fileVOs
+        files: fileVOs
     };
     /* 리뷰 Id 확인 */
     reviewId = reviews[contentIndex]?.reviewId;

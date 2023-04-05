@@ -1,5 +1,6 @@
 package com.app.jimcarry.aspect;
 
+import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.PaymentService;
@@ -11,7 +12,9 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 @Component
 @Aspect
