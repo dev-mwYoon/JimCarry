@@ -50,11 +50,16 @@ public class SearchController {
         //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
             criteria.create(1, amount);
-        } else criteria.create(criteria.getPage(), amount);
+        } else {
+            criteria.create(criteria.getPage(), amount);
+        }
 
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         List<StorageDTO> storageList = storageService.getStorageDTOBy(pageDTO);
+        for(StorageDTO storageDTO: storageList){
+            storageDTO.setFiles(storageFileService.getByStorageId(storageDTO.getStorageId()));
+        }
 
         paginationDTO.setPageDTO(pageDTO);
         paginationDTO.setStorageDTO(storageList);
@@ -150,6 +155,13 @@ public class SearchController {
     private List<ReviewDTO> insertFileVOS(List<ReviewDTO> dtos){
         return dtos.stream().map(dto -> {
             dto.setFileVOS(reviewFileService.getListByReviewId(dto.getReviewId()));
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    private List<StorageDTO> insertFiles(List<StorageDTO> storageDTOS){
+        return storageDTOS.stream().map(dto -> {
+            dto.setFiles(storageFileService.getByStorageId(dto.getStorageId()));
             return dto;
         }).collect(Collectors.toList());
     }
