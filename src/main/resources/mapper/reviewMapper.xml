@@ -61,7 +61,7 @@
             from tbl_review
             <include refid="searchType"/>
         ) r on u.user_id = r.user_id
-        order by review_id
+        order by review_id desc
         <if test="page.searchDTO.isDesc">
             desc
         </if>

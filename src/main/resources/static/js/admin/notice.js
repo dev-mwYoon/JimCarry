@@ -48,9 +48,9 @@ notices.forEach((notices, i)=>{
 $('#create-button').on('click', function(){
             $(".modal-stage").html(
                 `
-               <section class="modal" th:fragment="notice-modal">
+               <section class="modal" id="modal" th:fragment="notice-modal">
                   <div class="modal__header">
-                    <h3 class="modal__title">공지 상세보기</h3>
+                    <h3 class="modal__title">공지 작성하기</h3>
                     <a class="modal-close" id="modal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +133,7 @@ $(".content__detail__btn").on('click', function () {
                <section class="modal" th:fragment="notice-modal">
                   <div class="modal__header">
                     <h3 class="modal__title">공지 상세보기</h3>
-                    <a class="modal-close" id="modal-close">
+                    <a class="modal-close" id="detailmodal-close">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         data-name="Capa 1"
@@ -186,7 +186,7 @@ $(".content__detail__btn").on('click', function () {
                 ],
             });
             /* 모달 닫는 이벤트 */
-            $('#modal-close').on('click', function () {
+            $('#detailmodal-close').on('click', function () {
                 $modalStage.fadeOut(500);
             });
 

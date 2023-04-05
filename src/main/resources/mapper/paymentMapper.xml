@@ -37,7 +37,7 @@
         on u.user_id = p.user_id) pu join tbl_storage s
         on pu.storage_id = s.storage_id
         <include refid="searchType"/>
-        order by pay_id
+        order by pay_id desc
         <if test="page.searchDTO.isDesc">
             desc
         </if>
