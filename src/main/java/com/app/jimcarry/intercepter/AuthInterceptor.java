@@ -1,9 +1,6 @@
 package com.app.jimcarry.intercepter;
 
-import com.app.jimcarry.controller.MainController;
-import com.app.jimcarry.controller.MypageController;
-import com.app.jimcarry.controller.PayController;
-import com.app.jimcarry.controller.StorageController;
+import com.app.jimcarry.controller.*;
 import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.exception.AuthenticationFailureException;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +39,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         log.info(handlerMethod.getBean().getClass().toString());
 
         if (handlerMethod.getBean() instanceof MypageController || handlerMethod.getBean() instanceof StorageController
-                || handlerMethod.getBean() instanceof PayController /*|| handlerMethod.getBean() instanceof InquiryController*/) {
+                || handlerMethod.getBean() instanceof PayController || handlerMethod.getBean() instanceof NoticeController /*|| handlerMethod.getBean() instanceof InquiryController*/) {
             if (request.getSession().getAttribute("user") == null && checkCookie(request)) {
                 log.info("=========== 로그인정보 조회 실패 ==========");
                 /* 컨트롤러에서 받을 예외, 추후 커스텀 예외로 변경할 수 있음. */
