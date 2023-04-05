@@ -48,7 +48,7 @@
         select count(storage_id) from tbl_storage
         <include refid="searchType"/>
         <if test="dto.sizes != null and dto.sizes.size() > 0">
-            <trim prefix="where">
+            <trim prefix="and (" suffix=")">
                 <foreach collection="dto.sizes" item="size" separator=" OR ">
                     storage_size like concat('%', #{size}, '%')
                 </foreach>
