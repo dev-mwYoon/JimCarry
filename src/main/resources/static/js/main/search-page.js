@@ -153,7 +153,7 @@ const createDOM = function (storage) {
     let text = `
     <a href="/storages/search/detail/${storage.storageId}" class="product">
         <div class="product-img-div">
-            <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg" class="product-img">
+            <img src="/storages/search/files/display?fileName=${storage.files[0].filePath + '/' + storage.files[0].fileUuid + '_' + storage.files[0].fileOrgName}">
         </div>
         <div class="product-explain">
             <span class="product-title">${storage.storageTitle}</span>
