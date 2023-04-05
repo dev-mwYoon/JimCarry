@@ -116,9 +116,9 @@
                         <div class="flexLayout">
                             <div class="inputBox">
                                 <input class="input emailInput necessary" type="text" placeholder="예: jimCarry@carry.com" name="userEmail"
-                                       required autocomplete="none" th:if="${session.kakaoInfo == null}">
+                                       required autocomplete="none" th:if="${kakaoInfo == null}">
                                 <input class="input emailInput necessary" type="text" placeholder="예: jimCarry@carry.com" name="userEmail"
-                                       required autocomplete="none" th:if="${session.kakaoInfo != null}" th:value="${session.kakaoInfo.getUserEmail()}" readonly>
+                                       required autocomplete="none" th:if="${kakaoInfo != null}" th:value="${kakaoInfo.getUserEmail()}" readonly>
                             </div>
                             <div class="errorDiv">
                                 <p class="errorMessage"></p>
@@ -396,8 +396,10 @@
                 </div>
             </div>
         </div>
-    <input type="hidden" name="userStatus" th:if="${session.kakaoInfo == null}" value="0">
-    <input type="hidden" name="userStatus" th:if="${session.kakaoInfo != null}" th:value="${session.kakaoInfo.getUserStatus()}">
+<!--    <input type="hidden" name="userStatus" th:if="${kakaoInfo == null}" value="0">-->
+<!--    <input type="hidden" name="userStatus" th:if="${kakaoInfo != null}" th:value="${kakaoInfo.getUserStatus()}">-->
+    <input type="hidden" name="userStatus" th:if="${kakaoInfo == null}" value="0">
+    <input type="hidden" name="userStatus" th:if="${kakaoInfo != null}" th:value="${kakaoInfo.getUserStatus()}">
     </form>
     <!-- 푸터 -->
     <footer th:insert="~{main/footer.html :: mainFooter}"></footer>
