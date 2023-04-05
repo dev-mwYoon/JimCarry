@@ -1,5 +1,5 @@
 let page = 1;
-let keyword = "add";
+let keyword = "";
 let order;
 let size;
 
