@@ -85,8 +85,8 @@ public class ReviewService {
     public void registerReview(ReviewDTO reviewDTO) {
         ReviewVO newReview = reviewDTO.createVO();
         reviewDAO.save(newReview);
-        reviewDTO.getFileVOS().stream().map(file -> new ReviewFileVO().create(file, newReview.getReviewId()))
-                .forEach(file -> { file.setFilePath(getPath()); reviewFileDAO.save(file); });
+//        reviewDTO.getFileVOS().stream().map(file -> new ReviewFileVO().create(file, newReview.getReviewId()))
+//                .forEach(file -> { file.setFilePath(getPath()); reviewFileDAO.save(file); });
     }
 
     //    현재 날짜 경로 구하기

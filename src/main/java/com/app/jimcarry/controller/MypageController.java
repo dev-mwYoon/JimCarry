@@ -1,9 +1,11 @@
 package com.app.jimcarry.controller;
 
 import com.app.jimcarry.aspect.annotation.CheckLogin;
+import com.app.jimcarry.aspect.annotation.MypageHeaderValue;
 import com.app.jimcarry.domain.dto.PageDTO;
 import com.app.jimcarry.domain.dto.ReviewDTO;
 import com.app.jimcarry.domain.dto.SearchDTO;
+import com.app.jimcarry.domain.dto.StorageDTO;
 import com.app.jimcarry.domain.vo.*;
 import com.app.jimcarry.service.*;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users/mypage/*")
@@ -32,6 +35,7 @@ public class MypageController {
 
     private final UserService userService;
     private final StorageService storageService;
+    private final StorageFileService storageFileService;
     private final InquiryService inquiryService;
     private final InquiryFileService inquiryFileService;
     private final ReviewFileService reviewFileService;
@@ -40,7 +44,7 @@ public class MypageController {
     private final HttpServletRequest request;
 
     /* ============================== 내 창고 ================================ */
-//    @CheckLogin
+    @MypageHeaderValue
     @GetMapping("mybox")
     public String myBox(Criteria criteria, Model model) {
 
@@ -71,6 +75,7 @@ public class MypageController {
     }
 
     /* ============================== 이용중인 창고 ================================ */
+    @MypageHeaderValue
     @GetMapping("usage")
     public String usage(Criteria criteria, Model model) {
 
@@ -101,6 +106,7 @@ public class MypageController {
     }
 
     /* ============================== 문의 사항 ================================ */
+    @MypageHeaderValue
     @GetMapping("qna")
     public String goQna(Criteria criteria, Model model) {
         /* 한 페이지에 보여줄 게시글 개수 */
@@ -183,6 +189,7 @@ public class MypageController {
     }
 
     /* ================================ 내 후기 ================================== */
+    @MypageHeaderValue
     @GetMapping("review")
     public String review(Criteria criteria, Model model) {
         /* 한 페이지에 보여줄 게시글 개수 */
@@ -229,12 +236,14 @@ public class MypageController {
         Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
         /* 추후 세션으로 변경 */
         reviewDTO.setUserId(userId);
+        log.info("★★★★★★★★★★★★★★★" + reviewDTO.getFileVOS());
         reviewService.registerReview(reviewDTO);
 
         return "/users/mypage/review?page=" + page;
     }
 
     /* ============================== 회원정보 수정 ================================ */
+    @MypageHeaderValue
     @GetMapping("update")
     public String updateUser(Model model) {
         Long userId = Optional.ofNullable((UserVO)request.getSession().getAttribute("user")).get().getUserId();
@@ -298,6 +307,7 @@ public class MypageController {
     }
 
     /* ================================= 회원탈퇴 ================================= */
+    @MypageHeaderValue
     @GetMapping("unregister")
     public String unregister() {
         return "mypage/my-withdrawal";
