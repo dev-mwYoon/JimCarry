@@ -1,11 +1,3 @@
-const $inputTitle = $('#inputTitle');
-const $inputName = $('#inputName');
-const $inputPhone = $('#inputPhone');
-const $inputSize = $('.inputSize');
-const $inputAddress = $('#address');
-const $inputDetail = $('#inputDetail');
-const $inputDateStart = $('#inputDateStart');
-const $inputDateEnd = $('#inputDateEnd');
 const $submitBtn = $('.submitButton');
 const $container = $('.modal');
 const $close = $('.pay-popup-check');
@@ -51,9 +43,14 @@ let setStorageDTO = function() {
         console.log($('input[name=storageAddressNumber]').val())
         console.log($('input[type=file]').val())
 
-        if($('input[type=file]').val() == "") {
-            alert("파일을 선택해주세요");
+        if(!$('input[type=file]').val()) {
 
+            $('.pay-content').text('파일을 선택해주세요.')
+            $container.css("display", "block");
+
+            $close.on("click", function () {
+                $container.css("display", "none");
+            });
         } else {
 
             config = {
@@ -62,20 +59,21 @@ let setStorageDTO = function() {
                 data: JSON.stringify(setStorageDTO()),
                 contentType: "application/json; charset=utf-8",
             }
-            /*$container.css("display", "block");*/
+            $('.pay-content').text('창고등록이 완료되었습니다')
+            $container.css("display", "block");
             console.log("ㅇㅁㅇㅁㅇㅁㄴㅇㅁㄴㅇ");
 
 
             $doAjax(config, (result) => {
-                location.href = result;
-                /*$close.on("click", function () {
 
-                });*/
+                $close.on("click", function () {
+
+                    $container.css("display", "none");
+                    location.href = result;
+                });
             });
 
-            /*  $container.css("display", "none");*/
         }
-
 
 });
 
