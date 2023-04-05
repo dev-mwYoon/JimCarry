@@ -51,7 +51,7 @@ $(".filter-select-button").on('click', function () {
         $(this).data("check", 0);
     }
     loadAll();
-})
+});
 
 function showSize() {
     size = new Array();
