@@ -249,7 +249,7 @@ public class UserController {
         UserVO kakaoInfo = userService.getKakaoInfo(token);
         UserVO userVO = userService.findByIdentification(userIdentification, kakaoInfo.getUserEmail());
 
-        if(userVO.getUserStatus() != 1){
+        if(userVO == null || userVO.getUserStatus() != 1){
             return new RedirectView("/user/login?result=fail");
         }
 
