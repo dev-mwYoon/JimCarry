@@ -211,6 +211,10 @@ ol, ul {
     height: 320px;
 }
 
+.product-img-div img{
+    height: 100%;
+}
+
 .product-explain {
     padding: 14px 10px 0px 0px;
 }

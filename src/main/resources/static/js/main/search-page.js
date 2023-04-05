@@ -51,7 +51,7 @@ $(function() {
                     html += `
                         <a href="/storages/search/detail/${e.storageId}" class="product">
                             <div class="product-img-div">
-                                <img src="https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2021/12/31/GKRZjZYBpPhE637765486789400308.jpg" class="product-img">
+                                <img src="/storages/search/files/display?fileName=${e.files[0].filePath + '/' + e.files[0].fileUuid + '_' + e.files[0].fileOrgName}">
                             </div>
                             <div class="product-explain">
                                 <span class="product-title">${e.storageTitle}</span>
