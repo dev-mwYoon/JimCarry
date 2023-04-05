@@ -22,6 +22,7 @@ public class AdminRestController {
     private final UserService userService;
     private final PaymentService paymentService;
     private final InquiryService inquiryService;
+    private final InquiryFileService inquiryFileService;
     private final NoticeService noticeService;
     private final StorageService storageService;
     private final StorageFileService storageFileService;
@@ -40,14 +41,13 @@ public class AdminRestController {
     /* 문의관리 상세보기 */
     @PostMapping("inquiry/detail")
     public InquiryDTO getInquiry(Long inquiryId){
-//        InquiryDTO inquirydetail = Optional.ofNullable(inquiryService.getDTOInquiryId(inquiryId)).get();
-//        return inquirydetail;
 
         if (inquiryId == null) {
             // 예외 처리
             throw new IllegalArgumentException("inquiryId must not be null");
         }
-        InquiryDTO inquirydetail = inquiryService.getDTOInquiryId(inquiryId);
+        InquiryDTO inquirydetail = Optional.ofNullable(inquiryService.getDTOInquiryId(inquiryId)).get();
+        inquirydetail.setFiles(inquiryFileService.getList(inquiryId));
         return inquirydetail;
     }
     /* 문의하기 답변 */
@@ -94,5 +94,6 @@ public class AdminRestController {
         reviewdetail.setFileVOS(reviewFileServicece.getListByReviewId(reviewId));
         return reviewdetail;
     }
+
 
 }

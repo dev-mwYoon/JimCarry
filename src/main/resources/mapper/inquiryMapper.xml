@@ -23,7 +23,7 @@
 
     <!-- 검색조건에 맞는 총 갯수 -->
     <select id="totalBy" resultType="int">
-        select count(inquiry_id) from join tbl_inquiry
+        select count(inquiry_id) from tbl_inquiry
         <include refid="searchType"/>
     </select>
     <select id="totalByCount" resultType="int">
@@ -109,7 +109,7 @@
         user_gender, user_birth, user_random_key, user_status
         from tbl_user u join tbl_inquiry i on u.user_id = i.user_id
         <include refid="searchType"/>
-        order by user_id
+        order by inquiry_id desc
         <if test="page.searchDTO.isDesc">
             desc
         </if>

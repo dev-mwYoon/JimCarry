@@ -1,6 +1,7 @@
 package com.app.jimcarry.domain.dto;
 
 import com.app.jimcarry.domain.vo.FileVO;
+import com.app.jimcarry.domain.vo.InquiryFileVO;
 import com.app.jimcarry.domain.vo.InquiryVO;
 import com.app.jimcarry.domain.vo.ReviewVO;
 import lombok.Data;
@@ -28,7 +29,7 @@ public class InquiryDTO {
     private String inquiryRegist;
     private Integer inquiryAnswer;
 
-    private List<FileVO> files;
+    private List<InquiryFileVO> files;
 
     public InquiryVO createVO() {
         InquiryVO inquiryVO = new InquiryVO();

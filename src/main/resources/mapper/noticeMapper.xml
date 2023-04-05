@@ -16,7 +16,7 @@
         select notice_id, notice_title, notice_content, notice_writer, notice_regist, notice_update
         from tbl_notice
         <include refid="searchType"/>
-        order by notice_id
+        order by notice_id desc
         <if test="page.searchDTO.isDesc">
             desc
         </if>
