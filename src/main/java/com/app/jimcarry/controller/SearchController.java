@@ -86,6 +86,8 @@ public class SearchController {
         total = reviewService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         List<ReviewDTO> reviewDTOList = reviewService.getListBy(pageDTO);
+        log.info("----------------------------------------------" + reviewDTOList);
+        insertFileVOS(reviewDTOList);
         model.addAttribute("total", total);
         model.addAttribute("pagination", pageDTO);
         model.addAttribute("storages", storageService.getStorageBy(storageId).get(0));
@@ -94,7 +96,7 @@ public class SearchController {
 
         model.addAttribute("pagination", pageDTO);
 
-        model.addAttribute("reviews", insertFileVOS(reviewDTOList));
+        model.addAttribute("reviews", reviewDTOList);
 //        model.addAttribute("reviewFile", reviewFileService.getListByStorageId(storageId));
 
 
