@@ -60,6 +60,7 @@ public class StorageDAO {
     //    수정
 
     public void updateBy(StorageVO storageVO){ storageMapper.update(storageVO);}
+    public void setAdminStorageVO(StorageVO storageVO){ storageMapper.updateById(storageVO);}
 
     //    삭제
     public void deleteById(Long storageId) {

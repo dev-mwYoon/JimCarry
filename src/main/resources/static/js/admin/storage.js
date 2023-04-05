@@ -46,8 +46,6 @@ boxes.forEach((box, i) => {
     );
 });
 
-//
-
 $(".content__detail__btn").on('click', function () {
     let $detailBt = $('.content__detail__btn');
     let i = $detailBt.index($(this));
@@ -61,6 +59,26 @@ $(".content__detail__btn").on('click', function () {
         data: { storageId : storageId },
         traditional : true,
         success : function(storagedetail) {
+            let fileHTML;
+            if (storagedetail.files && storagedetail.files.length > 0) {
+                fileHTML = storagedetail.files
+                    .map((data, i) => {
+                        return `<label class="attach">
+                <div class="content__img">
+                  <img src="/storages/search/files/display?fileName=${data.filePath}/${data.fileUuid}_${data.fileOrgName}">
+                </div>
+                <input type="" style="display: none;"/>
+              </label>`;
+                    })
+                    .join('');
+            } else {
+                fileHTML = `<label class="attach">
+                <div class="content__img">
+                  <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
+                </div>
+                <input type="" style="display: none;"/>
+              </label>`;
+            }
 
             $(".modal-stage").html(
                 `
@@ -84,30 +102,22 @@ $(".content__detail__btn").on('click', function () {
                             <div class="content__title">
                               <h4>창고 상세보기</h4>
                             </div>
-                            <div class="content__intput input_box_shadow">
-                              <input type="text" name="storageAddress" value="${storagedetail.storageAddress}" readonly="true" />
-                            </div>
                             <div class="content__main">
                             <div class="content__img__wrap">
                               <!--이미지 들어갈 곳-->
-                ${
-                    storagedetail.files
-                        .map((data, i) => {
-                            return `<label class="attach">
-                                            <div class="content__img">
-                                              <img src="/storages/search/files/display?fileName=${data.filePath}/${data.fileUuid}_${data.fileOrgName}">
-                                            </div>
-                                            <input type="" style="display: none;"/>
-                                          </label>`;
-                        })
-                        .join('')
-                }
-                              </div>
+                                ${fileHTML}
+                            </div>
                               <ul>
                                 <li class="content__list">
                                   <span>창고 이름</span>
                                   <div  class="content__intput input_box_shadow">
                                     <input type="text" name="storageTitle" value="${storagedetail.storageTitle}">
+                                  </div>
+                                </li>
+                                <li class="content__list">
+                                  <span>창고 주소</span>
+                                  <div  class="content__intput input_box_shadow">
+                                    <input type="text" name="storageAddress" value="${storagedetail.storageAddress}" />
                                   </div>
                                 </li>
                                 <li class="content__list">
@@ -119,15 +129,19 @@ $(".content__detail__btn").on('click', function () {
                                 <li class="content__list">
                                   <span>핸드폰</span>
                                   <div  class="content__intput input_box_shadow">
-                                    <input type="text" name="userPhone" value="${storagedetail.userPhone}">
+                                    <input type="text" name="storagePhone" value="${storagedetail.storagePhone}">
                                   </div>
                                 </li>
                                 <li class="content__list">
-                                  <span>창고 기간</span>
+                                  <span>창고 시작</span>
                                   <div  class="content__intput input_box_shadow">
-                                    <input type="text" value="${storagedetail.storageUseDate} ~ ${storagedetail.storageEndDate}">
-                                    <input type="hidden" name="storageUseDate" value="${storagedetail.storageUseDate}">
-                                    <input type="hidden" name="storageEndDate" value="${storagedetail.storageEndDate}">
+                                    <input type="text" name="storageUseDate" value="${storagedetail.storageUseDate}">
+                                  </div>
+                                </li>
+                                <li class="content__list">
+                                  <span>창고 종료</span>
+                                  <div  class="content__intput input_box_shadow">
+                                    <input type="text" name="storageEndDate" value="${storagedetail.storageEndDate}">
                                   </div>
                                 </li>
                                 <li class="content__list">
@@ -153,48 +167,46 @@ $(".content__detail__btn").on('click', function () {
 
 
             /* 모달 닫는 이벤트 */
-            /* 추후 외부로 빼야함 */
             $('#modal-close').on('click', function () {
                 $modalStage.fadeOut(500);
             });
-            // $('#completeBtn').on('click', function(){
-            //     $.ajax({
-            //         /* 수정에 관한 코드 작성 */
-            //     })
-            // })
-            /* 추후 타임리프로 대체할 예정 */
+
             $modalStage.show();
         }
+
     });
+
+    $(document).on("click", "#completeBtn", function(e) {
+        // e.preventDefault();
+
+        $.ajax({
+            url: "/admin/storage/update",
+            method: "POST",
+            data: {
+                storageId: storageId,
+                storageAddress: storageAddress,
+                storageTitle: storageTitle,
+                userId: userId,
+                userName: userName,
+                storagePhone: storagePhone,
+                storageEndDate: storageEndDate,
+                storagePrice: storagePrice,
+                storageUseDate: storageUseDate
+            },
+            success: function(response) {
+                // 성공적으로 요청이 완료되었을 때 처리할 코드
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // 요청이 실패했을 때 처리할 코드
+                console.error(xhr);
+            }
+        });
+    });
+
+
 });
 
-$(document).on("click", "#completeBtn", function(e) {
-    e.preventDefault();
-
-    $.ajax({
-        url: "/admin/storage/update",
-        method: "POST",
-        data: {
-            storageId: storageId,
-            storageAddress: storageAddress,
-            storageTitle: storageTitle,
-            userId: userId,
-            userName: userName,
-            userPhone: userPhone,
-            storageEndDate: storageEndDate,
-            storagePrice: storagePrice,
-            storageUseDate: storageUseDate
-        },
-        success: function(response) {
-            // 성공적으로 요청이 완료되었을 때 처리할 코드
-            console.log(response);
-        },
-        error: function(xhr, status, error) {
-            // 요청이 실패했을 때 처리할 코드
-            console.error(xhr);
-        }
-    });
-});
 
 
 /* 상세보기 모달 내용 submit 이벤트 */
