@@ -65,7 +65,6 @@ public class NoticeController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-//        total = inquiryService.getTotalBy(searchDTO);
         total = noticeService.getTotal();
         pageDTO = new PageDTO().createPageDTO(criteria, total, new SearchDTO());
         model.addAttribute("total", total);
@@ -89,8 +88,6 @@ public class NoticeController {
     @PostMapping("write")
     @ResponseBody
     public String writeRegister(@RequestBody InquiryDTO inquiryDTO, HttpSession httpSession) throws IOException{
-       /* log.info("1234");
-        log.info(String.valueOf(httpSession.getAttribute("userId" )));*/
         inquiryDTO.setUserId(((UserVO)httpSession.getAttribute("user")).getUserId());
 
         inquiryService.registerInquiry(inquiryDTO);

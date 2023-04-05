@@ -37,8 +37,8 @@ $photoPicker.on("change", function () {
         $thumbnailWrap.empty();
         result.paths.forEach((path, i) => {
             if ($files[i].type.startsWith("image")) {
-                $thumbnailWrap.append(`<!--<a href="/files/download">--><img class="imageThumbnail" src="/users/mypage/files/display?fileName=${result.paths[i]}"><!--</a>-->`);
-            } else $thumbnailWrap.append(`<!--<a>--><img style="width: 100px"/><!--</a>-->`);
+                $thumbnailWrap.append(`<img class="imageThumbnail" src="/users/mypage/files/display?fileName=${result.paths[i]}">`);
+            } else $thumbnailWrap.append(`<img style="width: 100px"/>`);
         });
     });
 });
@@ -66,6 +66,4 @@ let $fileAjax = (contentId, table) => {
         contentType: "application/json; charset=utf-8",
     }
 
- /*   $doAjax(config, (result) => {
-    });*/
 }

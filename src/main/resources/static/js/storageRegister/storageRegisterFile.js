@@ -1,7 +1,7 @@
 const $submitBtn = $('.submitButton');
 const $container = $('.modal');
 const $close = $('.pay-popup-check');
-// const $photoPicker = $("#photo-picker");
+
 /*실제 저장할 fileVO들의 배열*/
 let fileVOs = new Array();
 
