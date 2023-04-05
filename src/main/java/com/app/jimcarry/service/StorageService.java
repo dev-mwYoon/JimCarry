@@ -78,6 +78,8 @@ public class StorageService {
      * */
     @LogStatus
     public List<StorageVO> getListBy(PageDTO pageDTO) {
+        log.info("★★★★★★★★★★" + pageDTO);
+        log.info("★★★★★★★★★★" + storageDAO.findBy(pageDTO));
         return storageDAO.findBy(pageDTO);
     }
 

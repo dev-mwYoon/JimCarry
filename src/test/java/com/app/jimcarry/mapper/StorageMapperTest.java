@@ -67,7 +67,7 @@ public class StorageMapperTest {
         searchDTO.setTypes(new ArrayList<String>(Arrays.asList("userId")));
         searchDTO.setUserId(2L);
         int total = storageMapper.totalBy(searchDTO);
-        Criteria criteria = new Criteria().create(1, 10);
+        Criteria criteria = new Criteria().create(1, 20);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         storageMapper.selectBy(pageDTO);
     }

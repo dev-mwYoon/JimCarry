@@ -94,7 +94,7 @@
     <!-- 리뷰 수정 -->
     <update id="update">
         update tbl_review
-        set review_context=#{reviewContext}, review_edit_date=CURRENT_TIMESTAMP
+        set review_title=#{reviewTitle},review_context=#{reviewContext}, review_edit_date=CURRENT_TIMESTAMP
         where review_id=#{reviewId}
     </update>
 

@@ -68,8 +68,6 @@ const doAjax = function (config, callback) {
         isProcesData = config.processData === false ? true : false;
     }
 
-    console.log("으으악으가악");
-
     $.ajax({
         url: config.url,
         data: config.data,
