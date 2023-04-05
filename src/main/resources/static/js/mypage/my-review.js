@@ -311,7 +311,7 @@ $(".change-modal-ok-btn").on("click", function () {
     const reviewDTO = {
         reviewTitle: reviewTitle,
         reviewContext: reviewContext,
-        files: fileVOs,
+        fileVOs: fileVOs
     };
     /* 리뷰 Id 확인 */
     reviewId = reviews[contentIndex]?.reviewId;

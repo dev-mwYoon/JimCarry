@@ -79,14 +79,14 @@
                 <li class="status-list-item">
                     <div class="status-item-wrapper">
                         <div class="status-item-name">내 창고</div>
-                        <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                        <a href="" class="status-item-count" style="text-decoration: none;" th:text="${storageTotal}"></a>
                     </div>
                 </li>
                 <div class="mypage-list-right-line"></div>
                 <li class="status-list-item">
                     <div class="status-item-wrapper">
-                        <div class="status-item-name">이용중인 창고</div>
-                        <a href="" class="status-item-count" style="text-decoration: none;">0</a>
+                        <div class="status-item-name">이용한 창고</div>
+                        <a href="" class="status-item-count" style="text-decoration: none;"th:text="${paymentTotal}"></a>
                     </div>
                 </li>
             </div>

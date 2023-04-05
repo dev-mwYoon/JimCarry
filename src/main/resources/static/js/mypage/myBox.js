@@ -7,8 +7,6 @@ const createDOM = function (box) {
         </div>
         <div class="use-box-content-container">
             <div class="use-box-content-left-container">
-                <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
-                     class="use-box-content-left-img">
                 <div class="use-box-content-left-list-container">
                     <d1 class="left-list-wrapper">
                         <dt class="left-list-text">창고규모</dt>
