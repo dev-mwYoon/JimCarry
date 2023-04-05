@@ -39,6 +39,7 @@ public interface UserMapper {
 
     //    수정
     public void update(UserVO userVO);
+    public void updateById(UserVO userVO);
 
     //    삭제
     public void delete(Long userId);

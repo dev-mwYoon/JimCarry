@@ -63,6 +63,9 @@ public class UserDAO {
     public void setUserVO(UserVO userVO) {
         userMapper.update(userVO);
     }
+    public void setAdminUserVO(UserVO userVO) {
+        userMapper.updateById(userVO);
+    }
 
     //    삭제
     public void deleteById(Long userId) {
