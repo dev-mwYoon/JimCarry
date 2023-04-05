@@ -62,7 +62,26 @@ $(".content__detail__btn").on('click', function () {
         data: {reviewId: reviewId},
         traditional: true,
         success: function (reviewdetail) {
-
+            let fileHTML;
+            if (reviewdetail.files && reviewdetail.files.length > 0) {
+                fileHTML = reviewdetail.files
+                    .map((data, i) => {
+                        return `<label class="attach">
+                <div class="content__img">
+                  <img src="/storages/search/files/display?fileName=${data.filePath}/${data.fileUuid}_${data.fileOrgName}">
+                </div>
+                <input type="" style="display: none;"/>
+              </label>`;
+                    })
+                    .join('');
+            } else {
+                fileHTML = `<label class="attach">
+                <div class="content__img">
+                  <img src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6" />
+                </div>
+                <input type="" style="display: none;"/>
+              </label>`;
+            }
             $(".modal-stage").html(
                 `
                    <section class="modal">
@@ -82,25 +101,14 @@ $(".content__detail__btn").on('click', function () {
                           <form class="storage_form" method="post" action="/admin/review/update">
                             <main class="modal__main">
                               <div class="modal__content">
-                                <h4 class="review_detail_title" name="reviewTitle">${reviewdetail.reviewTitle}</h4>
+                                <h4 class="review_detail_title" name="reviewTitle">리뷰 제목</h4>
                                 <div class="content__intput input_box_shadow">
-<!--                                  <input type="text" name="userAddress" readonly="true" />-->
+                                  <input type="text"  name="reviewTitle" value="${reviewdetail.reviewTitle}" readonly="true" />
                                 </div>
                                 <div class="content__main">
                                   <div class="content__img__wrap">
-                                    <!-- 임시로 name='file' 해둠 -->
-                                   ${
-                                        reviewdetail.fileVOS
-                                        .map((data, i) => {
-                                            return `<label class="attach">
-                                                            <div class="content__img">
-                                                              <img src="/storages/search/files/display?fileName=${data.filePath}/${data.fileUuid}_${data.fileOrgName}">
-                                                            </div>
-                                                            <input type="" style="display: none;"/>
-                                                          </label>`;
-                                        })
-                                        .join('')
-                                     }
+                              <!--이미지 들어갈 곳-->
+                                ${fileHTML}
                                   </div>
                                   <h4 class="review_detail_title">리뷰 상세내용</h4>
                                   <div class="content__intput input_box_shadow">

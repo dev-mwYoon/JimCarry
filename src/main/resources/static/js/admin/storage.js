@@ -114,19 +114,19 @@ $(".content__detail__btn").on('click', function () {
                                     <input type="text" name="storageTitle" value="${storagedetail.storageTitle}">
                                   </div>
                                 </li>
-                                <li class="content__list">
+                                <li class="content__list " >
                                   <span>창고 주소</span>
                                   <div  class="content__intput input_box_shadow">
                                     <input type="text" name="storageAddress" value="${storagedetail.storageAddress}" />
                                   </div>
                                 </li>
-                                <li class="content__list">
+                                <li class="content__list" style="padding: 0 18px;">
                                   <span>소유주</span>
                                   <div  class="content__intput input_box_shadow">
                                     <input type="text" name="userName" value="${storagedetail.userName}">
                                   </div>
                                 </li>
-                                <li class="content__list">
+                                <li class="content__list" style="padding: 0 18px;">
                                   <span>핸드폰</span>
                                   <div  class="content__intput input_box_shadow">
                                     <input type="text" name="storagePhone" value="${storagedetail.storagePhone}">
