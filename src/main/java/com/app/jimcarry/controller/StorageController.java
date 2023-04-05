@@ -9,6 +9,7 @@ import com.app.jimcarry.domain.vo.UserVO;
 import com.app.jimcarry.service.ReviewService;
 import com.app.jimcarry.service.StorageFileService;
 import com.app.jimcarry.service.StorageService;
+import com.app.jimcarry.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -31,11 +32,15 @@ import java.util.List;
 public class StorageController {
 
     private final StorageService storageService;
+    private final UserService userService;
     private final StorageFileService storageFileService;
     private final ReviewService reviewService;
 
+    /*로그인 해야 창고등록 이용가능 클릭하면 자동으로 로그인 페이지로 이동함*/
     @GetMapping("register")
-    public String register() { return "/storageRegister/storageRegister"; }
+    public String register(Model model, HttpSession httpSession) {
+        model.addAttribute("userId", userService.getUser(((UserVO)httpSession.getAttribute("user")).getUserId()));
+        return "/storageRegister/storageRegister"; }
 
 
     /*창고등록*/
