@@ -75,7 +75,7 @@
                         <when test="type == 'storageId'.toString()">
                             storage_id = #{dto.storageId}
                         </when>
-                        <when test="type == 'storageAddressNumber'.toString()">
+                        <when test="dto.storageAddressNumber != null">
                             storage_address_number = #{dto.storageAddressNumber}
                         </when>
                         <when test="type == 'keyword'.toString()">
@@ -147,10 +147,10 @@
 
     <!-- 창고DTO 조건조회 -->
     <select id="selectDTOAllBy" resultType="storageDTO">
-        select storage_id, u.user_id, storage_name, storage_phone, storage_title, storage_size, storage_price,
+        select r.storage_id, u.user_id, storage_name, storage_phone, storage_title, storage_size, storage_price,
         storage_address, storage_address_detail, storage_use_date, storage_end_date, storage_address_number
         user_identification, user_email, user_phone, user_address, user_address_detail, user_gender, user_birth,
-        user_name, user_random_key, user_status
+        user_name, user_random_key, user_status, cs.review_count
         from
         (
         select user_id, user_identification, user_email, user_phone, user_address, user_address_detail, user_gender,
@@ -164,10 +164,31 @@
         from tbl_storage
         <include refid="searchType"/>
         ) r on u.user_id = r.user_id
-        order by storage_id desc
-        <if test="page.searchDTO.isDesc">
-            desc
+        join
+        (
+        select ifnull(count(r.review_id), 0) as review_count, s.storage_id
+        from tbl_storage s
+        left join tbl_review r on s.storage_id = r.storage_id
+        group by s.storage_id
+        ) cs on cs.storage_id = r.storage_id
+        <if test="page.searchDTO.sizes != null and page.searchDTO.sizes.size() > 0">
+            <trim prefix="and (" suffix=")">
+                <foreach collection="dto.sizes" item="size" separator=" OR ">
+                    storage_size like concat('%', #{size}, '%')
+                </foreach>
+            </trim>
         </if>
+        <choose>
+            <when test="page.searchDTO.order == '최신순'">
+                order by storage_id desc
+            </when>
+            <when test="page.searchDTO.order == '가격순'">
+                order by storage_price desc, storage_id desc
+            </when>
+            <otherwise>
+                order by review_count desc, storage_id desc
+            </otherwise>
+        </choose>
         limit #{page.criteria.startRow}, #{page.criteria.amount}
     </select>
 

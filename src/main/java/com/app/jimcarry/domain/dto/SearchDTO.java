@@ -29,6 +29,8 @@ public class SearchDTO {
     private String reviewTitle;
     private String inquiryContent;
     private String inquiryTitle;
+    private List<String> sizes; // 특대, 대, 중, 소
+    private String order;
 
     public SearchDTO createTypes(List<String> types){
         setTypes(types);
