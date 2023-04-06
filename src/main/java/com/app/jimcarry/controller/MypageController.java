@@ -49,8 +49,12 @@ public class MypageController {
     @MypageHeaderValue
     @GetMapping("mybox")
     public String myBox(Criteria criteria, Model model) {
+        Long userId = Optional.ofNullable((UserVO) request.getSession().getAttribute("user")).get().getUserId();
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(userId);
+        int total = storageService.getTotalBy(searchDTO);
         model.addAttribute("storages",
-                storageService.getListBy(setPaginationAndReturn(criteria, model, 3)));
+                storageService.getListBy(setPaginationAndReturn(criteria, model, 3, total, searchDTO)));
         return "mypage/myBox";
     }
 
@@ -58,8 +62,12 @@ public class MypageController {
     @MypageHeaderValue
     @GetMapping("usage")
     public String usage(Criteria criteria, Model model) {
+        Long userId = Optional.ofNullable((UserVO) request.getSession().getAttribute("user")).get().getUserId();
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(userId);
+        int total = paymentService.getTotalBy(searchDTO);
         model.addAttribute("payments",
-                paymentService.getListBy(setPaginationAndReturn(criteria, model, 3)));
+                paymentService.getListBy(setPaginationAndReturn(criteria, model, 3, total, searchDTO)));
         return "mypage/use-myBox";
     }
 
@@ -67,8 +75,12 @@ public class MypageController {
     @MypageHeaderValue
     @GetMapping("qna")
     public String goQna(Criteria criteria, Model model) {
+        Long userId = Optional.ofNullable((UserVO) request.getSession().getAttribute("user")).get().getUserId();
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(userId);
+        int total = inquiryService.getTotalBy(searchDTO);
         model.addAttribute("inquiries",
-                inquiryService.getListBy(setPaginationAndReturn(criteria, model, 5)));
+                inquiryService.getListBy(setPaginationAndReturn(criteria, model, 5, total, searchDTO)));
         return "mypage/my-qna";
     }
 
@@ -130,7 +142,11 @@ public class MypageController {
     @MypageHeaderValue
     @GetMapping("review")
     public String review(Criteria criteria, Model model) {
-        PageDTO pageDTO = setPaginationAndReturn(criteria, model, 5);
+        Long userId = Optional.ofNullable((UserVO) request.getSession().getAttribute("user")).get().getUserId();
+        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
+        searchDTO.setUserId(userId);
+        int total = reviewService.getTotalBy(searchDTO);
+        PageDTO pageDTO = setPaginationAndReturn(criteria, model, 5, total, searchDTO);
         model.addAttribute("payments", paymentService.getListBy(pageDTO));
         model.addAttribute("reviews", reviewService.getListBy(pageDTO));
 
@@ -284,16 +300,9 @@ public class MypageController {
     /**
      * pageDTO 세팅
      */
-    private PageDTO setPaginationAndReturn(Criteria criteria, Model model, int amount) {
+    private PageDTO setPaginationAndReturn(Criteria criteria, Model model, int amount, int total, SearchDTO searchDTO) {
         /* 한 페이지에 보여줄 게시글 개수 */
         /* 검색된 결과의 총 개수 */
-        int total = 0;
-        Long userId = Optional.ofNullable((UserVO) request.getSession().getAttribute("user")).get().getUserId();
-
-        /* 추후에 setUserId 세션으로 변경 */
-        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("userId")));
-        searchDTO.setUserId(userId);
-
         PageDTO pageDTO = null;
 
 //         페이지 번호가 없을 때, 디폴트 1페이지
@@ -301,7 +310,6 @@ public class MypageController {
             criteria.create(1, amount);
         } else criteria.create(criteria.getPage(), amount);
 
-        total = paymentService.getTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
         model.addAttribute("pagination", pageDTO);

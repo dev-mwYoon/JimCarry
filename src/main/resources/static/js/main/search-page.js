@@ -40,7 +40,7 @@ function selectPlace() {
 //     // $(e).text() == region_list
 // })
 
-/*지역별 클릭시 창고주소번호로 창고 목록 조회하기*/
+/*지역별 클릭시 클래스 바꾸기*/
 $(function() {
     $('.place-ul a').click(function(e){
         e.preventDefault();
@@ -178,7 +178,7 @@ function findPage(currentPage) {
     page = currentPage.dataset.page;
     page *= 1;
     // console.log(typeof page);
-    loadAll();
+    loadAll(); //현재 페이지에서 모든 데이터를 로드하고 화면에 표시하는 역할
 }
 
 
