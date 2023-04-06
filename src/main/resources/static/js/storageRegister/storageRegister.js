@@ -250,6 +250,7 @@ $("#inputDateEnd").on("change", function () {
     let startDate = new Date(start);
     let endDate = new Date(end);
 
+    // end날짜와 start날짜 비교후 end날짜가 start날짜보다 작으면 end날짜는 선택 안됌
     if (endDate.getTime() < startDate.getTime()) {
         $(this).val("");
         return;
