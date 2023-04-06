@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -273,9 +274,13 @@ public class AdminController {
 
         total = paymentService.getTotalPayCount(searchDTO);
         payAmount = paymentService.getTotalPay();
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedNumber = decimalFormat.format(payAmount);
+
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         model.addAttribute("total", total);
-        model.addAttribute("payAmount", payAmount);
+        model.addAttribute("payAmount", formattedNumber);
         model.addAttribute("payments", paymentService.getList(pageDTO));
         model.addAttribute("pagination", pageDTO);
         model.addAttribute("searchDTO", searchDTO);
