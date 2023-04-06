@@ -12,7 +12,7 @@ const createDOM = function(inquiries){
           </td>
           <td class="content__id">${inquiries.inquiryId}</td>
           <td>${inquiries.userIdentification}</td>
-          <td>${inquiries.userEmail}</td>
+          <td>${inquiries.inquiryTitle}</td>
           <td>${inquiries.inquiryRegist}</td>
           <td class="${inquiries.inquiryAnswer == 1 ? 'enquiryOk' : 'enquiryNo'}">${inquiries.inquiryAnswer == 1 ? '답변완료' : '답변대기'}</td>
           <td>
@@ -34,6 +34,10 @@ $('#Glyph').on('click', function() {
         condition = "userIdentification";
     } else if (conditiontest == '이름') {
         condition = "userName";
+    } else if (conditiontest == '내용') {
+        condition = "inquiryTitle";
+    } else if (conditiontest == '제목') {
+        condition = "inquiryContent";
     } else if( conditiontest == '검색조건 선택'){
         return;
     }

@@ -156,6 +156,8 @@ public class AdminController {
         searchDTO.setTypes(new ArrayList<>(Arrays.asList(condition)));
         searchDTO.setUserName(search);
         searchDTO.setUserIdentification(search);
+        searchDTO.setInquiryTitle(search);
+        searchDTO.setInquiryContent(search);
         PageDTO pageDTO = null;
 //         페이지 번호가 없을 때, 디폴트 1페이지
         if (criteria.getPage() == 0) {
