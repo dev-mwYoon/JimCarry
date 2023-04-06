@@ -30,9 +30,10 @@ function clickRadio() {
         }
     }
 }
+
 /* 모달창 */
 const showModal = document.querySelector(".modalContainer");
-const clickModalBtn= document.querySelector(".modalCheckButton");
+const clickModalBtn = document.querySelector(".modalCheckButton");
 
 /* 파일 썸네일 */
 
@@ -53,13 +54,12 @@ function handleFiles(files) {
         }
 
 
-
-        /* 파일절대경로얻기 */  
+        /* 파일절대경로얻기 */
         const file = files[i];
         const reader = new FileReader();
         /* reader가 onload 할때 */
-        reader.onload = function(event) {
-            /* 썸네일 담을 div와 그 자식의 span 선언 */   
+        reader.onload = function (event) {
+            /* 썸네일 담을 div와 그 자식의 span 선언 */
             const thumbnail = document.createElement("div");
             const thumbnailSpan = document.createElement("span");
 
@@ -92,13 +92,12 @@ function handleFiles(files) {
             });
 
 
-
             /* 파일 개수가 8개 이상이면 버튼숨기기 */
-           if($(".imageThumbnail").length > 7 ){
-            $(".imgButtonWrap").hide();
-            return;
-           }
-            
+            if ($(".imageThumbnail").length > 7) {
+                $(".imgButtonWrap").hide();
+                return;
+            }
+
         };
         /* result 속성(attribute)에 담기 */
         reader.readAsDataURL(file);
@@ -110,7 +109,7 @@ function handleFiles(files) {
 const fileInput = document.getElementById("photo-picker");
 
 /* 버튼을 감싸고있는 label객체 클릭하면 위에 function handleFiles 실행 */
-fileInput.addEventListener("change", function(event) {
+fileInput.addEventListener("change", function (event) {
     handleFiles(event.target.files);
 });
 
@@ -144,15 +143,15 @@ $infoInputs.on('blur', function () {
     let i = $infoInputs.index($(this));
     let value = $(this).val();
 
-    console.log("i: "+i);
+    console.log("i: " + i);
     if (!value) {
-        $errorDiv.eq(i-1).css('display', 'block');
-        $erroMessage.eq(i-1).text(infoBlurMessages[i-1]);
+        $errorDiv.eq(i - 1).css('display', 'block');
+        $erroMessage.eq(i - 1).text(infoBlurMessages[i - 1]);
         infoCheck = false;
-        infoCheckAll[i-1] = infoCheck;
+        infoCheckAll[i - 1] = infoCheck;
         return;
     } else {
-        $errorDiv.eq(i-1).css('display', 'none');
+        $errorDiv.eq(i - 1).css('display', 'none');
     }
 
     switch (i) {
@@ -189,7 +188,7 @@ $infoInputs.on('blur', function () {
 var region_list = ["", "서울", "경기", "강원", "충북", "충남",
     "경북", "경남", "전북", "전남", "제주특별자치도"];
 
-const checkRegion = function() {
+const checkRegion = function () {
     console.log("sdadas");
     const $address = $('#address').val();
     var startIndex = $address.indexOf(" "); // 첫 번째 공백의 인덱스
@@ -197,33 +196,33 @@ const checkRegion = function() {
     var result = $address.substring(0, startIndex); // 시작 인덱스부터 끝 인덱스 직전까지의 문자열 추출
 
     for (var i = 0; i < region_list.length; i++) {
-        if(result == region_list[i]) {
+        if (result == region_list[i]) {
             $('input[name=storageAddressNumber]').val(i);
         }
     }
 
 //    인천, 대구, 광주, 부산, 울산, 대전
-    if(result == "인천") {
+    if (result == "인천") {
         $('input[name=storageAddressNumber]').val(2);
     }
 
-    if(result == "대구") {
+    if (result == "대구") {
         $('input[name=storageAddressNumber]').val(6);
     }
 
-    if(result == "광주") {
+    if (result == "광주") {
         $('input[name=storageAddressNumber]').val(9);
     }
 
-    if(result == "부산") {
+    if (result == "부산") {
         $('input[name=storageAddressNumber]').val(7);
     }
 
-    if(result == "울산") {
+    if (result == "울산") {
         $('input[name=storageAddressNumber]').val(7);
     }
 
-    if(result == "대전") {
+    if (result == "대전") {
         $('input[name=storageAddressNumber]').val(5);
     }
 }
@@ -233,16 +232,44 @@ const checkRegion = function() {
 // 지금 날짜를 밀리초로
 var now_utc = Date.now();
 //getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
-var timeoff = new Date().getTimezoneOffset()*60000; // 분 단위를 밀리초로 반환
+var timeoff = new Date().getTimezoneOffset() * 60000; // 분 단위를 밀리초로 반환
 
-var today = new Date(now_utc-timeoff).toISOString().split("T")[0];
-//오늘자 이후로 선택 안됨
+var today = new Date(now_utc - timeoff).toISOString().split("T")[0];
+//오늘자기준 이전날짜로 선택 안됨
 document.getElementById("inputDateStart").setAttribute("min", today);
+
+// start날짜보다 이전날짜로 선택하면 빈 문자열로 넣어줌 , 빈문자열이어도 end날짜는 선택안됨
+$("#inputDateEnd").on("change", function () {
+    let start = $("#inputDateStart").val();
+    let end = $("#inputDateEnd").val();
+    if (start === "") {
+        $(this).val("");
+        return;
+    }
+
+    let startDate = new Date(start);
+    let endDate = new Date(end);
+
+    // end날짜와 start날짜 비교후 end날짜가 start날짜보다 작으면 end날짜는 선택 안됌
+    if (endDate.getTime() < startDate.getTime()) {
+        $(this).val("");
+        return;
+    }
+
+    // 월 단위로 선택 되게 설정함
+    let monthDiff = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+
+    if (monthDiff < 1) {
+        console.log("한 달 미만 차이가 납니다.");
+        $(this).val("");
+        return;
+    }
+});
 
 // 지금 날짜를 밀리초로
 var now_utc = Date.now();
 //getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
-var timeoff = new Date().getTimezoneOffset()*60000; // 분 단위를 밀리초로 반환
+var timeoff = new Date().getTimezoneOffset() * 60000; // 분 단위를 밀리초로 반환
 
-var today = new Date(now_utc-timeoff).toISOString().split("T")[0];
+var today = new Date(now_utc - timeoff).toISOString().split("T")[0];
 document.getElementById("inputDateEnd").setAttribute("min", today);
