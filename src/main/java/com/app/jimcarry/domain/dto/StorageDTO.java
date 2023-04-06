@@ -60,4 +60,22 @@ public class StorageDTO {
 
         return storageVO;
     }
+
+    public StorageDTO createDTO(StorageVO storageVO){
+
+        this.storageId = storageVO.getStorageId();
+        this.userId = storageVO.getUserId();
+        this.storagePhone = storageVO.getStoragePhone();
+        this.storageName = storageVO.getStorageName();
+        this.storageTitle = storageVO.getStorageTitle();
+        this.storageSize = storageVO.getStorageSize();
+        this.storagePrice = storageVO.getStoragePrice();
+        this.storageAddress = storageVO.getStorageAddress();
+        this.storageAddressDetail = storageVO.getStorageAddressDetail();
+        this.storageUseDate = storageVO.getStorageUseDate();
+        this.storageEndDate = storageVO.getStorageEndDate();
+        this.storageAddressNumber = storageVO.getStorageAddressNumber();
+
+        return this;
+    }
 }

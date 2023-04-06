@@ -27,8 +27,8 @@ public class StorageFileService implements FileService {
     private final StorageFileDAO storageFileDAO;
 
     @Override
-    public <T> List<T> getList(Long inquiryId) {
-        return null;
+    public <T> List<T> getList(Long storageId) {
+        return (List<T>)storageFileDAO.findByStorageId(storageId);
     }
 
     @Override

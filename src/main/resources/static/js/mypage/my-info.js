@@ -18,15 +18,13 @@ let regexMessages = [
 //아이디, 비밀번호, 새비밀번호, 비밀번호 확인, 이름, 이메일, 휴대폰
 
 const $wrapperInputs = $('input[type=text], input[type=password]');
-console.log($wrapperInputs);
 const $errorMessage = $('div.errorDiv p.errorMessage');
 let errorCheck;
-let errorCheckAll = [true, false, false, false, true, true];
+let errorCheckAll = [true, false, false, false, true, true, true];
 const $errorDiv = $('div.errorDiv');
 $wrapperInputs.on("blur", function () {
     let i = $wrapperInputs.index($(this));
     let value = $(this).val();
-    console.log(value);
 
     if (!value) {
         $errorDiv.eq(i).css("display", "block");
@@ -128,36 +126,17 @@ $wrapperInputs.on("blur", function () {
 
 });
 
-/* 휴대폰 다른번호 인증 모달---------------- */
-// const phonebtn = document.querySelector(".phoneBtn");
-// const phonecontainer = document.querySelector(".phonemodal");
-// const phoneclose = document.querySelector(".phoneclose");
-//
-// //모달창 열기
-// phonebtn.addEventListener("click", function () {
-//     phonecontainer.style.display = "block";
-// });
-//
-// //모달창 닫기
-// phoneclose.addEventListener("click", function () {
-//     phonecontainer.style.display = "none";
-// });
-
-
 /* 회원정보 수정 모달----------------------- */
 const $infobtn = $("button[type='button']");
 const $infocontainer = $(".infomodal");
 const $infoclose = $(".infocheck");
 
-console.log($infobtn, $infocontainer, $infoclose);
 
 //모달창 열기
 $infobtn.on("click", function (e) {
     e.preventDefault();
     let check = 0;
-    errorCheckAll.forEach(e => check += e ? 0 : 1);
-    console.log(errorCheckAll);
-    console.log(check);
+    errorCheckAll.filter((e, i) => i < 8).forEach(e => check += e ? 0 : 1);
 
     if (check == 0) {
         $(".pay-content").text("회원정보가 수정되었습니다.");
@@ -198,7 +177,6 @@ $checkboxes.each((i, e) => {
 // 전체동의 버튼 효과
 $all.on("click", function () {
     let $checked = $('.RequiredTermCondition').prop("checked");
-    console.log($checked);
     if ($checked) {
         $path.attr('fill', '#fff');
         $('#TermsAgreeAll').prop('checked', false);
@@ -254,7 +232,6 @@ $("div.sizeSelect").on("click", function () {
 $(".amend-birth-input-text").eq(2).on("blur", function () {
     let $date = $(".amend-birth-input-text");
     let format = `${$date.eq(0).val()}/${$date.eq(1).val()}/${$date.eq(2).val()}`;
-    console.log(format);
     $("#userBirth").val(format);
 })
 

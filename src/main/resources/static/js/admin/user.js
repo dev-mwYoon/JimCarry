@@ -78,49 +78,49 @@ $(".content__detail__btn").on('click', function () {
                             <div class="user__profile">
                               <h5>이름</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="userName" value="${userdetail.userName}" readonly="false" />
+                                <input type="text" name="userName" value="${userdetail.userName}" readonly="true" />
                               </div>
                             </div>
                             <div class="user__profile">
                               <h5>생년월일</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="userBirth" value="${userdetail.userBirth}" readonly="false" />
+                                <input type="text" name="userBirth" value="${userdetail.userBirth}" readonly="true" />
                               </div>
                             </div>
                             <div class="user__profile">
                               <h5>성별</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="" value="${userdetail.userGender}" readonly="false" />
+                                <input type="text" name="" value="${userdetail.userGender}" readonly="true" />
                               </div>
                             </div>
                             <div class="user__profile">
                               <h5>아이디</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="userIdentification" value="${userdetail.userIdentification}" />
+                                <input type="text" name="userIdentification" value="${userdetail.userIdentification}" readonly="true" />
                               </div>
                             </div>
                             <div class="user__profile">
                               <h5>이메일</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="userEmail" value="${userdetail.userEmail}" />
+                                <input type="text" name="userEmail" value="${userdetail.userEmail}" readonly="true" />
                               </div>
                             </div>
                             <div class="user__profile">
                               <h5>전화번호</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="userPhone" value="${userdetail.userPhone}" />
+                                <input type="text" name="userPhone" value="${userdetail.userPhone}" readonly="true" />
                               </div>
                             </div>
                             <div class="user__profile">
                               <h5>주소</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="userAddress" value="${userdetail.userAddress}" />
+                                <input type="text" name="userAddress" value="${userdetail.userAddress}" readonly="true" />
                               </div>
                             </div>
                             <div class="user__profile">
                               <h5>상세주소</h5>
                               <div class="user__profile__input">
-                                <input type="text" name="userAddressDetail" value="${userdetail.userAddressDetail}" />
+                                <input type="text" name="userAddressDetail" value="${userdetail.userAddressDetail}" readonly="true" />
                               </div>
                             </div>
                           </div>

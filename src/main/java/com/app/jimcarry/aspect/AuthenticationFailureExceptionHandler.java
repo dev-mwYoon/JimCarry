@@ -1,9 +1,6 @@
 package com.app.jimcarry.aspect;
 
-import com.app.jimcarry.controller.MainController;
-import com.app.jimcarry.controller.MypageController;
-import com.app.jimcarry.controller.PayController;
-import com.app.jimcarry.controller.StorageController;
+import com.app.jimcarry.controller.*;
 import com.app.jimcarry.exception.AuthenticationFailureException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +14,7 @@ import java.util.NoSuchElementException;
  * @see com.app.jimcarry.intercepter.AuthInterceptor
  * @see com.app.jimcarry.config.WebMvcConfig
  */
-@ControllerAdvice(basePackageClasses = {MypageController.class, StorageController.class, PayController.class})
+@ControllerAdvice(basePackageClasses = {MypageController.class, StorageController.class, PayController.class, NoticeController.class})
 public class AuthenticationFailureExceptionHandler {
 
     @ExceptionHandler(AuthenticationFailureException.class)

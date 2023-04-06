@@ -27,7 +27,6 @@ $photoPicker.on("change", function () {
         alert("등록할 수 있는 파일의 최대 갯수는 8개 입니다.");
         /* 파일 input 초기화 */
         $photoPicker[0].files = prevFileList;
-        console.log($photoPicker[0].files);
         return;
     }
 
@@ -35,7 +34,6 @@ $photoPicker.on("change", function () {
     $files.forEach(file => formData.append("file", file));
 
     $doAjax(uploadAjaxConfig(formData), (result) => {
-        console.log(result)
         globalThis.uuids = result.uuids;
         $thumbnailWrap.empty();
         result.paths.forEach((path, i) => {
