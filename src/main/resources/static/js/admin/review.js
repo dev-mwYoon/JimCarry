@@ -62,8 +62,8 @@ $(".content__detail__btn").on('click', function () {
         traditional: true,
         success: function (reviewdetail) {
             let fileHTML;
-            if (reviewdetail.files && reviewdetail.files.length > 0) {
-                fileHTML = reviewdetail.files
+            if (reviewdetail.fileVOS && reviewdetail.fileVOS.length > 0) {
+                fileHTML = reviewdetail.fileVOS
                     .map((data, i) => {
                         return `<label class="attach">
                 <div class="content__img">
