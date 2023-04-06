@@ -235,9 +235,10 @@ var now_utc = Date.now();
 var timeoff = new Date().getTimezoneOffset() * 60000; // 분 단위를 밀리초로 반환
 
 var today = new Date(now_utc - timeoff).toISOString().split("T")[0];
-//오늘자 이후로 선택 안됨
+//오늘자기준 이전날짜로 선택 안됨
 document.getElementById("inputDateStart").setAttribute("min", today);
 
+// start날짜보다 이전날짜로 선택하면 빈 문자열로 넣어줌 , 빈문자열이어도 end날짜는 선택안됨
 $("#inputDateEnd").on("change", function () {
     let start = $("#inputDateStart").val();
     let end = $("#inputDateEnd").val();
@@ -254,6 +255,7 @@ $("#inputDateEnd").on("change", function () {
         return;
     }
 
+    // 월 단위로 선택 되게 설정함
     let monthDiff = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
 
     if (monthDiff < 1) {
