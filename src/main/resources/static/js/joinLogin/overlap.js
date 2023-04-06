@@ -38,11 +38,11 @@ const overlapService = (function() {
         });
     }
 
-    function checkPhone(callback) {
+    function checkPhone(userPhone, callback) {
         $.ajax({
             url: "/users/userPhones-duplicate",
             type: "post",
-            data: { userPhone : $('input[name=userPhone]').val() },
+            data: { userPhone : userPhone },
             async: false,
             success: function(result) {
                 if(callback) {

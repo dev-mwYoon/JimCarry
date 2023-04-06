@@ -310,16 +310,19 @@ $submitButton.on('click', function(event) {
 var authNumber = null;
 
 $checkNum.on('click', function(){
-    overlapService.checkPhone(function(result) {
+    let check = true;
+    overlapService.checkPhone($('input[name=userPhone]').val(), function(result) {
         if(!result) {
             $modal.css('visibility', 'visible');
             $modalText.text("이미 사용중인 휴대폰 번호입니다.");
             $checkButton.on('click',()=>{
                 $modal.css('visibility', 'hidden');
             });
-            return;
+            check = false;
         }
-    })
+    });
+
+    if(!check) { return; }
     if($('.errorDiv').eq(5).css('display') == 'none' && $('input[name=userPhone]').val()) {
         clearInterval(timer);
 

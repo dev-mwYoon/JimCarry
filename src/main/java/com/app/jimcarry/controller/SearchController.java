@@ -34,26 +34,51 @@ public class SearchController {
     /*지역별 창고 목록 검색*/
     @PostMapping("list")
     @ResponseBody
-    public Map<String, Object> searchByAddress(Integer storageAddressNumber, Criteria criteria){
+    public Map<String, Object> searchByAddress(@RequestBody Map<String, Object> requestData /*Integer storageAddressNumber*/, Criteria criteria){
+        Integer storageAddressNumber = (Integer) requestData.get("storageAddressNumber"); // 지역
+        Integer page = (Integer) requestData.get("page"); // page
+        String keyword = (String) requestData.get("keyword"); // keyword
+        List<String> size = (List<String>) requestData.get("size"); // sizes
+        String order = (String) requestData.get("order"); // order
 
+        log.info("================================");
+        log.info("page" + page);
+        log.info("================================");
         /* 한 페이지에 보여줄 게시글 개수 */
         int amount = 6;
         /* 검색된 결과의 총 개수 */
         int total = 0;
 
         /*창고주소번호 */
-        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
+        List<String> types = new ArrayList<>();
+
+        types.add("storageAddress");
+        types.add("storageAddressNumber");
+        SearchDTO searchDTO = new SearchDTO().createTypes(types);
+        searchDTO.setStorageAddress(keyword);
         searchDTO.setStorageAddressNumber(storageAddressNumber);
+        searchDTO.setSizes(size);
+        searchDTO.setOrder(order);
+
+
+//        SearchDTO searchDTO = new SearchDTO().createTypes(new ArrayList<>(Arrays.asList("storageAddressNumber")));
+//        searchDTO.setStorageAddressNumber(storageAddressNumber);
 
         PaginationDTO paginationDTO = new PaginationDTO();
 
         //         페이지 번호가 없을 때, 디폴트 1페이지
-        if (criteria.getPage() == 0) {
-            criteria.create(1, amount);
-        } else {
-            criteria.create(criteria.getPage(), amount);
+        if(page == 0) {
+            page = 1;
         }
-
+        criteria.create(page, amount);
+//        if (criteria.getPage() == 0) {
+//            criteria.create(1, amount);
+//        } else {
+//            criteria.create(page, amount);
+//        }
+        log.info("================================");
+        log.info(criteria.toString());
+        log.info("================================");
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
         List<StorageDTO> storageList = storageService.getStorageDTOBy(pageDTO);
@@ -135,10 +160,13 @@ public class SearchController {
         total = storageService.getTotalBy(searchDTO);
         PageDTO pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
 
-//        storageService.getStorageDTOBy(pageDTO);
+        List<StorageDTO> storageList = storageService.getStorageDTOBy(pageDTO);
+        for(StorageDTO storageDTO: storageList){
+            storageDTO.setFiles(storageFileService.getByStorageId(storageDTO.getStorageId()));
+        }
 
         model.addAttribute("total", total);
-        model.addAttribute("storage", storageService.getStorageDTOBy(pageDTO));
+        model.addAttribute("storage", storageList);
         model.addAttribute("pagination", pageDTO);
 
         return "main/search-page";
