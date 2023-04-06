@@ -231,7 +231,7 @@ $("div.sizeSelect").on("click", function () {
 
 $(".amend-birth-input-text").eq(2).on("blur", function () {
     let $date = $(".amend-birth-input-text");
-    let format = `${$date.eq(0).val()}/${$date.eq(1).val()}/${$date.eq(2).val()}`;
+    let format = `${$date.eq(0).val()}-${$date.eq(1).val()}-${$date.eq(2).val()}`;
     $("#userBirth").val(format);
 })
 
