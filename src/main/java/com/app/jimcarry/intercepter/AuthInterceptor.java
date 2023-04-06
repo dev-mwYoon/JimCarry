@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * 해당 예외는 MypageControllerAdvice가 담당하게 된다.
  *
  * @see com.app.jimcarry.aspect.AuthenticationFailureExceptionHandler
+ * @see com.app.jimcarry.config.WebMvcConfig
  */
 @Component
 @Slf4j
@@ -35,8 +36,6 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-
-        log.info(handlerMethod.getBean().getClass().toString());
 
         if (handlerMethod.getBean() instanceof MypageController || handlerMethod.getBean() instanceof StorageController
                 || handlerMethod.getBean() instanceof PayController || handlerMethod.getBean() instanceof NoticeController /*|| handlerMethod.getBean() instanceof InquiryController*/) {
