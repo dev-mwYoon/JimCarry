@@ -47,7 +47,6 @@ public class InquiryService {
     }
 
     //    조회
-    @LogStatus
     public InquiryVO getInquiry(Long inquiryId) {
         return inquiryDAO.findById(inquiryId);
     }
@@ -56,19 +55,16 @@ public class InquiryService {
     }
 
     //    전체조회
-    @LogStatus
     public List<InquiryDTO> getList(PageDTO pageDTO) {
         return inquiryDAO.findAll(pageDTO);
     }
 
     //    전체 조건 조회
-    @LogStatus
     public List<InquiryDTO> getDTOListBy(PageDTO pageDTO) {
         return inquiryDAO.findAllBy(pageDTO);
     }
 
     //    전체조회 개수
-    @LogStatus
     public int getTotal(){ return inquiryDAO.findTotal();}
 
     //    조건조회

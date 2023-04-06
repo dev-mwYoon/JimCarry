@@ -54,7 +54,9 @@ public class ReviewService {
 
     /* 리뷰 조건조회 */
     public List<ReviewDTO> getListBy(PageDTO pageDTO) {
-        return reviewDAO.findAllBy(pageDTO);
+        List<ReviewDTO> reviews = reviewDAO.findAllBy(pageDTO);
+        reviews.forEach(review -> review.setFileVOS(reviewFileDAO.findAll(review.getReviewId())));
+        return reviews;
     }
 
     /* 리뷰 조건조회 개수 */
