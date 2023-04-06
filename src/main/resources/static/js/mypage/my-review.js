@@ -1,13 +1,19 @@
 payments.forEach((payment, i) => {
     let check = reviews[i] === undefined;
-    $(".review-content-list-container").append(
-        `
+    let text = `
             <div class="review-content-list">
                 <div class="review-content">
-                    <a href="#" style="text-decoration: none;">
-                        <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
-                             class="review-content-list-img">
-                    </a>
+                    <a style="text-decoration: none;">`
+
+    if(!check && reviews[i].fileVOS.length > 0){
+        let file = reviews[i].fileVOS[0];
+        text += `<img src="/users/mypage/files/display?fileName=${file.filePath}/t_${file.fileUuid}_${file.fileOrgName}"
+                             class="review-content-list-img">`
+    } else {
+        text += `<img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
+                             class="review-content-list-img">`
+    }
+    text += `</a>
                     <p>
                         <a class="review-content-name">
                             ${check ? '리뷰 없음' : reviews[i].reviewTitle}
@@ -20,8 +26,8 @@ payments.forEach((payment, i) => {
                 </button>
             </div>
             <div class="review-content-line"></div>
-        `
-    )
+        `;
+    $(".review-content-list-container").append(text);
 });
 
 $(".review-content-wrpper").append(
@@ -32,7 +38,7 @@ $(".review-content-wrpper").append(
         <div class="change-modal-wrapper">
             <div>
                 <div class="change-modal-title-row">
-                    <h4 class="change-modal-title-text">후기 작성</h4>
+                    <h4 class="change-modal-title-text">후기 작성 및 수정</h4>
                     <!-- x버튼 -->
                     <button type="button" class="close-btn" style="cursor: pointer;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -74,7 +80,7 @@ $(".review-content-wrpper").append(
                                                  class="change-modal-image">
                                         </span>
                                 </div>
-                                <p class="change-modal-image-title-text"></p>
+                                <p  class="change-modal-image-title-text"></p>
                             </div>
                         </div>
                         <div class="review-modal-main-container">
