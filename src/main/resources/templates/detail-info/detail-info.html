@@ -119,9 +119,9 @@
                             <input type="hidden" name="paymentMonth">
                             <input type="hidden" name="paymentAmount">
                             <input type="hidden" name="storageId" th:value="${storages.storageId}">
-                            <button class="reserve-btn" type="button" radius="3">
-                                <span class="reserve-btn-title">창고 예약하기</span>
-                            </button>
+                                <button class="reserve-btn" type="button" radius="3" th:if="${session.user == null || session.user.userId != storages.userId}">
+                                    <span class="reserve-btn-title">창고 예약하기</span>
+                                </button>
                         </form>
                     </div>
                 </div>
@@ -253,6 +253,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script th:inline="javascript">
     let storages = [[${storages}]];
+    console.log(storages);
     let reviews = [[${reviews}]];
     let files = [[${file}]];
     // let reviewFiles = [[${reviewFile}]];
