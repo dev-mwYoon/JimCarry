@@ -8,11 +8,11 @@ const createDOM = function (qna) {
                 <img src="https://boxful-b2c-test-bucket.s3.ap-northeast-2.amazonaws.com/products/pickup/pallet/ko/one-pallet.png"
                      class="title-img">
             </a>
-            <div>
-                <p class="title-name">[소] 100cm(가로) x 75cm(세로) x 220cm(높이)</p>
+            <div style="width: 40%">
                 <div class="title-contact-wrapper">
                     <p class="title-contact">${qna.inquiryTitle}</p>
                 </div>
+                <p class="title-name">${qna.inquiryContent}</p>
             </div>
         </div>
         <div class="qna-list-main-date">${qna.inquiryRegist.split(" ")[0]}</div>
