@@ -197,7 +197,7 @@
                 order by storage_id desc
             </when>
             <when test="page.searchDTO.order == '가격순'">
-                order by storage_price desc, storage_id desc
+                order by storage_price asc, storage_id desc
             </when>
             <otherwise>
                 order by review_count desc, storage_id desc
