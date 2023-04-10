@@ -50,7 +50,7 @@
         <if test="dto.sizes != null and dto.sizes.size() > 0">
             <trim prefix="and (" suffix=")">
                 <foreach collection="dto.sizes" item="size" separator=" OR ">
-                    storage_size like concat('%', #{size}, '%')
+                    storage_size like concat(#{size}, '%')
                 </foreach>
             </trim>
         </if>
@@ -99,7 +99,7 @@
                             storage_address_detail like concat('%', #{dto.storageAddressDetail}, '%')
                         </when>
                         <when test="type == 'storageSize'.toString()">
-                            storage_size like concat('%', #{dto.storageSize}, '%')
+                            storage_size like concat(#{dto.storageSize}, '%')
                         </when>
                             <otherwise>
                             storage_address_number = #{dto.storageAddressNumber}
@@ -188,7 +188,7 @@
         <if test="page.searchDTO.sizes != null and page.searchDTO.sizes.size() > 0">
             <trim prefix="and (" suffix=")">
                 <foreach collection="dto.sizes" item="size" separator=" OR ">
-                    storage_size like concat('%', #{size}, '%')
+                    storage_size like concat(#{size}, '%')
                 </foreach>
             </trim>
         </if>
