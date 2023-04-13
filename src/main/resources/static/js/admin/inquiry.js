@@ -1,7 +1,5 @@
 const inquiryTableContainer = $(".table");
 
-
-
 const createDOM = function(inquiries){
     let text =
         `<tr class="table__content">
@@ -55,22 +53,7 @@ inquiries.forEach((inquiries, i)=>{
 
 
 
-/* 체크박스 이벤트 ======================================= */
-// $('#checkAll').click(function () {
-//     console.log($('input[type=checkbox]').is(':checked'));
-//     if ($('#checkAll').is(':checked')) $('input[type=checkbox]').prop('checked', true);
-//     else $('input[type=checkbox]').prop('checked', false);
-// });
-//
-// $('input[type=checkbox]').click(function () {
-//     console.log($('input[type=checkbox]').is(':checked'));
-//     var total = $('input[type=checkbox]').length;
-//     var checked = $('input[name=check]:checked').length;
-//     console.log("들왓나?")
-//     if (total != checked) $('#checkAll').prop('checked', false);
-//     else $('#checkAll').prop('checked', true);
-// });
-//
+
 
 /* ------------------- 문의사항 상세보기 모달 ---------------------------- */
 console.log($detailButton);
@@ -174,20 +157,7 @@ $(".content__detail__btn").on('click', function () {
         }
     });
 });
-//
-// /* 상세보기 모달 내용 submit 이벤트 */
-// $('#completeBtn').on('click', function (e) {
-//     e.preventDefault();
-//     return new Promise(
-//         function () {
-//             console.log('으으아');
-//             $modalStage.fadeOut(500);
-//         },
-//         () => {
-//             $('.storage_form').submit();
-//         }
-//     );
-// });
+
 
 
 /* 체크박스 */
@@ -238,49 +208,12 @@ $check.click(function () {
 });
 
 
-// /* 체크박스 */
-// const $checkAll = $('#checkAll');
-// const $check = $("input[name='check']");
-//
-// /* 체크박스 이벤트 ======================================= */
-// $checkAll.click(function () {
-//     if ($checkAll.is(':checked')){
-//         $check.prop('checked', true);
-//         $checkArr.push($check.parent().parent().next().text());
-//     } else {
-//         $check.prop('checked', false);
-//         $checkAll.prop('checked', false);
-//         var toRemove = $(this).parent().parent().next().text();
-//         $checkArr = $checkArr.filter(function (item) {
-//             return item !== toRemove;
-//         });
-//     }
-//     console.log($checkArr);
-// });
-//
-// $check.click(function () {
-//     var total = $check.length;
-//     var checked = $('input[name=check]:checked').length;
-//     if (total != checked) {
-//         $checkAll.prop('checked', false);
-//         var toRemove = $(this).parent().parent().next().text();
-//         $checkArr = $checkArr.filter(function (item) {
-//             return item !== toRemove;
-//         });
-//     }
-//     else {
-//         $checkAll.prop('checked', true);
-//         $checkArr.push($check.parent().parent().next().text());
-//
-//     }
-//     console.log($checkArr);
-// });
 
 /* 문의사항 삭제 */
 confirmButton.on('click', function () {
 
     $.ajax({
-        url: "/admin/enquiry/delete",
+        url: "/admins/enquiry/delete",
         type: "post",
         data: { inquiryIds : $checkArr },
         traditional : true,

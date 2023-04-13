@@ -272,7 +272,7 @@ $check.click(function () {
 confirmButton.on('click', function () {
     // 삭제를 실행하는 코드 작성
     $.ajax({
-        url: "/admin/storage/delete",
+        url: "/admins/storage/delete",
         type: "post",
         data: { storageIds : $checkArr },
         traditional : true,

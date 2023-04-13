@@ -197,20 +197,6 @@ $(".content__detail__btn").on('click', function () {
 
 });
 
-/* 상세보기 모달 내용 submit 이벤트 */
-// $('#completeBtn').on('click', function (e) {
-//     e.preventDefault();
-//     return new Promise(
-//         function () {
-//             console.log('으으아');
-//             $modalStage.fadeOut(500);
-//         },
-//         () => {
-//             $('.storage_form').submit();
-//         }
-//     );
-// });
-
 /* 체크박스 */
 const $checkAll = $('#checkAll');
 const $check = $("input[name='check']");
@@ -258,9 +244,10 @@ $check.click(function () {
     }
 });
 
+/* 공지 사항 삭제 */
 confirmButton.on('click', function(){
     $.ajax({
-        url: "/admin/notice/delete",
+        url: "/admins/notice/delete",
         type: "post",
         data: {noticeIds : $checkArr},
         traditional : true,

@@ -199,7 +199,7 @@ $check.click(function () {
 confirmButton.on('click', function () {
 
     $.ajax({
-        url: "/admin/user/delete",
+        url: "/admins/user/delete",
         type: "post",
         data: { userIds : $checkArr },
         traditional : true,
