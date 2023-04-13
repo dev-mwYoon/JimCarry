@@ -200,7 +200,7 @@ $check.click(function () {
 });
 confirmButton.on('click', function () {
     $.ajax({
-        url: "/admin/review/delete",
+        url: "/admins/review/delete",
         type: "post",
         data: {reviewIds: $checkArr},
         traditional: true,

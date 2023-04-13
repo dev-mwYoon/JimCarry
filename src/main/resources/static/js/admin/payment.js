@@ -219,7 +219,7 @@ $check.click(function () {
 });
 confirmButton.on('click', function(){
     $.ajax({
-        url: "/admin/payment/delete",
+        url: "/admins/payment/delete",
         type: "post",
         data: {payIds : $checkArr},
         traditional : true,

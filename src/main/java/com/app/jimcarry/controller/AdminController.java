@@ -62,13 +62,7 @@ public class AdminController {
         return "/admin/user";
     }
 
-    /* 회원 삭제 */
-    @PostMapping("user/delete")
-    @ResponseBody
-    public boolean removeUser(String[] userIds){
-        Arrays.asList(userIds).stream().forEach(data -> userService.removeUser(Long.valueOf(data)));
-        return true;
-    }
+
     // 검색 + 페이징 처리
     @GetMapping("user/search")
     public String userSearch(Criteria criteria, String search, String condition, Model model) {
@@ -134,13 +128,7 @@ public class AdminController {
         model.addAttribute("searchDTO", searchDTO);
         return "/admin/enquiry";
     }
-    /* 문의사항 삭제 */
-    @PostMapping("enquiry/delete")
-    @ResponseBody
-    public boolean removeinquiry(String[] inquiryIds){
-        Arrays.asList(inquiryIds).stream().forEach(data -> inquiryService.removeInquiry(Long.valueOf(data)));
-        return true;
-    }
+
 
     // 검색 + 페이징 처리
     @GetMapping("enquiry/search")
@@ -208,13 +196,6 @@ public class AdminController {
         model.addAttribute("searchDTO", searchDTO);
 
         return "/admin/notice";
-    }
-    /* 공지사항 내역 삭제 */
-    @PostMapping("notice/delete")
-    @ResponseBody
-    public boolean removeNotice(String[] noticeIds) {
-        Arrays.asList(noticeIds).stream().forEach(data -> noticeService.removeNotice(Long.valueOf(data)));
-        return true;
     }
     /* 검색 + 페이징 처리*/
     @GetMapping("notice/search")
@@ -287,13 +268,6 @@ public class AdminController {
 
         return "/admin/payment";
     }
-    /* 결제내역 삭제 */
-    @PostMapping("payment/delete")
-    @ResponseBody
-    public boolean removePayment(String[] payIds){
-        Arrays.asList(payIds).stream().forEach(data -> paymentService.removePayment(Long.valueOf(data)));
-        return true;
-    }
 
     /* 검색 + 페이징 처리*/
     @GetMapping("payment/search")
@@ -353,12 +327,6 @@ public class AdminController {
         return "/admin/review";
     }
 
-    @PostMapping("review/delete")
-    @ResponseBody
-    public boolean removeReview(String[] reviewIds){
-        Arrays.asList(reviewIds).stream().forEach(data -> reviewService.removeReview(Long.valueOf(data)));
-        return true;
-    }
     /* 검색 + 페이징 */
     @GetMapping("review/search")
     public String review(Criteria criteria, String search, String condition, Model model) {
@@ -423,13 +391,7 @@ public class AdminController {
 
         return "/admin/storage";
     }
-    /* 창고 삭제 */
-    @PostMapping("storage/delete")
-    @ResponseBody
-    public boolean removeStorage(String[] storageIds){
-        Arrays.asList(storageIds).stream().forEach(data -> storageService.removeStorage(Long.valueOf(data)));
-        return true;
-    }
+
     /* 창고 수정*/
     @PostMapping("storage/update")
     @ResponseBody
