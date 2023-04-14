@@ -119,6 +119,12 @@ $(".content__detail__btn").on('click', function () {
                                     <input type="text" name="storageAddress" value="${storagedetail.storageAddress}" />
                                   </div>
                                 </li>
+                                <li class="content__list " >
+                                  <span>상세 주소</span>
+                                  <div  class="content__intput input_box_shadow">
+                                    <input type="text" name="storageAddressDetail" value="${storagedetail.storageAddressDetail}" />
+                                  </div>
+                                </li>
                                 <li class="content__list" style="padding: 0 18px;">
                                   <span>소유주</span>
                                   <div  class="content__intput input_box_shadow">
@@ -163,8 +169,6 @@ $(".content__detail__btn").on('click', function () {
             `
             );
 
-
-
             /* 모달 닫는 이벤트 */
             $('#modal-close').on('click', function () {
                 $modalStage.fadeOut(500);
@@ -190,7 +194,8 @@ $(".content__detail__btn").on('click', function () {
                 storagePhone: storagePhone,
                 storageEndDate: storageEndDate,
                 storagePrice: storagePrice,
-                storageUseDate: storageUseDate
+                storageUseDate: storageUseDate,
+                storageAddressDetail: storageAddressDetail
             },
             success: function(response) {
                 // 성공적으로 요청이 완료되었을 때 처리할 코드
@@ -206,21 +211,6 @@ $(".content__detail__btn").on('click', function () {
 
 });
 
-
-
-/* 상세보기 모달 내용 submit 이벤트 */
-// $('#completeBtn').on('click', function (e) {
-//     e.preventDefault();
-//     return new Promise(
-//         function () {
-//             console.log('으으아');
-//             $modalStage.fadeOut(500);
-//         },
-//         () => {
-//             $('.storage_form').submit();
-//         }
-//     );
-// });
 
 /* 체크박스 */
 const $checkAll = $('#checkAll');

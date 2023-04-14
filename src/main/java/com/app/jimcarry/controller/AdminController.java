@@ -86,7 +86,6 @@ public class AdminController {
 
         total= userService.findTotalBy(searchDTO);
         pageDTO = new PageDTO().createPageDTO(criteria, total, searchDTO);
-//        List<UserVO> users =  userService.getUserListBy(pageDTO);
         model.addAttribute("total", total);
         model.addAttribute("users", userService.getUserListBy(pageDTO));
         model.addAttribute("pagination", pageDTO);
@@ -403,6 +402,7 @@ public class AdminController {
                                       @RequestParam("storagePhone") String storagePhone,
                                       @RequestParam("storageEndDate") String storageEndDate,
                                       @RequestParam("storagePrice") Integer storagePrice,
+                                      @RequestParam("storageAddressDetail") String storageAddressDetail,
                                       @RequestParam("storageUseDate") String storageUseDate){
 
         StorageVO storageVO = storageService.getStorage(storageId);
@@ -412,8 +412,8 @@ public class AdminController {
         storageVO.setStorageEndDate(storageEndDate);
         storageVO.setStorageUseDate(storageUseDate);
         storageVO.setStoragePhone(storagePhone);
+        storageVO.setStorageAddressDetail(storageAddressDetail);
         storageService.modify(storageVO);
-
         UserVO userVO = userService.getUser(userId);
         userVO.setUserName(userName);
         userService.modify(userVO);
