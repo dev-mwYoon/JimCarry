@@ -1,4 +1,4 @@
-/*창고 목록 불러오기*/
+/*======== 창고 목록 조회 ========*/
 const storageTableContainer = $(".table");
 const createDOM = function(box){
     let text =
@@ -22,7 +22,7 @@ const createDOM = function(box){
         `
     return text;
 }
-
+/*======== 창고 검색 조회 ========*/
 $('#Glyph').on('click', function() {
     const conditiontest = $('.listbox-selecter').text();
 
@@ -38,13 +38,13 @@ $('#Glyph').on('click', function() {
 
     document.searchForm.submit();
 });
-
+/*======== 창고 목록 출력 ========*/
 boxes.forEach((box, i) => {
     storageTableContainer.append(
         createDOM(box)
     );
 });
-
+/*======== 창고 상세보기 모달 ========*/
 $(".content__detail__btn").on('click', function () {
     let $detailBt = $('.content__detail__btn');
     let i = $detailBt.index($(this));
@@ -178,10 +178,8 @@ $(".content__detail__btn").on('click', function () {
         }
 
     });
-
+    /*======== 창고 상세보기 모달 수정 ========*/
     $(document).on("click", "#completeBtn", function(e) {
-        // e.preventDefault();
-
         $.ajax({
             url: "/admin/storage/update",
             method: "POST",
@@ -211,8 +209,8 @@ $(".content__detail__btn").on('click', function () {
 
 });
 
-
-/* 체크박스 */
+/*=====================  목록 삭제 이벤트 =====================*/
+/*======== 체크박스 ========*/
 const $checkAll = $('#checkAll');
 const $check = $("input[name='check']");
 let $checkArr = [];
@@ -228,7 +226,7 @@ $('input[name=check]').on('click', function() {
     console.log($checkArr);
 });
 
-/* 체크박스 이벤트 ======================================= */
+/*======== 체크박스 이벤트 ========*/
 $checkAll.click(function () {
     if ($checkAll.is(':checked')) {
         $check.prop('checked', true);
@@ -259,6 +257,7 @@ $check.click(function () {
     }
 });
 
+/*======== 창고 삭제 ========*/
 confirmButton.on('click', function () {
     // 삭제를 실행하는 코드 작성
     $.ajax({

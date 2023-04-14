@@ -191,56 +191,6 @@
   <script th:inline="javascript">
     let users = [[${users}]];
     let $page = [[${pagination.criteria.page}]];
-
-//     $('#Glyph').on('click', function() {
-//       const conditiontest = $('.listbox-selecter').text();
-//
-//       var condition;
-//       if (conditiontest == '이름') {
-//         // $("input[name='searchType']").val('userName');
-//         condition = "userName";
-//       } else if (conditiontest == '주소') {
-//         // $("input[name='searchType']").val('userAddress');
-//         condition = "userAddress";
-//       } else if( conditiontest == '검색조건 선택'){
-//         alert("제발 하지마");
-//         return;
-//       }
-//
-//       const search = $('input[name="search"]').val();
-//       $.ajax({
-//         url: "/admins/user",
-//         type: "post",
-//         data: {condition: condition, search: search},
-//         success: function (results) {
-//           let text = ``;
-//           $('.table__content').html(text);
-//           results.forEach((users, i) => {
-//             text += `
-//            <tr class="table__content">
-//             <td>
-//                 <label class="check-label">
-//                 <input type="checkbox" name="check" />
-//                 </label>
-//                 </td>
-//                     <td class="content__id">${users.userId}</td>
-//                     <td>${users.userIdentification}</td>
-//                     <td>${users.userEmail}</td>
-//                     <td>${users.userBirth}</td>
-//                     <td>${users.userGender}</td>
-//                 <td>
-//                     <button class="content__detail__btn button__type_2 button__color__green">
-//                      상세보기
-//                     </button>
-//                 </td>
-//             </tr>
-// `
-//           });
-//           $(".table").append(text);
-//         }
-//       });
-//     });
-
   </script>
   <script src="/js/admin/app.js"></script>
   <script src="/js/admin/events.js"></script>

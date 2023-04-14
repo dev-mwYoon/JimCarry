@@ -1,7 +1,5 @@
-
-/*----------------------------------------------------------------------------*/
+/*======== 결제 목록 조회 ========*/
 const paymentTableContainer = $(".table");
-
 const createDOM = function(payments){
     let text = `
         <tr class="table__content">
@@ -25,6 +23,7 @@ const createDOM = function(payments){
 `
     return text;
 }
+/*======== 검색 조건 조회  ========*/
 $('#Glyph').on('click', function() {
     const conditiontest = $('.listbox-selecter').text();
 
@@ -40,6 +39,7 @@ $('#Glyph').on('click', function() {
 
     document.searchForm.submit();
 });
+/*======== 결제 목록 출력 ========*/
 payments.forEach((payments, i) => {
     paymentTableContainer.append(
         createDOM(payments)
@@ -47,7 +47,7 @@ payments.forEach((payments, i) => {
 
 });
 
-
+/*======== 결제 상세보기 모달 수정 ========*/
 $(".content__detail__btn").on('click', function () {
     const i = $('.content__detail__btn').index($(this));
     console.log(i);
@@ -55,7 +55,6 @@ $(".content__detail__btn").on('click', function () {
     /* 해당 컨텐츠 번호 */
     const payId = $('.content__detail__btn').eq(i).parent().siblings('.content__id').text();
 
-    /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
                 $.ajax({
                     url: "/admins/payment/detail",
                     type: "post",
@@ -145,33 +144,16 @@ $(".content__detail__btn").on('click', function () {
 
     /* 해당 컨텐츠 번호 */
     const contentId = $detailButton.eq(i).parent().siblings('.content__id').text();
-
-    /* ajax 에 콜백 넘겨주는 코드 작성해야 함 (검색기능 ajax로)*/
-
-    /* 추후 타임리프로 대체할 예정 */
     $modalStage.show();
 
     /* 모달 닫는 이벤트 */
-    /* 추후 외부로 빼야함 */
     $('.modal-close').on('click', function (e) {
         $modalStage.fadeOut(500);
     });
 });
 
-/* 상세보기 모달 내용 submit 이벤트 */
-$('#completeBtn').on('click', function (e) {
-    e.preventDefault();
-    return new Promise(
-        function () {
-            console.log('으으아');
-            $modalStage.fadeOut(500);
-        },
-        () => {
-            $('.storage_form').submit();
-        }
-    );
-});
-/* 체크박스 */
+/*=====================  목록 삭제 이벤트 =====================*/
+/*======== 체크박스 이벤트 ========*/
 const $checkAll = $('#checkAll');
 const $check = $("input[name='check']");
 let $checkArr = [];
@@ -187,7 +169,7 @@ $('input[name=check]').on('click', function() {
     console.log($checkArr);
 });
 
-/* 체크박스 이벤트 ======================================= */
+/*======== 체크박스 이벤트 ========*/
 $checkAll.click(function () {
     if ($checkAll.is(':checked')) {
         $check.prop('checked', true);
@@ -217,6 +199,8 @@ $check.click(function () {
         $checkAll.prop('checked', true);
     }
 });
+
+/*======== 목록 삭제 ========*/
 confirmButton.on('click', function(){
     $.ajax({
         url: "/admins/payment/delete",
