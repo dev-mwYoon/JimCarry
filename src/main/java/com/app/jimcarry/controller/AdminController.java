@@ -32,7 +32,8 @@ public class AdminController {
     private final NoticeService noticeService;
     private final PaymentService paymentService;
 
-    /*-----------회원관리----------*/
+    /*======================== 회원 관리 ==========================*/
+    /*======== 회원 목록 조회, 페이징 처리 ========*/
     @GetMapping("user")
     public String user(Criteria criteria, Model model) {
 
@@ -40,10 +41,7 @@ public class AdminController {
         int amount = 5;
         /* 검색된 결과의 총 개수 */
         int total = 0;
-//        String type = null;
-        /* 추후에 setUserId 세션으로 변경 */
         SearchDTO searchDTO = new SearchDTO();
-//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userName", "userBirth")));
 
         PageDTO pageDTO = null;
 
@@ -63,7 +61,7 @@ public class AdminController {
     }
 
 
-    // 검색 + 페이징 처리
+    /*======== 검색 + 페이징 처리 ========*/
     @GetMapping("user/search")
     public String userSearch(Criteria criteria, String search, String condition, Model model) {
 
@@ -95,7 +93,8 @@ public class AdminController {
         return "/admin/user";
     }
 
-    /*-----------문의사항----------*/
+    /*======================== 문의 관리 ==========================*/
+    /*======== 문의 목록 조회, 페이징 처리 ========*/
     @GetMapping("enquiry")
         public String enquiry(Criteria criteria, Model model) {
 
@@ -129,7 +128,7 @@ public class AdminController {
     }
 
 
-    // 검색 + 페이징 처리
+    /*======== 검색 조건, 페이징 처리 ========*/
     @GetMapping("enquiry/search")
     public String enquirySearch(Criteria criteria, String search, String condition, Model model) {
 
@@ -173,7 +172,8 @@ public class AdminController {
     }
 
 
-    /*-----------공지사항----------*/
+    /*======================== 공지사항 관리 ==========================*/
+    /*======== 공지사항 목록 조회 ========*/
     @GetMapping("notice")
     public String notice(Criteria criteria, Model model) {
         int amount = 5;
@@ -196,7 +196,8 @@ public class AdminController {
 
         return "/admin/notice";
     }
-    /* 검색 + 페이징 처리*/
+
+    /*======== 검색 조건, 페이징 처리 ========*/
     @GetMapping("notice/search")
     public String noticeSearch(Criteria criteria, String search, String condition, Model model) {
         /* 한 페이지에 보여줄 게시글 개수 */
@@ -225,26 +226,28 @@ public class AdminController {
         model.addAttribute("search", search);
         return "/admin/notice";
     }
-    /*공지사항 수정*/
+
+    /*======== 공지사항 수정 ========*/
     @PostMapping("notice/update")
     public RedirectView setNotice(NoticeVO noticeVO){
         noticeService.setNotice(noticeVO);
         return new RedirectView("/admin/notice");
     }
-    /* 공지사항 작성 */
+    /*======== 공지사항 작성 ========*/
     @PostMapping("notice/register")
     public RedirectView registerNotice(NoticeVO noticeVO) {
         noticeService.registerNotice(noticeVO);
         return new RedirectView("/admin/notice");
     }
-    /*-----------결제관리----------*/
+
+    /*======================== 결제사항 관리 ==========================*/
+    /*======== 결제 목록 조회 ========*/
     @GetMapping("payment")
     public String payment(Criteria criteria, Model model) {
         int amount = 5;
         int total = 0;
         int payAmount = 0;
         SearchDTO searchDTO = new SearchDTO();
-//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
 
         PageDTO pageDTO = null;
 
@@ -268,7 +271,7 @@ public class AdminController {
         return "/admin/payment";
     }
 
-    /* 검색 + 페이징 처리*/
+    /*======== 검색 조건, 페이징 처리 ========*/
     @GetMapping("payment/search")
     public String paymentSearch(Criteria criteria, String search, String condition, Model model) {
         int amount = 5;
@@ -300,15 +303,14 @@ public class AdminController {
         return "/admin/payment";
     }
 
-    /*-----------리뷰관리----------*/
+    /*======================== 리뷰 관리 ==========================*/
+    /*======== 리뷰 목록 조회 ========*/
     @GetMapping("review")
     public String review(Criteria criteria, Model model) {
         int amount = 5;
         int total = 0;
 
         SearchDTO searchDTO = new SearchDTO();
-//        searchDTO.setTypes(new ArrayList<>(Arrays.asList("userId")));
-//        searchDTO.setUserId(2L);
 
         PageDTO pageDTO = null;
 
@@ -326,7 +328,7 @@ public class AdminController {
         return "/admin/review";
     }
 
-    /* 검색 + 페이징 */
+    /*======== 검색 조건, 페이징 처리 ========*/
     @GetMapping("review/search")
     public String review(Criteria criteria, String search, String condition, Model model) {
         int amount = 5;
@@ -354,16 +356,16 @@ public class AdminController {
 
         return "/admin/review";
     }
-    /*리뷰 수정*/
+    /*======== 리뷰 수정 ========*/
     @PostMapping("review/update")
         public RedirectView setReview(ReviewVO reviewVO) {
-            // 리뷰 수정 기능 구현
             reviewService.registerSet(reviewVO);
 
         return new RedirectView("/admin/review");
     }
 
-            /*-----------창고관리----------*/
+    /*======================== 창고 관리 ==========================*/
+    /*======== 창고 목록 조회 ========*/
     @GetMapping("storage")
     public String storage(Criteria criteria, Model model) {
 
@@ -391,7 +393,7 @@ public class AdminController {
         return "/admin/storage";
     }
 
-    /* 창고 수정*/
+    /*======== 창고 수정 ========*/
     @PostMapping("storage/update")
     @ResponseBody
     public RedirectView updateStorage(@RequestParam("storageId") Long storageId,
@@ -421,7 +423,7 @@ public class AdminController {
         return new RedirectView("/admin/storage");
     }
 
-    /* 검색 + 페이징 처리*/
+    /*======== 검색 조건, 페이징 처리 ========*/
     @GetMapping("storage/search")
     public String storageSearch(Criteria criteria, String search, String condition, Model model) {
         /* 한 페이지에 보여줄 게시글 개수 */

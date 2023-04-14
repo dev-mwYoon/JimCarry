@@ -87,7 +87,7 @@ $list.on('click', function (e) {
 // });
 
 /* 상세보기 모달 내용 submit 이벤트 */
-$('#completeBtn').on('click', function (e) {
+/*$('#completeBtn').on('click', function (e) {
   e.preventDefault();
   return new Promise(
     function () {
@@ -98,44 +98,44 @@ $('#completeBtn').on('click', function (e) {
       $('.storage_form').submit();
     }
   );
-});
+});*/
 
 /* 항목 한개이상 선택안되게 */
 
 /* 창고 썸네일변경 */
-// $storageFile.on('change', function (e) {
-//   let i = $storageFile.index($(this));
-//   console.log(i);
-//   var reader = new FileReader();
-//   reader.readAsDataURL(e.target.files[0]);
-//   console.log(e.target);
-//   reader.onload = function (e) {
-//     console.log(e.target);
-//     let url = e.target.result;
-//     if (url.includes('image')) {
-//       $('label.attach').eq(i).find('h6').hide();
-//       $('div.x').eq(i).show();
-//       $thumbnail.eq(i).show();
-//       $thumbnail.eq(i).attr('src', url);
-//     } else {
-//       showWarnModal('이미지 파일만 등록 가능합니다.');
-//     }
-//   };
-// });
+/*$storageFile.on('change', function (e) {
+  let i = $storageFile.index($(this));
+  console.log(i);
+  var reader = new FileReader();
+  reader.readAsDataURL(e.target.files[0]);
+  console.log(e.target);
+  reader.onload = function (e) {
+    console.log(e.target);
+    let url = e.target.result;
+    if (url.includes('image')) {
+      $('label.attach').eq(i).find('h6').hide();
+      $('div.x').eq(i).show();
+      $thumbnail.eq(i).show();
+      $thumbnail.eq(i).attr('src', url);
+    } else {
+      showWarnModal('이미지 파일만 등록 가능합니다.');
+    }
+  };
+});*/
 
-// /* 체크박스 이벤트 ======================================= */
-// $checkAll.click(function () {
-//   if ($checkAll.is(':checked')) $check.prop('checked', true);
-//   else $check.prop('checked', false);
-// });
-//
-// $check.click(function () {
-//   var total = $check.length;
-//   var checked = $('input[name=check]:checked').length;
-//   console.log("들왓나?")
-//   if (total != checked) $checkAll.prop('checked', false);
-//   else $checkAll.prop('checked', true);
-// });
+/* 체크박스 이벤트 ======================================= */
+/*$checkAll.click(function () {
+  if ($checkAll.is(':checked')) $check.prop('checked', true);
+  else $check.prop('checked', false);
+});
+
+$check.click(function () {
+  var total = $check.length;
+  var checked = $('input[name=check]:checked').length;
+  console.log("들왓나?")
+  if (total != checked) $checkAll.prop('checked', false);
+  else $checkAll.prop('checked', true);
+});*/
 
 /* 실시간 시계 */
 
@@ -162,12 +162,6 @@ const cancelButton = $('#cancel-delete');
 deleteButton.click(function () {
   modal.css('display', 'block');
 });
-
-// confirmButton.click(function () {
-//   // 삭제를 실행하는 코드 작성
-//   // location.reload();
-//   modal.css('display', 'none');
-// });
 
 cancelButton.click(function () {
   modal.css('display', 'none');

@@ -1,5 +1,5 @@
+/*======== 문의 목록 조회 ========*/
 const inquiryTableContainer = $(".table");
-
 const createDOM = function(inquiries){
     let text =
         `<tr class="table__content">
@@ -23,7 +23,7 @@ const createDOM = function(inquiries){
     return text;
 
 }
-
+/*======== 검색 목록 조회 ========*/
 $('#Glyph').on('click', function() {
     const conditiontest = $('.listbox-selecter').text();
 
@@ -45,6 +45,7 @@ $('#Glyph').on('click', function() {
     document.searchForm.submit();
 });
 
+/*======== 목록 출력 ========*/
 inquiries.forEach((inquiries, i)=>{
     inquiryTableContainer.append(
         createDOM(inquiries)
@@ -159,8 +160,8 @@ $(".content__detail__btn").on('click', function () {
 });
 
 
-
-/* 체크박스 */
+/*=====================  목록 삭제 이벤트 =====================*/
+/*======== 체크 박스 조회 ========*/
 const $checkAll = $('#checkAll');
 const $check = $("input[name='check']");
 let $checkArr = [];
@@ -176,7 +177,7 @@ $('input[name=check]').on('click', function() {
     console.log($checkArr);
 });
 
-/* 체크박스 이벤트 ======================================= */
+/*======== 체크 박스 이벤트 ========*/
 $checkAll.click(function () {
     if ($checkAll.is(':checked')) {
         $check.prop('checked', true);
@@ -209,7 +210,7 @@ $check.click(function () {
 
 
 
-/* 문의사항 삭제 */
+/*======== 문의 사항 삭제 ========*/
 confirmButton.on('click', function () {
 
     $.ajax({
@@ -224,9 +225,8 @@ confirmButton.on('click', function () {
         }
     });
 });
-/* 문의하기 답변 */
+/*======== 문의 사항 답변 ========*/
 $('#answer-check').on('click', function(){
-    console.log($('#answer-check'))
     $.ajax({
         url: "/admins/inquiry/answer",
         type: "post",

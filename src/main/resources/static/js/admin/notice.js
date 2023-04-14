@@ -1,3 +1,4 @@
+/*======== 공지사항 목록 조회 ========*/
 const noticeTableContainer = $(".table");
 const creatDOM = function (notices) {
     let text=
@@ -23,6 +24,7 @@ const creatDOM = function (notices) {
         `
     return text;
 }
+/*======== 공지사항 검색 조회 ========*/
 $('#Glyph').on('click', function() {
     const conditiontest = $('.listbox-selecter').text();
 
@@ -38,12 +40,14 @@ $('#Glyph').on('click', function() {
 
     document.searchForm.submit();
 });
+/*======== 목록 출력 ========*/
 notices.forEach((notices, i)=>{
     noticeTableContainer.append(
         creatDOM(notices)
     );
 });
 
+/*======== 공지사항 작성 모달 ========*/
 $('#create-button').on('click', function(){
             $(".modal-stage").html(
                 `
@@ -110,7 +114,7 @@ $('#create-button').on('click', function(){
 })
 
 
-
+/*======== 공지사항 상세보기 모달 ========*/
 $(".content__detail__btn").on('click', function () {
     console.log("click");
     console.log($(".content__detail__btn"));
@@ -196,8 +200,8 @@ $(".content__detail__btn").on('click', function () {
     $modalStage.show();
 
 });
-
-/* 체크박스 */
+/*=====================  목록 삭제 이벤트 =====================*/
+/*======== 체크 박스 ========*/
 const $checkAll = $('#checkAll');
 const $check = $("input[name='check']");
 let $checkArr = [];
@@ -213,7 +217,7 @@ $('input[name=check]').on('click', function() {
     console.log($checkArr);
 });
 
-/* 체크박스 이벤트 ======================================= */
+/*======== 체크박스 이벤트 ========*/
 $checkAll.click(function () {
     if ($checkAll.is(':checked')) {
         $check.prop('checked', true);
@@ -244,7 +248,7 @@ $check.click(function () {
     }
 });
 
-/* 공지 사항 삭제 */
+/*======== 공지사항 삭제 ========*/
 confirmButton.on('click', function(){
     $.ajax({
         url: "/admins/notice/delete",

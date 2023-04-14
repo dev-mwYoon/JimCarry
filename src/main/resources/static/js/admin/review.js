@@ -1,6 +1,5 @@
-/*리뷰 목록 불러오기*/
+/*======== 후기 목록 조회 ========*/
 const reviewTableContainer = $(".table");
-
 const createDOM = function (reviews) {
     let text = `
         <tr class="table__content">
@@ -23,6 +22,7 @@ const createDOM = function (reviews) {
 `
     return text;
 }
+/*======== 후기목록 검색 조회 ========*/
 $('#Glyph').on('click', function () {
     const conditiontest = $('.listbox-selecter').text();
 
@@ -38,6 +38,7 @@ $('#Glyph').on('click', function () {
 
     document.searchForm.submit();
 });
+/*======== 후기 목록 출력 ========*/
 reviews.forEach((reviews, i) => {
     reviewTableContainer.append(
         createDOM(reviews)
@@ -45,7 +46,7 @@ reviews.forEach((reviews, i) => {
 
 });
 
-
+/*======== 후기 상세보기 모달 ========*/
 $(".content__detail__btn").on('click', function () {
     let $detailBt = $('.content__detail__btn');
     console.log("click");
@@ -126,9 +127,6 @@ $(".content__detail__btn").on('click', function () {
                         </section>
                     `
             );
-
-            /* 모달 닫는 이벤트 */
-            /* 추후 외부로 빼야함 */
             $('#modal-close').on('click', function () {
                 $modalStage.fadeOut(500);
             });
@@ -139,22 +137,14 @@ $(".content__detail__btn").on('click', function () {
         }
     });
 
-
-    /* 추후 타임리프로 대체할 예정 */
     $modalStage.show();
-
     /* 모달 닫는 이벤트 */
-    /* 추후 외부로 빼야함 */
     $('.modal-close').on('click', function (e) {
         $modalStage.fadeOut(500);
     });
 });
-
-
-/* 상세보기 모달 내용 submit 이벤트 */
-
-
-/* 체크박스 */
+/*=====================  목록 삭제 이벤트 =====================*/
+/*======== 체크박스 이벤트 ========*/
 const $checkAll = $('#checkAll');
 const $check = $("input[name='check']");
 let $checkArr = [];
@@ -170,7 +160,7 @@ $('input[name=check]').on('click', function () {
     console.log($checkArr);
 });
 
-/* 체크박스 이벤트 ======================================= */
+/*======== 체크박스 이벤트 ========*/
 $checkAll.click(function () {
     if ($checkAll.is(':checked')) {
         $check.prop('checked', true);
@@ -198,6 +188,8 @@ $check.click(function () {
         $checkAll.prop('checked', true);
     }
 });
+
+/*======== 후기 삭제 ========*/
 confirmButton.on('click', function () {
     $.ajax({
         url: "/admins/review/delete",
