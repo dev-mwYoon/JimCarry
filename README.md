@@ -9,7 +9,9 @@
 
 ### :mantelpiece_clock: 개발 기간
 * 23.03.13 ~ 23.04.07
-
+  
+### :mantelpiece_clock: 파견 기간
+* 23.04.06 ~ 23.04.07
 
 ### :people_holding_hands: 맴버구성 - 백엔드 업무
  - 팀장  : 황자현 - 관리자페이지
@@ -18,7 +20,7 @@
  - 팀원2 : 김주연 - 검색 및 상세페이지
  - 팀원3 : 김서현 - 메인페이지, 결제페이지
  - 팀원4 : 정현진 - 로그인, 회원가입, ID찾기, PW찾기
- - 파견 : 윤민우 - 검색 및 상세페이지
+ - 백엔드 업무 파견 : 윤민우 - 검색 및 상세페이지
 
 
 ### 프로젝트 목적
@@ -36,8 +38,6 @@
 
 
 ### 프로젝트에서 맡은 역할
-- 서비스 기획 및 전반적인 디자인 업무 수행
-- 프론트 업무 : 창고등록페이지, FAQ, 문의하기, 서비스 이용안내 페이지
 - 백엔드 업무 : 검색페이지, 창고 상세페이지 기능 구현
 
 
@@ -46,7 +46,7 @@
 - jQuery
 - Thymeleaf
 - Spring Boot
-- HTML, CSS, JS
+- JS
 - MySQL
 - JDK 11.0.15
 - YAML
@@ -65,16 +65,8 @@
 - Cool SMS api
 
 
-## :pushpin: 맡은 역할
-### 프론트 진행 - <a href="https://github.com/coder-juyeon/JimCarry/wiki/front">상세보기 - WIKI 이동</a>
-- 창고등록페이지
-- FAQ
-- 문의하기
-- 서비스 이용안내 페이지
-- 주소 API 연동
 
-
-### 백엔드 진행 - <a href="https://github.com/coder-juyeon/JimCarry/wiki/backend">상세보기 - WIKI 이동</a>
+### 백엔드 진행
 #### 검색페이지
  - 지역별 검색
  - 규모별 검색
